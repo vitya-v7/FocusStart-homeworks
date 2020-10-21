@@ -22,7 +22,7 @@ class CarDetailPresenter: CarDetailViewOutput {
             carModel = carService?.getCar(key: key!)
         }
         else {
-            carModel = CarModel.init(carModel: CarService.carModels[0], carCountry: CarService.carCountry[0], carYear: String(CarService.carYear[0]), carBodyStyle: CarService.carBodyStyle[0], key: nil)
+			carModel = CarModel.init(carModel: CarService.CarModels.allCases[0], carCountry: CarService.CarCountry.allCases[0], carYear: CarService.carYear[0], carBodyStyle: CarService.CarBodyStyle.allCases[0], carKey: nil)
         }
         
         reloadData()
@@ -67,16 +67,16 @@ class CarDetailPresenter: CarDetailViewOutput {
         popover?.sourceRect = (view.bounds)
     }
     
-    func changeSelectedDataInView(type: pickerType, value: String) {
+    func changeSelectedDataInView(type: PickerType, value: String) {
         switch type {
             case .carModel:
-                carModel?.carModel = value
+				carModel?.carModel = CarService.CarModels.init(rawValue: value)
             case .carBodyStyle:
-                carModel?.carBodyStyle = value
+				carModel?.carBodyStyle = CarService.CarBodyStyle.init(rawValue: value)
             case .carYear:
-                carModel?.carYear = value
+				carModel?.carYear = Int(value)
             case .carCountry:
-                carModel?.carCountry = value
+                carModel?.carCountry = CarService.CarCountry.init(rawValue: value)
         }
         reloadData()
     }

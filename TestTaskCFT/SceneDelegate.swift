@@ -29,15 +29,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func loadDefaultCars() {
         
         let carsService = CarService.init()
-        var car = CarModel.init(carModel: CarService.carModels[0], carCountry: CarService.carCountry[1], carYear: String(CarService.carYear[2]), carBodyStyle: CarService.carBodyStyle[3], key: UUID().uuidString)
+		var car = CarModel.init(carModel: CarService.CarModels.allCases[0], carCountry: CarService.CarCountry.allCases[1], carYear: CarService.carYear[2], carBodyStyle: CarService.CarBodyStyle.allCases[3], carKey: UUID().uuidString)
         
         carsService.addCar(car: car)
         
-        car = CarModel.init(carModel: CarService.carModels[1], carCountry: CarService.carCountry[2], carYear: String(CarService.carYear[3]), carBodyStyle: CarService.carBodyStyle[1], key: UUID().uuidString)
+        car = CarModel.init(carModel: CarService.CarModels.allCases[1], carCountry: CarService.CarCountry.allCases[2], carYear: CarService.carYear[3], carBodyStyle: CarService.CarBodyStyle.allCases[1], carKey: UUID().uuidString)
         
         carsService.addCar(car: car)
         
-        car = CarModel.init(carModel: CarService.carModels[2], carCountry: CarService.carCountry[3], carYear: String(CarService.carYear[2]), carBodyStyle: CarService.carBodyStyle[0], key: UUID().uuidString)
+        car = CarModel.init(carModel: CarService.CarModels.allCases[2], carCountry: CarService.CarCountry.allCases[3], carYear: CarService.carYear[2], carBodyStyle: CarService.CarBodyStyle.allCases[0], carKey: UUID().uuidString)
         
         carsService.addCar(car: car)
         
