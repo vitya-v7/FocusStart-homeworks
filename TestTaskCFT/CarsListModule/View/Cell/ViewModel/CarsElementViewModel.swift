@@ -16,10 +16,10 @@ class CarsElementViewModel {
     var carBodyStyle: String?
     
     init (withElementModel model: CarModel) {
-        self.carModel = model.carModel
-        self.carCountry = model.carCountry
-        self.carBodyStyle = model.carBodyStyle
-        self.carYear = model.carYear
+		self.carModel = model.carModel?.rawValue
+		self.carCountry = model.carCountry?.rawValue
+		self.carBodyStyle = model.carBodyStyle?.rawValue
+		self.carYear = String(model.carYear ?? 0)
         
     }
 }

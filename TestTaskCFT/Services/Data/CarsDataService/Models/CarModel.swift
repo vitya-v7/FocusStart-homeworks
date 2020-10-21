@@ -8,20 +8,10 @@
 
 import UIKit
 
-class CarModel: Codable {
-    
-    var carModel: String?
-    var carCountry: String?
-    var carYear: String?
-    var carBodyStyle: String?
+struct CarModel: Codable {
+	var carModel: CarService.CarModels?
+	var carCountry: CarService.CarCountry?
+    var carYear: Int?
+	var carBodyStyle: CarService.CarBodyStyle?
     var carKey: String?
-    
-    init(carModel: String, carCountry: String, carYear:String,
-         carBodyStyle: String, key: String?) {
-        self.carModel = carModel
-        self.carCountry = carCountry
-        self.carYear = carYear
-        self.carBodyStyle = carBodyStyle
-        self.carKey = key
-    }
 }
