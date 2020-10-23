@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct CarDetailViewModel {
+class CarDetailViewModel {
     
     var carModel: String?
     var carYear: String?
@@ -16,9 +16,9 @@ struct CarDetailViewModel {
     var carBodyStyle: String?
     
     init (withElementModel model: CarModel) {
-		self.carModel = model.carModel?.rawValue ?? ""
-		self.carCountry = model.carCountry?.rawValue ?? ""
-		self.carBodyStyle = model.carBodyStyle?.rawValue ?? ""
-		self.carYear = String(model.carYear ?? 0)
+        self.carModel = model.carModel ?? ""
+        self.carCountry = model.carCountry ?? ""
+        self.carBodyStyle = model.carBodyStyle ?? ""
+        self.carYear = model.carYear ?? ""
     }
 }
