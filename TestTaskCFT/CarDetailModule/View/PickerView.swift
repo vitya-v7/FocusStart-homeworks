@@ -12,6 +12,7 @@ enum PickerType: String {
     case carCountry
     case carBodyStyle
     case carYear
+	case carNumber
 }
 
 class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource {
@@ -25,7 +26,7 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
     var currentOption: String?
     var selectedIndexInPicker: Int?
     var output: CarDetailViewOutput?
-
+	var outputList: CarsListViewOutput?
     private func selectedOption() -> [String] {
 		var itemArray = [String]()
         switch type {
@@ -41,10 +42,6 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
 			for item in CarService.CarCountry.allCases {
 				itemArray.append(item.rawValue)
 			}
-        case .carYear:
-            for value in CarService.carYear {
-				itemArray.append(String(value))
-            }
         default:
             return [String]()
         }
@@ -56,10 +53,15 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
         
         picker.delegate = self
         options = selectedOption()
+
+		if outputList != nil {
+			options?.insert("All bodystyles", at: 0)
+		}
+		
         button?.addTarget(self, action: #selector(saveData(_:)), for: .touchUpInside)
-        picker?.selectRow(1, inComponent: 0, animated: true)
-        
-        selectedIndexInPicker = 0
+        picker?.selectRow(0, inComponent: 0, animated: true)
+
+		var selectedIndexInPicker = 0
         if currentOption != nil {
             for i in 0 ..< options!.count {
                 if currentOption == options![i] {
@@ -67,8 +69,15 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
                 }
             }
         }
-        
-        picker?.selectRow(selectedIndexInPicker!, inComponent: 0, animated: true)
+		if output != nil {
+			picker?.selectRow(selectedIndexInPicker, inComponent: 0, animated: true)
+		}
+		else {
+			if selectedIndexInPicker > 0 {
+				picker?.selectRow(selectedIndexInPicker + 1, inComponent: 0, animated: true)
+			}
+		}
+
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
@@ -76,21 +85,31 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
         if label == nil {
             label = UILabel()
         }
-        
-        label?.text = options![row]
+		label?.text = options![row]
         label?.adjustsFontSizeToFitWidth = true
         label?.textAlignment = .center
         return label!
     }
     
     @objc func saveData(_ but: UIButton) {
-        let row = picker?.selectedRow(inComponent: 0)
-        output!.changeSelectedDataInView(type: type!, value: options![row!])
+		if let out = output {
+			let row = picker?.selectedRow(inComponent: 0)
+			out.changeSelectedDataInView(type: type!, index: row!)
+		}
+		if let out = outputList {
+			let row = picker?.selectedRow(inComponent: 0)
+			if row! > 0 {
+				out.filterCars(bodyStyle: CarService.CarBodyStyle(rawValue: options![row!]))
+			}
+			else {
+				out.filterCars(bodyStyle: nil)
+			}
+		}
         self.dismiss(animated: true, completion: nil)
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return options!.count
+		return options!.count
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

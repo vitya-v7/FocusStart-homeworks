@@ -14,11 +14,23 @@ struct CarDetailViewModel {
     var carYear: String?
     var carCountry: String?
     var carBodyStyle: String?
-    
+	var carNumber: String?
+
     init (withElementModel model: CarModel) {
-		self.carModel = model.carModel?.rawValue ?? ""
-		self.carCountry = model.carCountry?.rawValue ?? ""
-		self.carBodyStyle = model.carBodyStyle?.rawValue ?? ""
-		self.carYear = String(model.carYear ?? 0)
+		self.carModel = model.model.rawValue
+		self.carCountry = model.manufacturer.rawValue
+		self.carBodyStyle = model.body.rawValue
+		if let number = model.carNumber {
+			self.carNumber = String(number)
+		}
+		else {
+			self.carNumber = nil
+		}
+		if let year = model.yearOfIssue {
+			self.carYear = String(year)
+		}
+		else {
+			self.carYear = nil
+		}
     }
 }

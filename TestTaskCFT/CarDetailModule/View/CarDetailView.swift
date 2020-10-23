@@ -15,9 +15,11 @@ protocol CarDetailViewInput : UIViewController  {
 
 protocol CarDetailViewOutput {
     func callPopover(fromView: UIView, option: String)
-    func changeSelectedDataInView(type: PickerType, value: String)
+	func changeSelectedDataInView(type: PickerType, index: Int)
+	func saveSelectedTextFieldValue(type: PickerType, value: String)
     func viewDidLoadDone()
     func saveCarInDB()
+	func reloadData()
 }
 
 class CarDetailView: UIViewController, CarDetailViewInput, UITextFieldDelegate {
@@ -29,14 +31,21 @@ class CarDetailView: UIViewController, CarDetailViewInput, UITextFieldDelegate {
     @IBOutlet weak var carYear: UITextField!
     @IBOutlet weak var carCountry: UITextField!
     @IBOutlet weak var carBodyStyle: UITextField!
-    
+	@IBOutlet weak var carNumberLabel: UITextField!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+		carNumberLabel.text = "312"
         output?.viewDidLoadDone()
     }
     
     @objc func saveCar(_ sender: Any) {
-        output!.saveCarInDB()
+		output?.saveSelectedTextFieldValue(type: .carNumber, value: carNumberLabel.text!)
+		if ((Int(carYear.text!)) != nil) ||
+			(carYear.text!.trimmingCharacters(in: .whitespaces).isEmpty)  {
+			output?.saveSelectedTextFieldValue(type: .carYear, value: carYear.text!)
+		}
+        output?.saveCarInDB()
     }
     
     func setInitialState() {
@@ -46,6 +55,8 @@ class CarDetailView: UIViewController, CarDetailViewInput, UITextFieldDelegate {
        carCountry.delegate = self
        carBodyStyle.delegate = self
        carYear.delegate = self
+		carNumberLabel.delegate = self
+
     }
    
     func setViewModel(viewModel: CarDetailViewModel) {
@@ -54,18 +65,19 @@ class CarDetailView: UIViewController, CarDetailViewInput, UITextFieldDelegate {
     }
        
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if output != nil  {
+		if output != nil && textField.tag != 3 && textField.tag != 6 {
             output?.callPopover(fromView: textField, option: textField.text!)
             return false
         }
         return true
     }
-    
+
     private func configureDetailView(withObject object: CarDetailViewModel) {
         self.carModel!.text = object.carModel
-        self.carYear!.text = object.carYear
         self.carCountry!.text = object.carCountry
         self.carBodyStyle!.text = object.carBodyStyle
+		self.carNumberLabel.text = object.carNumber
+		self.carYear.text = object.carYear
     }
 }
 

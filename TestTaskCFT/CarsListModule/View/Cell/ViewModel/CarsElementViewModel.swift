@@ -8,18 +8,24 @@
 
 import UIKit
 
-class CarsElementViewModel {
+struct CarsElementViewModel {
     
     var carModel: String?
     var carYear: String?
     var carCountry: String?
     var carBodyStyle: String?
-    
+	var carNumber: String?
+
     init (withElementModel model: CarModel) {
-		self.carModel = model.carModel?.rawValue
-		self.carCountry = model.carCountry?.rawValue
-		self.carBodyStyle = model.carBodyStyle?.rawValue
-		self.carYear = String(model.carYear ?? 0)
+		self.carModel = model.model.rawValue
+		self.carCountry = model.manufacturer.rawValue
+		self.carBodyStyle = model.body.rawValue
+		if let year = model.yearOfIssue {
+			carYear = String(year)
+		}
+		if let number = model.carNumber {
+			carNumber = String(number)
+		}
         
     }
 }

@@ -9,9 +9,10 @@
 import UIKit
 
 struct CarModel: Codable {
-	var carModel: CarService.CarModels?
-	var carCountry: CarService.CarCountry?
-    var carYear: Int?
-	var carBodyStyle: CarService.CarBodyStyle?
+	var model: CarService.CarModels
+	var manufacturer: CarService.CarCountry
+    var yearOfIssue: Int?
+	var body: CarService.CarBodyStyle
+	var carNumber: String?
     var carKey: String?
 }

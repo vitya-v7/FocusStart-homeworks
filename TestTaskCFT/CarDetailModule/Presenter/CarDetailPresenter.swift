@@ -16,15 +16,13 @@ class CarDetailPresenter: CarDetailViewOutput {
     var carModel: CarModel?
     
     func viewDidLoadDone() {
-    
         view?.setInitialState()
         if key != nil {
             carModel = carService?.getCar(key: key!)
         }
         else {
-			carModel = CarModel.init(carModel: CarService.CarModels.allCases[0], carCountry: CarService.CarCountry.allCases[0], carYear: CarService.carYear[0], carBodyStyle: CarService.CarBodyStyle.allCases[0], carKey: nil)
+			carModel = CarModel.init(model: CarService.CarModels.allCases[0], manufacturer: CarService.CarCountry.allCases[0], body: CarService.CarBodyStyle.allCases[0], carKey: nil)
         }
-        
         reloadData()
     }
     
@@ -48,12 +46,10 @@ class CarDetailPresenter: CarDetailViewOutput {
                 pv.type = .carModel
             case 2:
                 pv.type = .carBodyStyle
-            case 3:
-                pv.type = .carYear
             case 4:
                 pv.type = .carCountry
-        default:
-            pv.type = .carModel
+			default:
+				pv.type = .carYear
         }
         
         pv.modalPresentationStyle = UIModalPresentationStyle.popover
@@ -67,20 +63,40 @@ class CarDetailPresenter: CarDetailViewOutput {
         popover?.sourceRect = (view.bounds)
     }
     
-    func changeSelectedDataInView(type: PickerType, value: String) {
-        switch type {
-            case .carModel:
-				carModel?.carModel = CarService.CarModels.init(rawValue: value)
-            case .carBodyStyle:
-				carModel?.carBodyStyle = CarService.CarBodyStyle.init(rawValue: value)
-            case .carYear:
-				carModel?.carYear = Int(value)
-            case .carCountry:
-                carModel?.carCountry = CarService.CarCountry.init(rawValue: value)
-        }
+    func changeSelectedDataInView(type: PickerType, index: Int) {
+		switch type {
+			case .carModel:
+					carModel?.model = CarService.CarModels.allCases[index]
+			case .carBodyStyle:
+				   carModel?.body = CarService.CarBodyStyle.allCases[index]
+			case .carCountry:
+				   carModel?.manufacturer = CarService.CarCountry.allCases[index]
+			default: print("unknown option")
+		}
         reloadData()
     }
-    
+
+	func saveSelectedTextFieldValue(type: PickerType, value: String) {
+		switch type {
+			case .carYear:
+				   if value.trimmingCharacters(in: .whitespaces).isEmpty {
+					   carModel?.yearOfIssue = nil
+				   }
+				   else {
+					   carModel?.yearOfIssue = Int(value)
+				   }
+			case .carNumber:
+				   if value.trimmingCharacters(in: .whitespaces).isEmpty {
+					   carModel?.carNumber = nil
+				   }
+				   else {
+					   carModel?.carNumber = value
+				   }
+			default: print("unknown option")
+		}
+		reloadData()
+	}
+
     func reloadData() {
         view!.setViewModel(viewModel: CarDetailViewModel.init(withElementModel: carModel!))
     }

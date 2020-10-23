@@ -19,6 +19,8 @@ protocol CarsListViewOutput {
     func deleteButtonPressedWithIndexRow(row: Int)
     func plusButtonClicked()
     func viewWillAppearDone()
+	func callPopover(fromView view: UIView, option: String?)
+	func filterCars(bodyStyle: CarService.CarBodyStyle?)
 }
 
 class CarsListView: UIViewController, CarsListViewInput, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
@@ -37,7 +39,9 @@ class CarsListView: UIViewController, CarsListViewInput, UITableViewDelegate, UI
     
     func setInitialState() {
        let rightButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+		let leftButton = UIBarButtonItem.init(title: "Filter", style: .plain, target: self, action: #selector(filerCarsByBodyStyle(_:)))
        self.navigationItem.rightBarButtonItem = rightButton
+		self.navigationItem.leftBarButtonItem = leftButton
        self.tableView?.delegate = self
        self.tableView?.dataSource = self
     }
@@ -50,7 +54,11 @@ class CarsListView: UIViewController, CarsListViewInput, UITableViewDelegate, UI
     @objc func insertNewObject(_ sender: Any) {
         output!.plusButtonClicked()
     }
-    
+
+	@objc func filerCarsByBodyStyle(_ sender: Any) {
+		output!.callPopover(fromView: self.view, option: nil)
+	}
+
     func setViewModels(viewModels: [CarsElementViewModel]) {
         self.viewModels = viewModels
         self.tableView?.reloadData()
@@ -78,13 +86,13 @@ class CarsListView: UIViewController, CarsListViewInput, UITableViewDelegate, UI
         return self.viewModels?.count ?? 0
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+    /*func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .delete
-    }
+    }*/
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            output!.deleteButtonPressedWithIndexRow(row: indexPath.row)
+            //output!.deleteButtonPressedWithIndexRow(row: indexPath.row)
         }
     }
 }

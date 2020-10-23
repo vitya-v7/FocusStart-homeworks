@@ -24,10 +24,10 @@ protocol DetailsCarServiceInterface {
 class CarService: CarsListServiceInterface, DetailsCarServiceInterface {
     
 	enum CarBodyStyle: String, CaseIterable, Codable   {
-		case Sedan = "Sedan"
-		case Universal = "Universal"
-		case Coupe = "Coupe"
-		case Hatchback = "Hatchback"
+		case Sedan
+		case Universal
+		case Coupe
+		case Hatchback
 	}
 
 	enum CarCountry: String, CaseIterable, Codable  {
@@ -44,9 +44,8 @@ class CarService: CarsListServiceInterface, DetailsCarServiceInterface {
 		case Wolkswagen
 		case BMW
 	}
+
 	
-    static var carYear:[Int] = Array(2000...2014)
-    
     func getCars() -> [CarModel]? {
         let allValues: Data? = UserDefaults.standard.data(forKey: "cars")
         if let cars = allValues {
@@ -101,13 +100,11 @@ class CarService: CarsListServiceInterface, DetailsCarServiceInterface {
     
     func getCar(key: String) -> CarModel? {
         let cars = getCars()
-        
         for car in cars! {
             if car.carKey == key {
                 return car
             }
         }
-       
         return nil
     }
 }
