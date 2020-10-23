@@ -9,13 +9,14 @@
 import UIKit
 
 class CarsElementCell: UITableViewCell {
-    
+	var viewModel: CarsElementViewModel?
+	
     @IBOutlet weak var carModel: UILabel!
     @IBOutlet weak var carYear: UILabel!
     @IBOutlet weak var carCountry: UILabel!
     @IBOutlet weak var carBodyStyle: UILabel!
 	@IBOutlet weak var carNumber: UILabel!
-    var viewModel: CarsElementViewModel?
+
     
     static let reuseIdentifier = "CarsListCellIdentifier"
     

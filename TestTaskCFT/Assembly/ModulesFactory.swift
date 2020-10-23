@@ -11,7 +11,6 @@ import UIKit
 class ModulesFactory {
     class func createCarsListModule() -> UIViewController {
         let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-        
         let view = storyboard.instantiateViewController(identifier: "CarsListViewIdentifier") as! CarsListView
         let carService = CarService.init()
         let presenter = CarsListPresenter()

@@ -8,16 +8,11 @@
 
 import UIKit
 
-class CarsListPresenter: CarsListViewOutput {    
-    var carService: CarsListServiceInterface?
-    var view: CarsListViewInput?
+class CarsListPresenter {    
+    var carService: ICarsListServiceInterface?
+    var view: ICarsListViewInput?
     var carModels: [CarModel]?
 	var filterBodyStyle: CarService.CarBodyStyle?
-
-    func convertCarModelToViewModel(car: CarModel) -> CarsElementViewModel {
-        let viewModel = CarsElementViewModel(withElementModel: car)
-        return viewModel
-    }
     
     func viewDidLoadDone() {
         view?.setInitialState()
@@ -29,15 +24,23 @@ class CarsListPresenter: CarsListViewOutput {
 			filterCars(bodyStyle: filterBodyStyle)
 		}
     }
-    
-    func convertModelsToViewModels(models: [CarModel]) -> [CarsElementViewModel] {
-        var carCells = [CarsElementViewModel]()
-        
-        for car in models {
-            carCells.append(CarsElementViewModel.init(withElementModel: car))
-        }
-        return carCells
-    }
+}
+
+extension CarsListPresenter: ICarsListViewOutput
+{
+	func convertCarModelToViewModel(car: CarModel) -> CarsElementViewModel {
+		let viewModel = CarsElementViewModel(withElementModel: car)
+		return viewModel
+	}
+
+	func convertModelsToViewModels(models: [CarModel]) -> [CarsElementViewModel] {
+		var carCells = [CarsElementViewModel]()
+
+		for car in models {
+			carCells.append(CarsElementViewModel.init(withElementModel: car))
+		}
+		return carCells
+	}
 
 	func filterCars(bodyStyle: CarService.CarBodyStyle?) {
 		filterBodyStyle = bodyStyle
@@ -74,22 +77,22 @@ class CarsListPresenter: CarsListViewOutput {
 		popover?.sourceRect = (view.bounds)
 	}
 
-    func cellWithIndexSelected(row: Int) {
-        let carModelKey = carModels![row].carKey!
-        self.view?.navigationController?.pushViewController(ModulesFactory.createCarDetailModule(key: carModelKey), animated: true)
-    }
-    
-    func plusButtonClicked() {
-        self.view?.navigationController?.pushViewController(ModulesFactory.createCarDetailModule(key: nil), animated: true)
-    }
-    
-    func reloadData() {
-        carModels = carService?.getCars()
-        view!.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
-    }
-    
-    func deleteButtonPressedWithIndexRow(row: Int) {
-        carService?.deleteCar(key: carModels![row].carKey!)
-        reloadData()
-    }
+	func cellWithIndexSelected(row: Int) {
+		let carModelKey = carModels![row].carKey!
+		self.view?.navigationController?.pushViewController(ModulesFactory.createCarDetailModule(key: carModelKey), animated: true)
+	}
+
+	func plusButtonClicked() {
+		self.view?.navigationController?.pushViewController(ModulesFactory.createCarDetailModule(key: nil), animated: true)
+	}
+
+	func reloadData() {
+		carModels = carService?.getCars()
+		view!.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
+	}
+
+	func deleteButtonPressedWithIndexRow(row: Int) {
+		carService?.deleteCar(key: carModels![row].carKey!)
+		reloadData()
+	}
 }

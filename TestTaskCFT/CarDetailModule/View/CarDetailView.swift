@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol CarDetailViewInput : UIViewController  {
+protocol ICarDetailViewInput : UIViewController  {
     func setInitialState()
     func setViewModel(viewModel: CarDetailViewModel)
 }
 
-protocol CarDetailViewOutput {
+protocol ICarDetailViewOutput {
     func callPopover(fromView: UIView, option: String)
 	func changeSelectedDataInView(type: PickerType, index: Int)
 	func saveSelectedTextFieldValue(type: PickerType, value: String)
@@ -22,9 +22,9 @@ protocol CarDetailViewOutput {
 	func reloadData()
 }
 
-class CarDetailView: UIViewController, CarDetailViewInput, UITextFieldDelegate {
+class CarDetailView: UIViewController {
     
-    var output: CarDetailViewOutput?
+    var output: ICarDetailViewOutput?
     var viewModel: CarDetailViewModel?
     
     @IBOutlet weak var carModel: UITextField!
@@ -35,7 +35,6 @@ class CarDetailView: UIViewController, CarDetailViewInput, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		carNumberLabel.text = "312"
         output?.viewDidLoadDone()
     }
     
@@ -45,39 +44,47 @@ class CarDetailView: UIViewController, CarDetailViewInput, UITextFieldDelegate {
 			(carYear.text!.trimmingCharacters(in: .whitespaces).isEmpty)  {
 			output?.saveSelectedTextFieldValue(type: .carYear, value: carYear.text!)
 		}
+		output?.reloadData()
         output?.saveCarInDB()
-    }
-    
-    func setInitialState() {
-       let rightButton = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(saveCar(_:)))
-       self.navigationItem.rightBarButtonItem = rightButton
-       carModel.delegate = self
-       carCountry.delegate = self
-       carBodyStyle.delegate = self
-       carYear.delegate = self
-		carNumberLabel.delegate = self
-
-    }
-   
-    func setViewModel(viewModel: CarDetailViewModel) {
-        self.viewModel = viewModel
-        self.configureDetailView(withObject: viewModel)
-    }
-       
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-		if output != nil && textField.tag != 3 && textField.tag != 6 {
-            output?.callPopover(fromView: textField, option: textField.text!)
-            return false
-        }
-        return true
-    }
-
-    private func configureDetailView(withObject object: CarDetailViewModel) {
-        self.carModel!.text = object.carModel
-        self.carCountry!.text = object.carCountry
-        self.carBodyStyle!.text = object.carBodyStyle
-		self.carNumberLabel.text = object.carNumber
-		self.carYear.text = object.carYear
     }
 }
 
+extension CarDetailView: UITextFieldDelegate {
+	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+		if output != nil && textField.tag != 3 && textField.tag != 6 {
+			output?.callPopover(fromView: textField, option: textField.text!)
+			return false
+		}
+		return true
+	}
+}
+
+extension CarDetailView: ICarDetailViewInput
+{
+	func setInitialState() {
+	   let rightButton = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: #selector(saveCar(_:)))
+	   self.navigationItem.rightBarButtonItem = rightButton
+	   carModel.delegate = self
+	   carCountry.delegate = self
+	   carBodyStyle.delegate = self
+	   carYear.delegate = self
+		carNumberLabel.delegate = self
+
+	}
+
+	func setViewModel(viewModel: CarDetailViewModel) {
+		self.viewModel = viewModel
+		self.configureDetailView(withObject: viewModel)
+	}
+}
+
+private extension CarDetailView
+{
+	private func configureDetailView(withObject object: CarDetailViewModel) {
+		self.carModel!.text = object.carModel
+		self.carCountry!.text = object.carCountry
+		self.carBodyStyle!.text = object.carBodyStyle
+		self.carNumberLabel.text = object.carNumber
+		self.carYear.text = object.carYear
+	}
+}

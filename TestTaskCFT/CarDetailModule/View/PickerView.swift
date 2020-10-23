@@ -15,7 +15,7 @@ enum PickerType: String {
 	case carNumber
 }
 
-class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource {
+class PickerView: UIViewController {
     
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var button: UIButton!
@@ -25,8 +25,8 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
     var carID: Int?
     var currentOption: String?
     var selectedIndexInPicker: Int?
-    var output: CarDetailViewOutput?
-	var outputList: CarsListViewOutput?
+    var output: ICarDetailViewOutput?
+	var outputList: ICarsListViewOutput?
     private func selectedOption() -> [String] {
 		var itemArray = [String]()
         switch type {
@@ -53,11 +53,9 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
         
         picker.delegate = self
         options = selectedOption()
-
 		if outputList != nil {
 			options?.insert("All bodystyles", at: 0)
 		}
-		
         button?.addTarget(self, action: #selector(saveData(_:)), for: .touchUpInside)
         picker?.selectRow(0, inComponent: 0, animated: true)
 
@@ -77,20 +75,8 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
 				picker?.selectRow(selectedIndexInPicker + 1, inComponent: 0, animated: true)
 			}
 		}
+    }
 
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var label = view as? UILabel
-        if label == nil {
-            label = UILabel()
-        }
-		label?.text = options![row]
-        label?.adjustsFontSizeToFitWidth = true
-        label?.textAlignment = .center
-        return label!
-    }
-    
     @objc func saveData(_ but: UIButton) {
 		if let out = output {
 			let row = picker?.selectedRow(inComponent: 0)
@@ -107,14 +93,29 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
 		}
         self.dismiss(animated: true, completion: nil)
     }
-    
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-		return options!.count
-    }
-    
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
 }
 
+extension PickerView: UIPickerViewDelegate
+{
+	func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+		var label = view as? UILabel
+		if label == nil {
+			label = UILabel()
+		}
+		label?.text = options![row]
+		label?.adjustsFontSizeToFitWidth = true
+		label?.textAlignment = .center
+		return label!
+	}
+}
+
+extension PickerView: UIPickerViewDataSource
+{
+	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+		return options!.count
+	}
+
+	func numberOfComponents(in pickerView: UIPickerView) -> Int {
+		return 1
+	}
+}
