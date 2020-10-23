@@ -19,32 +19,12 @@ protocol DetailsCarServiceInterface {
     func updateCar(car: CarModel)
 }
 
-
-
 class CarService: CarsListServiceInterface, DetailsCarServiceInterface {
     
-	enum CarBodyStyle: String, CaseIterable, Codable   {
-		case Sedan = "Sedan"
-		case Universal = "Universal"
-		case Coupe = "Coupe"
-		case Hatchback = "Hatchback"
-	}
-
-	enum CarCountry: String, CaseIterable, Codable  {
-		case Germany
-		case Japan
-		case Russia
-		case USA
-	}
-
-	enum CarModels: String, CaseIterable, Codable   {
-		case Toyota
-		case Mazda
-		case Nissan
-		case Wolkswagen
-		case BMW
-	}
-	
+    static var carModels =
+        ["Toyota", "Mazda", "Nissan", "Wolkswagen", "BMW"]
+    static var carCountry = ["Germany", "Japan", "Russia", "USA"]
+    static var carBodyStyle = ["Sedan","Universal","Coupe","Hatchback"]
     static var carYear:[Int] = Array(2000...2014)
     
     func getCars() -> [CarModel]? {
@@ -79,9 +59,8 @@ class CarService: CarsListServiceInterface, DetailsCarServiceInterface {
         let cars = getCars()
                 
         if var carArray = cars {
-			var carCopy = car
-			carCopy.carKey = UUID().uuidString
-            carArray.append(carCopy);
+            car.carKey = UUID().uuidString
+            carArray.append(car);
             setCars(cars: carArray)
         }
 

@@ -15,7 +15,7 @@ protocol CarDetailViewInput : UIViewController  {
 
 protocol CarDetailViewOutput {
     func callPopover(fromView: UIView, option: String)
-    func changeSelectedDataInView(type: PickerType, value: String)
+    func changeSelectedDataInView(type: pickerType, value: String)
     func viewDidLoadDone()
     func saveCarInDB()
 }

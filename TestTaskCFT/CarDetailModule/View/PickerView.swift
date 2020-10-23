@@ -7,7 +7,7 @@
 //
 
 import UIKit
-enum PickerType: String {
+enum pickerType: String {
     case carModel
     case carCountry
     case carBodyStyle
@@ -18,39 +18,33 @@ class PickerView: UIViewController, UIPickerViewDelegate,UIPickerViewDataSource 
     
     @IBOutlet weak var picker: UIPickerView!
     @IBOutlet weak var button: UIButton!
-    var type: PickerType?
+    var type: pickerType?
     var carService: CarService?
     var options: [String]?
     var carID: Int?
     var currentOption: String?
     var selectedIndexInPicker: Int?
     var output: CarDetailViewOutput?
-
+    
     private func selectedOption() -> [String] {
-		var itemArray = [String]()
         switch type {
         case .carModel:
-			for item in CarService.CarModels.allCases {
-				itemArray.append(item.rawValue)
-			}
+            return CarService.carModels
         case .carBodyStyle:
-			for item in CarService.CarBodyStyle.allCases {
-				itemArray.append(item.rawValue)
-			}
+            return CarService.carBodyStyle
         case .carCountry:
-			for item in CarService.CarCountry.allCases {
-				itemArray.append(item.rawValue)
-			}
+            return CarService.carCountry
         case .carYear:
+            var stringArray = [String]()
             for value in CarService.carYear {
-				itemArray.append(String(value))
+                stringArray.append(String(value))
             }
+            return stringArray
         default:
             return [String]()
         }
-		return itemArray
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
