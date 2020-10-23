@@ -8,17 +8,29 @@
 
 import UIKit
 
-class CarDetailViewModel {
+struct CarDetailViewModel {
     
     var carModel: String?
     var carYear: String?
     var carCountry: String?
     var carBodyStyle: String?
-    
+	var carNumber: String?
+
     init (withElementModel model: CarModel) {
-        self.carModel = model.carModel ?? ""
-        self.carCountry = model.carCountry ?? ""
-        self.carBodyStyle = model.carBodyStyle ?? ""
-        self.carYear = model.carYear ?? ""
+		self.carModel = model.model.rawValue
+		self.carCountry = model.manufacturer.rawValue
+		self.carBodyStyle = model.body.rawValue
+		if let number = model.carNumber {
+			self.carNumber = String(number)
+		}
+		else {
+			self.carNumber = nil
+		}
+		if let year = model.yearOfIssue {
+			self.carYear = String(year)
+		}
+		else {
+			self.carYear = nil
+		}
     }
 }

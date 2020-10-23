@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+//test
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             loadDefaultCars()
             UserDefaults.standard.set(true, forKey: "firstApplicationStart")
         }
-        
         let carsView = ModulesFactory.createCarsListModule()
         let navVc = UINavigationController.init(rootViewController: carsView)
         self.window = UIWindow(windowScene: windowScene)
@@ -29,15 +28,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func loadDefaultCars() {
         
         let carsService = CarService.init()
-        var car = CarModel.init(carModel: CarService.carModels[0], carCountry: CarService.carCountry[1], carYear: String(CarService.carYear[2]), carBodyStyle: CarService.carBodyStyle[3], key: UUID().uuidString)
+		var car = CarModel.init(model: CarService.CarModels.allCases[0], manufacturer: CarService.CarCountry.allCases[1], yearOfIssue: 2001, body: CarService.CarBodyStyle.allCases[3], carNumber: "123fads", carKey: UUID().uuidString)
         
         carsService.addCar(car: car)
         
-        car = CarModel.init(carModel: CarService.carModels[1], carCountry: CarService.carCountry[2], carYear: String(CarService.carYear[3]), carBodyStyle: CarService.carBodyStyle[1], key: UUID().uuidString)
+        car = CarModel.init(model: CarService.CarModels.allCases[1], manufacturer: CarService.CarCountry.allCases[2], yearOfIssue: 2000, body: CarService.CarBodyStyle.allCases[1], carNumber: "ds fd1", carKey: UUID().uuidString)
         
         carsService.addCar(car: car)
         
-        car = CarModel.init(carModel: CarService.carModels[2], carCountry: CarService.carCountry[3], carYear: String(CarService.carYear[2]), carBodyStyle: CarService.carBodyStyle[0], key: UUID().uuidString)
+		car = CarModel.init(model: CarService.CarModels.allCases[2], manufacturer: CarService.CarCountry.allCases[3], body: CarService.CarBodyStyle.allCases[0], carKey: UUID().uuidString)
         
         carsService.addCar(car: car)
         

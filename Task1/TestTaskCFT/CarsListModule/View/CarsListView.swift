@@ -8,40 +8,34 @@
 
 import UIKit
 
-protocol CarsListViewInput : UIViewController {
+protocol ICarsListViewInput : UIViewController {
     func setInitialState()
     func setViewModels(viewModels: [CarsElementViewModel])
 }
 
-protocol CarsListViewOutput {
+protocol ICarsListViewOutput {
     func viewDidLoadDone()
     func cellWithIndexSelected(row: Int)
     func deleteButtonPressedWithIndexRow(row: Int)
     func plusButtonClicked()
     func viewWillAppearDone()
+	func callPopover(fromView view: UIView, option: String?)
+	func filterCars(bodyStyle: CarService.CarBodyStyle?)
 }
 
-class CarsListView: UIViewController, CarsListViewInput, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
-    
+class CarsListView: UIViewController, UITextFieldDelegate {
+	var output: ICarsListViewOutput?
+	var maxCarNumber = 3
+	var viewModels: [CarsElementViewModel]?
+
     @IBOutlet var tableView: UITableView?
-    
-    var output: CarsListViewOutput?
-    var maxCarNumber = 3
-    var viewModels: [CarsElementViewModel]?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         output?.viewDidLoadDone()
     }
-    
-    func setInitialState() {
-       let rightButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-       self.navigationItem.rightBarButtonItem = rightButton
-       self.tableView?.delegate = self
-       self.tableView?.dataSource = self
-    }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         output?.viewWillAppearDone()
@@ -50,41 +44,63 @@ class CarsListView: UIViewController, CarsListViewInput, UITableViewDelegate, UI
     @objc func insertNewObject(_ sender: Any) {
         output!.plusButtonClicked()
     }
-    
-    func setViewModels(viewModels: [CarsElementViewModel]) {
-        self.viewModels = viewModels
-        self.tableView?.reloadData()
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        output?.cellWithIndexSelected(row: indexPath.row)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
-        cell.configureCell(withObject: viewModels![indexPath.row])
-        return cell
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModels?.count ?? 0
-    }
-    
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        return .delete
-    }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            output!.deleteButtonPressedWithIndexRow(row: indexPath.row)
-        }
-    }
+
+	@objc func filerCarsByBodyStyle(_ sender: Any) {
+		output!.callPopover(fromView: self.view, option: nil)
+	}
+}
+
+extension CarsListView: ICarsListViewInput
+{
+	func setInitialState() {
+		let rightButton = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
+		let leftButton = UIBarButtonItem.init(title: "Filter", style: .plain, target: self, action: #selector(filerCarsByBodyStyle(_:)))
+		self.navigationItem.rightBarButtonItem = rightButton
+		self.navigationItem.leftBarButtonItem = leftButton
+		self.tableView?.delegate = self
+		self.tableView?.dataSource = self
+	}
+
+	func setViewModels(viewModels: [CarsElementViewModel]) {
+		self.viewModels = viewModels
+		self.tableView?.reloadData()
+	}
+}
+
+extension CarsListView: UITableViewDelegate
+{
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		output?.cellWithIndexSelected(row: indexPath.row)
+	}
+
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
+		cell.configureCell(withObject: viewModels![indexPath.row])
+		return cell
+	}
+
+	/*func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+		return .delete
+	}*/
+
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			//output!.deleteButtonPressedWithIndexRow(row: indexPath.row)
+		}
+	}
+}
+
+extension CarsListView: UITableViewDataSource
+{
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 100
+	}
+
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return 1
+	}
+
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return self.viewModels?.count ?? 0
+	}
 }
