@@ -42,6 +42,13 @@
 			remoteGlobalIDString = 844812AB25133CB2003868DF;
 			remoteInfo = TestTaskCFT;
 		};
+		8455A86A254576EF001A188C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8455A866254576EF001A188C /* Task2.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 84DDB1142545756600BFB84A;
+			remoteInfo = Task2;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -65,6 +72,7 @@
 		844812ED25133D9B003868DF /* ModulesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesFactory.swift; sourceTree = "<group>"; };
 		844812F725135B5B003868DF /* CarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
 		8451DCBA2517474700BB2A56 /* CarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
+		8455A866254576EF001A188C /* Task2.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Task2.xcodeproj; path = ../Task2/Task2.xcodeproj; sourceTree = "<group>"; };
 		84BED31325164FEF00F4F785 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
 		84E9107A251741800026555A /* CarDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDetailPresenter.swift; sourceTree = "<group>"; };
 		84E9107C251741B10026555A /* CarDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDetailView.swift; sourceTree = "<group>"; };
@@ -99,6 +107,7 @@
 		844812A325133CB2003868DF = {
 			isa = PBXGroup;
 			children = (
+				8455A866254576EF001A188C /* Task2.xcodeproj */,
 				844812AE25133CB2003868DF /* TestTaskCFT */,
 				844812C525133CB4003868DF /* TestTaskCFTTests */,
 				844812D025133CB4003868DF /* TestTaskCFTUITests */,
@@ -262,6 +271,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		8455A867254576EF001A188C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8455A86B254576EF001A188C /* Task2 */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -352,6 +369,12 @@
 			mainGroup = 844812A325133CB2003868DF;
 			productRefGroup = 844812AD25133CB2003868DF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 8455A867254576EF001A188C /* Products */;
+					ProjectRef = 8455A866254576EF001A188C /* Task2.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				844812AB25133CB2003868DF /* TestTaskCFT */,
@@ -360,6 +383,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		8455A86B254576EF001A188C /* Task2 */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.executable";
+			path = Task2;
+			remoteRef = 8455A86A254576EF001A188C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		844812AA25133CB2003868DF /* Resources */ = {
