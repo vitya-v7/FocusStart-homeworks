@@ -15,6 +15,8 @@
 		AAD2E4C9254EF47A00FB0457 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4C8254EF47A00FB0457 /* ViewController1.swift */; };
 		AAD2E4D2254F047100FB0457 /* View1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4D1254F047100FB0457 /* View1.swift */; };
 		AAD2E4D5254F071900FB0457 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4D4254F071900FB0457 /* Image.swift */; };
+		AAD2E4D8254F19AA00FB0457 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4D7254F19AA00FB0457 /* ViewController2.swift */; };
+		AAD2E4DB254F19CF00FB0457 /* View2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4DA254F19CF00FB0457 /* View2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		AAD2E4C8254EF47A00FB0457 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		AAD2E4D1254F047100FB0457 /* View1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View1.swift; sourceTree = "<group>"; };
 		AAD2E4D4254F071900FB0457 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		AAD2E4D7254F19AA00FB0457 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
+		AAD2E4DA254F19CF00FB0457 /* View2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +73,8 @@
 				AAD2E4C8254EF47A00FB0457 /* ViewController1.swift */,
 				AAD2E4D1254F047100FB0457 /* View1.swift */,
 				AAD2E4D4254F071900FB0457 /* Image.swift */,
+				AAD2E4D7254F19AA00FB0457 /* ViewController2.swift */,
+				AAD2E4DA254F19CF00FB0457 /* View2.swift */,
 			);
 			path = Task3;
 			sourceTree = "<group>";
@@ -147,7 +153,9 @@
 				AAD2E4B4254EF3BB00FB0457 /* AppDelegate.swift in Sources */,
 				AAD2E4D2254F047100FB0457 /* View1.swift in Sources */,
 				AAD2E4B6254EF3BB00FB0457 /* SceneDelegate.swift in Sources */,
+				AAD2E4DB254F19CF00FB0457 /* View2.swift in Sources */,
 				AAD2E4D5254F071900FB0457 /* Image.swift in Sources */,
+				AAD2E4D8254F19AA00FB0457 /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

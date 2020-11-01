@@ -1,5 +1,5 @@
 //
-//  View1.swift
+//  View2.swift
 //  Task3
 //
 //  Created by user183410 on 11/1/20.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class View1: UIView {
+class View2: UIView {
 
     // MARK: Properties
 
@@ -25,14 +25,11 @@ class View1: UIView {
 
         // MARK: Views
 
-        private let label1 = UILabel()
-        private let label2 = UILabel()
-        private let label3 = UILabel()
-        private let button1 = UIButton()
-        private let button2 = UIButton()
+        private let scrollView = UIScrollView()
         private let imageView = UIImageView()
-        private let activityIndicator = UIActivityIndicatorView()
-    
+        private let titleLabel = UILabel()
+        private let textLabel = UILabel()
+
         // MARK: Life Cycle
 
         public override init(frame: CGRect) {
@@ -69,29 +66,12 @@ class View1: UIView {
             self.backgroundColor = .systemBackground
         }
 
-        func setupLabel1Appearances() {
-            label1.numberOfLines = 1
-            label1.text = "Simple Label"
-          //  imageView.image = Images.test.image
-            //imageView.contentMode = .scaleAspectFill
-           // imageView.clipsToBounds = true
+        func setupImageViewAppearances() {
+            imageView.image = Images.test.image
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
         }
 
-        func setupLabel2Appearances() {
-            label1.numberOfLines = 0
-            label1.font = UIFont.boldSystemFont(ofSize: 10)
-            label1.text = "Different font"
-          //  imageView.image = Images.test.image
-            //imageView.contentMode = .scaleAspectFill
-           // imageView.clipsToBounds = true
-        }
-        
-        func setupLabel3Appearances() {
-            label1.numberOfLines = 2
-            label1.font = UIFont.italicSystemFont(ofSize: 10)
-            label1.text = "label with 2 lines"
-        }
-        
         func setupTitleLabelAppearances() {
             titleLabel.numberOfLines = 0
             titleLabel.text =
@@ -217,5 +197,5 @@ class View1: UIView {
                 titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor)
             ])
         }
-    }
 
+}
