@@ -28,8 +28,8 @@ class View1: UIView {
         private let label1 = UILabel()
         private let label2 = UILabel()
         private let label3 = UILabel()
-        private let button1 = UIButton()
-        private let button2 = UIButton()
+    private let button1 = UIButton(type: .custom)
+    private let button2 = UIButton(type: .custom)
         private let imageView = UIImageView()
         private let activityIndicator = UIActivityIndicatorView()
     
@@ -81,9 +81,6 @@ class View1: UIView {
             label1.numberOfLines = 0
             label1.font = UIFont.boldSystemFont(ofSize: 10)
             label1.text = "Different font"
-          //  imageView.image = Images.test.image
-            //imageView.contentMode = .scaleAspectFill
-           // imageView.clipsToBounds = true
         }
         
         func setupLabel3Appearances() {
@@ -92,16 +89,28 @@ class View1: UIView {
             label1.text = "label with 2 lines"
         }
         
-        func setupTitleLabelAppearances() {
-            titleLabel.numberOfLines = 0
-            titleLabel.text =
-                """
-                Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
-                    Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
-                """
+        func setupButton1Appearances() {
+               // button1.layer.cornerRadius = 0.5 * button.bounds.size.width
+                button1.clipsToBounds = true
         }
+        
+        func setupButton2Appearances() {
+            button2.layer.cornerRadius = 8
+            button2.clipsToBounds = true
+        }
+        
+        func setupImageViewAppearances() {
+            imageView.image = Images.test.image
+            imageView.contentMode = .scaleAspectFill
+            imageView.clipsToBounds = true
+        }
+        
+        
+        func setupActivityIndicatorAppearances() {
+            activityIndicator.color = .black
+            activityIndicator.startAnimating()
+        }
+
     }
 
     // MARK: Shared Layout
