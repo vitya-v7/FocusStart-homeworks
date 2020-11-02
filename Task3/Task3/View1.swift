@@ -78,8 +78,8 @@ class View1: UIView {
         }
 
         func setupLabel2Appearances() {
-            label1.numberOfLines = 0
-            label1.font = UIFont.boldSystemFont(ofSize: 10)
+            label1.numberOfLines = 1
+            //label1.font = UIFont.boldSystemFont(ofSize: 10)
             label1.text = "Different font"
         }
         
@@ -140,6 +140,7 @@ class View1: UIView {
 
         func setupSharedLayout() {
             setupLabel1Layout()
+            setupLabel2Layout()
             //setupImageViewLayout()
             //setupTitleLabelLayout()
 
@@ -152,7 +153,37 @@ class View1: UIView {
 
             NSLayoutConstraint.activate([
                                             label1.trailingAnchor.constraint(
-                    equalTo: self.safeAreaLayoutGuide.trailingAnchor )])
+                    equalTo: self.safeAreaLayoutGuide.trailingAnchor ),
+                                            label1.leadingAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.leadingAnchor ),
+                                            label1.topAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.topAnchor )])
+        }
+
+        func setupLabel2Layout() {
+            self.addSubview(label2)
+            label2.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                                            label2.trailingAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.trailingAnchor ),
+                                            label2.leadingAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.leadingAnchor ),
+                                            label2.topAnchor.constraint(
+                    equalTo: self.label1.bottomAnchor )])
+        }
+
+        func setupLabel3Layout() {
+            self.addSubview(label1)
+            label1.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                                            label1.trailingAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.trailingAnchor ),
+                                            label1.leadingAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.leadingAnchor ),
+                                            label1.topAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.topAnchor )])
         }
 
         func setupImageViewLayout() {
