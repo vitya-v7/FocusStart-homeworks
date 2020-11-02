@@ -65,6 +65,8 @@ class View1: UIView {
             setupLabel1Appearances()
             setupLabel2Appearances()
             setupLabel3Appearances()
+            setupButton1Appearances()
+            setupButton2Appearances()
         }
 
         func setupSuperViewAppearances() {
@@ -100,11 +102,14 @@ class View1: UIView {
         
         func setupButton1Appearances() {
                // button1.layer.cornerRadius = 0.5 * button.bounds.size.width
+                button1.layer.cornerRadius = 8
+                button1.backgroundColor = .cyan
                 button1.clipsToBounds = true
         }
         
         func setupButton2Appearances() {
-            button2.layer.cornerRadius = 8
+            
+            button2.backgroundColor = .red
             button2.clipsToBounds = true
         }
         
@@ -151,6 +156,8 @@ class View1: UIView {
             setupLabel1Layout()
             setupLabel2Layout()
             setupLabel3Layout()
+            setupButton1Layout()
+            setupButton2Layout()
             //setupImageViewLayout()
             //setupTitleLabelLayout()
 
@@ -204,6 +211,36 @@ class View1: UIView {
             ])
         }
 
+        func setupButton1Layout() {
+            self.addSubview(button1)
+            button1.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                button1.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+                button1.topAnchor.constraint(
+                    equalTo: self.label3.bottomAnchor
+                ),
+                button1.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.15),
+                button1.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
+            ])
+        }
+        
+        func setupButton2Layout() {
+            //.layer.cornerRadius = self.safeAreaLayoutGuide.layoutFrame.size.height * 0.15 * 0.5
+            self.addSubview(button2)
+            button2.translatesAutoresizingMaskIntoConstraints = false
+
+            NSLayoutConstraint.activate([
+                button2.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.15),
+                button2.widthAnchor.constraint(equalTo: button2.heightAnchor),
+                button2.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+                button2.topAnchor.constraint(
+                    equalTo: self.button1.bottomAnchor, constant: 3
+                ),
+            ])
+            button2.layer.cornerRadius = 0.5 * button2.bounds.size.width
+        }
+        
         func setupImageViewLayout() {
            /* scrollView.addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
