@@ -8,7 +8,6 @@
 import UIKit
 
 class View2: UIView {
-/*
     // MARK: Properties
 
         private var isLayoutCompact = true
@@ -55,7 +54,7 @@ class View2: UIView {
 
     // MARK: Appearances
 
-    private extension View1 {
+    private extension View2 {
         func setupViewsAppearances() {
             setupSuperViewAppearances()
             setupImageViewAppearances()
@@ -86,7 +85,7 @@ class View2: UIView {
 
     // MARK: Shared Layout
 
-    private extension View1 {
+    private extension View2 {
 
         func changeViewsLayout(traitCollection: UITraitCollection) {
             switch(traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
@@ -153,7 +152,7 @@ class View2: UIView {
 
     // MARK: Compact Layout
 
-    private extension View1 {
+    private extension View2 {
         func setupCompactLayout() {
             setupImageViewCompactLayout()
             setupTitleLabelCompactLayout()
@@ -177,7 +176,7 @@ class View2: UIView {
 
     // MARK: Regular Layout
 
-    private extension View1 {
+    private extension View2 {
         func setupRegularLayout() {
             setupImageViewRegularLayout()
             setupTitleLabelRegularLayout()
@@ -197,5 +196,4 @@ class View2: UIView {
                 titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor)
             ])
         }
-*/
 }

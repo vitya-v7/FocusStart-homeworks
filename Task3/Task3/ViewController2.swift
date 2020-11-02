@@ -12,7 +12,7 @@ class ViewController2: UIViewController {
     // MARK: Life Cycle
 
     override func loadView() {
-        self.view = View1(frame: .zero)
+        self.view = View2(frame: .zero)
     }
 
 }

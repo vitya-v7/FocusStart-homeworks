@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let window = window else { return assertionFailure() }
         window.windowScene = windowScene
 
-        let viewController = ViewController1()
+        let viewController = ViewController2()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()
