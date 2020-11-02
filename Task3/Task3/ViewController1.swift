@@ -10,8 +10,13 @@ import UIKit
 class ViewController1: UIViewController {
 
     // MARK: Life Cycle
-
+    var myView: View1 = View1(frame: .zero)
     override func loadView() {
-        self.view = View1(frame: .zero)
+        self.view = myView
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        myView.makeButton2Rounded()
     }
 }

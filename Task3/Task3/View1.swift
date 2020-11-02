@@ -29,7 +29,7 @@ class View1: UIView {
         private let label2 = UILabel()
         private let label3 = UILabel()
     private let button1 = UIButton(type: .custom)
-    private let button2 = UIButton(type: .custom)
+    let button2 = UIButton(type: .custom)
         private let imageView = UIImageView()
         private let activityIndicator = UIActivityIndicatorView()
     
@@ -58,6 +58,11 @@ class View1: UIView {
 
     // MARK: Appearances
 
+extension View1 {
+    func makeButton2Rounded() {
+        self.button2.layer.cornerRadius = self.button2.bounds.width/2
+    }
+}
     private extension View1 {
         func setupViewsAppearances() {
             setupSuperViewAppearances()
@@ -67,6 +72,7 @@ class View1: UIView {
             setupLabel3Appearances()
             setupButton1Appearances()
             setupButton2Appearances()
+            setupImageViewAppearances()
         }
 
         func setupSuperViewAppearances() {
@@ -110,7 +116,7 @@ class View1: UIView {
         func setupButton2Appearances() {
             
             button2.backgroundColor = .red
-            button2.clipsToBounds = true
+            //button2.clipsToBounds = true
         }
         
         func setupImageViewAppearances() {
@@ -158,7 +164,7 @@ class View1: UIView {
             setupLabel3Layout()
             setupButton1Layout()
             setupButton2Layout()
-            //setupImageViewLayout()
+            setupImageViewLayout()
             //setupTitleLabelLayout()
 
             NSLayoutConstraint.activate(sharedConstraints)
@@ -220,7 +226,7 @@ class View1: UIView {
                 button1.topAnchor.constraint(
                     equalTo: self.label3.bottomAnchor
                 ),
-                button1.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.15),
+                button1.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
                 button1.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
             ])
         }
@@ -231,24 +237,28 @@ class View1: UIView {
             button2.translatesAutoresizingMaskIntoConstraints = false
 
             NSLayoutConstraint.activate([
-                button2.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.15),
+                button2.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
                 button2.widthAnchor.constraint(equalTo: button2.heightAnchor),
                 button2.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
                 button2.topAnchor.constraint(
                     equalTo: self.button1.bottomAnchor, constant: 3
                 ),
             ])
-            button2.layer.cornerRadius = 0.5 * button2.bounds.size.width
+            print("button2 height: \(self.bounds.height)")
+           // button2.layer.cornerRadius = button2.
+            
         }
         
         func setupImageViewLayout() {
-           /* scrollView.addSubview(imageView)
+            self.addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
 
             NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-                imageView.heightAnchor.constraint(equalToConstant: Constants.imageViewHeight.rawValue)
-            ])*/
+                imageView.topAnchor.constraint(equalTo: button2.bottomAnchor, constant: 3),
+                imageView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+                imageView.widthAnchor.constraint(equalTo: imageView.heightAnchor),
+                imageView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor)
+            ])
         }
 
     }
