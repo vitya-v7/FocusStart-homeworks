@@ -63,6 +63,7 @@ class View1: UIView {
             setupSuperViewAppearances()
             setupImageViewAppearances()
             setupLabel1Appearances()
+            setupLabel2Appearances()
         }
 
         func setupSuperViewAppearances() {
@@ -71,6 +72,7 @@ class View1: UIView {
 
         func setupLabel1Appearances() {
             label1.numberOfLines = 1
+            label1.textAlignment = .center
             label1.text = "Simple Label"
           //  imageView.image = Images.test.image
             //imageView.contentMode = .scaleAspectFill
@@ -78,14 +80,19 @@ class View1: UIView {
         }
 
         func setupLabel2Appearances() {
-            label1.numberOfLines = 1
-            //label1.font = UIFont.boldSystemFont(ofSize: 10)
-            label1.text = "Different font"
+            label2.numberOfLines = 2
+            label2.textAlignment = .center
+            label2.font = UIFont.boldSystemFont(ofSize: 20)
+            label2.text = """
+            Different font
+            line 2
+            line 3 (not visible)
+            """
         }
         
         func setupLabel3Appearances() {
             label1.numberOfLines = 2
-            label1.font = UIFont.italicSystemFont(ofSize: 10)
+            //label1.font = UIFont.italicSystemFont(ofSize: 10)
             label1.text = "label with 2 lines"
         }
         
@@ -157,7 +164,9 @@ class View1: UIView {
                                             label1.leadingAnchor.constraint(
                     equalTo: self.safeAreaLayoutGuide.leadingAnchor ),
                                             label1.topAnchor.constraint(
-                    equalTo: self.safeAreaLayoutGuide.topAnchor )])
+                    equalTo: self.safeAreaLayoutGuide.topAnchor ),
+                                            label1.heightAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.05)])
         }
 
         func setupLabel2Layout() {
@@ -170,7 +179,10 @@ class View1: UIView {
                                             label2.leadingAnchor.constraint(
                     equalTo: self.safeAreaLayoutGuide.leadingAnchor ),
                                             label2.topAnchor.constraint(
-                    equalTo: self.label1.bottomAnchor )])
+                                                equalTo: self.label1.bottomAnchor
+                                            ) ,
+                label2.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.15)
+            ])
         }
 
         func setupLabel3Layout() {
@@ -184,6 +196,8 @@ class View1: UIView {
                     equalTo: self.safeAreaLayoutGuide.leadingAnchor ),
                                             label1.topAnchor.constraint(
                     equalTo: self.safeAreaLayoutGuide.topAnchor )])
+            
+            
         }
 
         func setupImageViewLayout() {
