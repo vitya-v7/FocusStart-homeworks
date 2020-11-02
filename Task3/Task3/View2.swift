@@ -8,7 +8,7 @@
 import UIKit
 
 class View2: UIView {
-
+/*
     // MARK: Properties
 
         private var isLayoutCompact = true
@@ -197,5 +197,5 @@ class View2: UIView {
                 titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor)
             ])
         }
-
+*/
 }

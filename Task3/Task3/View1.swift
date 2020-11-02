@@ -40,7 +40,7 @@ class View1: UIView {
 
             setupViewsAppearances()
             setupViewsLayout()
-            changeViewsLayout(traitCollection: traitCollection)
+            //changeViewsLayout(traitCollection: traitCollection)
         }
 
         required init?(coder: NSCoder) {
@@ -52,7 +52,7 @@ class View1: UIView {
         override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
             super.traitCollectionDidChange(previousTraitCollection)
 
-            changeViewsLayout(traitCollection: traitCollection)
+           // changeViewsLayout(traitCollection: traitCollection)
         }
     }
 
@@ -62,7 +62,7 @@ class View1: UIView {
         func setupViewsAppearances() {
             setupSuperViewAppearances()
             setupImageViewAppearances()
-            setupTitleLabelAppearances()
+            setupLabel1Appearances()
         }
 
         func setupSuperViewAppearances() {
@@ -117,7 +117,7 @@ class View1: UIView {
 
     private extension View1 {
 
-        func changeViewsLayout(traitCollection: UITraitCollection) {
+        /*func changeViewsLayout(traitCollection: UITraitCollection) {
             switch(traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
             case (.compact, .regular):
                 isLayoutCompact = true
@@ -130,59 +130,46 @@ class View1: UIView {
                 NSLayoutConstraint.deactivate(compactConstraints)
                 NSLayoutConstraint.activate(regularConstraints)
             }
-        }
+        }*/
 
         func setupViewsLayout() {
             setupSharedLayout()
-            setupCompactLayout()
-            setupRegularLayout()
+            //setupCompactLayout()
+            //setupRegularLayout()
         }
 
         func setupSharedLayout() {
-            setupScrollViewLayout()
-            setupImageViewLayout()
-            setupTitleLabelLayout()
+            setupLabel1Layout()
+            //setupImageViewLayout()
+            //setupTitleLabelLayout()
 
             NSLayoutConstraint.activate(sharedConstraints)
         }
 
-        func setupScrollViewLayout() {
-            self.addSubview(scrollView)
-            scrollView.translatesAutoresizingMaskIntoConstraints = false
+        func setupLabel1Layout() {
+            self.addSubview(label1)
+            label1.translatesAutoresizingMaskIntoConstraints = false
 
-            sharedConstraints.append(contentsOf: [
-                scrollView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
-                scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-                scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
-                scrollView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor)
-            ])
+            NSLayoutConstraint.activate([
+                                            label1.trailingAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.trailingAnchor )])
         }
 
         func setupImageViewLayout() {
-            scrollView.addSubview(imageView)
+           /* scrollView.addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
 
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
                 imageView.heightAnchor.constraint(equalToConstant: Constants.imageViewHeight.rawValue)
-            ])
+            ])*/
         }
 
-        func setupTitleLabelLayout() {
-            scrollView.addSubview(titleLabel)
-            titleLabel.translatesAutoresizingMaskIntoConstraints = false
-
-            NSLayoutConstraint.activate([
-                titleLabel.trailingAnchor.constraint(
-                    equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.horizontalStandardSpace.rawValue),
-                titleLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
-            ])
-        }
     }
 
     // MARK: Compact Layout
 
-    private extension View1 {
+   /* private extension View1 {
         func setupCompactLayout() {
             setupImageViewCompactLayout()
             setupTitleLabelCompactLayout()
@@ -226,5 +213,5 @@ class View1: UIView {
                 titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor)
             ])
         }
-    }
+    }*/
 
