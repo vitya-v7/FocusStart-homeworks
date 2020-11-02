@@ -73,6 +73,7 @@ extension View1 {
             setupButton1Appearances()
             setupButton2Appearances()
             setupImageViewAppearances()
+            setupActivityIndicatorAppearances()
         }
 
         func setupSuperViewAppearances() {
@@ -165,7 +166,7 @@ extension View1 {
             setupButton1Layout()
             setupButton2Layout()
             setupImageViewLayout()
-            //setupTitleLabelLayout()
+            setupActivityIndicatorLayout()
 
             NSLayoutConstraint.activate(sharedConstraints)
         }
@@ -180,7 +181,7 @@ extension View1 {
                                             label1.leadingAnchor.constraint(
                     equalTo: self.safeAreaLayoutGuide.leadingAnchor ),
                                             label1.topAnchor.constraint(
-                    equalTo: self.safeAreaLayoutGuide.topAnchor ),
+                    equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8 ),
                                             label1.heightAnchor.constraint(
                     equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.05)])
         }
@@ -250,8 +251,8 @@ extension View1 {
         }
         
         func setupImageViewLayout() {
-            self.addSubview(imageView)
-            imageView.translatesAutoresizingMaskIntoConstraints = false
+                    self.addSubview(imageView)
+                    imageView.translatesAutoresizingMaskIntoConstraints = false
 
             NSLayoutConstraint.activate([
                 imageView.topAnchor.constraint(equalTo: button2.bottomAnchor, constant: 3),
@@ -260,7 +261,18 @@ extension View1 {
                 imageView.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor)
             ])
         }
+        
+        func setupActivityIndicatorLayout() {
+            self.addSubview(activityIndicator)
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
+            NSLayoutConstraint.activate([
+                activityIndicator.widthAnchor.constraint(equalTo: imageView.widthAnchor),
+                activityIndicator.heightAnchor.constraint(equalTo: imageView.heightAnchor),
+                activityIndicator.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+                activityIndicator.centerXAnchor.constraint(equalTo: imageView.centerXAnchor)
+            ])
+        }
     }
 
     // MARK: Compact Layout
