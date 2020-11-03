@@ -11,8 +11,8 @@ class View3: UIView {
 
 	// MARK: Properties
 	var tabBarHeight: CGFloat?
-	private var isLayoutCompact = true
 
+	private var isLayoutCompact = true
 	private var sharedConstraints: [NSLayoutConstraint] = []
 	var buttonBottomConstraint : NSLayoutConstraint?
 	private enum Constants: CGFloat {
@@ -204,6 +204,7 @@ extension View3: UITextFieldDelegate {
 //MARK: - Keyboard Manipulations
 extension View3 {
 	@objc func keyboardWillShow(notification: NSNotification) {
+
 		guard let userInfo = notification.userInfo else {return}
 		guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
 		guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSValue else {return}
@@ -217,15 +218,19 @@ extension View3 {
 		}
 		View3.animate(withDuration: animationDuration as! TimeInterval, animations: {
 						NSLayoutConstraint.deactivate([self.buttonBottomConstraint!])
-						self.setButtonBottomConstraint(space: keyboardMinusTabBarHeight) })
+						self.setButtonBottomConstraint(space: keyboardMinusTabBarHeight)
+						self.layoutIfNeeded()
+		})
 	}
 
 	@objc func keyboardWillHide(notification: NSNotification) {
 		guard let userInfo = notification.userInfo else {return}
 		guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSValue else {return}
 
-		View3.animate(withDuration: animationDuration as! TimeInterval, animations: { NSLayoutConstraint.deactivate([self.buttonBottomConstraint!])
+		View3.animate(withDuration: animationDuration as! TimeInterval, animations: {
+			NSLayoutConstraint.deactivate([self.buttonBottomConstraint!])
 			self.setButtonBottomConstraint(space: 0)
+			self.layoutIfNeeded()
 		})
 	}
 }
