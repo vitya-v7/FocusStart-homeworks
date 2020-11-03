@@ -10,9 +10,9 @@ import UIKit
 class View3: UIView {
 
     // MARK: Properties
-
+        var tabBarHeight: CGFloat?
         private var isLayoutCompact = true
-
+        
         private var sharedConstraints: [NSLayoutConstraint] = []
         var buttonBottomConstraint : NSLayoutConstraint?
         private enum Constants: CGFloat {
@@ -28,7 +28,7 @@ class View3: UIView {
         private let loginTextField = UITextField()
         private let passwordTextField = UITextField()
         private let button = UIButton(type: .custom)
-    
+        
         // MARK: Life Cycle
 
         public override init(frame: CGRect) {
@@ -91,6 +91,10 @@ private extension View3 {
         button.layer.cornerRadius = 8
         button.backgroundColor = .cyan
         button.clipsToBounds = true
+        button.setTitleColor(.black, for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = .init(red: 1, green: 0, blue: 0, alpha: 1)
+        button.setTitle("Button", for: .normal)
     }
     
 }
@@ -176,15 +180,24 @@ extension View3 {
         guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
         guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSValue else {return}
         let keyboardFrame = keyboardSize.cgRectValue
-        NSLayoutConstraint.deactivate([buttonBottomConstraint!])
-        View3.animate(withDuration: animationDuration as! TimeInterval, animations: { self.setButtonBottomConstraint(space: keyboardFrame.height) })
-        
+        var keyboardMinusTabBarHeight: CGFloat = 0.0
+        if let tabHeight = self.tabBarHeight {
+            keyboardMinusTabBarHeight = abs(keyboardFrame.height - tabHeight)
+        }
+        else {
+            keyboardMinusTabBarHeight = abs(keyboardFrame.height)
+        }
+        View3.animate(withDuration: animationDuration as! TimeInterval, animations: {
+            NSLayoutConstraint.deactivate([self.buttonBottomConstraint!])
+            self.setButtonBottomConstraint(space: keyboardMinusTabBarHeight) })
     }
     
     @objc func keyboardWillHide(notification: NSNotification) {
         guard let userInfo = notification.userInfo else {return}
         guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSValue else {return}
-        NSLayoutConstraint.deactivate([buttonBottomConstraint!])
-        View3.animate(withDuration: animationDuration as! TimeInterval, animations: { self.setButtonBottomConstraint(space: 0) })
+        
+        View3.animate(withDuration: animationDuration as! TimeInterval, animations: { NSLayoutConstraint.deactivate([self.buttonBottomConstraint!])
+            self.setButtonBottomConstraint(space: 0)
+        })
     }
 }

@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let window = window else { return assertionFailure() }
         window.windowScene = windowScene
 
-        let viewController = ViewController3()
+        let viewController = TabBarController()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
         window.makeKeyAndVisible()

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		849E4CAC25512BEA00A5F1F5 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E4CAB25512BEA00A5F1F5 /* ViewController3.swift */; };
 		849E4CAF25512BFD00A5F1F5 /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E4CAE25512BFD00A5F1F5 /* View3.swift */; };
+		849E4CB6255150F200A5F1F5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E4CB5255150F200A5F1F5 /* TabBarController.swift */; };
 		AAD2E4B4254EF3BB00FB0457 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4B3254EF3BB00FB0457 /* AppDelegate.swift */; };
 		AAD2E4B6254EF3BB00FB0457 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4B5254EF3BB00FB0457 /* SceneDelegate.swift */; };
 		AAD2E4BB254EF3BB00FB0457 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD2E4B9254EF3BB00FB0457 /* Main.storyboard */; };
@@ -24,6 +25,7 @@
 /* Begin PBXFileReference section */
 		849E4CAB25512BEA00A5F1F5 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 		849E4CAE25512BFD00A5F1F5 /* View3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
+		849E4CB5255150F200A5F1F5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		AAD2E4B0254EF3BB00FB0457 /* Task3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Task3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2E4B3254EF3BB00FB0457 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAD2E4B5254EF3BB00FB0457 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				AAD2E4DA254F19CF00FB0457 /* View2.swift */,
 				849E4CAB25512BEA00A5F1F5 /* ViewController3.swift */,
 				849E4CAE25512BFD00A5F1F5 /* View3.swift */,
+				849E4CB5255150F200A5F1F5 /* TabBarController.swift */,
 			);
 			path = Task3;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				AAD2E4C9254EF47A00FB0457 /* ViewController1.swift in Sources */,
 				AAD2E4B4254EF3BB00FB0457 /* AppDelegate.swift in Sources */,
 				849E4CAC25512BEA00A5F1F5 /* ViewController3.swift in Sources */,
+				849E4CB6255150F200A5F1F5 /* TabBarController.swift in Sources */,
 				AAD2E4D2254F047100FB0457 /* View1.swift in Sources */,
 				AAD2E4B6254EF3BB00FB0457 /* SceneDelegate.swift in Sources */,
 				AAD2E4DB254F19CF00FB0457 /* View2.swift in Sources */,
@@ -240,7 +244,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -295,7 +299,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

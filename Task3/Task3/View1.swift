@@ -84,9 +84,6 @@ extension View1 {
             label1.numberOfLines = 1
             label1.textAlignment = .center
             label1.text = "Simple Label"
-          //  imageView.image = Images.test.image
-            //imageView.contentMode = .scaleAspectFill
-           // imageView.clipsToBounds = true
         }
 
         func setupLabel2Appearances() {
@@ -108,16 +105,24 @@ extension View1 {
         }
         
         func setupButton1Appearances() {
-               // button1.layer.cornerRadius = 0.5 * button.bounds.size.width
-                button1.layer.cornerRadius = 8
-                button1.backgroundColor = .cyan
-                button1.clipsToBounds = true
+            // button1.layer.cornerRadius = 0.5 * button.bounds.size.width
+            button1.layer.cornerRadius = 8
+            button1.backgroundColor = .cyan
+            button1.clipsToBounds = true
+            button1.setTitleColor(.black, for: .normal)
+            button1.setTitle("Button1", for: .normal)
+            button1.layer.borderWidth = 1
+            button1.layer.borderColor = .init(red: 1, green: 0, blue: 0, alpha: 1)
         }
         
         func setupButton2Appearances() {
-            
             button2.backgroundColor = .red
-            //button2.clipsToBounds = true
+            button2.clipsToBounds = true
+            button2.setTitleColor(.black, for: .normal)
+            button2.setTitle("Button2", for: .normal)
+            button2.titleLabel?.font = .italicSystemFont(ofSize: 10)
+            button2.layer.borderWidth = 1
+            button2.layer.borderColor = .init(red: 0, green: 1, blue: 1, alpha: 1)
         }
         
         func setupImageViewAppearances() {

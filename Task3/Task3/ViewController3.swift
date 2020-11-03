@@ -10,9 +10,12 @@ import UIKit
 class ViewController3: UIViewController {
 
     // MARK: Life Cycle
-
+    
+    var myView: View3 = View3(frame: .zero)
+    
     override func loadView() {
-        self.view = View3(frame: .zero)
+        myView.tabBarHeight = self.tabBarController?.tabBar.frame.height
+        self.view = myView
     }
 
 
