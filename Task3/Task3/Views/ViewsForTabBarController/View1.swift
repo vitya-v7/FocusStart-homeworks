@@ -20,8 +20,10 @@ class View1: UIView {
 	private enum Constants: CGFloat
 	{
 		case imageViewHeight = 300
-		case horizontalStandardSpace = 16
-		case horizontalBigSpace = 32
+		case bottomAndTopSpace = 8
+		case spaceBetweenButtons = 3
+		case labelFontSize = 14
+		case buttonFontSize = 10
 	}
 
 	// MARK: Views
@@ -58,7 +60,7 @@ class View1: UIView {
 
 extension View1 {
 	func makeButton2Rounded() {
-		self.button2.layer.cornerRadius = self.button2.bounds.width/2
+		button2.layer.cornerRadius = button2.bounds.width/2
 	}
 }
 
@@ -76,7 +78,7 @@ private extension View1 {
 	}
 
 	func setupSuperViewAppearances() {
-		self.backgroundColor = .systemBackground
+		backgroundColor = .systemBackground
 	}
 
 	func setupLabel1Appearances() {
@@ -88,14 +90,14 @@ private extension View1 {
 	func setupLabel2Appearances() {
 		label2.numberOfLines = 1
 		label2.textAlignment = .center
-		label2.font = UIFont.boldSystemFont(ofSize: 14)
+		label2.font = UIFont.boldSystemFont(ofSize: Constants.labelFontSize.rawValue)
 		label2.text = "Different font"
 	}
 
 	func setupLabel3Appearances() {
 		label3.numberOfLines = 2
 		label3.textAlignment = .center
-		label3.font = UIFont.italicSystemFont(ofSize: 14)
+		label3.font = UIFont.italicSystemFont(ofSize: Constants.labelFontSize.rawValue)
 		label3.text = """
             Different font
             line 2
@@ -105,7 +107,7 @@ private extension View1 {
 
 	func setupButton1Appearances() {
 		// button1.layer.cornerRadius = 0.5 * button.bounds.size.width
-		button1.layer.cornerRadius = 8
+		button1.layer.cornerRadius = Constants.bottomAndTopSpace.rawValue
 		button1.backgroundColor = .cyan
 		button1.clipsToBounds = true
 		button1.setTitleColor(.black, for: .normal)
@@ -119,7 +121,7 @@ private extension View1 {
 		button2.clipsToBounds = true
 		button2.setTitleColor(.black, for: .normal)
 		button2.setTitle("Button2", for: .normal)
-		button2.titleLabel?.font = .italicSystemFont(ofSize: 10)
+		button2.titleLabel?.font = .italicSystemFont(ofSize: Constants.buttonFontSize.rawValue)
 		button2.layer.borderWidth = 1
 		button2.layer.borderColor = .init(red: 0, green: 1, blue: 1, alpha: 1)
 	}
@@ -157,103 +159,103 @@ private extension View1 {
 	}
 
 	func setupLabel1Layout() {
-		self.addSubview(label1)
+		addSubview(label1)
 		label1.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
 			label1.trailingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+				equalTo: safeAreaLayoutGuide.trailingAnchor),
 			label1.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+				equalTo: safeAreaLayoutGuide.leadingAnchor),
 			label1.topAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 8),
+				equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.bottomAndTopSpace.rawValue),
 			label1.heightAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.05)])
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.05)])
 	}
 
 	func setupLabel2Layout() {
-		self.addSubview(label2)
+		addSubview(label2)
 		label2.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
 			label2.trailingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+				equalTo: safeAreaLayoutGuide.trailingAnchor),
 			label2.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+				equalTo: safeAreaLayoutGuide.leadingAnchor),
 			label2.topAnchor.constraint(
-				equalTo: self.label1.bottomAnchor),
-			label2.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.15)
+				equalTo: label1.bottomAnchor),
+			label2.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.15)
 		])
 	}
 
 	func setupLabel3Layout() {
-		self.addSubview(label3)
+		addSubview(label3)
 		label3.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
 			label3.trailingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+				equalTo: safeAreaLayoutGuide.trailingAnchor),
 			label3.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor),
+				equalTo: safeAreaLayoutGuide.leadingAnchor),
 			label3.topAnchor.constraint(
-				equalTo: self.label2.bottomAnchor),
+				equalTo: label2.bottomAnchor),
 			label3.heightAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.26)
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.26)
 		])
 	}
 
 	func setupButton1Layout() {
-		self.addSubview(button1)
+		addSubview(button1)
 		button1.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
 			button1.centerXAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+				equalTo: safeAreaLayoutGuide.centerXAnchor),
 			button1.topAnchor.constraint(
-				equalTo: self.label3.bottomAnchor),
+				equalTo: label3.bottomAnchor),
 			button1.heightAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
 			button1.widthAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
+				equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
 		])
 	}
 
 	func setupButton2Layout() {
-		//.layer.cornerRadius = self.safeAreaLayoutGuide.layoutFrame.size.height * 0.15 * 0.5
-		self.addSubview(button2)
+		//.layer.cornerRadius = safeAreaLayoutGuide.layoutFrame.size.height * 0.15 * 0.5
+		addSubview(button2)
 		button2.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
 			button2.heightAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
 			button2.widthAnchor.constraint(
 				equalTo: button2.heightAnchor),
 			button2.centerXAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.centerXAnchor),
+				equalTo: safeAreaLayoutGuide.centerXAnchor),
 			button2.topAnchor.constraint(
-				equalTo: self.button1.bottomAnchor, constant: 3
+				equalTo: button1.bottomAnchor, constant: Constants.spaceBetweenButtons.rawValue
 			),
 		])
 	}
 
 	func setupImageViewLayout() {
-		self.addSubview(imageView)
+		addSubview(imageView)
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
 			imageView.topAnchor.constraint(
-				equalTo: button2.bottomAnchor, constant: 3),
+				equalTo: button2.bottomAnchor, constant: Constants.spaceBetweenButtons.rawValue),
 			imageView.bottomAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8),
+				equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Constants.bottomAndTopSpace.rawValue),
 			imageView.widthAnchor.constraint(
 				equalTo: imageView.heightAnchor),
 			imageView.centerXAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.centerXAnchor)
+				equalTo: safeAreaLayoutGuide.centerXAnchor)
 		])
 	}
 
 	func setupActivityIndicatorLayout() {
-		self.addSubview(activityIndicator)
+		addSubview(activityIndicator)
 		activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([

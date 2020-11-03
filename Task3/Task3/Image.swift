@@ -10,7 +10,7 @@ import UIKit
 enum Images: String {
     case test
     var image: UIImage {
-        guard let image = UIImage(named: self.rawValue) else { assertionFailure(); return UIImage() }
+        guard let image = UIImage(named: rawValue) else { assertionFailure(); return UIImage() }
         return image
     }
 }

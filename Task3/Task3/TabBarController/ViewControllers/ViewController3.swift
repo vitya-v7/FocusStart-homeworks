@@ -14,8 +14,8 @@ class ViewController3: UIViewController {
 	var myView: View3 = View3(frame: .zero)
 	
 	override func loadView() {
-		myView.tabBarHeight = self.tabBarController?.tabBar.frame.height
-		self.view = myView
+		myView.tabBarHeight = tabBarController?.tabBar.frame.height
+		view = myView
 	}
 
 

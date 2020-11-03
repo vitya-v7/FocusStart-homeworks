@@ -18,8 +18,8 @@ class View2: UIView {
 
 	private enum Constants: CGFloat {
 		case imageViewHeight = 300
-		case horizontalStandardSpace = 16
-		case horizontalBigSpace = 32
+		case imageMargin = 12
+		case labelSpace = 15
 	}
 
 	// MARK: Views
@@ -63,7 +63,7 @@ private extension View2 {
 	}
 
 	func setupSuperViewAppearances() {
-		self.backgroundColor = .systemBackground
+		backgroundColor = .systemBackground
 	}
 
 	func setupImageViewAppearances() {
@@ -82,19 +82,19 @@ private extension View2 {
 		textLabel.numberOfLines = 0
 		textLabel.text =
 			"""
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random,
-    	    	Random, Random, Random, Random, Random, Random, Random, Random.
-    	    	"""
+			Text Text Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text TextText Text Text Text Text Text Text Text Text
+			Text Text Text Text Text Text Text Text Text
+			"""
+		textLabel.textAlignment = .center
 	}
 }
 
@@ -134,18 +134,18 @@ private extension View2 {
 
 	func setupScrollViewLayout() {
 
-		self.addSubview(scrollView)
+		addSubview(scrollView)
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
 
 		sharedConstraints.append(contentsOf: [
 			scrollView.centerXAnchor.constraint(
-				equalTo: self.centerXAnchor),
+				equalTo: centerXAnchor),
 			scrollView.topAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.topAnchor),
+				equalTo: safeAreaLayoutGuide.topAnchor),
 			scrollView.bottomAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.bottomAnchor),
+				equalTo: safeAreaLayoutGuide.bottomAnchor),
 			scrollView.widthAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.widthAnchor)
+				equalTo: safeAreaLayoutGuide.widthAnchor)
 		])
 
 	}
@@ -156,9 +156,9 @@ private extension View2 {
 
 		sharedConstraints.append(contentsOf: [
 			imageView.topAnchor.constraint(
-				equalTo: scrollView.topAnchor, constant: 12),
+				equalTo: scrollView.topAnchor, constant: Constants.imageMargin.rawValue),
 			imageView.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 12),
+				equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.imageMargin.rawValue),
 			imageView.heightAnchor.constraint(
 				equalToConstant: Constants.imageViewHeight.rawValue)
 		])
@@ -170,8 +170,8 @@ private extension View2 {
 
 		sharedConstraints.append(contentsOf: [
 			titleLabel.trailingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.trailingAnchor,
-				constant: -Constants.horizontalStandardSpace.rawValue)
+				equalTo: safeAreaLayoutGuide.trailingAnchor,
+				constant: -Constants.labelSpace.rawValue)
 		])
 	}
 
@@ -181,11 +181,11 @@ private extension View2 {
 
 		sharedConstraints.append(contentsOf: [
 			textLabel.trailingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.trailingAnchor,
-				constant: -Constants.horizontalStandardSpace.rawValue),
+				equalTo: safeAreaLayoutGuide.trailingAnchor,
+				constant: -Constants.labelSpace.rawValue),
 			textLabel.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.horizontalStandardSpace.rawValue),
+				equalTo: safeAreaLayoutGuide.leadingAnchor,
+				constant: Constants.labelSpace.rawValue),
 			textLabel.bottomAnchor.constraint(
 				equalTo: scrollView.bottomAnchor)
 		])
@@ -204,18 +204,18 @@ private extension View2 {
 	func setupImageViewCompactLayout() {
 		compactConstraints.append(contentsOf: [
 			imageView.trailingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.trailingAnchor),
+				equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Constants.imageMargin.rawValue),
 		])
 	}
 
 	func setupTitleLabelCompactLayout() {
 		compactConstraints.append(contentsOf: [
 			titleLabel.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.horizontalStandardSpace.rawValue),
+				equalTo: safeAreaLayoutGuide.leadingAnchor,
+				constant: Constants.labelSpace.rawValue),
 			titleLabel.topAnchor.constraint(
 				equalTo: imageView.bottomAnchor,
-				constant: 15)
+				constant: Constants.labelSpace.rawValue)
 		])
 	}
 
@@ -223,7 +223,7 @@ private extension View2 {
 		compactConstraints.append(contentsOf: [
 			textLabel.topAnchor.constraint(
 				equalTo: titleLabel.bottomAnchor,
-				constant: 15)
+				constant: Constants.labelSpace.rawValue)
 		])
 	}
 }
@@ -240,21 +240,21 @@ private extension View2 {
 	func setupImageViewRegularLayout() {
 		regularConstraints.append(contentsOf: [
 			imageView.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.horizontalStandardSpace.rawValue),
+				equalTo: safeAreaLayoutGuide.leadingAnchor,
+				constant: Constants.imageMargin.rawValue),
 			imageView.trailingAnchor.constraint(
 				equalTo: textLabel.leadingAnchor,
-				constant: -Constants.horizontalBigSpace.rawValue),
+				constant: -Constants.imageMargin.rawValue),
 			imageView.widthAnchor.constraint(
-				equalToConstant: 300)
+				equalToConstant: Constants.imageViewHeight.rawValue)
 		])
 	}
 
 	func setupTitleLabelRegularLayout() {
 		regularConstraints.append(contentsOf: [
 			titleLabel.leadingAnchor.constraint(
-				equalTo: self.imageView.trailingAnchor,
-				constant: Constants.horizontalStandardSpace.rawValue),
+				equalTo: imageView.trailingAnchor,
+				constant: Constants.labelSpace.rawValue),
 			titleLabel.centerYAnchor.constraint(
 				equalTo: imageView.centerYAnchor)
 		])
@@ -264,7 +264,7 @@ private extension View2 {
 		regularConstraints.append(contentsOf: [
 			textLabel.topAnchor.constraint(
 				equalTo: imageView.bottomAnchor,
-				constant: 15)
+				constant: Constants.labelSpace.rawValue)
 		])
 	}
 }

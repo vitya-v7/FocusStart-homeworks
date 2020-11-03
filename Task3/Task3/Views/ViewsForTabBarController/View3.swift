@@ -17,10 +17,10 @@ class View3: UIView {
 	var buttonBottomConstraint : NSLayoutConstraint?
 	private enum Constants: CGFloat {
 		case imageViewHeight = 300
-		case horizontalStandardSpace = 16
 		case horizontalBigSpace = 32
 		case textFieldSpace = 10
 		case buttonBottomConstant = 12
+		case labelSpace = 15
 	}
 
 	// MARK: Views
@@ -33,8 +33,8 @@ class View3: UIView {
 
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 		setupViewsAppearances()
 		setupViewsLayout()
 	}
@@ -52,7 +52,7 @@ class View3: UIView {
 	// MARK: Hide Keyboard
 
 	internal override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		self.endEditing(true)
+		endEditing(true)
 	}
 }
 
@@ -67,7 +67,7 @@ private extension View3 {
 	}
 
 	func setupSuperViewAppearances() {
-		self.backgroundColor = .systemBackground
+		backgroundColor = .systemBackground
 	}
 
 	func setupLoginTextFieldAppearances() {
@@ -95,7 +95,7 @@ private extension View3 {
 		button.setTitleColor(.black, for: .normal)
 		button.layer.borderWidth = 1
 		button.layer.borderColor = .init(red: 1, green: 0, blue: 0, alpha: 1)
-		button.setTitle("Button", for: .normal)
+		button.setTitle("Enter", for: .normal)
 	}
 
 }
@@ -116,61 +116,61 @@ private extension View3 {
 	}
 
 	func setupLoginTextFieldLayout() {
-		self.addSubview(loginTextField)
+		addSubview(loginTextField)
 		loginTextField.translatesAutoresizingMaskIntoConstraints = false
 
 		sharedConstraints.append(contentsOf: [
 			loginTextField.topAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.topAnchor,
+				equalTo: safeAreaLayoutGuide.topAnchor,
 				constant: Constants.textFieldSpace.rawValue),
 			loginTextField.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor,
+				equalTo: safeAreaLayoutGuide.leadingAnchor,
 				constant: Constants.textFieldSpace.rawValue),
 			loginTextField.trailingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.trailingAnchor,
+				equalTo: safeAreaLayoutGuide.trailingAnchor,
 				constant: -Constants.textFieldSpace.rawValue),
 		])
 	}
 
 	func setupPasswordTextFieldLayout() {
-		self.addSubview(passwordTextField)
+		addSubview(passwordTextField)
 		passwordTextField.translatesAutoresizingMaskIntoConstraints = false
 
 		sharedConstraints.append(contentsOf: [
 			passwordTextField.topAnchor.constraint(
-				equalTo: self.loginTextField.bottomAnchor,
+				equalTo: loginTextField.bottomAnchor,
 				constant: Constants.textFieldSpace.rawValue),
 			passwordTextField.leadingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.leadingAnchor,
+				equalTo: safeAreaLayoutGuide.leadingAnchor,
 				constant: Constants.textFieldSpace.rawValue),
 			passwordTextField.trailingAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.trailingAnchor,
+				equalTo: safeAreaLayoutGuide.trailingAnchor,
 				constant: -Constants.textFieldSpace.rawValue),
 		])
 	}
 
 
 	func setupButtonLayout() {
-		//.layer.cornerRadius = self.safeAreaLayoutGuide.layoutFrame.size.height * 0.15 * 0.5
+		//.layer.cornerRadius = safeAreaLayoutGuide.layoutFrame.size.height * 0.15 * 0.5
 
-		self.addSubview(button)
+		addSubview(button)
 		button.translatesAutoresizingMaskIntoConstraints = false
 
 		sharedConstraints.append(contentsOf: [
 			button.widthAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.widthAnchor,
+				equalTo: safeAreaLayoutGuide.widthAnchor,
 				multiplier: 0.3),
 			button.heightAnchor.constraint(
-				equalTo: self.button.widthAnchor,
+				equalTo: button.widthAnchor,
 				multiplier: 0.5),
 			button.centerXAnchor.constraint(
-				equalTo: self.safeAreaLayoutGuide.centerXAnchor)
+				equalTo: safeAreaLayoutGuide.centerXAnchor)
 		])
 		setButtonBottomConstraint(space: 0)
 	}
 	func setButtonBottomConstraint(space: CGFloat) {
 		buttonBottomConstraint = button.bottomAnchor.constraint(
-			equalTo: self.safeAreaLayoutGuide.bottomAnchor,
+			equalTo: safeAreaLayoutGuide.bottomAnchor,
 			constant: -Constants.buttonBottomConstant.rawValue - space)
 		NSLayoutConstraint.activate([buttonBottomConstraint!])
 	}
@@ -192,7 +192,7 @@ extension View3: UITextFieldDelegate {
 	}
 
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		self.endEditing(true)
+		endEditing(true)
 		return true
 	}
 }
@@ -205,7 +205,7 @@ extension View3 {
 		guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSValue else {return}
 		let keyboardFrame = keyboardSize.cgRectValue
 		var keyboardMinusTabBarHeight: CGFloat = 0.0
-		if let tabHeight = self.tabBarHeight {
+		if let tabHeight = tabBarHeight {
 			keyboardMinusTabBarHeight = abs(keyboardFrame.height - tabHeight)
 		}
 		else {
