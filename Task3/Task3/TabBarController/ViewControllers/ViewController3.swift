@@ -17,7 +17,7 @@ class ViewController3: UIViewController {
 		myView.tabBarHeight = tabBarController?.tabBar.frame.height
 		view = myView
 	}
-
+	
 	override func viewWillLayoutSubviews() {
 		super.viewWillLayoutSubviews()
 		myView.makeButtonRounded()

@@ -8,6 +8,7 @@
 import UIKit
 
 class View2: UIView {
+	
 	// MARK: Properties
 
 	private var isLayoutCompact = true
@@ -16,7 +17,8 @@ class View2: UIView {
 	private var compactConstraints: [NSLayoutConstraint] = []
 	private var regularConstraints: [NSLayoutConstraint] = []
 
-	private enum Constants: CGFloat {
+	private enum Constants: CGFloat
+	{
 		case imageViewHeight = 300
 		case imageMargin = 12
 		case labelSpace = 15
@@ -54,7 +56,8 @@ class View2: UIView {
 
 // MARK: Appearances
 
-private extension View2 {
+private extension View2
+{
 	func setupViewsAppearances() {
 		setupSuperViewAppearances()
 		setupImageViewAppearances()
@@ -100,8 +103,8 @@ private extension View2 {
 
 // MARK: Shared Layout
 
-private extension View2 {
-
+private extension View2
+{
 	func changeViewsLayout(traitCollection: UITraitCollection) {
 		switch(traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
 		case (.compact, .regular):
@@ -194,7 +197,8 @@ private extension View2 {
 
 // MARK: Compact Layout
 
-private extension View2 {
+private extension View2
+{
 	func setupCompactLayout() {
 		setupImageViewCompactLayout()
 		setupTitleLabelCompactLayout()
@@ -230,7 +234,8 @@ private extension View2 {
 
 // MARK: Regular Layout
 
-private extension View2 {
+private extension View2
+{
 	func setupRegularLayout() {
 		setupImageViewRegularLayout()
 		setupTitleLabelRegularLayout()
