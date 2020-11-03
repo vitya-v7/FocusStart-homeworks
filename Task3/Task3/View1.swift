@@ -28,8 +28,8 @@ class View1: UIView {
         private let label1 = UILabel()
         private let label2 = UILabel()
         private let label3 = UILabel()
-    private let button1 = UIButton(type: .custom)
-    let button2 = UIButton(type: .custom)
+        private let button1 = UIButton(type: .custom)
+        private let button2 = UIButton(type: .custom)
         private let imageView = UIImageView()
         private let activityIndicator = UIActivityIndicatorView()
     
@@ -137,26 +137,9 @@ extension View1 {
     // MARK: Shared Layout
 
     private extension View1 {
-
-        /*func changeViewsLayout(traitCollection: UITraitCollection) {
-            switch(traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
-            case (.compact, .regular):
-                isLayoutCompact = true
-                NSLayoutConstraint.deactivate(regularConstraints)
-                NSLayoutConstraint.activate(compactConstraints)
-            default:
-                guard isLayoutCompact != false else { return }
-
-                isLayoutCompact = false
-                NSLayoutConstraint.deactivate(compactConstraints)
-                NSLayoutConstraint.activate(regularConstraints)
-            }
-        }*/
-
+        
         func setupViewsLayout() {
             setupSharedLayout()
-            //setupCompactLayout()
-            //setupRegularLayout()
         }
 
         func setupSharedLayout() {
@@ -275,51 +258,4 @@ extension View1 {
         }
     }
 
-    // MARK: Compact Layout
-
-   /* private extension View1 {
-        func setupCompactLayout() {
-            setupImageViewCompactLayout()
-            setupTitleLabelCompactLayout()
-        }
-
-        func setupImageViewCompactLayout() {
-            compactConstraints.append(contentsOf: [
-                imageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
-                imageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
-            ])
-        }
-
-        func setupTitleLabelCompactLayout() {
-            compactConstraints.append(contentsOf: [
-                titleLabel.leadingAnchor.constraint(
-                    equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.horizontalStandardSpace.rawValue),
-                titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32)
-            ])
-        }
-    }
-
-    // MARK: Regular Layout
-
-    private extension View1 {
-        func setupRegularLayout() {
-            setupImageViewRegularLayout()
-            setupTitleLabelRegularLayout()
-        }
-
-        func setupImageViewRegularLayout() {
-            regularConstraints.append(contentsOf: [
-                imageView.leadingAnchor.constraint(
-                    equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.horizontalStandardSpace.rawValue),
-                imageView.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -Constants.horizontalBigSpace.rawValue),
-                imageView.widthAnchor.constraint(equalToConstant: 300)
-            ])
-        }
-
-        func setupTitleLabelRegularLayout() {
-            regularConstraints.append(contentsOf: [
-                titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor)
-            ])
-        }
-    }*/
 

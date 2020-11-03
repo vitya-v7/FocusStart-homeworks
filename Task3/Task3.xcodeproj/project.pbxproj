@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		849E4CAC25512BEA00A5F1F5 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E4CAB25512BEA00A5F1F5 /* ViewController3.swift */; };
+		849E4CAF25512BFD00A5F1F5 /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E4CAE25512BFD00A5F1F5 /* View3.swift */; };
 		AAD2E4B4254EF3BB00FB0457 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4B3254EF3BB00FB0457 /* AppDelegate.swift */; };
 		AAD2E4B6254EF3BB00FB0457 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4B5254EF3BB00FB0457 /* SceneDelegate.swift */; };
 		AAD2E4BB254EF3BB00FB0457 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD2E4B9254EF3BB00FB0457 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		849E4CAB25512BEA00A5F1F5 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
+		849E4CAE25512BFD00A5F1F5 /* View3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
 		AAD2E4B0254EF3BB00FB0457 /* Task3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Task3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AAD2E4B3254EF3BB00FB0457 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AAD2E4B5254EF3BB00FB0457 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				AAD2E4D4254F071900FB0457 /* Image.swift */,
 				AAD2E4D7254F19AA00FB0457 /* ViewController2.swift */,
 				AAD2E4DA254F19CF00FB0457 /* View2.swift */,
+				849E4CAB25512BEA00A5F1F5 /* ViewController3.swift */,
+				849E4CAE25512BFD00A5F1F5 /* View3.swift */,
 			);
 			path = Task3;
 			sourceTree = "<group>";
@@ -151,10 +157,12 @@
 			files = (
 				AAD2E4C9254EF47A00FB0457 /* ViewController1.swift in Sources */,
 				AAD2E4B4254EF3BB00FB0457 /* AppDelegate.swift in Sources */,
+				849E4CAC25512BEA00A5F1F5 /* ViewController3.swift in Sources */,
 				AAD2E4D2254F047100FB0457 /* View1.swift in Sources */,
 				AAD2E4B6254EF3BB00FB0457 /* SceneDelegate.swift in Sources */,
 				AAD2E4DB254F19CF00FB0457 /* View2.swift in Sources */,
 				AAD2E4D5254F071900FB0457 /* Image.swift in Sources */,
+				849E4CAF25512BFD00A5F1F5 /* View3.swift in Sources */,
 				AAD2E4D8254F19AA00FB0457 /* ViewController2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
