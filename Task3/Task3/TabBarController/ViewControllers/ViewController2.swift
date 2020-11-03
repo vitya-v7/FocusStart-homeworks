@@ -9,10 +9,10 @@ import UIKit
 
 class ViewController2: UIViewController {
 
-    // MARK: Life Cycle
+	// MARK: Life Cycle
 
-    override func loadView() {
-        self.view = View2(frame: .zero)
-    }
+	override func loadView() {
+		self.view = View2(frame: .zero)
+	}
 
 }
