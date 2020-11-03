@@ -48,7 +48,6 @@ class View2: UIView {
 
         override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
             super.traitCollectionDidChange(previousTraitCollection)
-
             changeViewsLayout(traitCollection: traitCollection)
         }
     }
@@ -124,17 +123,19 @@ class View2: UIView {
 
             NSLayoutConstraint.activate(sharedConstraints)
         }
-
+        
         func setupScrollViewLayout() {
+            
             self.addSubview(scrollView)
             scrollView.translatesAutoresizingMaskIntoConstraints = false
-
+            
             sharedConstraints.append(contentsOf: [
                 scrollView.centerXAnchor.constraint(equalTo: self.centerXAnchor),
                 scrollView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
                 scrollView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor),
                 scrollView.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor)
             ])
+            
         }
 
         func setupImageViewLayout() {

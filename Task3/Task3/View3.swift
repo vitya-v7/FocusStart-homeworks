@@ -14,14 +14,13 @@ class View3: UIView {
         private var isLayoutCompact = true
 
         private var sharedConstraints: [NSLayoutConstraint] = []
-        private var compactConstraints: [NSLayoutConstraint] = []
-        private var regularConstraints: [NSLayoutConstraint] = []
-
+        var buttonBottomConstraint : NSLayoutConstraint?
         private enum Constants: CGFloat {
             case imageViewHeight = 300
             case horizontalStandardSpace = 16
             case horizontalBigSpace = 32
             case textFieldSpace = 10
+            case buttonBottomConstant = 12
         }
 
         // MARK: Views
@@ -34,10 +33,10 @@ class View3: UIView {
 
         public override init(frame: CGRect) {
             super.init(frame: frame)
-
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
             setupViewsAppearances()
             setupViewsLayout()
-            //changeViewsLayout(traitCollection: traitCollection)
         }
 
         required init?(coder: NSCoder) {
@@ -48,8 +47,10 @@ class View3: UIView {
 
         override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
             super.traitCollectionDidChange(previousTraitCollection)
-
-           // changeViewsLayout(traitCollection: traitCollection)
+        }
+        // MARK: Hide Keyboard
+        internal override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+            self.endEditing(true)
         }
     }
 
@@ -97,7 +98,7 @@ private extension View3 {
 // MARK: Shared Layout
 
 private extension View3 {
-
+    
     func setupViewsLayout() {
         setupSharedLayout()
     }
@@ -105,7 +106,7 @@ private extension View3 {
     func setupSharedLayout() {
         setupLoginTextFieldLayout()
         setupPasswordTextFieldLayout()
-        //setupButtonLayout()
+        setupButtonLayout()
         NSLayoutConstraint.activate(sharedConstraints)
     }
 
@@ -131,22 +132,25 @@ private extension View3 {
         ])
     }
 
-
+    
     func setupButtonLayout() {
         //.layer.cornerRadius = self.safeAreaLayoutGuide.layoutFrame.size.height * 0.15 * 0.5
+        
         self.addSubview(button)
         button.translatesAutoresizingMaskIntoConstraints = false
         
-        NSLayoutConstraint.activate([
-            button.heightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
-            button.widthAnchor.constraint(equalTo: button.heightAnchor),
-            button.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor),
-            button.topAnchor.constraint(
-                equalTo: self.button.bottomAnchor, constant: 3
-            ),
+        sharedConstraints.append(contentsOf: [
+            button.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor,multiplier: 0.3),
+            button.heightAnchor.constraint(equalTo: self.button.widthAnchor, multiplier: 0.5),
+            button.centerXAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor)
         ])
+        setButtonBottomConstraint(space: 0)
     }
-
+    func setButtonBottomConstraint(space: CGFloat) {
+        buttonBottomConstraint = button.bottomAnchor.constraint(
+                equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.buttonBottomConstant.rawValue - space)
+        NSLayoutConstraint.activate([buttonBottomConstraint!])
+    }
 }
 
 extension View3: UITextFieldDelegate {
@@ -162,5 +166,25 @@ extension View3: UITextFieldDelegate {
             return false
         }
         return true
+    }
+}
+
+//MARK: - Keyboard Manipulations
+extension View3 {
+    @objc func keyboardWillShow(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
+        guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSValue else {return}
+        let keyboardFrame = keyboardSize.cgRectValue
+        NSLayoutConstraint.deactivate([buttonBottomConstraint!])
+        View3.animate(withDuration: animationDuration as! TimeInterval, animations: { self.setButtonBottomConstraint(space: keyboardFrame.height) })
+        
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        guard let userInfo = notification.userInfo else {return}
+        guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSValue else {return}
+        NSLayoutConstraint.deactivate([buttonBottomConstraint!])
+        View3.animate(withDuration: animationDuration as! TimeInterval, animations: { self.setButtonBottomConstraint(space: 0) })
     }
 }
