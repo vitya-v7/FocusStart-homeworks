@@ -58,13 +58,16 @@ class View1: UIView {
 
 	// MARK: Appearances
 
-extension View1 {
+extension View1
+{
 	func makeButton2Rounded() {
-		button2.layer.cornerRadius = button2.bounds.height/2
+		let minimum = min(button2.bounds.height, button2.bounds.width)
+		button2.layer.cornerRadius = minimum/2
 	}
 }
 
-private extension View1 {
+private extension View1
+{
 	func setupViewsAppearances() {
 		setupSuperViewAppearances()
 		setupImageViewAppearances()
@@ -135,13 +138,12 @@ private extension View1 {
 		activityIndicator.color = .black
 		activityIndicator.startAnimating()
 	}
-
 }
 
 // MARK: Shared Layout
 
-private extension View1 {
-
+private extension View1
+{
 	func setupViewsLayout() {
 		setupSharedLayout()
 	}

@@ -10,12 +10,14 @@ import UIKit
 class View3: UIView {
 
 	// MARK: Properties
+	
 	var tabBarHeight: CGFloat?
 
 	private var isLayoutCompact = true
 	private var sharedConstraints: [NSLayoutConstraint] = []
 	var buttonBottomConstraint : NSLayoutConstraint?
-	private enum Constants: CGFloat {
+	private enum Constants: CGFloat
+	{
 		case imageViewHeight = 300
 		case horizontalBigSpace = 32
 		case textFieldSpace = 10
@@ -58,13 +60,16 @@ class View3: UIView {
 
 // MARK: Appearances
 
-extension View3 {
+extension View3
+{
 	func makeButtonRounded() {
-		button.layer.cornerRadius = button.bounds.height/2
+		let minimum = min(button.bounds.height, button.bounds.width)
+		button.layer.cornerRadius = minimum/2
 	}
 }
 
-private extension View3 {
+private extension View3
+{
 	func setupViewsAppearances() {
 		setupSuperViewAppearances()
 		setupLoginTextFieldAppearances()
@@ -107,8 +112,8 @@ private extension View3 {
 
 // MARK: Shared Layout
 
-private extension View3 {
-
+private extension View3
+{
 	func setupViewsLayout() {
 		setupSharedLayout()
 	}
@@ -134,6 +139,9 @@ private extension View3 {
 			loginTextField.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor,
 				constant: -Constants.textFieldSpace.rawValue),
+			loginTextField.heightAnchor.constraint(
+				equalTo: self.safeAreaLayoutGuide.heightAnchor,
+				multiplier: 0.10)
 		])
 	}
 
@@ -151,12 +159,14 @@ private extension View3 {
 			passwordTextField.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor,
 				constant: -Constants.textFieldSpace.rawValue),
+			passwordTextField.heightAnchor.constraint(
+				equalTo: self.safeAreaLayoutGuide.heightAnchor,
+				multiplier: 0.10)
 		])
 	}
 
 
 	func setupButtonLayout() {
-		
 		addSubview(button)
 		button.translatesAutoresizingMaskIntoConstraints = false
 
@@ -180,7 +190,8 @@ private extension View3 {
 	}
 }
 
-extension View3: UITextFieldDelegate {
+extension View3: UITextFieldDelegate
+{
 	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
 		if textField == passwordTextField {
 			let asteriskString = String.init(repeating: "*", count: string.count)
@@ -202,7 +213,8 @@ extension View3: UITextFieldDelegate {
 }
 
 //MARK: - Keyboard Manipulations
-extension View3 {
+extension View3
+{
 	@objc func keyboardWillShow(notification: NSNotification) {
 
 		guard let userInfo = notification.userInfo else {return}

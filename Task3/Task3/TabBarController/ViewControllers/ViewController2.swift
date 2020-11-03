@@ -14,5 +14,4 @@ class ViewController2: UIViewController {
 	override func loadView() {
 		view = View2(frame: .zero)
 	}
-
 }
