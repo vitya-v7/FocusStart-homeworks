@@ -58,6 +58,12 @@ class View3: UIView {
 
 // MARK: Appearances
 
+extension View3 {
+	func makeButtonRounded() {
+		button.layer.cornerRadius = button.bounds.height/2
+	}
+}
+
 private extension View3 {
 	func setupViewsAppearances() {
 		setupSuperViewAppearances()
@@ -89,7 +95,6 @@ private extension View3 {
 	}
 
 	func setupButtonAppearances() {
-		button.layer.cornerRadius = 8
 		button.backgroundColor = .cyan
 		button.clipsToBounds = true
 		button.setTitleColor(.black, for: .normal)
@@ -151,8 +156,7 @@ private extension View3 {
 
 
 	func setupButtonLayout() {
-		//.layer.cornerRadius = safeAreaLayoutGuide.layoutFrame.size.height * 0.15 * 0.5
-
+		
 		addSubview(button)
 		button.translatesAutoresizingMaskIntoConstraints = false
 

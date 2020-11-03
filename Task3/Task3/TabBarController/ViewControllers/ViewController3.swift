@@ -18,5 +18,8 @@ class ViewController3: UIViewController {
 		view = myView
 	}
 
-
+	override func viewWillLayoutSubviews() {
+		super.viewWillLayoutSubviews()
+		myView.makeButtonRounded()
+	}
 }

@@ -60,7 +60,7 @@ class View1: UIView {
 
 extension View1 {
 	func makeButton2Rounded() {
-		button2.layer.cornerRadius = button2.bounds.width/2
+		button2.layer.cornerRadius = button2.bounds.height/2
 	}
 }
 
@@ -106,7 +106,6 @@ private extension View1 {
 	}
 
 	func setupButton1Appearances() {
-		// button1.layer.cornerRadius = 0.5 * button.bounds.size.width
 		button1.layer.cornerRadius = Constants.bottomAndTopSpace.rawValue
 		button1.backgroundColor = .cyan
 		button1.clipsToBounds = true
@@ -221,7 +220,6 @@ private extension View1 {
 	}
 
 	func setupButton2Layout() {
-		//.layer.cornerRadius = safeAreaLayoutGuide.layoutFrame.size.height * 0.15 * 0.5
 		addSubview(button2)
 		button2.translatesAutoresizingMaskIntoConstraints = false
 
