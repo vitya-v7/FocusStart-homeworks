@@ -28,6 +28,7 @@ class View2: UIView {
         private let imageView = UIImageView()
         private let titleLabel = UILabel()
         private let textLabel = UILabel()
+       
 
         // MARK: Life Cycle
 
@@ -59,6 +60,7 @@ class View2: UIView {
             setupSuperViewAppearances()
             setupImageViewAppearances()
             setupTitleLabelAppearances()
+            setupTextLabelAppearances()
         }
 
         func setupSuperViewAppearances() {
@@ -70,10 +72,16 @@ class View2: UIView {
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
         }
-
         func setupTitleLabelAppearances() {
-            titleLabel.numberOfLines = 0
-            titleLabel.text =
+            titleLabel.numberOfLines = 1
+            titleLabel.textAlignment = .center
+            titleLabel.font = .boldSystemFont(ofSize: 25)
+            titleLabel.text = "Header"
+        }
+        
+        func setupTextLabelAppearances() {
+            textLabel.numberOfLines = 0
+            textLabel.text =
                 """
                 Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
                     Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test Test
@@ -112,6 +120,7 @@ class View2: UIView {
             setupScrollViewLayout()
             setupImageViewLayout()
             setupTitleLabelLayout()
+            setupTextLabelLayout()
 
             NSLayoutConstraint.activate(sharedConstraints)
         }
@@ -132,8 +141,9 @@ class View2: UIView {
             scrollView.addSubview(imageView)
             imageView.translatesAutoresizingMaskIntoConstraints = false
 
-            NSLayoutConstraint.activate([
-                imageView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            sharedConstraints.append(contentsOf: [
+                imageView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 12),
+                imageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: 12),
                 imageView.heightAnchor.constraint(equalToConstant: Constants.imageViewHeight.rawValue)
             ])
         }
@@ -142,10 +152,22 @@ class View2: UIView {
             scrollView.addSubview(titleLabel)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
-            NSLayoutConstraint.activate([
+            sharedConstraints.append(contentsOf: [
                 titleLabel.trailingAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.horizontalStandardSpace.rawValue)
+            ])
+        }
+        
+        func setupTextLabelLayout() {
+            scrollView.addSubview(textLabel)
+            textLabel.translatesAutoresizingMaskIntoConstraints = false
+
+            sharedConstraints.append(contentsOf: [
+                textLabel.trailingAnchor.constraint(
                     equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -Constants.horizontalStandardSpace.rawValue),
-                titleLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+                textLabel.leadingAnchor.constraint(
+                    equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.horizontalStandardSpace.rawValue),
+                textLabel.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
             ])
         }
     }
@@ -156,20 +178,26 @@ class View2: UIView {
         func setupCompactLayout() {
             setupImageViewCompactLayout()
             setupTitleLabelCompactLayout()
+            setupTextLabelCompactLayout()
         }
 
         func setupImageViewCompactLayout() {
             compactConstraints.append(contentsOf: [
-                imageView.leadingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leadingAnchor),
                 imageView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor),
             ])
         }
-
+        
         func setupTitleLabelCompactLayout() {
             compactConstraints.append(contentsOf: [
                 titleLabel.leadingAnchor.constraint(
                     equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.horizontalStandardSpace.rawValue),
-                titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 32)
+                titleLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15)
+            ])
+        }
+        
+        func setupTextLabelCompactLayout() {
+            compactConstraints.append(contentsOf: [
+                textLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15)
             ])
         }
     }
@@ -180,20 +208,29 @@ class View2: UIView {
         func setupRegularLayout() {
             setupImageViewRegularLayout()
             setupTitleLabelRegularLayout()
+            setupTextLabelRegularLayout()
         }
 
         func setupImageViewRegularLayout() {
             regularConstraints.append(contentsOf: [
                 imageView.leadingAnchor.constraint(
                     equalTo: self.safeAreaLayoutGuide.leadingAnchor, constant: Constants.horizontalStandardSpace.rawValue),
-                imageView.trailingAnchor.constraint(equalTo: titleLabel.leadingAnchor, constant: -Constants.horizontalBigSpace.rawValue),
+                imageView.trailingAnchor.constraint(equalTo: textLabel.leadingAnchor, constant: -Constants.horizontalBigSpace.rawValue),
                 imageView.widthAnchor.constraint(equalToConstant: 300)
             ])
         }
 
         func setupTitleLabelRegularLayout() {
             regularConstraints.append(contentsOf: [
-                titleLabel.topAnchor.constraint(equalTo: imageView.topAnchor)
+                titleLabel.leadingAnchor.constraint(
+                    equalTo: self.imageView.trailingAnchor, constant: Constants.horizontalStandardSpace.rawValue),
+                titleLabel.centerYAnchor.constraint(equalTo: imageView.centerYAnchor)
+            ])
+        }
+        
+        func setupTextLabelRegularLayout() {
+            regularConstraints.append(contentsOf: [
+                textLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 15)
             ])
         }
 }
