@@ -45,10 +45,11 @@ extension CarsListPresenter: ICarsListViewOutput
 	func filterCars(bodyStyle: CarService.CarBodyStyle?) {
 		filterBodyStyle = bodyStyle
 		var carModelsFiltered = [CarModel]()
-		let carModelsIn = carService?.getCars()
-		if let models = carModelsIn, bodyStyle != nil {
-			for item in models {
-				if item.body == bodyStyle! {
+		var carModels = carService?.getCars() ?? [CarModel]()
+
+		if let bodyStyle = bodyStyle {
+			for item in carModels {
+				if item.body == bodyStyle {
 					carModelsFiltered.append(item)
 				}
 			}
@@ -56,8 +57,7 @@ extension CarsListPresenter: ICarsListViewOutput
 			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModelsFiltered))
 		}
 		else {
-			carModels = carModelsIn
-			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
+			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels))
 		}
 	}
 	
@@ -78,7 +78,9 @@ extension CarsListPresenter: ICarsListViewOutput
 	}
 	
 	func cellWithIndexSelected(row: Int) {
-		let carModelKey = carModels![row].carKey!
+		guard let carModelKey = carModels?[row].carKey else {
+			return
+		}
 		self.view?.navigationController?.pushViewController(ModulesFactory.createCarDetailModule(key: carModelKey), animated: true)
 	}
 	
@@ -88,11 +90,15 @@ extension CarsListPresenter: ICarsListViewOutput
 	
 	func reloadData() {
 		carModels = carService?.getCars()
-		view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
+		if let carModels = carModels {
+			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels))
+		}
 	}
 	
 	func deleteButtonPressedWithIndexRow(row: Int) {
-		carService?.deleteCar(key: carModels![row].carKey!)
-		reloadData()
+		if let carKey = carModels?[row].carKey {
+			carService?.deleteCar(key: carKey)
+			reloadData()
+		}
 	}
 }

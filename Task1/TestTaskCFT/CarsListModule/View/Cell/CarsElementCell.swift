@@ -20,12 +20,15 @@ class CarsElementCell: UITableViewCell {
 	
 	static let reuseIdentifier = "CarsListCellIdentifier"
 	
-	func configureCell(withObject object: CarsElementViewModel) {
+	func configureCell(withObject object: CarsElementViewModel?) {
 		viewModel = object
-		self.carModel.text = "Model: " + object.carModel!
-		self.carBodyStyle.text = "Body Style: " + object.carBodyStyle!
-		self.carCountry.text = "Country: " + object.carCountry!
-		
+
+		guard let object = object, let carModel = object.carModel, let carBodyStyle = object.carBodyStyle, let carCountry = object.carCountry else {
+			return
+		}
+		self.carModel.text = "Model: " + carModel
+		self.carBodyStyle.text = "Body Style: " + carBodyStyle
+		self.carCountry.text = "Country: " + carCountry
 		if let year = object.carYear {
 			self.carYear.text = "Year: " + year
 		}

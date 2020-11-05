@@ -48,7 +48,10 @@ extension CarService: ICarsListServiceInterface
 	func getCars() -> [CarModel]? {
 		let allValues: Data? = UserDefaults.standard.data(forKey: "cars")
 		if let cars = allValues {
-			let decodedCars = try! JSONDecoder().decode([CarModel].self, from: cars)
+			let decoded = try? JSONDecoder().decode([CarModel].self, from: cars)
+			guard let decodedCars = decoded else {
+				return nil
+			}
 			return decodedCars
 		}
 		else {
@@ -57,34 +60,28 @@ extension CarService: ICarsListServiceInterface
 	}
 
 	func deleteCar(key: String) {
-		let cars = getCars()
-		guard var carsIn = cars else {
-			return
-		}
-		for index in 0 ..< carsIn.count {
-			if carsIn[index].carKey == key {
-				carsIn.remove(at: index)
+		var cars = getCars() ?? [CarModel]()
+		for index in 0 ..< cars.count {
+			if cars[index].carKey == key {
+				cars.remove(at: index)
 				break
 			}
 		}
-		setCars(cars: carsIn)
+		setCars(cars: cars)
 	}
 }
 
 extension CarService: IDetailsCarServiceInterface
 {
 	func updateCar(car: CarModel) {
-		let cars = getCars()
-		guard var carsIn = cars else {
-			return
-		}
-		for index in 0 ..< carsIn.count {
-			if carsIn[index].carKey == car.carKey {
-				carsIn[index] = car
+		var cars = getCars() ?? [CarModel]()
+		for index in 0 ..< cars.count {
+			if cars[index].carKey == car.carKey {
+				cars[index] = car
 				break
 			}
 		}
-		setCars(cars: carsIn)
+		setCars(cars: cars)
 	}
 
 	func addCar(car: CarModel) {
@@ -98,8 +95,8 @@ extension CarService: IDetailsCarServiceInterface
 	}
 
 	func getCar(key: String) -> CarModel? {
-		let cars = getCars()
-		for car in cars! {
+		let cars = getCars() ?? [CarModel]()
+		for car in cars {
 			if car.carKey == key {
 				return car
 			}
@@ -110,7 +107,10 @@ extension CarService: IDetailsCarServiceInterface
 
 private extension CarService {
 	func setCars(cars: [CarModel]) {
-		let encodedData =  try! JSONEncoder().encode(cars)
+		let encoded = try? JSONEncoder().encode(cars)
+		guard let encodedData = encoded else {
+			return
+		}
 		UserDefaults.standard.set(encodedData, forKey: "cars")
 		UserDefaults.standard.synchronize()
 	}

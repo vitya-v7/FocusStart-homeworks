@@ -46,7 +46,7 @@ class CarDetailViewController: UIViewController {
 	}
 
 	@objc func saveCar(_ sender: Any) {
-		output?.saveSelectedTextFieldValue(type: .carNumber, value: carNumberLabel.text!)
+		output?.saveSelectedTextFieldValue(type: .carNumber, value: carNumberLabel.text ?? "")
 		guard let carYearLabel = carYear.text else {
 			return
 		}
@@ -62,7 +62,7 @@ class CarDetailViewController: UIViewController {
 extension CarDetailViewController: UITextFieldDelegate {
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		if output != nil && textField.tag != textFieldsWithTags.carYear.rawValue && textField.tag != textFieldsWithTags.carNumber.rawValue {
-			output?.callPopover(fromView: textField, option: textField.text!)
+			output?.callPopover(fromView: textField, option: textField.text ?? "")
 			return false
 		}
 		return true

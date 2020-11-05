@@ -63,8 +63,8 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	
 	func viewDidLoadDone() {
 		view?.setInitialState()
-		if key != nil {
-			carModel = carService?.getCar(key: key!)
+		if let key = key {
+			carModel = carService?.getCar(key: key)
 		}
 		else {
 			carModel = CarModel.init(model: CarService.CarModels.allCases[0], manufacturer: CarService.CarCountry.allCases[0], body: CarService.CarBodyStyle.allCases[0], carKey: nil)
@@ -73,11 +73,11 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	}
 	
 	func saveCarInDB() {
-		if carModel?.carKey == nil {
-			carService?.addCar(car: carModel!)
+		if let carModel = carModel, carModel.carKey == nil {
+			carService?.addCar(car: carModel)
 		}
-		else {
-			carService?.updateCar(car: carModel!)
+		if let carModel = carModel, carModel.carKey != nil {
+			carService?.updateCar(car: carModel)
 		}
 		self.view?.navigationController?.popViewController(animated: true)
 	}
@@ -103,9 +103,9 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	}
 	
 	func reloadData() {
-		guard let carModelIn = carModel else {
+		guard let carModel = carModel else {
 			return
 		}
-		view?.setViewModel(viewModel: CarDetailViewModel.init(withElementModel: carModelIn))
+		view?.setViewModel(viewModel: CarDetailViewModel.init(withElementModel: carModel))
 	}
 }

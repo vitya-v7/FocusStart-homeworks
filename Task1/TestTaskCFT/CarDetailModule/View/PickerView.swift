@@ -58,13 +58,13 @@ class PickerView: UIViewController {
 		}
 		button?.addTarget(self, action: #selector(saveData(_:)), for: .touchUpInside)
 		picker?.selectRow(0, inComponent: 0, animated: true)
-		guard let optionsIn = options  else {
+		guard let options = options  else {
 			return
 		}
 		var selectedIndexInPicker = 0
 		if currentOption != nil {
-			for i in 0 ..< optionsIn.count {
-				if currentOption == optionsIn[i] {
+			for i in 0 ..< options.count {
+				if currentOption == options[i] {
 					selectedIndexInPicker = i
 				}
 			}
@@ -80,17 +80,19 @@ class PickerView: UIViewController {
 	}
 
 	@objc func saveData(_ but: UIButton) {
-		if let out = output {
-			let row = picker?.selectedRow(inComponent: 0)
-			out.changeSelectedDataInView(type: type!, index: row!)
+		let row = picker?.selectedRow(inComponent: 0)
+		if let row = row, let out = output, let type = type {
+			out.changeSelectedDataInView(type: type, index: row)
 		}
-		if let out = outputList {
-			let row = picker?.selectedRow(inComponent: 0)
-			if row! > 0 {
-				out.filterCars(bodyStyle: CarService.CarBodyStyle(rawValue: options![row!]))
+		if let outputList = outputList {
+			guard let options = options, let row = row else {
+				return
+			}
+			if row > 0 {
+				outputList.filterCars(bodyStyle: CarService.CarBodyStyle(rawValue: options[row]))
 			}
 			else {
-				out.filterCars(bodyStyle: nil)
+				outputList.filterCars(bodyStyle: nil)
 			}
 		}
 		self.dismiss(animated: true, completion: nil)
@@ -104,10 +106,13 @@ extension PickerView: UIPickerViewDelegate
 		if label == nil {
 			label = UILabel()
 		}
-		label?.text = options![row]
+		label?.text = options?[row]
 		label?.adjustsFontSizeToFitWidth = true
 		label?.textAlignment = .center
-		return label!
+		guard let returnLabel = label else {
+			return UILabel()
+		}
+		return returnLabel
 	}
 }
 

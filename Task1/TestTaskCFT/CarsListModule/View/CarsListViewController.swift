@@ -74,7 +74,7 @@ extension CarsListViewController: UITableViewDelegate
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
-		cell.configureCell(withObject: viewModels![indexPath.row])
+		cell.configureCell(withObject: viewModels?[indexPath.row])
 		return cell
 	}
 }
