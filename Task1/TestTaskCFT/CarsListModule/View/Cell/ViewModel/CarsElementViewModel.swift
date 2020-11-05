@@ -9,14 +9,14 @@
 import UIKit
 
 struct CarsElementViewModel {
-    
-    var carModel: String?
-    var carYear: String?
-    var carCountry: String?
-    var carBodyStyle: String?
+
+	var carModel: String?
+	var carYear: String?
+	var carCountry: String?
+	var carBodyStyle: String?
 	var carNumber: String?
 
-    init (withElementModel model: CarModel) {
+	init (withElementModel model: CarModel) {
 		self.carModel = model.model.rawValue
 		self.carCountry = model.manufacturer.rawValue
 		self.carBodyStyle = model.body.rawValue
@@ -26,6 +26,5 @@ struct CarsElementViewModel {
 		if let number = model.carNumber {
 			carNumber = String(number)
 		}
-        
-    }
+	}
 }

@@ -9,14 +9,14 @@
 import UIKit
 
 protocol ICarsListServiceInterface {
-    func getCars() -> [CarModel]?
-    func deleteCar(key: String)
+	func getCars() -> [CarModel]?
+	func deleteCar(key: String)
 }
 
 protocol IDetailsCarServiceInterface {
-    func getCar(key: String) -> CarModel?
-    func addCar(car: CarModel)
-    func updateCar(car: CarModel)
+	func getCar(key: String) -> CarModel?
+	func addCar(car: CarModel)
+	func updateCar(car: CarModel)
 }
 
 class CarService {
