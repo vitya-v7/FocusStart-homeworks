@@ -57,28 +57,34 @@ extension CarService: ICarsListServiceInterface
 	}
 
 	func deleteCar(key: String) {
-		var cars = getCars()
-		for index in 0 ..< cars!.count {
-			if cars![index].carKey == key {
-				cars!.remove(at: index)
+		let cars = getCars()
+		guard var carsIn = cars else {
+			return
+		}
+		for index in 0 ..< carsIn.count {
+			if carsIn[index].carKey == key {
+				carsIn.remove(at: index)
 				break
 			}
 		}
-		setCars(cars: cars!)
+		setCars(cars: carsIn)
 	}
 }
 
 extension CarService: IDetailsCarServiceInterface
 {
 	func updateCar(car: CarModel) {
-		var cars = getCars()
-		for index in 0 ..< cars!.count {
-			if cars![index].carKey == car.carKey {
-				cars![index] = car
+		let cars = getCars()
+		guard var carsIn = cars else {
+			return
+		}
+		for index in 0 ..< carsIn.count {
+			if carsIn[index].carKey == car.carKey {
+				carsIn[index] = car
 				break
 			}
 		}
-		setCars(cars: cars!)
+		setCars(cars: carsIn)
 	}
 
 	func addCar(car: CarModel) {
@@ -103,7 +109,7 @@ extension CarService: IDetailsCarServiceInterface
 }
 
 private extension CarService {
-	private func setCars(cars: [CarModel]) {
+	func setCars(cars: [CarModel]) {
 		let encodedData =  try! JSONEncoder().encode(cars)
 		UserDefaults.standard.set(encodedData, forKey: "cars")
 		UserDefaults.standard.synchronize()

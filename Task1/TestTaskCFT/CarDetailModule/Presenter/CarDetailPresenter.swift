@@ -73,7 +73,7 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	}
 	
 	func saveCarInDB() {
-		if carModel!.carKey == nil {
+		if carModel?.carKey == nil {
 			carService?.addCar(car: carModel!)
 		}
 		else {
@@ -103,6 +103,9 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	}
 	
 	func reloadData() {
-		view!.setViewModel(viewModel: CarDetailViewModel.init(withElementModel: carModel!))
+		guard let carModelIn = carModel else {
+			return
+		}
+		view?.setViewModel(viewModel: CarDetailViewModel.init(withElementModel: carModelIn))
 	}
 }

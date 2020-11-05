@@ -53,11 +53,11 @@ extension CarsListPresenter: ICarsListViewOutput
 				}
 			}
 			carModels = carModelsFiltered
-			view!.setViewModels(viewModels: convertModelsToViewModels(models: carModelsFiltered))
+			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModelsFiltered))
 		}
 		else {
 			carModels = carModelsIn
-			view!.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
+			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
 		}
 	}
 	
@@ -88,7 +88,7 @@ extension CarsListPresenter: ICarsListViewOutput
 	
 	func reloadData() {
 		carModels = carService?.getCars()
-		view!.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
+		view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
 	}
 	
 	func deleteButtonPressedWithIndexRow(row: Int) {

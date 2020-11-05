@@ -21,8 +21,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let carsView = ModulesFactory.createCarsListModule()
 		let navVc = UINavigationController.init(rootViewController: carsView)
 		self.window = UIWindow(windowScene: windowScene)
-		self.window!.rootViewController = navVc
-		self.window!.makeKeyAndVisible()
+		self.window?.rootViewController = navVc
+		self.window?.makeKeyAndVisible()
 	}
 	
 	func loadDefaultCars() {

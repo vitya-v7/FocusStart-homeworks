@@ -47,9 +47,12 @@ class CarDetailViewController: UIViewController {
 
 	@objc func saveCar(_ sender: Any) {
 		output?.saveSelectedTextFieldValue(type: .carNumber, value: carNumberLabel.text!)
-		if ((Int(carYear.text!)) != nil) ||
-			(carYear.text!.trimmingCharacters(in: .whitespaces).isEmpty)  {
-			output?.saveSelectedTextFieldValue(type: .carYear, value: carYear.text!)
+		guard let carYearLabel = carYear.text else {
+			return
+		}
+		if ((Int(carYearLabel)) != nil) ||
+			(carYearLabel.trimmingCharacters(in: .whitespaces).isEmpty)  {
+			output?.saveSelectedTextFieldValue(type: .carYear, value: carYearLabel)
 		}
 		output?.reloadData()
 		output?.saveCarInDB()
@@ -86,10 +89,10 @@ extension CarDetailViewController: ICarDetailViewInput
 
 private extension CarDetailViewController
 {
-	private func configureDetailView(withObject object: CarDetailViewModel) {
-		self.carModel!.text = object.carModel
-		self.carCountry!.text = object.carCountry
-		self.carBodyStyle!.text = object.carBodyStyle
+	func configureDetailView(withObject object: CarDetailViewModel) {
+		self.carModel.text = object.carModel
+		self.carCountry.text = object.carCountry
+		self.carBodyStyle.text = object.carBodyStyle
 		self.carNumberLabel.text = object.carNumber
 		self.carYear.text = object.carYear
 	}

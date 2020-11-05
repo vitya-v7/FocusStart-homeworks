@@ -41,11 +41,11 @@ class CarsListViewController: UIViewController, UITextFieldDelegate {
 	}
 	
 	@objc func insertNewObject(_ sender: Any) {
-		output!.plusButtonClicked()
+		output?.plusButtonClicked()
 	}
 	
 	@objc func filerCarsByBodyStyle(_ sender: Any) {
-		output!.callPopover(fromView: self.view, option: nil)
+		output?.callPopover(fromView: self.view, option: nil)
 	}
 }
 

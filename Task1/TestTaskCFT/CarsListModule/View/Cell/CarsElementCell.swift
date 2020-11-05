@@ -22,26 +22,26 @@ class CarsElementCell: UITableViewCell {
 	
 	func configureCell(withObject object: CarsElementViewModel) {
 		viewModel = object
-		self.carModel!.text = "Model: " + object.carModel!
-		self.carBodyStyle!.text = "Body Style: " + object.carBodyStyle!
-		self.carCountry!.text = "Country: " + object.carCountry!
+		self.carModel.text = "Model: " + object.carModel!
+		self.carBodyStyle.text = "Body Style: " + object.carBodyStyle!
+		self.carCountry.text = "Country: " + object.carCountry!
 		
 		if let year = object.carYear {
-			self.carYear!.text = "Year: " + year
+			self.carYear.text = "Year: " + year
 		}
 		else {
-			self.carYear!.text = "Year: -"
+			self.carYear.text = "Year: -"
 		}
 		if let number = object.carNumber {
-			self.carNumber!.text = "Car number: " + number
+			self.carNumber.text = "Car number: " + number
 		}
 	}
 	
 	override func prepareForReuse() {
-		self.carModel!.text = nil
-		self.carYear!.text = nil
-		self.carBodyStyle!.text = nil
-		self.carCountry!.text = nil
-		self.carNumber!.text = nil
+		self.carModel.text = nil
+		self.carYear.text = nil
+		self.carBodyStyle.text = nil
+		self.carCountry.text = nil
+		self.carNumber.text = nil
 	}
 }

@@ -58,11 +58,13 @@ class PickerView: UIViewController {
 		}
 		button?.addTarget(self, action: #selector(saveData(_:)), for: .touchUpInside)
 		picker?.selectRow(0, inComponent: 0, animated: true)
-
+		guard let optionsIn = options  else {
+			return
+		}
 		var selectedIndexInPicker = 0
 		if currentOption != nil {
-			for i in 0 ..< options!.count {
-				if currentOption == options![i] {
+			for i in 0 ..< optionsIn.count {
+				if currentOption == optionsIn[i] {
 					selectedIndexInPicker = i
 				}
 			}
