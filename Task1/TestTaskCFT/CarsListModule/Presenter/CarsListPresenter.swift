@@ -63,7 +63,7 @@ extension CarsListPresenter: ICarsListViewOutput
 	
 	func callPopover(fromView view: UIView, option: String?) {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-		let pv = storyboard.instantiateViewController(withIdentifier: "PickerViewIdentifier") as! PickerView
+		let pv = storyboard.instantiateViewController(withIdentifier: "PickerViewIdentifier") as! PickerViewController
 		pv.outputList = self
 		pv.currentOption = option
 		pv.type = .carBodyStyle

@@ -21,7 +21,7 @@
 		844812EE25133D9B003868DF /* ModulesFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844812ED25133D9B003868DF /* ModulesFactory.swift */; };
 		844812FE25135B5B003868DF /* CarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844812F725135B5B003868DF /* CarService.swift */; };
 		8451DCBB2517474700BB2A56 /* CarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451DCBA2517474700BB2A56 /* CarModel.swift */; };
-		84BED31425164FEF00F4F785 /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BED31325164FEF00F4F785 /* PickerView.swift */; };
+		84BED31425164FEF00F4F785 /* PickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84BED31325164FEF00F4F785 /* PickerViewController.swift */; };
 		84E9107B251741800026555A /* CarDetailPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9107A251741800026555A /* CarDetailPresenter.swift */; };
 		84E9107E251741B10026555A /* CarDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9107C251741B10026555A /* CarDetailViewController.swift */; };
 		84E9107F251741B10026555A /* CarDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84E9107D251741B10026555A /* CarDetailViewModel.swift */; };
@@ -65,7 +65,7 @@
 		844812ED25133D9B003868DF /* ModulesFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModulesFactory.swift; sourceTree = "<group>"; };
 		844812F725135B5B003868DF /* CarService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarService.swift; sourceTree = "<group>"; };
 		8451DCBA2517474700BB2A56 /* CarModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarModel.swift; sourceTree = "<group>"; };
-		84BED31325164FEF00F4F785 /* PickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerView.swift; sourceTree = "<group>"; };
+		84BED31325164FEF00F4F785 /* PickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerViewController.swift; sourceTree = "<group>"; };
 		84E9107A251741800026555A /* CarDetailPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDetailPresenter.swift; sourceTree = "<group>"; };
 		84E9107C251741B10026555A /* CarDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDetailViewController.swift; sourceTree = "<group>"; };
 		84E9107D251741B10026555A /* CarDetailViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarDetailViewModel.swift; sourceTree = "<group>"; };
@@ -255,9 +255,9 @@
 		8448130525141935003868DF /* View */ = {
 			isa = PBXGroup;
 			children = (
+				84BED31325164FEF00F4F785 /* PickerViewController.swift */,
 				84E9107C251741B10026555A /* CarDetailViewController.swift */,
 				84E9107D251741B10026555A /* CarDetailViewModel.swift */,
-				84BED31325164FEF00F4F785 /* PickerView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -394,7 +394,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				844812EB25133CEE003868DF /* CarsListViewController.swift in Sources */,
-				84BED31425164FEF00F4F785 /* PickerView.swift in Sources */,
+				84BED31425164FEF00F4F785 /* PickerViewController.swift in Sources */,
 				84E9107F251741B10026555A /* CarDetailViewModel.swift in Sources */,
 				84E9107B251741800026555A /* CarDetailPresenter.swift in Sources */,
 				844812E925133CEE003868DF /* CarsElementViewModel.swift in Sources */,

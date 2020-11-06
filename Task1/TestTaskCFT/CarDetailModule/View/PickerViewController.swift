@@ -15,7 +15,7 @@ enum PickerType: String {
 	case carNumber
 }
 
-class PickerView: UIViewController {
+class PickerViewController: UIViewController {
 
 	@IBOutlet weak var picker: UIPickerView!
 	@IBOutlet weak var button: UIButton!
@@ -50,7 +50,6 @@ class PickerView: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
 		picker.delegate = self
 		options = selectedOption()
 		if outputList != nil {
@@ -99,7 +98,7 @@ class PickerView: UIViewController {
 	}
 }
 
-extension PickerView: UIPickerViewDelegate
+extension PickerViewController: UIPickerViewDelegate
 {
 	func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
 		var label = view as? UILabel
@@ -116,7 +115,7 @@ extension PickerView: UIPickerViewDelegate
 	}
 }
 
-extension PickerView: UIPickerViewDataSource
+extension PickerViewController: UIPickerViewDataSource
 {
 	func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
 		return options?.count ?? 0
