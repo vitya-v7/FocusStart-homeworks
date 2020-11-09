@@ -10,7 +10,9 @@ import UIKit
 class MasterTableViewCell: UITableViewCell {
 
 	
-
+	static var reuseIdentifier: String {
+		return String(describing: MasterTableViewCell.self)
+	}
 	var titleLabel = UILabel()
 	var descriptionLabel = UILabel()
 	var date = UILabel()
@@ -20,14 +22,28 @@ class MasterTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-	func configure(object: CellModel ) {
-		setupViewsAppearances()
-		setupViewsLayout()
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+		super.init(style: style, reuseIdentifier: reuseIdentifier)
+		
+		self.setupViewsLayout()
+	}
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	static func getEstimatedHeight() -> CGFloat {
+		return 50
 	}
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
     }
+	func configure(object: CellModel) {
+		titleLabel.text = object.title
+		descriptionLabel.text = object.description
+		date.text = object.date
+	}
 }
 
 

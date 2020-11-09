@@ -14,7 +14,6 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		view.backgroundColor = UIColor.red
 	  	configure()
 		self.navigationItem.title = "Detail"
 		self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -24,7 +23,7 @@ class DetailViewController: UIViewController {
 
 	func configure() {
 		self.view.addSubview(roundedShadowImageView)
-		roundedShadowImageView.image = UIImage(named: "cute-dog")
+		roundedShadowImageView.image = UIImage(named: ImagesNames.DogName.rawValue)
 		NSLayoutConstraint.activate([roundedShadowImageView.trailingAnchor.constraint(
 										equalTo: view.safeAreaLayoutGuide.trailingAnchor,
 										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),

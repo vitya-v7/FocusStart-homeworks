@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let window = window else { return assertionFailure() }
 		window.windowScene = windowScene
 
-		let masterController = MasterViewController()
+		let masterController = MasterViewController(navigationTitle: "Master")
 		let masterNavigationController = UINavigationController(rootViewController: masterController)
 
 		let detailController = DetailViewController()

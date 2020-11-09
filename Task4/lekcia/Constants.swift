@@ -8,8 +8,8 @@
 import Foundation
 
 enum ImagesNames: String {
-	static let DogName = "cute-dog"
-	static let RatName = "cute-rat"
+	case DogName = "cute-dog"
+	case RatName = "cute-rat"
 }
 
 enum Constants: Int {

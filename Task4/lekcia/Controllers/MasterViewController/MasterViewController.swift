@@ -6,70 +6,62 @@
 
 import UIKit
 
-class MasterViewController: UIViewController {
-	//MARK: PROPERTIES
-	let mockData = Mock.mockData()
+final class MasterViewController: UIViewController {
 
-	//MARK: VIEWS
-	var tableView = UITableView()
+	// MARK: Views
 
-	//MARK: LIFE CYCLE
-	override func loadView() {
-	   super.loadView()
-	   view.backgroundColor = .white
-	   setupTableView()
-	 }
-
-	func setupTableView() {
-		self.view.addSubview(tableView)
-		tableView.translatesAutoresizingMaskIntoConstraints = false
-		tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
-		tableView.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor).isActive = true
-		tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
-		tableView.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor).isActive = true
-		tableView.dataSource = self
-		self.tableView.rowHeight = UITableView.automaticDimension
-		self.tableView.register(MasterTableViewCell.self, forCellReuseIdentifier: MasterTableViewCell.identifier)
-
+	private var masterView: MasterViewProtocol {
+		guard let MasterView = view as? MasterViewProtocol else { fatalError() }
+		return MasterView
 	}
+
+	// MARK: Life Cycle
+
+	init(navigationTitle: String) {
+		super.init(nibName: nil, bundle: nil)
+
+		self.navigationItem.title = navigationTitle
+	}
+
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+
+	override func loadView() {
+		self.view = createMasterView()
+	}
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setupTableView()
-		self.navigationItem.title = "Master"
-		self.navigationController?.navigationBar.prefersLargeTitles = true
-		//self.tableView.delegate = output
-		//configureTapCell()
-		// Do any additional setup after loading the view.
+
+	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		masterView.viewWillAppear(animated)
 	}
 }
 
+// MARK: Master View
 
-	//MARK: DATA SOURCE
-extension MasterViewController: UITableViewDataSource {
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return 5
-	}
+private extension MasterViewController {
+	func createMasterView() -> UIView {
+		var masterView: MasterViewProtocol = MasterView()
+		masterView.setItems(CellModel.mockData())
 
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let masterCell = tableView.dequeueReusableCell(withIdentifier: MasterTableViewCell.identifier, for: indexPath) as? MasterTableViewCell
-		else {
-			assertionFailure(); return UITableViewCell()
-
+		masterView.selectedItemHandler = { [weak self] indexPath in
+			guard let self = self else { return assertionFailure() }
+			self.pushTodayDetailViewController(with: indexPath)
 		}
-		masterCell.configure(object: CellModel(title: "D",description: "DAS",date: "FDS"))
-		return masterCell
+
+		return masterView
+	}
+
+	func pushTodayDetailViewController(with indexPath: IndexPath) {
+		guard let item = masterView.getItem(for: indexPath),
+			let detailViewController = DetailViewController() as? UIViewController
+			else { return assertionFailure() }
+		navigationController?.pushViewController(detailViewController, animated: true)
 	}
 }
-
-//MARK: Delegate
-extension MasterViewController: UITableViewDelegate {
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		let description = self.mockData[indexPath.row].description
-		let mainStoryboard = UIStoryboard.init(name: "Main", bundle: nil)
-		guard let detailViewController = mainStoryboard.instantiateViewController(identifier: DetailViewController.identifier) as? DetailViewController else { return }
-		detailViewController.text = description
-		self.splitViewController?.showDetailViewController(detailViewController, sender: self) 
-		//self.navigationController?.pushViewController(detailViewController, animated: true)
-	}
-}
-

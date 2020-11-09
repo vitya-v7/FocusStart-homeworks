@@ -9,7 +9,6 @@ import UIKit
 
 final class MasterTableViewDelegate: NSObject {
 	var selectedItemHandler: ((IndexPath) -> Void)?
-
 }
 
 extension MasterTableViewDelegate: UITableViewDelegate {
