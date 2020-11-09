@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eIG-aM-yoF">
-    <device id="retina3_5" orientation="portrait" appearance="light"/>
+    <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17126"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,22 +13,22 @@
             <objects>
                 <viewController storyboardIdentifier="DetailViewController" id="7aP-sW-gDT" customClass="DetailViewController" customModule="lekcia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Nwt-31-Aq4">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dog" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbO-Pp-5xw">
-                                <rect key="frame" x="100" y="54" width="120" height="26.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MW-IE203_corona_20200409232441_ZQ" translatesAutoresizingMaskIntoConstraints="NO" id="AN9-ts-YvH">
-                                <rect key="frame" x="40" y="130.5" width="240" height="128"/>
+                                <rect key="frame" x="297" y="136.5" width="240" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="5GK-JZ-fOb"/>
                                     <constraint firstAttribute="width" constant="240" id="eUJ-WU-Dwx"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Dog" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbO-Pp-5xw">
+                                <rect key="frame" x="100" y="50" width="634" height="26.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Kkb-Eu-MhI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -48,14 +48,14 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rCF-d2-dLN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="905.625" y="987.5"/>
+            <point key="canvasLocation" x="817" y="969"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="K8W-g5-9iw">
             <objects>
                 <navigationController id="qr4-S1-rEa" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="B3P-na-zSc">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
@@ -84,11 +84,11 @@
             <objects>
                 <viewController id="Qo1-jj-XQH" customClass="MasterViewController" customModule="lekcia" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3dV-0A-Z5C">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="420" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SqX-rK-cCn">
-                                <rect key="frame" x="0.0" y="44" width="320" height="436"/>
+                                <rect key="frame" x="100" y="50" width="320" height="1144"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MasterTableViewCell" id="ma2-Me-fs6" customClass="MasterTableViewCell" customModule="lekcia" customModuleProvider="target">
@@ -154,49 +154,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jzb-NO-x0u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1177" y="123"/>
-        </scene>
-        <!--Detail View Controller-->
-        <scene sceneID="saa-pQ-QX1">
-            <objects>
-                <viewController storyboardIdentifier="DetailViewController" id="Koo-pa-6hR" customClass="DetailViewController" customModule="lekcia" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Sac-T6-CQh">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dog" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hv-96-i47">
-                                <rect key="frame" x="100" y="10" width="120" height="26.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kei-cc-4g5">
-                                <rect key="frame" x="217" y="422.5" width="46" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="AO2-6j-PXf"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                            </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="MW-IE203_corona_20200409232441_ZQ" translatesAutoresizingMaskIntoConstraints="NO" id="Cwj-wo-LYj">
-                                <rect key="frame" x="40" y="176" width="240" height="128"/>
-                            </imageView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="nfs-du-EGk"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="9hv-96-i47" firstAttribute="leading" secondItem="nfs-du-EGk" secondAttribute="leading" constant="100" id="I5Q-dU-s51"/>
-                            <constraint firstItem="Cwj-wo-LYj" firstAttribute="centerY" secondItem="nfs-du-EGk" secondAttribute="centerY" id="STq-7X-Cr0"/>
-                            <constraint firstItem="nfs-du-EGk" firstAttribute="trailing" secondItem="9hv-96-i47" secondAttribute="trailing" constant="100" id="vTl-TP-J0q"/>
-                            <constraint firstItem="9hv-96-i47" firstAttribute="top" secondItem="nfs-du-EGk" secondAttribute="top" constant="10" id="wSq-Ze-bJK"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="YNy-gA-E1E"/>
-                    <connections>
-                        <outlet property="titleLabel" destination="9hv-96-i47" id="TBH-jS-e6C"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vnS-Id-dE4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="907.24637681159425" y="988.39285714285711"/>
         </scene>
     </scenes>
     <resources>
