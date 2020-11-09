@@ -7,12 +7,8 @@
 
 import UIKit
 
-struct Record {
+struct CellModel {
 	let title: String
-
-	var text: String?
-	var date: Date?
-
-	var firstImage: UIImage?
-	var secondImage: UIImage?
+	var description: String?
+	var date: String?
 }

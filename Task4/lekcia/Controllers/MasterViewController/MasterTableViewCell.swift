@@ -9,18 +9,19 @@ import UIKit
 
 class MasterTableViewCell: UITableViewCell {
 
-	@IBOutlet private weak var titleLabel: UILabel!
-	@IBOutlet private weak var descriptionLabel: UILabel!
-
+	var titleLabel = UILabel()
+	var descriptionLabel = UILabel()
+	var date = UILabel()
 
 	static let identifier = String(describing: MasterTableViewCell.self)
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-	func configure(title: String, description: String) {
-		titleLabel.text = title
-		descriptionLabel.text = description
+	func configure(object: CellModel ) {
+		titleLabel.text = object.title
+		descriptionLabel.text = object.description
+		date.text = object.date
 	}
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

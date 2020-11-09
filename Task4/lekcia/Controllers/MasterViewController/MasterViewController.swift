@@ -32,8 +32,7 @@ extension MasterViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let masterCell = tableView.dequeueReusableCell(withIdentifier: MasterTableViewCell.identifier, for: indexPath) as? MasterTableViewCell
 		else { assertionFailure(); return UITableViewCell() }
-		masterCell.configure(title: mockData[indexPath.row].title,
-							 description: mockData[indexPath.row].description)
+		masterCell.configure(object: CellModel(title: "D",description: "DAS",date: "FDS"))
 		return masterCell
 	}
 }

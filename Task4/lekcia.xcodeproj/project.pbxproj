@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		844B28552559812000247089 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B28542559812000247089 /* CustomImageView.swift */; };
+		844B28592559823300247089 /* ConvenientConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B28582559823300247089 /* ConvenientConstraints.swift */; };
 		844C5B452555B0300090C283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C5B442555B0300090C283 /* AppDelegate.swift */; };
 		844C5B472555B0300090C283 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C5B462555B0300090C283 /* SceneDelegate.swift */; };
 		844C5B492555B0300090C283 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C5B482555B0300090C283 /* MasterViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		844B28542559812000247089 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
+		844B28582559823300247089 /* ConvenientConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenientConstraints.swift; sourceTree = "<group>"; };
 		844C5B412555B0300090C283 /* lekcia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lekcia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C5B442555B0300090C283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		844C5B462555B0300090C283 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -55,6 +59,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		844B284F25597DD500247089 /* MasterViewController */ = {
+			isa = PBXGroup;
+			children = (
+				844D0334255974C00042D9D8 /* CellModel.swift */,
+				844C5B482555B0300090C283 /* MasterViewController.swift */,
+				844C5B5E2555BC4B0090C283 /* MasterTableViewCell.swift */,
+				8451162C2558664700C928E1 /* MasterTableViewDelegate.swift */,
+			);
+			path = MasterViewController;
+			sourceTree = "<group>";
+		};
+		844B2853255980FD00247089 /* DetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				844B28542559812000247089 /* CustomImageView.swift */,
+				844B28582559823300247089 /* ConvenientConstraints.swift */,
+			);
+			path = DetailViewController;
+			sourceTree = "<group>";
+		};
 		844C5B382555B0300090C283 = {
 			isa = PBXGroup;
 			children = (
@@ -74,10 +98,10 @@
 		844C5B432555B0300090C283 /* lekcia */ = {
 			isa = PBXGroup;
 			children = (
+				844C5B652555BC950090C283 /* Application */,
 				844D03312559743D0042D9D8 /* Date.swift */,
 				844D03372559750B0042D9D8 /* Constants.swift */,
 				84511622255801DF00C928E1 /* Model */,
-				844C5B652555BC950090C283 /* Application */,
 				844C5B642555BC870090C283 /* Resources */,
 				844C5B632555BC5C0090C283 /* Views */,
 				844C5B612555BC4F0090C283 /* Controllers */,
@@ -89,10 +113,9 @@
 		844C5B612555BC4F0090C283 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				844B2853255980FD00247089 /* DetailViewController */,
+				844B284F25597DD500247089 /* MasterViewController */,
 				8451162725583E4F00C928E1 /* MainSplitViewController.swift */,
-				844C5B5E2555BC4B0090C283 /* MasterTableViewCell.swift */,
-				844C5B482555B0300090C283 /* MasterViewController.swift */,
-				8451162C2558664700C928E1 /* MasterTableViewDelegate.swift */,
 				844C5B5A2555B3F70090C283 /* DetailViewController.swift */,
 				845116302558A07400C928E1 /* RoundShadowImageView.swift */,
 			);
@@ -129,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				84511623255801F600C928E1 /* Mock.swift */,
-				844D0334255974C00042D9D8 /* CellModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -207,6 +229,7 @@
 				844D0335255974C00042D9D8 /* CellModel.swift in Sources */,
 				844C5B5F2555BC4B0090C283 /* MasterTableViewCell.swift in Sources */,
 				844D03322559743D0042D9D8 /* Date.swift in Sources */,
+				844B28592559823300247089 /* ConvenientConstraints.swift in Sources */,
 				844C5B492555B0300090C283 /* MasterViewController.swift in Sources */,
 				8451162D2558664700C928E1 /* MasterTableViewDelegate.swift in Sources */,
 				845116312558A07400C928E1 /* RoundShadowImageView.swift in Sources */,
@@ -216,6 +239,7 @@
 				844C5B5B2555B3F70090C283 /* DetailViewController.swift in Sources */,
 				84511624255801F600C928E1 /* Mock.swift in Sources */,
 				844D03382559750B0042D9D8 /* Constants.swift in Sources */,
+				844B28552559812000247089 /* CustomImageView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

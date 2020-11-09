@@ -5,9 +5,9 @@
       location = "group:Task1/TestTaskCFT.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Task2/Task2.xcodeproj">
+      location = "group:Task3/Task3.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Task3/Task3.xcodeproj">
+      location = "group:Task4/lekcia.xcodeproj">
    </FileRef>
 </Workspace>
