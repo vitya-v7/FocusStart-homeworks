@@ -11,27 +11,51 @@ class MasterViewController: UIViewController {
 	let mockData = Mock.mockData()
 
 	//MARK: VIEWS
-	@IBOutlet weak var tableView: UITableView!
+	var tableView = UITableView()
 
 	//MARK: LIFE CYCLE
+	override func loadView() {
+	   super.loadView()
+	   view.backgroundColor = .white
+	   setupTableView()
+	 }
+
+	func setupTableView() {
+		self.view.addSubview(tableView)
+		tableView.translatesAutoresizingMaskIntoConstraints = false
+		tableView.topAnchor.constraint(equalTo: view.layoutMarginsGuide.topAnchor).isActive = true
+		tableView.leftAnchor.constraint(equalTo: view.layoutMarginsGuide.leftAnchor).isActive = true
+		tableView.bottomAnchor.constraint(equalTo: view.layoutMarginsGuide.bottomAnchor).isActive = true
+		tableView.rightAnchor.constraint(equalTo: view.layoutMarginsGuide.rightAnchor).isActive = true
+		tableView.dataSource = self
+		self.tableView.rowHeight = UITableView.automaticDimension
+		self.tableView.register(MasterTableViewCell.self, forCellReuseIdentifier: MasterTableViewCell.identifier)
+
+	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		self.tableView.rowHeight = UITableView.automaticDimension
+		setupTableView()
+		self.title = "Master"
+		self.navigationController?.navigationBar.prefersLargeTitles = true
 		//self.tableView.delegate = output
 		//configureTapCell()
 		// Do any additional setup after loading the view.
 	}
 }
 
+
 	//MARK: DATA SOURCE
 extension MasterViewController: UITableViewDataSource {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return mockData.count
+		return 5
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		guard let masterCell = tableView.dequeueReusableCell(withIdentifier: MasterTableViewCell.identifier, for: indexPath) as? MasterTableViewCell
-		else { assertionFailure(); return UITableViewCell() }
+		else {
+			assertionFailure(); return UITableViewCell()
+
+		}
 		masterCell.configure(object: CellModel(title: "D",description: "DAS",date: "FDS"))
 		return masterCell
 	}

@@ -59,6 +59,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		840525742559C0420035662C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		844B284F25597DD500247089 /* MasterViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -98,6 +105,7 @@
 		844C5B432555B0300090C283 /* lekcia */ = {
 			isa = PBXGroup;
 			children = (
+				840525742559C0420035662C /* Cells */,
 				844C5B652555BC950090C283 /* Application */,
 				844D03312559743D0042D9D8 /* Date.swift */,
 				844D03372559750B0042D9D8 /* Constants.swift */,

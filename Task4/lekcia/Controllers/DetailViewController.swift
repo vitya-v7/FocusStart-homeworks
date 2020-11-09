@@ -16,7 +16,10 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		configure(title: text ?? "")
+		view.backgroundColor = UIColor.red
+	//	configure(title: text ?? "")
+		self.navigationItem.title = "Detail"
+		self.navigationController?.navigationBar.prefersLargeTitles = true
         // Do any additional setup after loading the view.
     }
 
