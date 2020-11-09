@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8405257F2559E5450035662C /* RoundShadowImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8405257E2559E5450035662C /* RoundShadowImageView.swift */; };
 		844B28552559812000247089 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B28542559812000247089 /* CustomImageView.swift */; };
 		844B28592559823300247089 /* ConvenientConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844B28582559823300247089 /* ConvenientConstraints.swift */; };
 		844C5B452555B0300090C283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C5B442555B0300090C283 /* AppDelegate.swift */; };
@@ -23,10 +24,10 @@
 		84511624255801F600C928E1 /* Mock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84511623255801F600C928E1 /* Mock.swift */; };
 		8451162825583E4F00C928E1 /* MainSplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451162725583E4F00C928E1 /* MainSplitViewController.swift */; };
 		8451162D2558664700C928E1 /* MasterTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8451162C2558664700C928E1 /* MasterTableViewDelegate.swift */; };
-		845116312558A07400C928E1 /* RoundShadowImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 845116302558A07400C928E1 /* RoundShadowImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8405257E2559E5450035662C /* RoundShadowImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoundShadowImageView.swift; sourceTree = "<group>"; };
 		844B28542559812000247089 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		844B28582559823300247089 /* ConvenientConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvenientConstraints.swift; sourceTree = "<group>"; };
 		844C5B412555B0300090C283 /* lekcia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lekcia.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,7 +46,6 @@
 		84511623255801F600C928E1 /* Mock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mock.swift; sourceTree = "<group>"; };
 		8451162725583E4F00C928E1 /* MainSplitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSplitViewController.swift; sourceTree = "<group>"; };
 		8451162C2558664700C928E1 /* MasterTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterTableViewDelegate.swift; sourceTree = "<group>"; };
-		845116302558A07400C928E1 /* RoundShadowImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundShadowImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				844B28542559812000247089 /* CustomImageView.swift */,
+				844C5B5A2555B3F70090C283 /* DetailViewController.swift */,
+				8405257E2559E5450035662C /* RoundShadowImageView.swift */,
 				844B28582559823300247089 /* ConvenientConstraints.swift */,
 			);
 			path = DetailViewController;
@@ -124,8 +126,6 @@
 				844B2853255980FD00247089 /* DetailViewController */,
 				844B284F25597DD500247089 /* MasterViewController */,
 				8451162725583E4F00C928E1 /* MainSplitViewController.swift */,
-				844C5B5A2555B3F70090C283 /* DetailViewController.swift */,
-				845116302558A07400C928E1 /* RoundShadowImageView.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -234,13 +234,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8405257F2559E5450035662C /* RoundShadowImageView.swift in Sources */,
 				844D0335255974C00042D9D8 /* CellModel.swift in Sources */,
 				844C5B5F2555BC4B0090C283 /* MasterTableViewCell.swift in Sources */,
 				844D03322559743D0042D9D8 /* Date.swift in Sources */,
 				844B28592559823300247089 /* ConvenientConstraints.swift in Sources */,
 				844C5B492555B0300090C283 /* MasterViewController.swift in Sources */,
 				8451162D2558664700C928E1 /* MasterTableViewDelegate.swift in Sources */,
-				845116312558A07400C928E1 /* RoundShadowImageView.swift in Sources */,
 				844C5B452555B0300090C283 /* AppDelegate.swift in Sources */,
 				8451162825583E4F00C928E1 /* MainSplitViewController.swift in Sources */,
 				844C5B472555B0300090C283 /* SceneDelegate.swift in Sources */,

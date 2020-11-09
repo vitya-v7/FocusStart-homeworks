@@ -7,7 +7,11 @@
 
 import Foundation
 
-enum ImagesNames {
-	static let DogName = "cute dog"
-	static let RatName = "cute rat"
+enum ImagesNames: String {
+	static let DogName = "cute-dog"
+	static let RatName = "cute-rat"
+}
+
+enum Constants: Int {
+	case bottomAndTopSpace = 12
 }

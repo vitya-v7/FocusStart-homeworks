@@ -13,6 +13,7 @@ class MainSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 		super.viewDidLoad()
 		self.delegate = self
 		self.preferredDisplayMode = .oneBesideSecondary
+		self.navigationItem.title = "privet"
 		// Do any additional setup after loading the view.
 	}
 

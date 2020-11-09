@@ -9,9 +9,7 @@ import UIKit
 
 class MasterTableViewCell: UITableViewCell {
 
-	enum Constants: Int {
-		case bottomAndTopSpace = 12
-	}
+	
 
 	var titleLabel = UILabel()
 	var descriptionLabel = UILabel()

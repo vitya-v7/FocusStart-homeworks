@@ -35,7 +35,7 @@ class MasterViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setupTableView()
-		self.title = "Master"
+		self.navigationItem.title = "Master"
 		self.navigationController?.navigationBar.prefersLargeTitles = true
 		//self.tableView.delegate = output
 		//configureTapCell()
