@@ -19,9 +19,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let masterController = MasterViewController(navigationTitle: "Master")
 		let masterNavigationController = UINavigationController(rootViewController: masterController)
 
-		let detailController = DetailViewController(navigationTitle: "Detail")
-		let detailNavigationController = UINavigationController(rootViewController: detailController)
 
+		let detailController = DetailViewController(navigationTitle: "Заголовок")
+		let detailNavigationController = UINavigationController(rootViewController: detailController)
+		masterController.detailNavigationController = detailNavigationController
 		let splitViewController =  MainSplitViewController()
 		splitViewController.viewControllers = [masterNavigationController, detailNavigationController]
 

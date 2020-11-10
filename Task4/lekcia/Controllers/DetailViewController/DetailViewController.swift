@@ -15,13 +15,14 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 	  	configure()
+		self.view.layoutIfNeeded()
 		//self.splitViewController?.na= "DETAIL"
 		self.navigationController?.navigationBar.prefersLargeTitles = true
         // Do any additional setup after loading the view.
     }
 	init(navigationTitle: String) {
 		super.init(nibName: nil, bundle: nil)
-		self.navigationItem.title = navigationTitle
+		self.navigationController?.title = navigationTitle
 	}
 
 	@available(*, unavailable)
@@ -30,11 +31,12 @@ final class DetailViewController: UIViewController {
 	}
 	
 	func configure() {
-		self.view.addSubview(roundedShadowImageView)
 		roundedShadowImageView.image = UIImage(named: ImagesNames.DogName.rawValue)
-		NSLayoutConstraint.activate([roundedShadowImageView.trailingAnchor.constraint(
+		self.view.addSubview(roundedShadowImageView)
+		roundedShadowImageView.translatesAutoresizingMaskIntoConstraints = false
+		/*NSLayoutConstraint.activate([roundedShadowImageView.trailingAnchor.constraint(
 										equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
+										constant: -CGFloat(Constants.bottomAndTopSpace.rawValue)),
 									 roundedShadowImageView.leadingAnchor.constraint(
 										equalTo: view.safeAreaLayoutGuide.leadingAnchor,
 										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
@@ -43,7 +45,17 @@ final class DetailViewController: UIViewController {
 										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
 									 roundedShadowImageView.bottomAnchor.constraint(
 										equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-									 constant: CGFloat(Constants.bottomAndTopSpace.rawValue))])
+									 constant: -CGFloat(Constants.bottomAndTopSpace.rawValue))])*/
+		NSLayoutConstraint.activate([roundedShadowImageView.widthAnchor.constraint(
+										equalToConstant: 300),
+									 roundedShadowImageView.heightAnchor.constraint(
+										equalToConstant: 300),
+									 roundedShadowImageView.centerXAnchor.constraint(
+										equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+									 roundedShadowImageView.centerYAnchor.constraint(
+										equalTo: view.safeAreaLayoutGuide.centerYAnchor)])
+
+
 	}
     /*
     // MARK: - Navigation

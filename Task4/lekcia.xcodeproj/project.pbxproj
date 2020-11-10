@@ -15,6 +15,7 @@
 		8438BDC8255A215A00162B28 /* SecondMasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438BDC4255A215A00162B28 /* SecondMasterTableViewCell.swift */; };
 		8438BDC9255A215A00162B28 /* ThirdMasterTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438BDC5255A215A00162B28 /* ThirdMasterTableViewCell.swift */; };
 		8438BDCC255A218600162B28 /* MainCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438BDCB255A218600162B28 /* MainCell.swift */; };
+		8438BDD3255A586B00162B28 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8438BDD2255A586B00162B28 /* DetailView.swift */; };
 		844C5B452555B0300090C283 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C5B442555B0300090C283 /* AppDelegate.swift */; };
 		844C5B472555B0300090C283 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C5B462555B0300090C283 /* SceneDelegate.swift */; };
 		844C5B492555B0300090C283 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844C5B482555B0300090C283 /* MasterViewController.swift */; };
@@ -39,6 +40,7 @@
 		8438BDC4255A215A00162B28 /* SecondMasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondMasterTableViewCell.swift; sourceTree = "<group>"; };
 		8438BDC5255A215A00162B28 /* ThirdMasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdMasterTableViewCell.swift; sourceTree = "<group>"; };
 		8438BDCB255A218600162B28 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
+		8438BDD2255A586B00162B28 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		844C5B412555B0300090C283 /* lekcia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lekcia.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C5B442555B0300090C283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		844C5B462555B0300090C283 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				844C5B5A2555B3F70090C283 /* DetailViewController.swift */,
+				8438BDD2255A586B00162B28 /* DetailView.swift */,
 			);
 			path = DetailViewController;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				8438BDC7255A215A00162B28 /* FourthMasterTableViewCell.swift in Sources */,
 				8438BDC9255A215A00162B28 /* ThirdMasterTableViewCell.swift in Sources */,
 				844C5B5B2555B3F70090C283 /* DetailViewController.swift in Sources */,
+				8438BDD3255A586B00162B28 /* DetailView.swift in Sources */,
 				844D03382559750B0042D9D8 /* Constants.swift in Sources */,
 				8438BDC6255A215A00162B28 /* FifthMasterTableViewCell.swift in Sources */,
 			);

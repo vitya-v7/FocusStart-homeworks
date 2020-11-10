@@ -9,7 +9,7 @@ import UIKit
 final class MasterViewController: UIViewController {
 
 	// MARK: Views
-
+	var detailNavigationController: UINavigationController?
 	private var masterView: MasterViewProtocol {
 		guard let MasterView = view as? MasterViewProtocol else { fatalError() }
 		return MasterView
@@ -48,20 +48,19 @@ private extension MasterViewController {
 	func createMasterView() -> UIView {
 		var masterView: MasterViewProtocol = MasterView()
 		masterView.setItems(CellModel.mockData())
-
 		masterView.selectedItemHandler = { [weak self] indexPath in
 			guard let self = self else { return assertionFailure() }
-			self.pushTodayDetailViewController(with: indexPath)
+			self.pushDetailViewController(with: indexPath)
 		}
 
 		return masterView
 	}
 
-	func pushTodayDetailViewController(with indexPath: IndexPath) {
-		guard let item = masterView.getItem(for: indexPath),
-			  let detailViewController = DetailViewController(navigationTitle: "Detail") as? UIViewController
+	func pushDetailViewController(with indexPath: IndexPath) {
+		guard let item: CellModel = masterView.getItem(for: indexPath)
 			else { return assertionFailure() }
-		//splitViewController?.showDetailViewController(detailViewController, sender: nil)
-		navigationController?.pushViewController(detailViewController, animated: true)
+		var detailViewController = DetailViewController.init(navigationTitle: item.title ?? "")
+		splitViewController?.showDetailViewController(detailNavigationController!, sender: nil)
+		//navigationController?.pushViewController(detailViewController, animated: true)
 	}
 }

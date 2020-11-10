@@ -85,7 +85,7 @@ private extension RoundShadowImageView {
 
 	func configureImageLayer() {
 		imageLayer.frame = bounds
-		imageLayer.contentsGravity = .resizeAspectFill
+		imageLayer.contentsGravity = .resize
 		let shadowMask = CAShapeLayer()
 		shadowMask.path = shadowPath
 		imageLayer.mask = shadowMask
