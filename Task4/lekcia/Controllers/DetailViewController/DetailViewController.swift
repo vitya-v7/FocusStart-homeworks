@@ -16,7 +16,20 @@ final class DetailViewController: UIViewController {
 
 	func setItem(item: CellModel) {
 		object = item
-		self.navigationItem.title = item.title
+		let label = UILabel()
+		label.backgroundColor = .clear
+		label.numberOfLines = 2
+		label.font = UIFont.boldSystemFont(ofSize: 16.0)
+		label.textAlignment = .center
+		label.textColor = .black
+		if #available(iOS 13.0, *) {
+			if UITraitCollection.current.userInterfaceStyle == .dark {
+				label.textColor = .white
+			}
+		}
+		label.text = item.title
+		self.navigationItem.titleView = label
+		//self.navigationItem.title = item.title
 		myView.configure(object: object)
 	}
 
