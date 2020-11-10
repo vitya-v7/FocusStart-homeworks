@@ -28,6 +28,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		let splitViewController =  MainSplitViewController()
 		splitViewController.viewControllers = [masterNavigationController, detailNavigationController]
 
+		
 		window.rootViewController = splitViewController
 		window.makeKeyAndVisible()
 	}

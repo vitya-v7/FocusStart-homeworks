@@ -19,8 +19,7 @@ final class MasterViewController: UIViewController {
 
 	init(navigationTitle: String? = nil) {
 		super.init(nibName: nil, bundle: nil)
-		self.navigationItem.title = navigationTitle
-		//self.navigationController?.navigationItem.title = navigationTitle
+		navigationItem.title = "ДЗ №4"
 	}
 
 	@available(*, unavailable)
@@ -34,12 +33,13 @@ final class MasterViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-
+		if let isCollapsed = self.splitViewController?.isCollapsed, isCollapsed == false {
+			pushDetailViewController(with: IndexPath.init(row: 0, section: 0))
+		}
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
-		navigationItem.title = "ДЗ №4"
 		masterView.viewWillAppear(animated)
 	}
 }
@@ -62,7 +62,6 @@ private extension MasterViewController {
 			else { return assertionFailure() }
 		let detail = detailNavigationController?.viewControllers.first as? DetailViewController
 		detail?.setItem(item: item)
-		//detail?.navigationItem.title = item.title
 		splitViewController?.showDetailViewController(detailNavigationController!, sender: nil)
 	}
 }
