@@ -26,10 +26,21 @@ extension MasterTableViewDataSource: MasterTableViewDataSourceProtocol {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		guard let cell = tableView.dequeueReusableCell(
-			withIdentifier: MasterTableViewCell.reuseIdentifier,
-			for: indexPath) as? MasterTableViewCell
-			else { assertionFailure(); return UITableViewCell() }
+		var cell: MainCell
+		switch indexPath.row + 1 {
+		case 1:
+			cell = FirstMasterTableViewCell(style: .default, reuseIdentifier: FirstMasterTableViewCell.reuseIdentifier)
+		case 2:
+			cell = SecondMasterTableViewCell(style: .default, reuseIdentifier: SecondMasterTableViewCell.reuseIdentifier)
+		case 3:
+			cell = ThirdMasterTableViewCell(style: .default, reuseIdentifier: ThirdMasterTableViewCell.reuseIdentifier)
+		case 4:
+			cell = FourthMasterTableViewCell(style: .default, reuseIdentifier: FourthMasterTableViewCell.reuseIdentifier)
+		case 5:
+			cell = FifthMasterTableViewCell(style: .default, reuseIdentifier: FifthMasterTableViewCell.reuseIdentifier)
+		default:
+			cell = MainCell()
+		}
 
 		let masterCellModel = CellModels[indexPath.row]
 		cell.configure(object: masterCellModel)

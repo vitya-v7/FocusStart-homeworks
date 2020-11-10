@@ -7,7 +7,7 @@
 
 import UIKit
 
-class DetailViewController: UIViewController {
+final class DetailViewController: UIViewController {
 	//static let identifier = String(describing: DetailViewController.self)
 	let roundedShadowImageView = RoundShadowImageView()
 	var text: String = ""
@@ -15,26 +15,34 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 	  	configure()
-		self.navigationItem.title = "Detail"
+		//self.splitViewController?.na= "DETAIL"
 		self.navigationController?.navigationBar.prefersLargeTitles = true
         // Do any additional setup after loading the view.
     }
+	init(navigationTitle: String) {
+		super.init(nibName: nil, bundle: nil)
+		self.navigationItem.title = navigationTitle
+	}
 
-
+	@available(*, unavailable)
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
 	func configure() {
 		self.view.addSubview(roundedShadowImageView)
 		roundedShadowImageView.image = UIImage(named: ImagesNames.DogName.rawValue)
 		NSLayoutConstraint.activate([roundedShadowImageView.trailingAnchor.constraint(
 										equalTo: view.safeAreaLayoutGuide.trailingAnchor,
 										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
-									 roundedShadowImageView.trailingAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+									 roundedShadowImageView.leadingAnchor.constraint(
+										equalTo: view.safeAreaLayoutGuide.leadingAnchor,
 										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
-									 roundedShadowImageView.trailingAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+									 roundedShadowImageView.topAnchor.constraint(
+										equalTo: view.safeAreaLayoutGuide.topAnchor,
 										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
-									 roundedShadowImageView.trailingAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.trailingAnchor,
+									 roundedShadowImageView.bottomAnchor.constraint(
+										equalTo: view.safeAreaLayoutGuide.bottomAnchor,
 									 constant: CGFloat(Constants.bottomAndTopSpace.rawValue))])
 	}
     /*

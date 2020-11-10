@@ -19,7 +19,6 @@ final class MasterViewController: UIViewController {
 
 	init(navigationTitle: String) {
 		super.init(nibName: nil, bundle: nil)
-
 		self.navigationItem.title = navigationTitle
 	}
 
@@ -60,8 +59,9 @@ private extension MasterViewController {
 
 	func pushTodayDetailViewController(with indexPath: IndexPath) {
 		guard let item = masterView.getItem(for: indexPath),
-			let detailViewController = DetailViewController() as? UIViewController
+			  let detailViewController = DetailViewController(navigationTitle: "Detail") as? UIViewController
 			else { return assertionFailure() }
+		//splitViewController?.showDetailViewController(detailViewController, sender: nil)
 		navigationController?.pushViewController(detailViewController, animated: true)
 	}
 }

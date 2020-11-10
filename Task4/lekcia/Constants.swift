@@ -8,10 +8,10 @@
 import Foundation
 
 enum ImagesNames: String {
-	case DogName = "cute-dog"
-	case RatName = "cute-rat"
+	case DogName = "cutedog"
+	case RatName = "cuterat"
 }
 
 enum Constants: Int {
-	case bottomAndTopSpace = 12
+	case bottomAndTopSpace = 30
 }

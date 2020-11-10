@@ -69,11 +69,22 @@ private extension MasterView {
 		tableView.dataSource = dataSource
 
 		tableView.register(
-			MasterTableViewCell.self,
-			forCellReuseIdentifier: MasterTableViewCell.reuseIdentifier)
-
+			FirstMasterTableViewCell.self,
+			forCellReuseIdentifier: FirstMasterTableViewCell.reuseIdentifier)
+		tableView.register(
+			SecondMasterTableViewCell.self,
+			forCellReuseIdentifier: SecondMasterTableViewCell.reuseIdentifier)
+		tableView.register(
+			ThirdMasterTableViewCell.self,
+			forCellReuseIdentifier: ThirdMasterTableViewCell.reuseIdentifier)
+		tableView.register(
+			FourthMasterTableViewCell.self,
+			forCellReuseIdentifier: FourthMasterTableViewCell.reuseIdentifier)
+		tableView.register(
+			FifthMasterTableViewCell.self,
+			forCellReuseIdentifier: FifthMasterTableViewCell.reuseIdentifier)
 		tableView.rowHeight = UITableView.automaticDimension
-		tableView.estimatedRowHeight = MasterTableViewCell.getEstimatedHeight()
+		tableView.estimatedRowHeight = FirstMasterTableViewCell.getEstimatedHeight()
 
 		tableView.backgroundColor = .systemBackground
 	}
