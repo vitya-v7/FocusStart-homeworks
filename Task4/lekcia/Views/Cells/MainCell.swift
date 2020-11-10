@@ -12,9 +12,7 @@ class MainCell: UITableViewCell {
 	var titleLabel = UILabel()
 	var descriptionLabel = UILabel()
 	var date = UILabel()
-	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-		super.init(style: .default, reuseIdentifier: reuseIdentifier)
-	}
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		// Initialization code
@@ -25,8 +23,12 @@ class MainCell: UITableViewCell {
 		fatalError("init(coder:) has not been implemented")
 	}
 
+	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+		super.init(style: style, reuseIdentifier: reuseIdentifier)
+	}
+	
 	static func getEstimatedHeight() -> CGFloat {
-		return 50
+		return 100
 	}
 	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)

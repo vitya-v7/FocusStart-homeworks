@@ -26,25 +26,28 @@ extension MasterTableViewDataSource: MasterTableViewDataSourceProtocol {
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		var cell: MainCell
+		var cell: UITableViewCell?
 		switch indexPath.row + 1 {
 		case 1:
-			cell = FirstMasterTableViewCell(style: .default, reuseIdentifier: FirstMasterTableViewCell.reuseIdentifier)
+			cell = tableView.dequeueReusableCell(withIdentifier: FirstMasterTableViewCell.reuseIdentifier, for: indexPath) as? FirstMasterTableViewCell
 		case 2:
-			cell = SecondMasterTableViewCell(style: .default, reuseIdentifier: SecondMasterTableViewCell.reuseIdentifier)
+			cell = tableView.dequeueReusableCell(withIdentifier: SecondMasterTableViewCell.reuseIdentifier, for: indexPath) as? SecondMasterTableViewCell
 		case 3:
-			cell = ThirdMasterTableViewCell(style: .default, reuseIdentifier: ThirdMasterTableViewCell.reuseIdentifier)
+			cell = tableView.dequeueReusableCell(withIdentifier: ThirdMasterTableViewCell.reuseIdentifier, for: indexPath) as? ThirdMasterTableViewCell
 		case 4:
-			cell = FourthMasterTableViewCell(style: .default, reuseIdentifier: FourthMasterTableViewCell.reuseIdentifier)
+			cell = tableView.dequeueReusableCell(withIdentifier: FourthMasterTableViewCell.reuseIdentifier, for: indexPath) as? FourthMasterTableViewCell
 		case 5:
-			cell = FifthMasterTableViewCell(style: .default, reuseIdentifier: FifthMasterTableViewCell.reuseIdentifier)
+			cell = tableView.dequeueReusableCell(withIdentifier: FifthMasterTableViewCell.reuseIdentifier, for: indexPath) as? FifthMasterTableViewCell
 		default:
-			cell = MainCell()
+			cell = UITableViewCell()
 		}
-
+		var cellAccepted = cell as? MainCell
 		let masterCellModel = CellModels[indexPath.row]
-		cell.configure(object: masterCellModel)
-		return cell
+		cellAccepted?.configure(object: masterCellModel)
+		if cellAccepted == nil {
+			return UITableViewCell()
+		}
+		return cellAccepted!
 	}
 
 	func setItems(_ CellModels: [CellModel]) {

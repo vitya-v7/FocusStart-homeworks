@@ -13,5 +13,6 @@ enum ImagesNames: String {
 }
 
 enum Constants: Int {
-	case bottomAndTopSpace = 30
+	case bottomAndTopSpace = 10
+	case leftAndRight = 20
 }

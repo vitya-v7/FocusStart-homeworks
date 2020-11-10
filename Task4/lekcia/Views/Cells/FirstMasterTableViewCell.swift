@@ -16,6 +16,7 @@ class FirstMasterTableViewCell: MainCell {
 		super.init(style: .default, reuseIdentifier: reuseIdentifier)
 		self.setupViewsAppearances()
 		self.setupViewsLayout()
+		layoutIfNeeded()
 	}
 	
 }
@@ -40,14 +41,14 @@ private extension FirstMasterTableViewCell {
 	}
 
 	func setupDescriptionLabelAppearances() {
-		titleLabel.numberOfLines = 1
 		descriptionLabel.numberOfLines = 1
-		descriptionLabel.textAlignment = .center
+		descriptionLabel.numberOfLines = 1
+		descriptionLabel.textAlignment = .left
 	}
 
 	func setupDateAppearances() {
 		date.numberOfLines = 1
-		date.textAlignment = .center
+		date.textAlignment = .left
 		date.font = UIFont.italicSystemFont(ofSize: 12)
 
 	}
@@ -62,31 +63,36 @@ private extension FirstMasterTableViewCell {
 	}
 
 	func setupSharedLayout() {
+		addSubview(titleLabel)
+		titleLabel.translatesAutoresizingMaskIntoConstraints = false
+		addSubview(descriptionLabel)
+		descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+		addSubview(date)
+		date.translatesAutoresizingMaskIntoConstraints = false
+
 		NSLayoutConstraint.activate([titleLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
+										constant: CGFloat(Constants.leftAndRight.rawValue)),
 									 titleLabel.topAnchor.constraint(
-										equalTo: safeAreaLayoutGuide.topAnchor),
+										equalTo: safeAreaLayoutGuide.topAnchor,
+										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
 									 titleLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 1)])
 		NSLayoutConstraint.activate([descriptionLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
+										constant: CGFloat(Constants.leftAndRight.rawValue)),
 									 descriptionLabel.bottomAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.bottomAnchor),
 									 descriptionLabel.topAnchor.constraint(
 										greaterThanOrEqualTo: titleLabel.bottomAnchor, constant: 5),
-									 descriptionLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)])
+									 descriptionLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5)])
 		NSLayoutConstraint.activate([date.trailingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.trailingAnchor,
-										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
+										constant: CGFloat(-Constants.leftAndRight.rawValue)),
 									 date.bottomAnchor.constraint(
 										equalTo: descriptionLabel.bottomAnchor),
 									 date.widthAnchor.constraint(
 										equalTo: self.safeAreaLayoutGuide.widthAnchor,
-										multiplier: 0.3),
-									 date.heightAnchor.constraint(
-									 equalTo: descriptionLabel.heightAnchor,
-									 multiplier: 1)])
+										multiplier: 0.2) ])
 	}
 }
 
