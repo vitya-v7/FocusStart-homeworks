@@ -59,7 +59,8 @@ private extension MasterViewController {
 	func pushDetailViewController(with indexPath: IndexPath) {
 		guard let item: CellModel = masterView.getItem(for: indexPath)
 			else { return assertionFailure() }
-		var detailViewController = DetailViewController.init(navigationTitle: item.title ?? "")
+		let detailViewController = DetailViewController.init(navigationTitle: item.title!)
+		detailViewController.setItem(item: item)
 		splitViewController?.showDetailViewController(detailNavigationController!, sender: nil)
 		//navigationController?.pushViewController(detailViewController, animated: true)
 	}

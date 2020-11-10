@@ -8,20 +8,32 @@
 import UIKit
 
 final class DetailViewController: UIViewController {
-	//static let identifier = String(describing: DetailViewController.self)
-	let roundedShadowImageView = RoundShadowImageView()
-	var text: String = ""
+
+	 // MARK: Life Cycle
+
+	 var object: CellModel?
+	 var myView: DetailView = DetailView(frame: .zero)
+	 override func loadView() {
+		view = myView
+
+	 }
+
+	 func setItem(item: CellModel) {
+		 object = item
+	 }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-	  	configure()
-		self.view.layoutIfNeeded()
-		//self.splitViewController?.na= "DETAIL"
 		self.navigationController?.navigationBar.prefersLargeTitles = true
-        // Do any additional setup after loading the view.
     }
+
+	override func viewWillAppear(_ animated: Bool) {
+		myView.configure(object: object)
+	}
+
 	init(navigationTitle: String) {
 		super.init(nibName: nil, bundle: nil)
+
 		self.navigationController?.title = navigationTitle
 	}
 
@@ -29,42 +41,4 @@ final class DetailViewController: UIViewController {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-	
-	func configure() {
-		roundedShadowImageView.image = UIImage(named: ImagesNames.DogName.rawValue)
-		self.view.addSubview(roundedShadowImageView)
-		roundedShadowImageView.translatesAutoresizingMaskIntoConstraints = false
-		/*NSLayoutConstraint.activate([roundedShadowImageView.trailingAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.trailingAnchor,
-										constant: -CGFloat(Constants.bottomAndTopSpace.rawValue)),
-									 roundedShadowImageView.leadingAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.leadingAnchor,
-										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
-									 roundedShadowImageView.topAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.topAnchor,
-										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
-									 roundedShadowImageView.bottomAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.bottomAnchor,
-									 constant: -CGFloat(Constants.bottomAndTopSpace.rawValue))])*/
-		NSLayoutConstraint.activate([roundedShadowImageView.widthAnchor.constraint(
-										equalToConstant: 300),
-									 roundedShadowImageView.heightAnchor.constraint(
-										equalToConstant: 300),
-									 roundedShadowImageView.centerXAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.centerXAnchor),
-									 roundedShadowImageView.centerYAnchor.constraint(
-										equalTo: view.safeAreaLayoutGuide.centerYAnchor)])
-
-
-	}
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
