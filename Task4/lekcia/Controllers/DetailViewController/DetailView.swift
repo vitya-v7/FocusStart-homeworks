@@ -20,8 +20,8 @@ class DetailView: UIView {
 	var scrollView = UIScrollView()
 	var scrollableView = UIView()
 	var descriptionLabel = UILabel()
-	var firstImage = UIImageView()
-	var secondImage = UIImageView()
+	var firstImage = RoundShadowImageView()
+	var secondImage = RoundShadowImageView()
 
 	
 
@@ -44,12 +44,8 @@ class DetailView: UIView {
 			firstImage.image = object.firstImage
 			secondImage.image = object.secondImage
 		}
-		//scrollView.contentOffset = CGPoint(x: 0, y: -scrollView.safeAreaInsets.top)
 	}
 	// MARK: - Methods
-
-	
-
 }
 
 private extension DetailView {
@@ -82,11 +78,10 @@ private extension DetailView {
 		
 	}
 	func setupImage1Appearances() {
-		firstImage.backgroundColor = UIColor.red
-
+		firstImage.backgroundColor = UIColor.white
 	}
 	func setupImage2Appearances() {
-		secondImage.backgroundColor = UIColor.blue
+		secondImage.backgroundColor = UIColor.white
 	}
 
 
@@ -113,6 +108,8 @@ private extension DetailView {
 		scrollableView.addSubview(descriptionLabel)
 		scrollableView.addSubview(firstImage)
 		scrollableView.addSubview(secondImage)
+
+
 	}
 		func setupSharedLayout() {
 			setupScrollViewLabelLayout()
@@ -162,35 +159,35 @@ private extension DetailView {
 		}
 
 		func setupFirstImageLayout() {
-			NSLayoutConstraint.activate([firstImage.leadingAnchor.constraint(
-											equalTo: scrollableView.leadingAnchor,
-											constant: CGFloat(Constants.large.rawValue)),
-										 firstImage.trailingAnchor.constraint(
-											equalTo: scrollableView.trailingAnchor,
-											constant: CGFloat(-Constants.large.rawValue)),
-										 firstImage.topAnchor.constraint(
+			NSLayoutConstraint.activate([firstImage.topAnchor.constraint(
 											equalTo: descriptionLabel.bottomAnchor,
 											constant: CGFloat(Constants.large.rawValue)),
 										 firstImage.widthAnchor.constraint(
-											equalTo: firstImage.heightAnchor)])
+											equalTo: safeAreaLayoutGuide.widthAnchor,
+											multiplier: 0.9),
+										 firstImage.heightAnchor.constraint(
+											equalTo: firstImage.widthAnchor,
+											multiplier: 9/16),
+										 firstImage.centerXAnchor.constraint(
+											equalTo: safeAreaLayoutGuide.centerXAnchor)])
 
 		}
 
 		func setupSecondImageLayout() {
-			NSLayoutConstraint.activate([secondImage.leadingAnchor.constraint(
-											equalTo: scrollableView.leadingAnchor,
-											constant: CGFloat(Constants.large.rawValue)),
-										 secondImage.trailingAnchor.constraint(
-											equalTo: scrollableView.trailingAnchor,
-											constant: CGFloat(-Constants.large.rawValue)),
-										 secondImage.topAnchor.constraint(
+			NSLayoutConstraint.activate([secondImage.topAnchor.constraint(
 											equalTo: firstImage.bottomAnchor,
 											constant: CGFloat(Constants.large.rawValue)),
 										 secondImage.bottomAnchor.constraint(
 											equalTo: scrollView.bottomAnchor,
 											constant: CGFloat(-Constants.large.rawValue)),
 										 secondImage.widthAnchor.constraint(
-											equalTo: secondImage.heightAnchor)])
+											equalTo: safeAreaLayoutGuide.widthAnchor,
+											multiplier: 0.9),
+										 secondImage.heightAnchor.constraint(
+											equalTo: secondImage.widthAnchor,
+											multiplier: 12/9),
+										 secondImage.centerXAnchor.constraint(
+											equalTo: safeAreaLayoutGuide.centerXAnchor)])
 		}
 
 }

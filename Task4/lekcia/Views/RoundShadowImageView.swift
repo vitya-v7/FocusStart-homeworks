@@ -39,11 +39,11 @@ final class RoundShadowImageView: UIView {
 	// MARK: Life Cycle
 
 	init(
-		cornerRadius: CGFloat = 10,
+		cornerRadius: CGFloat = 12,
 		shadowColor: UIColor = .black,
 		shadowRadius: CGFloat = 8,
 		shadowOpacity: Float = 0.6,
-		shadowOffset: CGSize = CGSize(width: 0, height: 8),
+		shadowOffset: CGSize = CGSize(width: 8, height: 8),
 		imageOpacity: Float = 0.75
 	) {
 		self.cornerRadius = cornerRadius
@@ -85,7 +85,7 @@ private extension RoundShadowImageView {
 
 	func configureImageLayer() {
 		imageLayer.frame = bounds
-		imageLayer.contentsGravity = .resize
+		imageLayer.contentsGravity = .resizeAspectFill
 		let shadowMask = CAShapeLayer()
 		shadowMask.path = shadowPath
 		imageLayer.mask = shadowMask
@@ -105,6 +105,7 @@ private extension RoundShadowImageView {
 		shadowLayer.shadowPath = (image == nil) ? nil : shadowPath
 		shadowLayer.shadowColor = shadowColor.cgColor
 		shadowLayer.shadowRadius = shadowRadius
+		shadowLayer.contentsGravity = .resizeAspectFill
 		shadowLayer.shadowOpacity = shadowOpacity
 		shadowLayer.shadowOffset = shadowOffset
 	}

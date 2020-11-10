@@ -17,7 +17,7 @@ final class MasterViewController: UIViewController {
 
 	// MARK: Life Cycle
 
-	init(navigationTitle: String) {
+	init(navigationTitle: String? = nil) {
 		super.init(nibName: nil, bundle: nil)
 		self.navigationItem.title = navigationTitle
 		//self.navigationController?.navigationItem.title = navigationTitle
@@ -39,6 +39,7 @@ final class MasterViewController: UIViewController {
 
 	override func viewWillAppear(_ animated: Bool) {
 		super.viewWillAppear(animated)
+		navigationItem.title = "ДЗ №4"
 		masterView.viewWillAppear(animated)
 	}
 }
@@ -59,8 +60,9 @@ private extension MasterViewController {
 	func pushDetailViewController(with indexPath: IndexPath) {
 		guard let item: CellModel = masterView.getItem(for: indexPath)
 			else { return assertionFailure() }
-
-		(detailNavigationController?.viewControllers.first as? DetailViewController)?.setItem(item: item)
+		let detail = detailNavigationController?.viewControllers.first as? DetailViewController
+		detail?.setItem(item: item)
+		//detail?.navigationItem.title = item.title
 		splitViewController?.showDetailViewController(detailNavigationController!, sender: nil)
 	}
 }

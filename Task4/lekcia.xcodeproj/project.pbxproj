@@ -80,8 +80,8 @@
 			isa = PBXGroup;
 			children = (
 				8438BDCB255A218600162B28 /* MainCell.swift */,
-				844C5B5E2555BC4B0090C283 /* FirstMasterTableViewCell.swift */,
 				8438BDC4255A215A00162B28 /* SecondMasterTableViewCell.swift */,
+				844C5B5E2555BC4B0090C283 /* FirstMasterTableViewCell.swift */,
 				8438BDC5255A215A00162B28 /* ThirdMasterTableViewCell.swift */,
 				8438BDC3255A215900162B28 /* FourthMasterTableViewCell.swift */,
 				8438BDC2255A215900162B28 /* FifthMasterTableViewCell.swift */,

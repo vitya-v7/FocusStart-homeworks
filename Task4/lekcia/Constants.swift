@@ -8,13 +8,21 @@
 import Foundation
 
 enum ImagesNames: String {
-	case DogName = "cutedog"
-	case RatName = "cuterat"
+	case DogName = "cute-dog"
+	case RatName = "cute-rat"
+	case PandaName = "cute-panda"
+	case BelkaName = "cute-belka"
+	case KosulaName = "cute-kosula"
+	case LionName = "cute-lion"
+	case WolfName = "cute-wolf"
+	case CatName = "cute-cat"
+	case HorsesName = "cute-horses"
+	case BearName = "cute-bear"
 }
 
 enum Constants: Int {
 	case bottomAndTopSpace = 10
 	case leftAndRight = 20
 	case standard = 5
-	case large = 15
+	case large = 60
 }
