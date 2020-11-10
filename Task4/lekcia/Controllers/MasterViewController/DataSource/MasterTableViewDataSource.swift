@@ -14,7 +14,19 @@ protocol MasterTableViewDataSourceProtocol: UITableViewDataSource {
 final class MasterTableViewDataSource: NSObject {
 
 	// MARK: Properties
-
+	enum identifier: Int {
+		case firstCell = 0
+		case secondCell
+		case thirdCell
+		case fourthCell
+		case fifthCell
+	}
+	var dictionaryIndentifies = [
+		identifier.firstCell: FirstMasterTableViewCell.reuseIdentifier,
+		identifier.secondCell: SecondMasterTableViewCell.reuseIdentifier,
+		identifier.thirdCell: ThirdMasterTableViewCell.reuseIdentifier,
+		identifier.fourthCell: FourthMasterTableViewCell.reuseIdentifier,
+		identifier.fifthCell: FifthMasterTableViewCell.reuseIdentifier]
 	private var CellModels = [CellModel]()
 }
 
@@ -27,21 +39,8 @@ extension MasterTableViewDataSource: MasterTableViewDataSourceProtocol {
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		var cell: UITableViewCell?
-		switch indexPath.row + 1 {
-		case 1:
-			cell = tableView.dequeueReusableCell(withIdentifier: FirstMasterTableViewCell.reuseIdentifier, for: indexPath) as? FirstMasterTableViewCell
-		case 2:
-			cell = tableView.dequeueReusableCell(withIdentifier: SecondMasterTableViewCell.reuseIdentifier, for: indexPath) as? SecondMasterTableViewCell
-		case 3:
-			cell = tableView.dequeueReusableCell(withIdentifier: ThirdMasterTableViewCell.reuseIdentifier, for: indexPath) as? ThirdMasterTableViewCell
-		case 4:
-			cell = tableView.dequeueReusableCell(withIdentifier: FourthMasterTableViewCell.reuseIdentifier, for: indexPath) as? FourthMasterTableViewCell
-		case 5:
-			cell = tableView.dequeueReusableCell(withIdentifier: FifthMasterTableViewCell.reuseIdentifier, for: indexPath) as? FifthMasterTableViewCell
-		default:
-			cell = UITableViewCell()
-		}
-		var cellAccepted = cell as? MainCell
+		cell = tableView.dequeueReusableCell(withIdentifier: dictionaryIndentifies[identifier.init(rawValue: indexPath.row)!]!, for: indexPath) as? MainCell
+		let cellAccepted = cell as? MainCell
 		let masterCellModel = CellModels[indexPath.row]
 		cellAccepted?.configure(object: masterCellModel)
 		if cellAccepted == nil {
