@@ -20,6 +20,7 @@ final class MasterViewController: UIViewController {
 	init(navigationTitle: String) {
 		super.init(nibName: nil, bundle: nil)
 		self.navigationItem.title = navigationTitle
+		//self.navigationController?.navigationItem.title = navigationTitle
 	}
 
 	@available(*, unavailable)
@@ -46,22 +47,20 @@ final class MasterViewController: UIViewController {
 
 private extension MasterViewController {
 	func createMasterView() -> UIView {
-		var masterView: MasterViewProtocol = MasterView()
+		let masterView: MasterViewProtocol = MasterView()
 		masterView.setItems(CellModel.mockData())
 		masterView.selectedItemHandler = { [weak self] indexPath in
 			guard let self = self else { return assertionFailure() }
 			self.pushDetailViewController(with: indexPath)
 		}
-
 		return masterView
 	}
 
 	func pushDetailViewController(with indexPath: IndexPath) {
 		guard let item: CellModel = masterView.getItem(for: indexPath)
 			else { return assertionFailure() }
-		let detailViewController = DetailViewController.init(navigationTitle: item.title!)
-		detailViewController.setItem(item: item)
+
+		(detailNavigationController?.viewControllers.first as? DetailViewController)?.setItem(item: item)
 		splitViewController?.showDetailViewController(detailNavigationController!, sender: nil)
-		//navigationController?.pushViewController(detailViewController, animated: true)
 	}
 }

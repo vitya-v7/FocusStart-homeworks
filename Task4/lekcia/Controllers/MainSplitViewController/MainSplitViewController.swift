@@ -12,8 +12,7 @@ class MainSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.delegate = self
-		self.preferredDisplayMode = .oneBesideSecondary
-		self.navigationItem.title = "privet"
+		self.preferredDisplayMode = .allVisible
 		// Do any additional setup after loading the view.
 	}
 
@@ -21,9 +20,12 @@ class MainSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 		return .primary
 	}*/
 
-	@available(iOS 14.0, *)
-	func splitViewController(_ svc: UISplitViewController, topColumnForCollapsingToProposedTopColumn proposedTopColumn: UISplitViewController.Column) -> UISplitViewController.Column {
-		return .primary
+	func splitViewController(
+		_ splitViewController: UISplitViewController,
+		collapseSecondary secondaryViewController: UIViewController,
+		onto primaryViewController: UIViewController) -> Bool {
+		// Return true to prevent UIKit from applying its default behavior
+		return true
 	}
 
 }

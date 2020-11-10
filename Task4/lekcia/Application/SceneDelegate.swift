@@ -16,11 +16,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		guard let window = window else { return assertionFailure() }
 		window.windowScene = windowScene
 
-		let masterController = MasterViewController(navigationTitle: "Master")
+		let masterController = MasterViewController(navigationTitle: "ДЗ №4")
 		let masterNavigationController = UINavigationController(rootViewController: masterController)
 
 
-		let detailController = DetailViewController(navigationTitle: "Заголовок")
+		let detailController = DetailViewController(navigationTitle: "Detail")
 		let detailNavigationController = UINavigationController(rootViewController: detailController)
 		masterController.detailNavigationController = detailNavigationController
 		let splitViewController =  MainSplitViewController()

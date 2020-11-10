@@ -44,7 +44,7 @@ class DetailView: UIView {
 			firstImage.image = object.firstImage
 			secondImage.image = object.secondImage
 		}
-		scrollView.contentOffset = CGPoint(x: 0, y: -scrollView.safeAreaInsets.top)
+		//scrollView.contentOffset = CGPoint(x: 0, y: -scrollView.safeAreaInsets.top)
 	}
 	// MARK: - Methods
 
@@ -58,6 +58,8 @@ private extension DetailView {
 		setupScrollViewAppearances()
 		setupScrollableContentAppearances()
 		setupDescriptionAppearances()
+		setupImage1Appearances()
+		setupImage2Appearances()
 	}
 	func setupSuperViewAppearances() {
 		backgroundColor = .systemBackground
@@ -75,6 +77,16 @@ private extension DetailView {
 		descriptionLabel.numberOfLines = 0
 		descriptionLabel.textAlignment = .center
 		descriptionLabel.font = UIFont.systemFont(ofSize: 20)
+		descriptionLabel.text = "Privet"
+		
+		
+	}
+	func setupImage1Appearances() {
+		firstImage.backgroundColor = UIColor.red
+
+	}
+	func setupImage2Appearances() {
+		secondImage.backgroundColor = UIColor.blue
 	}
 
 
@@ -144,8 +156,8 @@ private extension DetailView {
 											equalTo: scrollableView.trailingAnchor,
 											constant: CGFloat(-Constants.standard.rawValue)),
 										 descriptionLabel.topAnchor.constraint(
-											equalTo: scrollView.topAnchor,
-											constant: CGFloat(-Constants.standard.rawValue))])
+											equalTo: scrollableView.topAnchor,
+											constant: CGFloat(Constants.standard.rawValue))])
 
 		}
 
@@ -178,7 +190,7 @@ private extension DetailView {
 											equalTo: scrollView.bottomAnchor,
 											constant: CGFloat(-Constants.large.rawValue)),
 										 secondImage.widthAnchor.constraint(
-											equalTo: firstImage.heightAnchor)])
+											equalTo: secondImage.heightAnchor)])
 		}
 
 }
