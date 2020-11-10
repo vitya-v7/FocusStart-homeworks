@@ -37,13 +37,13 @@ private extension FirstMasterTableViewCell {
 	func setupTitleLabelAppearances() {
 		titleLabel.numberOfLines = 1
 		titleLabel.textAlignment = .left
-		titleLabel.font = UIFont.boldSystemFont(ofSize: 15)
+		titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
 	}
 
 	func setupDescriptionLabelAppearances() {
 		descriptionLabel.numberOfLines = 1
-		descriptionLabel.numberOfLines = 1
 		descriptionLabel.textAlignment = .left
+		descriptionLabel.font = UIFont.italicSystemFont(ofSize: 20)
 	}
 
 	func setupDateAppearances() {

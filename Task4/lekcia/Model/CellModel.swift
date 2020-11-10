@@ -20,8 +20,8 @@ public struct CellModel {
 									""", description: "description 2 fddfdsafdsafsdaffdsafsdaf",date: Date.randomDate()),
 				CellModel(title: "title3", description: "description 3 fkdsafk;lsdajf;kljasdfkldsjajflasdfasfsa",date: Date.randomDate()),
 				CellModel(title: "title4", description: """
-					ddfsakdldsa
-					asdddsad122
+					FirstLine
+					SecondLine
 					""",date: Date.randomDate()),
 				CellModel(title: "title5", description: "description 5description 5description 5description 5description 5description 5description 5", date: Date.randomDate())]
 	}
