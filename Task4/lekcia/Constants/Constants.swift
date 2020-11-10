@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ImagesNames: String {
+public enum ImagesNames: String {
 	case DogName = "cute-dog"
 	case RatName = "cute-rat"
 	case PandaName = "cute-panda"
@@ -20,7 +20,7 @@ enum ImagesNames: String {
 	case BearName = "cute-bear"
 }
 
-enum Constants: Int {
+public enum Constants: Int {
 	case bottomAndTopSpace = 10
 	case leftAndRight = 20
 	case standard = 5

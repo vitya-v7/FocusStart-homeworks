@@ -32,10 +32,11 @@ class MainCell: UITableViewCell {
 	static func getEstimatedHeight() -> CGFloat {
 		return 100
 	}
+
 	override func setSelected(_ selected: Bool, animated: Bool) {
 		super.setSelected(selected, animated: animated)
-		// Configure the view for the selected state
 	}
+
 	func configure(object: CellModel) {
 		titleLabel.text = object.title
 		descriptionLabel.text = object.description

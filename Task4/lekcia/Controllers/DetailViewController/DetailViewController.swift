@@ -9,15 +9,10 @@ import UIKit
 
 final class DetailViewController: UIViewController {
 
-
-
 	var object: CellModel?
 	var myView: DetailView = DetailView(frame: .zero)
 	var masterNavigationController: UINavigationController?
-	override func loadView() {
-		view = myView
-		
-	}
+
 
 	func setItem(item: CellModel) {
 		object = item
@@ -25,7 +20,7 @@ final class DetailViewController: UIViewController {
 		myView.configure(object: object)
 	}
 
-	// MARK: Life Cycle
+	// MARK: - Life Cycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -40,7 +35,6 @@ final class DetailViewController: UIViewController {
 		super.init(nibName: nil, bundle: nil)
 		self.navigationController?.title = navigationTitle
 	}
-
 
 	@available(*, unavailable)
 	required init?(coder: NSCoder) {

@@ -21,6 +21,7 @@ class FirstMasterTableViewCell: MainCell {
 	
 }
 
+//MARK: - Appearances
 
 private extension FirstMasterTableViewCell {
 	func setupViewsAppearances() {
@@ -54,7 +55,7 @@ private extension FirstMasterTableViewCell {
 	}
 }
 
-// MARK: Shared Layout
+// MARK: - Shared Layout
 
 private extension FirstMasterTableViewCell {
 

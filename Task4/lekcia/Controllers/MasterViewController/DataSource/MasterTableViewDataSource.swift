@@ -13,7 +13,7 @@ protocol MasterTableViewDataSourceProtocol: UITableViewDataSource {
 
 final class MasterTableViewDataSource: NSObject {
 
-	// MARK: Properties
+	// MARK: - Properties
 	enum identifier: Int {
 		case firstCell = 0
 		case secondCell
@@ -30,7 +30,7 @@ final class MasterTableViewDataSource: NSObject {
 	private var CellModels = [CellModel]()
 }
 
-// MARK: Data Source Interface
+// MARK: - Data Source Interface
 
 extension MasterTableViewDataSource: MasterTableViewDataSourceProtocol {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

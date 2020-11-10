@@ -15,18 +15,18 @@ public protocol MasterViewProtocol: UIView {
 
 public final class MasterView: UIView {
 
-	// MARK: Properties
+	// MARK: - Properties
 
 	public var selectedItemHandler: ((IndexPath) -> Void)?
 
 	private let dataSource: MasterTableViewDataSourceProtocol = MasterTableViewDataSource()
 	private let output = MasterTableViewDelegate()
 
-	// MARK: Views
+	// MARK: - Views
 
 	private let tableView: UITableView
 
-	// MARK: Life Cycle
+	// MARK: - Life Cycle
 
 	override init(frame: CGRect) {
 		tableView = UITableView(frame: frame)
@@ -50,7 +50,7 @@ public final class MasterView: UIView {
 	}
 }
 
-// MARK: View Interface
+// MARK: - View Interface
 
 extension MasterView: MasterViewProtocol {
 	public func setItems(_ CellModel: [CellModel]) {
@@ -62,7 +62,7 @@ extension MasterView: MasterViewProtocol {
 	}
 }
 
-// MARK: Views Appearances
+// MARK: - Views Appearances
 
 private extension MasterView {
 	func setupTableViewAppearances() {
@@ -91,7 +91,7 @@ private extension MasterView {
 	}
 }
 
-// MARK: View Layout
+// MARK: - View Layout
 
 private extension MasterView {
 	func setupTableViewLayout() {
@@ -107,7 +107,7 @@ private extension MasterView {
 	}
 }
 
-// MARK: Table Delegate
+// MARK: - Table Delegate
 
 private extension MasterView {
 	func setupSelectedItemHandler() {

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		84932EF0255ADC40000654FA /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84932EEF255ADC40000654FA /* Image.swift */; };
 		849E4CAC25512BEA00A5F1F5 /* ViewController3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E4CAB25512BEA00A5F1F5 /* ViewController3.swift */; };
 		849E4CAF25512BFD00A5F1F5 /* View3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E4CAE25512BFD00A5F1F5 /* View3.swift */; };
 		849E4CB6255150F200A5F1F5 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 849E4CB5255150F200A5F1F5 /* TabBarController.swift */; };
@@ -17,12 +18,12 @@
 		AAD2E4C0254EF3BC00FB0457 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AAD2E4BE254EF3BC00FB0457 /* LaunchScreen.storyboard */; };
 		AAD2E4C9254EF47A00FB0457 /* ViewController1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4C8254EF47A00FB0457 /* ViewController1.swift */; };
 		AAD2E4D2254F047100FB0457 /* View1.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4D1254F047100FB0457 /* View1.swift */; };
-		AAD2E4D5254F071900FB0457 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4D4254F071900FB0457 /* Image.swift */; };
 		AAD2E4D8254F19AA00FB0457 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4D7254F19AA00FB0457 /* ViewController2.swift */; };
 		AAD2E4DB254F19CF00FB0457 /* View2.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAD2E4DA254F19CF00FB0457 /* View2.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		84932EEF255ADC40000654FA /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		849E4CAB25512BEA00A5F1F5 /* ViewController3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController3.swift; sourceTree = "<group>"; };
 		849E4CAE25512BFD00A5F1F5 /* View3.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View3.swift; sourceTree = "<group>"; };
 		849E4CB5255150F200A5F1F5 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
@@ -35,7 +36,6 @@
 		AAD2E4C1254EF3BC00FB0457 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AAD2E4C8254EF47A00FB0457 /* ViewController1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController1.swift; sourceTree = "<group>"; };
 		AAD2E4D1254F047100FB0457 /* View1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View1.swift; sourceTree = "<group>"; };
-		AAD2E4D4254F071900FB0457 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		AAD2E4D7254F19AA00FB0457 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		AAD2E4DA254F19CF00FB0457 /* View2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View2.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -54,6 +54,7 @@
 		849E4CBA25515C7300A5F1F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				84932EEF255ADC40000654FA /* Image.swift */,
 				849E4CC125515F0F00A5F1F5 /* ViewsForTabBarController */,
 			);
 			path = Views;
@@ -115,7 +116,6 @@
 				AAD2E4BC254EF3BC00FB0457 /* Assets.xcassets */,
 				AAD2E4BE254EF3BC00FB0457 /* LaunchScreen.storyboard */,
 				AAD2E4C1254EF3BC00FB0457 /* Info.plist */,
-				AAD2E4D4254F071900FB0457 /* Image.swift */,
 			);
 			path = Task3;
 			sourceTree = "<group>";
@@ -197,9 +197,9 @@
 				AAD2E4D2254F047100FB0457 /* View1.swift in Sources */,
 				AAD2E4B6254EF3BB00FB0457 /* SceneDelegate.swift in Sources */,
 				AAD2E4DB254F19CF00FB0457 /* View2.swift in Sources */,
-				AAD2E4D5254F071900FB0457 /* Image.swift in Sources */,
 				849E4CAF25512BFD00A5F1F5 /* View3.swift in Sources */,
 				AAD2E4D8254F19AA00FB0457 /* ViewController2.swift in Sources */,
+				84932EF0255ADC40000654FA /* Image.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

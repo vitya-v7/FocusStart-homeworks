@@ -8,14 +8,14 @@ import UIKit
 
 final class MasterViewController: UIViewController {
 
-	// MARK: Views
+	// MARK: - Views
 	var detailNavigationController: UINavigationController?
 	private var masterView: MasterViewProtocol {
 		guard let MasterView = view as? MasterViewProtocol else { fatalError() }
 		return MasterView
 	}
 
-	// MARK: Life Cycle
+	// MARK: - Life Cycle
 
 	init(navigationTitle: String? = nil) {
 		super.init(nibName: nil, bundle: nil)
@@ -44,7 +44,7 @@ final class MasterViewController: UIViewController {
 	}
 }
 
-// MARK: Master View
+// MARK: - Master View
 
 private extension MasterViewController {
 	func createMasterView() -> UIView {
@@ -60,8 +60,9 @@ private extension MasterViewController {
 	func pushDetailViewController(with indexPath: IndexPath) {
 		guard let item: CellModel = masterView.getItem(for: indexPath)
 			else { return assertionFailure() }
-		let detail = detailNavigationController?.viewControllers.first as? DetailViewController
-		detail?.setItem(item: item)
-		splitViewController?.showDetailViewController(detailNavigationController!, sender: nil)
+		if let detail = detailNavigationController?.viewControllers.first as? DetailViewController {
+			detail.setItem(item: item)
+			splitViewController?.showDetailViewController(detailNavigationController!, sender: nil)
+		}
 	}
 }
