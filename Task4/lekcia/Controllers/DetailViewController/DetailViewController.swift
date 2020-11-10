@@ -22,6 +22,9 @@ final class DetailViewController: UIViewController {
 
 	// MARK: - Life Cycle
 
+	override func loadView() {
+		view = myView
+	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.navigationController?.navigationBar.prefersLargeTitles = true

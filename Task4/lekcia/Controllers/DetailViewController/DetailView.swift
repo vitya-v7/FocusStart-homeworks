@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - Protocols
 
-protocol IDetailViewInput {
+protocol IDetailViewInput: UIView {
 	func configure(object: CellModel?)
 }
 
