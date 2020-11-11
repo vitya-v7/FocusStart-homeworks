@@ -12,9 +12,7 @@ final class MasterTableViewDelegate: NSObject {
 }
 
 extension MasterTableViewDelegate: UITableViewDelegate {
-
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
 		self.selectedItemHandler?(indexPath)
 		tableView.deselectRow(at: indexPath, animated: true)
 	}

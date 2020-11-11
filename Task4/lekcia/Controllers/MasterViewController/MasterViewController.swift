@@ -8,6 +8,9 @@ import UIKit
 
 final class MasterViewController: UIViewController {
 
+    // MARK: - User tapped on cell
+    var itemSelected = false
+    
 	// MARK: - Views
 	var detailNavigationController: UINavigationController?
 	private var masterView: MasterViewProtocol {
@@ -42,6 +45,13 @@ final class MasterViewController: UIViewController {
 		super.viewWillAppear(animated)
 		masterView.viewWillAppear(animated)
 	}
+    
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if itemSelected == false {
+            pushDetailViewController(with: IndexPath.init(row: 0, section: 0))
+        }
+    }
 }
 
 // MARK: - Master View
@@ -60,6 +70,7 @@ private extension MasterViewController {
 	func pushDetailViewController(with indexPath: IndexPath) {
 		guard let item: CellModel = masterView.getItem(for: indexPath)
 			else { return assertionFailure() }
+        itemSelected = true
 		if let detail = detailNavigationController?.viewControllers.first as? DetailViewController {
 			detail.setItem(item: item)
 			splitViewController?.showDetailViewController(detailNavigationController!, sender: nil)

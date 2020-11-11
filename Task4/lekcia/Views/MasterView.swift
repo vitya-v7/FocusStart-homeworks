@@ -50,6 +50,9 @@ public final class MasterView: UIView {
 	}
 }
 
+extension MasterView {
+    
+}
 // MARK: - View Interface
 
 extension MasterView: MasterViewProtocol {
