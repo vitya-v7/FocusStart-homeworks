@@ -40,7 +40,7 @@
 		8438BDC5255A215A00162B28 /* ThirdMasterTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThirdMasterTableViewCell.swift; sourceTree = "<group>"; };
 		8438BDCB255A218600162B28 /* MainCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCell.swift; sourceTree = "<group>"; };
 		8438BDD2255A586B00162B28 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
-		844C5B412555B0300090C283 /* lekcia.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lekcia.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		844C5B412555B0300090C283 /* Task4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Task4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844C5B442555B0300090C283 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		844C5B462555B0300090C283 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		844C5B482555B0300090C283 /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 		844C5B382555B0300090C283 = {
 			isa = PBXGroup;
 			children = (
-				844C5B432555B0300090C283 /* lekcia */,
+				844C5B432555B0300090C283 /* Task4 */,
 				844C5B422555B0300090C283 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -110,12 +110,12 @@
 		844C5B422555B0300090C283 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				844C5B412555B0300090C283 /* lekcia.app */,
+				844C5B412555B0300090C283 /* Task4.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		844C5B432555B0300090C283 /* lekcia */ = {
+		844C5B432555B0300090C283 /* Task4 */ = {
 			isa = PBXGroup;
 			children = (
 				844C5B652555BC950090C283 /* Application */,
@@ -127,7 +127,7 @@
 				84932EF5255ADDCD000654FA /* Random Date */,
 				844C5B4D2555B0310090C283 /* Assets.xcassets */,
 			);
-			path = lekcia;
+			path = Task4;
 			sourceTree = "<group>";
 		};
 		844C5B612555BC4F0090C283 /* Controllers */ = {
@@ -219,9 +219,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		844C5B402555B0300090C283 /* lekcia */ = {
+		844C5B402555B0300090C283 /* Task4 */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 844C5B552555B0310090C283 /* Build configuration list for PBXNativeTarget "lekcia" */;
+			buildConfigurationList = 844C5B552555B0310090C283 /* Build configuration list for PBXNativeTarget "Task4" */;
 			buildPhases = (
 				844C5B3D2555B0300090C283 /* Sources */,
 				844C5B3E2555B0300090C283 /* Frameworks */,
@@ -231,9 +231,9 @@
 			);
 			dependencies = (
 			);
-			name = lekcia;
+			name = Task4;
 			productName = lekcia;
-			productReference = 844C5B412555B0300090C283 /* lekcia.app */;
+			productReference = 844C5B412555B0300090C283 /* Task4.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -250,7 +250,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 844C5B3C2555B0300090C283 /* Build configuration list for PBXProject "lekcia" */;
+			buildConfigurationList = 844C5B3C2555B0300090C283 /* Build configuration list for PBXProject "Task4" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -263,7 +263,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				844C5B402555B0300090C283 /* lekcia */,
+				844C5B402555B0300090C283 /* Task4 */,
 			);
 		};
 /* End PBXProject section */
@@ -444,13 +444,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69TGY6R53D;
-				INFOPLIST_FILE = lekcia/Resources/Info.plist;
+				INFOPLIST_FILE = Task4/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.viktor.lekcia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.viktor.Task4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -464,13 +464,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 69TGY6R53D;
-				INFOPLIST_FILE = lekcia/Resources/Info.plist;
+				INFOPLIST_FILE = Task4/Resources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.viktor.lekcia;
+				PRODUCT_BUNDLE_IDENTIFIER = com.viktor.Task4;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -480,7 +480,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		844C5B3C2555B0300090C283 /* Build configuration list for PBXProject "lekcia" */ = {
+		844C5B3C2555B0300090C283 /* Build configuration list for PBXProject "Task4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				844C5B532555B0310090C283 /* Debug */,
@@ -489,7 +489,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		844C5B552555B0310090C283 /* Build configuration list for PBXNativeTarget "lekcia" */ = {
+		844C5B552555B0310090C283 /* Build configuration list for PBXNativeTarget "Task4" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				844C5B562555B0310090C283 /* Debug */,
