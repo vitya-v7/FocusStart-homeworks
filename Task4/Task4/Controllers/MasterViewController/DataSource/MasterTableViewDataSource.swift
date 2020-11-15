@@ -1,6 +1,6 @@
 //
 //  MasterTableViewDataSource.swift
-//  lekcia
+//  Task4
 //
 //  Created by Admin on 10.11.2020.
 //

@@ -1,6 +1,6 @@
 //
 //  MasterTableViewDelegate.swift
-//  lekcia
+//  Task4
 //
 //  Created by Admin on 08.11.2020.
 //

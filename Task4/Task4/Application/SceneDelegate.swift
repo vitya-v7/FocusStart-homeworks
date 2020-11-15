@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  lekcia
+//  Task4
 //
 //  Created by Admin on 06.11.2020.
 //
