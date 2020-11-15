@@ -28,7 +28,7 @@ Icon
 .AppleDesktop
 Network Trash Folder
 Temporary Items
-Task5
+
 .apdisk
 
 ### Swift ###
@@ -46,6 +46,7 @@ xcuserdata/
 ## compatibility with Xcode 3 and earlier (ignoring not required starting Xcode 4)
 build/
 DerivedData/
+Task5/
 *.moved-aside
 *.pbxuser
 !default.pbxuser
