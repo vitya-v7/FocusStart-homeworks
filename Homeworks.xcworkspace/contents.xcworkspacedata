@@ -13,4 +13,7 @@
    <FileRef
       location = "group:/Users/admin/Documents/projects/FocusStart-homeworks/Task4/Task4.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:Task4/../Task5/Task5.xcodeproj">
+   </FileRef>
 </Workspace>
