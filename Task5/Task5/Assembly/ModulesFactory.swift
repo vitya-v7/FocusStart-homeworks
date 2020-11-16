@@ -14,9 +14,11 @@ class ModulesFactory {
 		let view = storyboard.instantiateViewController(identifier: "CarsListViewIdentifier") as! CarsListViewController
 		let carService = CarService.init()
 		let presenter = CarsListPresenter()
+		let interactor = CarsListInteractor()
+		interactor.carService = carService
+		presenter.interactor = interactor
 		view.output = presenter
 		presenter.view = view
-		presenter.carService = carService
 		return view
 	}
 	
@@ -25,10 +27,12 @@ class ModulesFactory {
 		let view = storyboard.instantiateViewController(identifier: "CarDetailViewIdentifier") as! CarDetailViewController
 		let carService = CarService.init()
 		let presenter = CarDetailPresenter()
+		let interactor = CarsDetailInteractor()
+		interactor.carService = carService
+		presenter.interactor = interactor
 		view.output = presenter
 		presenter.view = view
 		presenter.key = key
-		presenter.carService = carService
 		return view
 	}
 }

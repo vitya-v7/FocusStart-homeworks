@@ -1,5 +1,5 @@
 //
-//  CarDetailInteractor.swift
+//  CarsDetailInteractor.swift
 //  Task5
 //
 //  Created by Admin on 16.11.2020.
@@ -8,7 +8,7 @@
 
 
 
-class CarDetailInteractor: ICarDetailPresenterInput {
+class CarsDetailInteractor: ICarDetailPresenterInput {
 	var carService: IDetailsCarServiceInterface?
 	func getCar(key: String) -> CarModel? {
 		return carService?.getCar(key: key)
