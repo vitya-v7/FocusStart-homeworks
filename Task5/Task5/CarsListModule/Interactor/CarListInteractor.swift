@@ -6,6 +6,13 @@
 //  Copyright © 2020 Admin. All rights reserved.
 //
 
-class CarListInteractor {
+class CarListInteractor: ICarListPresenterInput {
 	var carService: ICarsListServiceInterface?
+	func getCars() -> [CarModel]? {
+		carService?.getCars()
+	}
+
+	func deleteCar(key: String) {
+		carService?.deleteCar(key: key)
+	}
 }
