@@ -7,9 +7,12 @@
 //
 
 import UIKit
-
-class CarsListPresenter {    
-	var carService: ICarsListServiceInterface?
+protocol ICarListPresenterInput {
+	func getCars() -> [CarModel]
+	func deleteCar(key: String)
+}
+class CarsListPresenter {
+	var ICarDetailPresenterInput: ICarListPresenterInput
 	var view: ICarsListViewInput?
 	var carModels: [CarModel]?
 	var filterBodyStyle: CarService.CarBodyStyle?
@@ -45,7 +48,7 @@ extension CarsListPresenter: ICarsListViewOutput
 	func filterCars(bodyStyle: CarService.CarBodyStyle?) {
 		filterBodyStyle = bodyStyle
 		var carModelsFiltered = [CarModel]()
-		var carModels = carService?.getCars() ?? [CarModel]()
+		var carModels = interactor?.getCars() ?? [CarModel]()
 
 		if let bodyStyle = bodyStyle {
 			for item in carModels {
@@ -89,7 +92,7 @@ extension CarsListPresenter: ICarsListViewOutput
 	}
 	
 	func reloadData() {
-		carModels = carService?.getCars()
+		carModels = interactor?.getCars()
 		if let carModels = carModels {
 			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels))
 		}
@@ -97,7 +100,7 @@ extension CarsListPresenter: ICarsListViewOutput
 	
 	func deleteButtonPressedWithIndexRow(row: Int) {
 		if let carKey = carModels?[row].carKey {
-			carService?.deleteCar(key: carKey)
+			interactor?.deleteCar(key: carKey)
 			reloadData()
 		}
 	}

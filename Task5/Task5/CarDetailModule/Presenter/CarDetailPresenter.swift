@@ -7,10 +7,14 @@
 //
 
 import UIKit
-
+protocol ICarDetailPresenterInput {
+	func getCar(key: String) -> CarModel?
+	func addCar(car: CarModel)
+	func updateCar(car: CarModel)
+}
 class CarDetailPresenter {
 	var key: String?
-	var carService: IDetailsCarServiceInterface?
+	var interactor: ICarDetailPresenterInput?
 	var view: ICarDetailViewInput?
 	var carModel: CarModel?
 	
@@ -64,7 +68,7 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	func viewDidLoadDone() {
 		view?.setInitialState()
 		if let key = key {
-			carModel = carService?.getCar(key: key)
+			carModel = interactor?.getCar(key: key)
 		}
 		else {
 			carModel = CarModel.init(model: CarService.CarModels.allCases[0], manufacturer: CarService.CarCountry.allCases[0], body: CarService.CarBodyStyle.allCases[0], carKey: nil)
@@ -74,10 +78,10 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	
 	func saveCarInDB() {
 		if let carModel = carModel, carModel.carKey == nil {
-			carService?.addCar(car: carModel)
+			interactor?.addCar(car: carModel)
 		}
 		if let carModel = carModel, carModel.carKey != nil {
-			carService?.updateCar(car: carModel)
+			interactor?.addCar(car: carModel)
 		}
 		self.view?.navigationController?.popViewController(animated: true)
 	}

@@ -7,5 +7,5 @@
 //
 
 class CarListInteractor {
-
+	var carService: ICarsListServiceInterface?
 }

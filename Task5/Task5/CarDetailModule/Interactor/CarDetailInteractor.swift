@@ -8,6 +8,17 @@
 
 
 
-class CarDetailInteractor {
+class CarDetailInteractor: ICarDetailPresenterInput {
+	var carService: IDetailsCarServiceInterface?
+	func getCar(key: String) -> CarModel? {
+		return carService?.getCar(key: key)
+	}
 
+	func addCar(car: CarModel) {
+		carService?.addCar(car: car)
+	}
+
+	func updateCar(car: CarModel) {
+		carService?.updateCar(car: car)
+	}
 }

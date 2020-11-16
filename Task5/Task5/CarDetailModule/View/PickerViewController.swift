@@ -20,7 +20,6 @@ class PickerViewController: UIViewController {
 	@IBOutlet weak var picker: UIPickerView!
 	@IBOutlet weak var button: UIButton!
 	var type: PickerType?
-	var carService: CarService?
 	var options: [String]?
 	var carID: Int?
 	var currentOption: String?
