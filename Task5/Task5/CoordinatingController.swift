@@ -15,14 +15,12 @@ public protocol INavigationSeed: AnyObject
 
 	func set<Parameters>(parameters: Parameters)
 }
-
 extension INavigationSeed
 {
 	func set<Parameters>(parameters: Parameters) {
 		// do nothing
 	}
 }
-
 enum NavigationModule
 {
 	case first

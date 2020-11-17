@@ -8,6 +8,13 @@
 
 import UIKit
 
+protocol IUI: AnyObject
+{
+	var tapButtonHandler: (() -> Void)? { get set }
+	func configureCell(withObject object: CarsElementViewModel?)
+}
+
+
 class CarsElementCell: UITableViewCell {
 	var viewModel: CarsElementViewModel?
 	
@@ -20,6 +27,23 @@ class CarsElementCell: UITableViewCell {
 	
 	static let reuseIdentifier = "CarsListCellIdentifier"
 	
+
+
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 100
+	}
+
+	override func prepareForReuse() {
+		self.carModel.text = nil
+		self.carYear.text = nil
+		self.carBodyStyle.text = nil
+		self.carCountry.text = nil
+		self.carNumber.text = nil
+	}
+}
+
+extension CarsElementCell: IUI {
+	var tapButtonHandler: (() -> Void)? { get set }
 	func configureCell(withObject object: CarsElementViewModel?) {
 		viewModel = object
 
@@ -39,17 +63,4 @@ class CarsElementCell: UITableViewCell {
 			self.carNumber.text = "Car number: " + number
 		}
 	}
-	
-	override func prepareForReuse() {
-		self.carModel.text = nil
-		self.carYear.text = nil
-		self.carBodyStyle.text = nil
-		self.carCountry.text = nil
-		self.carNumber.text = nil
-	}
-
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 100
-	}
-
 }

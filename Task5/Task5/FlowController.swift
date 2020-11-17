@@ -6,31 +6,51 @@
 //  Copyright © 2020 Admin. All rights reserved.
 //
 import Foundation
+import UIKit
 
-/*
 final class FlowController
 {
-	let firstVC: INavigationSeed
-
-	private let coordinatingController: CoordinatingController
+	var firstVC: INavigationSeed?
+	private var coordinatingController: CoordinatingController
 	private var modules = [INavigationSeed]()
-
 	init(coordinatingController: CoordinatingController) {
 		self.coordinatingController = coordinatingController
-		self.firstVC = CarsListController(model: Model(firstName: "firstName", lastName: "lastName"),
-											coordinatingController: coordinatingController)
-		self.coordinatingController.registerFirst(module: .first, seed: self.firstVC)
-		self.modules.append(self.makeSecond())
+		createCarsListModule()
+		createCarDetailModule()
+	}
+	func createCarsListModule() -> INavigationSeed {
 
-}
 
-private extension FlowController
-{
-	func makeSecond() -> INavigationSeed {
-		let vc = CarDetailViewController()
-		self.coordinatingController.register(module: .second, seed: vc)
-		return vc
+		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+		let view = storyboard.instantiateViewController(identifier: "CarsListViewIdentifier") as! CarsListViewController
+		let carService = CarService.init()
+		let presenter = CarsListPresenter()
+		let interactor = CarsListInteractor()
+		interactor.carService = carService
+		presenter.interactor = interactor
+		view.output = presenter
+		presenter.view = view
+		firstVC = view
+		self.coordinatingController.registerFirst(module: .first, seed: view)
+		self.modules.append(self.createCarDetailModule())
+		return view
+
+	}
+
+	func createCarDetailModule() -> INavigationSeed {
+
+
+		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+		let view = storyboard.instantiateViewController(identifier: "CarDetailViewIdentifier") as! CarDetailViewController
+		let carService = CarService.init()
+		let presenter = CarDetailPresenter()
+		let interactor = CarDetailInteractor()
+		interactor.carService = carService
+		presenter.interactor = interactor
+		view.output = presenter
+		presenter.view = view
+		self.coordinatingController.registerFirst(module: .second, seed: view)
+
+		return view
 	}
 }
-
-}*/

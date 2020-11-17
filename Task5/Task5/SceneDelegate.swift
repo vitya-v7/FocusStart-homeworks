@@ -13,10 +13,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	var window: UIWindow?
 
 	private let coordinatingController = CoordinatingController()
-	//private lazy var flowController = FlowController(coordinatingController: self.coordinatingController)
-	//private lazy var nc: UINavigationController = {
-	//	UINavigationController(rootViewController: //self.flowController.firstVC.vc)
-	//}()
+	private lazy var flowController = FlowController(coordinatingController: self.coordinatingController)
+	private lazy var nc: UINavigationController = {
+		UINavigationController(rootViewController: self.flowController.firstVC.vc)
+	}()
 
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {

@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		843D02842561EB7C001B3588 /* CarsDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D02832561EB7C001B3588 /* CarsDetailInteractor.swift */; };
+		843D02842561EB7C001B3588 /* CarDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D02832561EB7C001B3588 /* CarDetailInteractor.swift */; };
 		843D02902561EBC4001B3588 /* CarsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D028F2561EBC4001B3588 /* CarsListInteractor.swift */; };
 		843D029C2561ED1A001B3588 /* RouterToDetailModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D029B2561ED1A001B3588 /* RouterToDetailModule.swift */; };
 		844553052562D49A001E139C /* CoordinatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844553042562D49A001E139C /* CoordinatingController.swift */; };
@@ -52,7 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		843D02832561EB7C001B3588 /* CarsDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsDetailInteractor.swift; sourceTree = "<group>"; };
+		843D02832561EB7C001B3588 /* CarDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailInteractor.swift; sourceTree = "<group>"; };
 		843D028F2561EBC4001B3588 /* CarsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsListInteractor.swift; sourceTree = "<group>"; };
 		843D029B2561ED1A001B3588 /* RouterToDetailModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterToDetailModule.swift; sourceTree = "<group>"; };
 		844553042562D49A001E139C /* CoordinatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatingController.swift; sourceTree = "<group>"; };
@@ -113,7 +113,7 @@
 		843D02792561EAFE001B3588 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				843D02832561EB7C001B3588 /* CarsDetailInteractor.swift */,
+				843D02832561EB7C001B3588 /* CarDetailInteractor.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -445,7 +445,7 @@
 				84E9107B251741800026555A /* CarDetailPresenter.swift in Sources */,
 				844812E925133CEE003868DF /* CarsElementViewModel.swift in Sources */,
 				844812EA25133CEE003868DF /* CarsElementCell.swift in Sources */,
-				843D02842561EB7C001B3588 /* CarsDetailInteractor.swift in Sources */,
+				843D02842561EB7C001B3588 /* CarDetailInteractor.swift in Sources */,
 				844553052562D49A001E139C /* CoordinatingController.swift in Sources */,
 				844812EE25133D9B003868DF /* ModulesFactory.swift in Sources */,
 				844812B025133CB2003868DF /* AppDelegate.swift in Sources */,

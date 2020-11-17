@@ -18,8 +18,15 @@ class CarsListPresenter {
 	var carModels: [CarModel]?
 	var filterBodyStyle: CarService.CarBodyStyle?
 	
-	func viewDidLoadDone() {
+	func viewDidLoadDone(ui: IUI) {
 		view?.setInitialState()
+		self.ui = ui
+
+		let model = self.interactor.load()
+		self.ui?.set(text: model.firstName + " " + model.lastName)
+		self.ui?.tapButtonHandler = { [weak self] in
+			self?.router.nextModule()
+		}
 	}
 	
 	func viewWillAppearDone() {
@@ -32,6 +39,7 @@ class CarsListPresenter {
 
 extension CarsListPresenter: ICarsListViewOutput
 {
+
 	func convertCarModelToViewModel(car: CarModel) -> CarsElementViewModel {
 		let viewModel = CarsElementViewModel(withElementModel: car)
 		return viewModel
@@ -105,4 +113,5 @@ extension CarsListPresenter: ICarsListViewOutput
 			reloadData()
 		}
 	}
+
 }

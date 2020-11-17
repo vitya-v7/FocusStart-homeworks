@@ -11,6 +11,7 @@ import UIKit
 protocol ICarsListViewInput : UIViewController {
 	func setInitialState()
 	func setViewModels(viewModels: [CarsElementViewModel])
+	
 }
 protocol IUI: AnyObject
 {
@@ -24,6 +25,7 @@ protocol ICarsListViewOutput {
 	func viewWillAppearDone()
 	func callPopover(fromView view: UIView, option: String?)
 	func filterCars(bodyStyle: CarService.CarBodyStyle?)
+	func viewDidLoad(ui: IUI)
 }
 
 class CarsListViewController: UIViewController, UITextFieldDelegate {
@@ -33,14 +35,18 @@ class CarsListViewController: UIViewController, UITextFieldDelegate {
 
 	var delegate: CarsListDelegate = CarsListDelegate()
 
-	private let coordinatingController: CoordinatingController? = nil
+	private let coordinatingController: CoordinatingController
+
+
 	@IBOutlet var tableView: UITableView?
 
-	/*init(coordinatingController: CoordinatingController) {
-		self.view.tapButtonHandler = { [weak self] in
+	init(coordinatingController: CoordinatingController) {
+		self.coordinatingController = coordinatingController
+
+		self.customView.tapButtonHandler = { [weak self] in
 			self?.coordinatingController.push(module: .second, parameters: "", animated: true)
 		}
-	}*/
+	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
