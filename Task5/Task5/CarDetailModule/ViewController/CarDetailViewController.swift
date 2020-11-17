@@ -103,9 +103,4 @@ private extension CarDetailViewController
 	}
 }
 
-extension CarDetailViewController: INavigationSeed
-{
-	var vc: UIViewController { self }
-}
-
 

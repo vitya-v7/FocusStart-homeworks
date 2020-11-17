@@ -14,7 +14,7 @@ protocol CarsListDataSourceProtocol: UITableViewDataSource {
 
 class CarsListDataSource: NSObject, CarsListDataSourceProtocol {
 	var cellModels = [CarsElementViewModel]()
-
+	
 	func setItems(_ CellModels: [CarsElementViewModel]) {
 		cellModels = CellModels
 	}
@@ -26,6 +26,7 @@ class CarsListDataSource: NSObject, CarsListDataSourceProtocol {
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
 		cell.configureCell(withObject: cellModels[indexPath.row])
+
 		return cell
 	}
 

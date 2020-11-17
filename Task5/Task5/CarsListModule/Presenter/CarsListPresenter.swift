@@ -11,21 +11,21 @@ protocol ICarListPresenterInput {
 	func getCars() -> [CarModel]?
 	func deleteCar(key: String)
 }
-
+protocol IPresenterForRoutingProtocol {
+	func callNextModule()
+}
 class CarsListPresenter {
 	var interactor: ICarListPresenterInput?
-	var view: ICarsListViewInput?
+	weak var view: ICarsListViewInput?
+	var router: IRouterListToDetail?
 	var carModels: [CarModel]?
 	var filterBodyStyle: CarService.CarBodyStyle?
-	
+	weak var ui: IUI?
 	func viewDidLoadDone(ui: IUI) {
 		view?.setInitialState()
 		self.ui = ui
-
-		let model = self.interactor.load()
-		self.ui?.set(text: model.firstName + " " + model.lastName)
 		self.ui?.tapButtonHandler = { [weak self] in
-			self?.router.nextModule()
+			self?.router?.nextModule()
 		}
 	}
 	

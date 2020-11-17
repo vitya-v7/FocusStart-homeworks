@@ -12,23 +12,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	
 	var window: UIWindow?
 
-	private let coordinatingController = CoordinatingController()
-	private lazy var flowController = FlowController(coordinatingController: self.coordinatingController)
-	private lazy var nc: UINavigationController = {
-		UINavigationController(rootViewController: self.flowController.firstVC.vc)
-	}()
 
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+		let coordinatingController = CoordinatingController()
+		var flowController = FlowController(coordinatingController: coordinatingController)
+		var nc: UINavigationController = {
+			UINavigationController(rootViewController: flowController.firstVC!.vc)
+		}()
+
 		guard let windowScene = (scene as? UIWindowScene) else { return }
 		if UserDefaults.standard.value(forKey: "firstApplicationStart") == nil {
 			loadDefaultCars()
 			UserDefaults.standard.set(true, forKey: "firstApplicationStart")
 		}
-		let carsView = ModulesFactory.createCarsListModule()
-		let navVc = UINavigationController.init(rootViewController: carsView)
 		self.window = UIWindow(windowScene: windowScene)
-		self.window?.rootViewController = navVc
+		self.window?.rootViewController = nc
 		self.window?.makeKeyAndVisible()
 	}
 	

@@ -9,16 +9,10 @@
 import Foundation
 import UIKit
 
-protocol CarsListDelegateProtocol: UITableViewDelegate {
-	var selectedItemHandler: ((IndexPath) -> Void)? { get set }
-}
 
-class CarsListDelegate: NSObject, CarsListDelegateProtocol {
-	var selectedItemHandler: ((IndexPath) -> Void)? = {item1 in return}
-	
+class CarsListDelegate: NSObject, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		self.selectedItemHandler?(indexPath)
+		(tableView.cellForRow(at: indexPath) as! CarsElementCell).viewModel?.tapButtonHandler
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
-
 }

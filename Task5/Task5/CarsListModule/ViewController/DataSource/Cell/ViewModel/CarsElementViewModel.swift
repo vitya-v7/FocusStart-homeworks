@@ -8,8 +8,14 @@
 
 import UIKit
 
-struct CarsElementViewModel {
 
+protocol IUI: AnyObject
+{
+	var tapButtonHandler: (() -> Void)? { get set }
+}
+
+class CarsElementViewModel: IUI {
+	var tapButtonHandler: (() -> Void)?
 	var carModel: String?
 	var carYear: String?
 	var carCountry: String?

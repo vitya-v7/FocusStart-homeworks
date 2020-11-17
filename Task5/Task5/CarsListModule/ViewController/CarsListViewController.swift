@@ -11,48 +11,51 @@ import UIKit
 protocol ICarsListViewInput : UIViewController {
 	func setInitialState()
 	func setViewModels(viewModels: [CarsElementViewModel])
-	
+
 }
-protocol IUI: AnyObject
-{
-	var tapButtonHandler: (() -> Void)? { get set }
-}
+
 protocol ICarsListViewOutput {
-	func viewDidLoadDone()
+	func viewDidLoadDone(ui: IUI)
 	func cellWithIndexSelected(row: Int)
 	func deleteButtonPressedWithIndexRow(row: Int)
 	func plusButtonClicked()
 	func viewWillAppearDone()
 	func callPopover(fromView view: UIView, option: String?)
 	func filterCars(bodyStyle: CarService.CarBodyStyle?)
-	func viewDidLoad(ui: IUI)
+	
 }
 
-class CarsListViewController: UIViewController, UITextFieldDelegate {
-	var output: ICarsListViewOutput?
+protocol IViewForRoutingProtocol {
+	func callNextModule(ui: IUI)
+}
+
+class CarsListViewController: UIViewController, UITextFieldDelegate, IViewForRoutingProtocol{
 	var maxCarNumber = 3
+
+	var output: ICarsListViewOutput?
+	
 	var dataSource: CarsListDataSourceProtocol = CarsListDataSource()
 
 	var delegate: CarsListDelegate = CarsListDelegate()
-
-	private let coordinatingController: CoordinatingController
+	private var coordinatingController: CoordinatingController
 
 
 	@IBOutlet var tableView: UITableView?
 
+	
 	init(coordinatingController: CoordinatingController) {
 		self.coordinatingController = coordinatingController
+		super.init(nibName: nil, bundle: nil)
+	}
 
-		self.customView.tapButtonHandler = { [weak self] in
-			self?.coordinatingController.push(module: .second, parameters: "", animated: true)
-		}
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tableView?.delegate = delegate
 		self.tableView?.dataSource = dataSource
-		output?.viewDidLoadDone()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -66,6 +69,10 @@ class CarsListViewController: UIViewController, UITextFieldDelegate {
 	
 	@objc func filerCarsByBodyStyle(_ sender: Any) {
 		output?.callPopover(fromView: self.view, option: nil)
+	}
+
+	func callNextModule(ui: IUI) {
+		output?.viewDidLoadDone(ui: ui)
 	}
 }
 

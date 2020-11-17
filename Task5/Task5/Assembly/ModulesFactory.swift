@@ -27,7 +27,7 @@ class ModulesFactory {
 		let view = storyboard.instantiateViewController(identifier: "CarDetailViewIdentifier") as! CarDetailViewController
 		let carService = CarService.init()
 		let presenter = CarDetailPresenter()
-		let interactor = CarsDetailInteractor()
+		let interactor = CarDetailInteractor()
 		interactor.carService = carService
 		presenter.interactor = interactor
 		view.output = presenter
