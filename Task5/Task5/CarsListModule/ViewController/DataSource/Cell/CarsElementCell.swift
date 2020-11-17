@@ -47,4 +47,9 @@ class CarsElementCell: UITableViewCell {
 		self.carCountry.text = nil
 		self.carNumber.text = nil
 	}
+
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 100
+	}
+
 }

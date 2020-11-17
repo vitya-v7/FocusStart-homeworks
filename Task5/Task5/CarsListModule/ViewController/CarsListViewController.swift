@@ -12,7 +12,10 @@ protocol ICarsListViewInput : UIViewController {
 	func setInitialState()
 	func setViewModels(viewModels: [CarsElementViewModel])
 }
-
+protocol IUI: AnyObject
+{
+	var tapButtonHandler: (() -> Void)? { get set }
+}
 protocol ICarsListViewOutput {
 	func viewDidLoadDone()
 	func cellWithIndexSelected(row: Int)
@@ -26,12 +29,23 @@ protocol ICarsListViewOutput {
 class CarsListViewController: UIViewController, UITextFieldDelegate {
 	var output: ICarsListViewOutput?
 	var maxCarNumber = 3
-	var viewModels: [CarsElementViewModel]?
-	
+	var dataSource: CarsListDataSourceProtocol = CarsListDataSource()
+
+	var delegate: CarsListDelegate = CarsListDelegate()
+
+	private let coordinatingController: CoordinatingController? = nil
 	@IBOutlet var tableView: UITableView?
-	
+
+	/*init(coordinatingController: CoordinatingController) {
+		self.view.tapButtonHandler = { [weak self] in
+			self?.coordinatingController.push(module: .second, parameters: "", animated: true)
+		}
+	}*/
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.tableView?.delegate = delegate
+		self.tableView?.dataSource = dataSource
 		output?.viewDidLoadDone()
 	}
 	
@@ -56,40 +70,18 @@ extension CarsListViewController: ICarsListViewInput
 		let leftButton = UIBarButtonItem.init(title: "Filter", style: .plain, target: self, action: #selector(filerCarsByBodyStyle(_:)))
 		self.navigationItem.rightBarButtonItem = rightButton
 		self.navigationItem.leftBarButtonItem = leftButton
-		self.tableView?.delegate = self
-		self.tableView?.dataSource = self
+
+
 	}
 	
 	func setViewModels(viewModels: [CarsElementViewModel]) {
-		self.viewModels = viewModels
+		dataSource.setItems(viewModels)
 		self.tableView?.reloadData()
 	}
 }
 
-extension CarsListViewController: UITableViewDelegate
-{
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		output?.cellWithIndexSelected(row: indexPath.row)
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
-		cell.configureCell(withObject: viewModels?[indexPath.row])
-		return cell
-	}
-}
 
-extension CarsListViewController: UITableViewDataSource
+extension CarsListViewController: INavigationSeed
 {
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 100
-	}
-	
-	func numberOfSections(in tableView: UITableView) -> Int {
-		return 1
-	}
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return self.viewModels?.count ?? 0
-	}
+	var vc: UIViewController { self }
 }

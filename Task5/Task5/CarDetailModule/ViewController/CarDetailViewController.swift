@@ -87,6 +87,11 @@ extension CarDetailViewController: ICarDetailViewInput
 	}
 }
 
+extension CarDetailViewController: INavigationSeed
+{
+	var vc: UIViewController { self }
+}
+
 private extension CarDetailViewController
 {
 	func configureDetailView(withObject object: CarDetailViewModel) {
@@ -97,3 +102,5 @@ private extension CarDetailViewController
 		self.carYear.text = object.carYear
 	}
 }
+
+
