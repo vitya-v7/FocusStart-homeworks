@@ -30,6 +30,8 @@ final class FlowController
 		presenter.interactor = interactor
 		view.output = presenter
 		presenter.view = view
+		var router = RouterListToDetail()
+		presenter.router = router as! IRouterListToDetail
 		firstVC = view
 		self.coordinatingController.registerFirst(module: .first, seed: view)
 		self.modules.append(self.createCarDetailModule())

@@ -41,14 +41,15 @@ class CarsListViewController: UIViewController, UITextFieldDelegate, IViewForRou
 	@IBOutlet var tableView: UITableView?
 
 	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+	required init?(coder aDecoder: NSCoder) {
+	   super.init(coder: aDecoder)
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tableView?.delegate = delegate
 		self.tableView?.dataSource = dataSource
+		dataSource.view = self
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {

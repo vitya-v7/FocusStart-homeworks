@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		843D02842561EB7C001B3588 /* CarDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D02832561EB7C001B3588 /* CarDetailInteractor.swift */; };
 		843D02902561EBC4001B3588 /* CarsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D028F2561EBC4001B3588 /* CarsListInteractor.swift */; };
-		843D029C2561ED1A001B3588 /* RouterToDetailModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D029B2561ED1A001B3588 /* RouterToDetailModule.swift */; };
+		843D029C2561ED1A001B3588 /* RouterListToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D029B2561ED1A001B3588 /* RouterListToDetail.swift */; };
 		844553052562D49A001E139C /* CoordinatingController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844553042562D49A001E139C /* CoordinatingController.swift */; };
 		8445530A2562D4B2001E139C /* FlowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844553092562D4B2001E139C /* FlowController.swift */; };
 		844553252562EF0E001E139C /* CarsListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844553242562EF0E001E139C /* CarsListDataSource.swift */; };
@@ -54,7 +54,7 @@
 /* Begin PBXFileReference section */
 		843D02832561EB7C001B3588 /* CarDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailInteractor.swift; sourceTree = "<group>"; };
 		843D028F2561EBC4001B3588 /* CarsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsListInteractor.swift; sourceTree = "<group>"; };
-		843D029B2561ED1A001B3588 /* RouterToDetailModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterToDetailModule.swift; sourceTree = "<group>"; };
+		843D029B2561ED1A001B3588 /* RouterListToDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterListToDetail.swift; sourceTree = "<group>"; };
 		844553042562D49A001E139C /* CoordinatingController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatingController.swift; sourceTree = "<group>"; };
 		844553092562D4B2001E139C /* FlowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowController.swift; sourceTree = "<group>"; };
 		844553242562EF0E001E139C /* CarsListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsListDataSource.swift; sourceTree = "<group>"; };
@@ -129,7 +129,7 @@
 		843D02972561ECCA001B3588 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				843D029B2561ED1A001B3588 /* RouterToDetailModule.swift */,
+				843D029B2561ED1A001B3588 /* RouterListToDetail.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -440,7 +440,7 @@
 			files = (
 				844812EB25133CEE003868DF /* CarsListViewController.swift in Sources */,
 				84BED31425164FEF00F4F785 /* PickerViewController.swift in Sources */,
-				843D029C2561ED1A001B3588 /* RouterToDetailModule.swift in Sources */,
+				843D029C2561ED1A001B3588 /* RouterListToDetail.swift in Sources */,
 				84E9107F251741B10026555A /* CarDetailViewModel.swift in Sources */,
 				84E9107B251741800026555A /* CarDetailPresenter.swift in Sources */,
 				844812E925133CEE003868DF /* CarsElementViewModel.swift in Sources */,

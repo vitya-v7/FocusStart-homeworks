@@ -12,8 +12,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	
 	var window: UIWindow?
 
-	static var coordinatingController: CoordinatingController?
-	static var flowController: FlowController?
+	static var coordinatingController = CoordinatingController()
+	static var flowController = FlowController(coordinatingController: SceneDelegate.coordinatingController)
 
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -23,10 +23,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 			UserDefaults.standard.set(true, forKey: "firstApplicationStart")
 		}
 
-		SceneDelegate.coordinatingController = CoordinatingController()
-		SceneDelegate.flowController = FlowController(coordinatingController: SceneDelegate.coordinatingController!)
+
 		let nc: UINavigationController = {
-			UINavigationController(rootViewController: SceneDelegate.flowController!.firstVC!.vc)
+			UINavigationController(rootViewController: SceneDelegate.flowController.firstVC!.vc)
 		}()
 
 

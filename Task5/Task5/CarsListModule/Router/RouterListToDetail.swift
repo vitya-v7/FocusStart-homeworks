@@ -1,5 +1,5 @@
 //
-//  RouterToDetailModule.swift
+//  RouterListToDetail.swift
 //  Task5
 //
 //  Created by Admin on 16.11.2020.
@@ -13,9 +13,10 @@ protocol IRouterListToDetail: AnyObject
 	func nextModule()
 }
 
-final class RouterListToDetail
+final class RouterListToDetail: IRouterListToDetail
 {
 	func nextModule() {
-		SceneDelegate.coordinatingController!.push(module: .second, parameters: "", animated: true)
+		SceneDelegate.coordinatingController.push(module: .second, parameters: "", animated: true)
 	}
 }
+

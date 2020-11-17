@@ -12,7 +12,8 @@ import UIKit
 
 class CarsElementCell: UITableViewCell {
 	var viewModel: IUI?
-	let delegate: IViewForRoutingProtocol? = nil
+	var delegate: IViewForRoutingProtocol?
+
 
 	@IBOutlet weak var carModel: UILabel!
 	@IBOutlet weak var carYear: UILabel!
@@ -28,9 +29,7 @@ class CarsElementCell: UITableViewCell {
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 100
 	}
-
-
-
+	
 	override func prepareForReuse() {
 		self.carModel.text = nil
 		self.carYear.text = nil

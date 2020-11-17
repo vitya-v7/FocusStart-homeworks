@@ -10,11 +10,12 @@ import UIKit
 protocol CarsListDataSourceProtocol: UITableViewDataSource {
 	func setItems(_ CellModels: [CarsElementViewModel])
 	func getItem(for indexPath: IndexPath) -> CarsElementViewModel
+	var view: IViewForRoutingProtocol? { get set }
 }
 
 class CarsListDataSource: NSObject, CarsListDataSourceProtocol {
 	var cellModels = [CarsElementViewModel]()
-	
+	var view: IViewForRoutingProtocol?
 	func setItems(_ CellModels: [CarsElementViewModel]) {
 		cellModels = CellModels
 	}
@@ -25,6 +26,7 @@ class CarsListDataSource: NSObject, CarsListDataSourceProtocol {
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
+		cell.delegate = view
 		cell.configureCell(withObject: cellModels[indexPath.row])
 
 		return cell
