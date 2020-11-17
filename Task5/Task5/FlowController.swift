@@ -49,8 +49,7 @@ final class FlowController
 		presenter.interactor = interactor
 		view.output = presenter
 		presenter.view = view
-		self.coordinatingController.registerFirst(module: .second, seed: view)
-
+		self.coordinatingController.register(module: .second, seed: view)
 		return view
 	}
 }

@@ -37,17 +37,10 @@ class CarsListViewController: UIViewController, UITextFieldDelegate, IViewForRou
 	var dataSource: CarsListDataSourceProtocol = CarsListDataSource()
 
 	var delegate: CarsListDelegate = CarsListDelegate()
-	private var coordinatingController: CoordinatingController
-
 
 	@IBOutlet var tableView: UITableView?
 
 	
-	init(coordinatingController: CoordinatingController) {
-		self.coordinatingController = coordinatingController
-		super.init(nibName: nil, bundle: nil)
-	}
-
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
