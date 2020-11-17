@@ -23,7 +23,7 @@ extension INavigationSeed
 		}
 	}
 }
-enum NavigationModule
+public enum NavigationModule
 {
 	case first
 	case second
@@ -73,10 +73,7 @@ extension CoordinatingController: ICoordinatingController
 			assertionFailure("navigationController is nil, push unavailable")
 			return
 		}
-		nextModule.set(module: self.modules[module], parameters: parameters)
-
-
-
+		nextModule.set(module: [module: modules[module]] , parameters: parameters)
 		nc.pushViewController(nextModule.vc, animated: animated)
 		self.stack.append(nextModule)
 	}
