@@ -10,13 +10,13 @@ import Foundation
 
 protocol IRouterListToDetail: AnyObject
 {
-	func nextModule()
+	func nextModule(carKey: String)
 }
 
 final class RouterListToDetail: IRouterListToDetail
 {
-	func nextModule() {
-		SceneDelegate.coordinatingController.push(module: .second, parameters: "", animated: true)
+	func nextModule(carKey: String) {
+		SceneDelegate.coordinatingController.push(module: .second, parameters: carKey, animated: true)
 	}
 }
 

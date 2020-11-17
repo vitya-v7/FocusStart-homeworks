@@ -20,12 +20,14 @@ protocol ICarDetailViewOutput {
 	func viewDidLoadDone()
 	func saveCarInDB()
 	func reloadData()
+	func setKey(key: String)
 }
 
 class CarDetailViewController: UIViewController {
 
 	var output: ICarDetailViewOutput?
 	var viewModel: CarDetailViewModel?
+	var key: String?
 	enum textFieldsWithTags: Int {
 		case carModel = 1
 		case carBodyStyle
@@ -43,6 +45,7 @@ class CarDetailViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		output?.viewDidLoadDone()
+		output?.setKey(key: key ?? "")
 	}
 
 	@objc func saveCar(_ sender: Any) {

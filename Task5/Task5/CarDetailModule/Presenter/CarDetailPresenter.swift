@@ -22,6 +22,10 @@ class CarDetailPresenter {
 		let viewModel = CarDetailViewModel(withElementModel: car)
 		return viewModel
 	}
+
+	func setKey(key: String) {
+		self.key = key
+	}
 }
 
 extension CarDetailPresenter: ICarDetailViewOutput

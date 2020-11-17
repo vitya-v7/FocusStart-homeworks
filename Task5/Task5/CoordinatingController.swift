@@ -12,13 +12,15 @@ import UIKit
 public protocol INavigationSeed: AnyObject
 {
 	var vc: UIViewController { get }
-
-	func set<Parameters>(parameters: Parameters)
+	func set<Parameters>(module:[NavigationModule: INavigationSeed], parameters: Parameters)
 }
 extension INavigationSeed
 {
-	func set<Parameters>(parameters: Parameters) {
-		// do nothing
+	func set<Parameters>(module:[NavigationModule: INavigationSeed], parameters: Parameters) {
+		if let secondModule = module[.second] {
+			let detailVC = secondModule.vc as! CarDetailViewController
+			detailVC.key = parameters as? String
+		}
 	}
 }
 enum NavigationModule
@@ -60,6 +62,7 @@ extension CoordinatingController: ICoordinatingController
 
 	}
 
+
 	func push<Parameters>(module: NavigationModule, parameters: Parameters, animated: Bool) {
 		guard let nextModule = self.modules[module] else {
 			assertionFailure("module didn't register")
@@ -70,7 +73,10 @@ extension CoordinatingController: ICoordinatingController
 			assertionFailure("navigationController is nil, push unavailable")
 			return
 		}
-		nextModule.set(parameters: parameters)
+		nextModule.set(module: self.modules[module], parameters: parameters)
+
+
+
 		nc.pushViewController(nextModule.vc, animated: animated)
 		self.stack.append(nextModule)
 	}

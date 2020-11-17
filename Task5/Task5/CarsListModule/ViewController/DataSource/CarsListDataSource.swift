@@ -26,6 +26,10 @@ class CarsListDataSource: NSObject, CarsListDataSourceProtocol {
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
+		if cell.handlerChain == nil {
+			cell.handlerChain = handlerChain()
+		}
+		cell.handlerChain!.index = indexPath.row
 		cell.delegate = view
 		cell.configureCell(withObject: cellModels[indexPath.row])
 

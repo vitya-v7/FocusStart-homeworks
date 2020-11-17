@@ -9,13 +9,10 @@
 import UIKit
 
 
-protocol IUI: AnyObject
-{
-	var tapButtonHandler: (() -> Void)? { get set }
-}
 
-class CarsElementViewModel: IUI {
-	var tapButtonHandler: (() -> Void)?
+
+struct CarsElementViewModel {
+	
 	var carModel: String?
 	var carYear: String?
 	var carCountry: String?

@@ -30,9 +30,8 @@ final class FlowController
 		presenter.interactor = interactor
 		view.output = presenter
 		presenter.view = view
-		var router = RouterListToDetail()
-		presenter.router = router as! IRouterListToDetail
-		firstVC = view
+		let router = RouterListToDetail()
+		presenter.router = router
 		self.coordinatingController.registerFirst(module: .first, seed: view)
 		self.modules.append(self.createCarDetailModule())
 		return view
@@ -40,8 +39,6 @@ final class FlowController
 	}
 
 	func createCarDetailModule() -> INavigationSeed {
-
-
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let view = storyboard.instantiateViewController(identifier: "CarDetailViewIdentifier") as! CarDetailViewController
 		let carService = CarService.init()

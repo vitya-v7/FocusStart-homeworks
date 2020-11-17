@@ -25,7 +25,7 @@ class CarsListPresenter {
 		view?.setInitialState()
 		self.ui = ui
 		self.ui?.tapButtonHandler = { [weak self] in
-			self?.router?.nextModule()
+			self?.router?.nextModule(carKey: (self?.carModels![ui.index ?? 0].carKey)!)
 		}
 	}
 	
