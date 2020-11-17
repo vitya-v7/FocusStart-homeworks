@@ -9,20 +9,21 @@
 import Foundation
 import UIKit
 
-public protocol INavigationSeed: AnyObject
+
+protocol INavigationSeed: AnyObject
 {
 	var vc: UIViewController { get }
-	func set<Parameters>(module:[NavigationModule: INavigationSeed], parameters: Parameters)
+
+	func set<Parameters>(parameters: Parameters)
 }
+
 extension INavigationSeed
 {
-	func set<Parameters>(module:[NavigationModule: INavigationSeed], parameters: Parameters) {
-		if let secondModule = module[.second] {
-			let detailVC = secondModule.vc as! CarDetailViewController
-			detailVC.key = parameters as? String
-		}
+	func set<Parameters>(parameters: Parameters) {
+		// do nothing
 	}
 }
+
 public enum NavigationModule
 {
 	case first
@@ -35,8 +36,10 @@ protocol ICoordinatingController: AnyObject
 	func push<Parameters>(module: NavigationModule, parameters: Parameters, animated: Bool)
 }
 
+
 final class CoordinatingController
 {
+
 	private var modules = [NavigationModule: INavigationSeed]()
 	private var stack = [INavigationSeed]()
 
@@ -48,6 +51,8 @@ final class CoordinatingController
 		self.modules[module] = seed
 		self.stack.append(seed)
 	}
+
+
 }
 
 extension CoordinatingController: ICoordinatingController
@@ -64,6 +69,7 @@ extension CoordinatingController: ICoordinatingController
 
 
 	func push<Parameters>(module: NavigationModule, parameters: Parameters, animated: Bool) {
+
 		guard let nextModule = self.modules[module] else {
 			assertionFailure("module didn't register")
 			return
@@ -73,8 +79,10 @@ extension CoordinatingController: ICoordinatingController
 			assertionFailure("navigationController is nil, push unavailable")
 			return
 		}
-		nextModule.set(module: [module: modules[module]] , parameters: parameters)
+
+
 		nc.pushViewController(nextModule.vc, animated: animated)
 		self.stack.append(nextModule)
+		nextModule.set(parameters: parameters)
 	}
 }

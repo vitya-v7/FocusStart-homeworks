@@ -14,7 +14,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 	static var coordinatingController = CoordinatingController()
 	static var flowController = FlowController(coordinatingController: SceneDelegate.coordinatingController)
-
+	let nc: UINavigationController = {
+		UINavigationController(rootViewController: SceneDelegate.flowController.firstVC!.vc)
+	}()
 
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -24,9 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		}
 
 
-		let nc: UINavigationController = {
-			UINavigationController(rootViewController: SceneDelegate.flowController.firstVC!.vc)
-		}()
 
 
 		self.window = UIWindow(windowScene: windowScene)

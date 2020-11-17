@@ -15,7 +15,7 @@ final class FlowController
 	private var modules = [INavigationSeed]()
 	init(coordinatingController: CoordinatingController) {
 		self.coordinatingController = coordinatingController
-		createCarsListModule()
+		firstVC = createCarsListModule()
 		createCarDetailModule()
 	}
 	func createCarsListModule() -> INavigationSeed {

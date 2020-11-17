@@ -44,8 +44,8 @@ class CarDetailViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		output?.viewDidLoadDone()
-		output?.setKey(key: key ?? "")
 	}
 
 	@objc func saveCar(_ sender: Any) {
@@ -93,6 +93,12 @@ extension CarDetailViewController: ICarDetailViewInput
 extension CarDetailViewController: INavigationSeed
 {
 	var vc: UIViewController { self }
+
+	func set<Parameters>(parameters: Parameters) {
+		output?.setKey(key: parameters as! String)
+		output?.viewDidLoadDone()
+	}
+	
 }
 
 private extension CarDetailViewController
