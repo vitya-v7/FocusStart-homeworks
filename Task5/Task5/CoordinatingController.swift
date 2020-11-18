@@ -33,7 +33,7 @@ public enum NavigationModule
 protocol ICoordinatingController: AnyObject
 {
 	func back(animated: Bool)
-	func push<Parameters>(module: NavigationModule, parameters: Parameters, animated: Bool)
+	func push<Parameters>(module: NavigationModule, parameters: Parameters?, animated: Bool)
 }
 
 
@@ -67,7 +67,7 @@ extension CoordinatingController: ICoordinatingController
 
 	}
 
-	func push<Parameters>(module: NavigationModule, parameters: Parameters, animated: Bool) {
+	func push<Parameters>(module: NavigationModule, parameters: Parameters?, animated: Bool) {
 
 		guard let nextModule = self.modules[module] else {
 			assertionFailure("module didn't register")
@@ -80,6 +80,8 @@ extension CoordinatingController: ICoordinatingController
 		}
 		nc.pushViewController(nextModule.vc, animated: animated)
 		self.stack.append(nextModule)
-		nextModule.set(parameters: parameters)
+		if parameters != nil {
+			nextModule.set(parameters: parameters)
+		}
 	}
 }

@@ -27,6 +27,10 @@ class CarsListPresenter {
 		router?.nextModule(carKey: carModels![indexPath.row].carKey!)
 	}
 
+	func plusButtonClicked() {
+		router?.nextModule(carKey: nil)
+	}
+
 	func viewWillAppearDone() {
 		self.reloadData()
 		if filterBodyStyle != nil {

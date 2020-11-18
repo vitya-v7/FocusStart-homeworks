@@ -20,6 +20,7 @@ protocol ICarsListViewOutput {
 	func callPopover(fromView view: UIView, option: String?)
 	func filterCars(bodyStyle: CarService.CarBodyStyle?)
 	func routeToDetailModule(indexPath: IndexPath)
+	func plusButtonClicked()
 }
 
 protocol CarsListViewProtocolForDelegate {
@@ -47,6 +48,7 @@ class CarsListViewController: UIViewController, UITextFieldDelegate{
 		self.tableView?.delegate = delegate
 		self.tableView?.dataSource = dataSource
 		delegate.view = self
+		output?.viewDidLoadDone()
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -55,7 +57,7 @@ class CarsListViewController: UIViewController, UITextFieldDelegate{
 	}
 	
 	@objc func insertNewObject(_ sender: Any) {
-		//output?.plusButtonClicked()
+		output?.plusButtonClicked()
 	}
 	
 	@objc func filerCarsByBodyStyle(_ sender: Any) {
