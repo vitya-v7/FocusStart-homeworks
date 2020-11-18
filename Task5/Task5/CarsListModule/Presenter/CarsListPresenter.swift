@@ -11,24 +11,22 @@ protocol ICarListPresenterInput {
 	func getCars() -> [CarModel]?
 	func deleteCar(key: String)
 }
-protocol IPresenterForRoutingProtocol {
-	func callNextModule()
-}
+
 class CarsListPresenter {
 	var interactor: ICarListPresenterInput?
 	weak var view: ICarsListViewInput?
 	var router: IRouterListToDetail?
 	var carModels: [CarModel]?
 	var filterBodyStyle: CarService.CarBodyStyle?
-	weak var ui: IUI?
-	func viewDidLoadDone(ui: IUI) {
+
+	func viewDidLoadDone() {
 		view?.setInitialState()
-		self.ui = ui
-		self.ui?.handlerChain = { [weak self] in
-			self?.router?.nextModule(carKey: (self?.carModels![ui.indexRow ?? 0].carKey)!)
-		}
 	}
-	
+
+	func routeToDetailModule(indexPath: IndexPath) {
+		router?.nextModule(carKey: carModels![indexPath.row].carKey!)
+	}
+
 	func viewWillAppearDone() {
 		self.reloadData()
 		if filterBodyStyle != nil {
@@ -89,16 +87,8 @@ extension CarsListPresenter: ICarsListViewOutput
 		popover?.sourceRect = (view.bounds)
 	}
 	
-	func cellWithIndexSelected(row: Int) {
-		guard let carModelKey = carModels?[row].carKey else {
-			return
-		}
-		self.view?.navigationController?.pushViewController(ModulesFactory.createCarDetailModule(key: carModelKey), animated: true)
-	}
+
 	
-	func plusButtonClicked() {
-		self.view?.navigationController?.pushViewController(ModulesFactory.createCarDetailModule(key: nil), animated: true)
-	}
 	
 	func reloadData() {
 		carModels = interactor?.getCars()

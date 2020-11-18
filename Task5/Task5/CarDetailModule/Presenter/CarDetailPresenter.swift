@@ -70,7 +70,7 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	}
 	
 	func viewDidLoadDone() {
-		view?.setInitialState()
+		
 		if let key = key {
 			carModel = interactor?.getCar(key: key)
 		}

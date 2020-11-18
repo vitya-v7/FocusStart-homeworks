@@ -11,25 +11,22 @@ import UIKit
 protocol ICarsListViewInput : UIViewController {
 	func setInitialState()
 	func setViewModels(viewModels: [CarsElementViewModel])
-
 }
 
 protocol ICarsListViewOutput {
-	func viewDidLoadDone(ui: IUI)
-	func cellWithIndexSelected(row: Int)
+	func viewDidLoadDone()
 	func deleteButtonPressedWithIndexRow(row: Int)
-	func plusButtonClicked()
 	func viewWillAppearDone()
 	func callPopover(fromView view: UIView, option: String?)
 	func filterCars(bodyStyle: CarService.CarBodyStyle?)
-	
+	func routeToDetailModule(indexPath: IndexPath)
 }
 
-protocol IViewForRoutingProtocol {
-	func callNextModule(ui: IUI)
+protocol CarsListViewProtocolForDelegate {
+	func callNextModule(indexPath: IndexPath)
 }
 
-class CarsListViewController: UIViewController, UITextFieldDelegate, IViewForRoutingProtocol{
+class CarsListViewController: UIViewController, UITextFieldDelegate{
 	var maxCarNumber = 3
 
 	var output: ICarsListViewOutput?
@@ -49,7 +46,7 @@ class CarsListViewController: UIViewController, UITextFieldDelegate, IViewForRou
 		super.viewDidLoad()
 		self.tableView?.delegate = delegate
 		self.tableView?.dataSource = dataSource
-		dataSource.view = self
+		delegate.view = self
 	}
 	
 	override func viewWillAppear(_ animated: Bool) {
@@ -58,15 +55,19 @@ class CarsListViewController: UIViewController, UITextFieldDelegate, IViewForRou
 	}
 	
 	@objc func insertNewObject(_ sender: Any) {
-		output?.plusButtonClicked()
+		//output?.plusButtonClicked()
 	}
 	
 	@objc func filerCarsByBodyStyle(_ sender: Any) {
 		output?.callPopover(fromView: self.view, option: nil)
 	}
 
-	func callNextModule(ui: IUI) {
-		output?.viewDidLoadDone(ui: ui)
+
+}
+
+extension CarsListViewController: CarsListViewProtocolForDelegate {
+	func callNextModule(indexPath: IndexPath) {
+		output?.routeToDetailModule(indexPath: indexPath)
 	}
 }
 

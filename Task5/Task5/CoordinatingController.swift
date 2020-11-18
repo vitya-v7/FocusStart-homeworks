@@ -67,7 +67,6 @@ extension CoordinatingController: ICoordinatingController
 
 	}
 
-
 	func push<Parameters>(module: NavigationModule, parameters: Parameters, animated: Bool) {
 
 		guard let nextModule = self.modules[module] else {

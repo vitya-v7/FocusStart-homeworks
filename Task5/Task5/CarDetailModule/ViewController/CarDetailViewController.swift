@@ -44,7 +44,7 @@ class CarDetailViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		setInitialState()
 		output?.viewDidLoadDone()
 	}
 
@@ -59,6 +59,11 @@ class CarDetailViewController: UIViewController {
 		}
 		output?.reloadData()
 		output?.saveCarInDB()
+	}
+	override func viewWillDisappear(_ animated: Bool) {
+		if (self.isMovingFromParent) {
+			SceneDelegate.coordinatingController.back(animated: true)
+		  }
 	}
 }
 
@@ -96,7 +101,7 @@ extension CarDetailViewController: INavigationSeed
 
 	func set<Parameters>(parameters: Parameters) {
 		output?.setKey(key: parameters as! String)
-		//output?.viewDidLoadDone()
+		output?.viewDidLoadDone()
 	}
 	
 }

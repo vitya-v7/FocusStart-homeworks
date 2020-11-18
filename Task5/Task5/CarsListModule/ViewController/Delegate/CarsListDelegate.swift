@@ -11,10 +11,8 @@ import UIKit
 
 
 class CarsListDelegate: NSObject, UITableViewDelegate {
+	var view: CarsListViewProtocolForDelegate?
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-		
-		(tableView.cellForRow(at: indexPath) as! CarsElementCell).handlerChain!()
-		tableView.deselectRow(at: indexPath, animated: true)
+		view?.callNextModule(indexPath: indexPath)
 	}
 }

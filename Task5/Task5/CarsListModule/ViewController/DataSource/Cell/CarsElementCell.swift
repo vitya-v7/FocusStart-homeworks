@@ -9,17 +9,8 @@
 import UIKit
 
 
-protocol IUI: AnyObject
-{
-	var handlerChain: (() -> Void)? { get set }
-	var indexRow: Int? { get set }
-}
+class CarsElementCell: UITableViewCell {
 
-
-class CarsElementCell: UITableViewCell, IUI {
-	var handlerChain: (() -> Void)?
-
-	var indexRow: Int?
 	var viewModel: CarsElementViewModel?
 
 	@IBOutlet weak var carModel: UILabel!
