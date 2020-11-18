@@ -8,7 +8,7 @@
 
 class CarsListInteractor: ICarListPresenterInput {
 	weak var presenter: CarsListPresenter?
-	var carService: ICarsListServiceInterface?
+	var carService: ICarsListService?
 	func getCars() -> [CarModel]? {
 		carService?.getCars()
 	}

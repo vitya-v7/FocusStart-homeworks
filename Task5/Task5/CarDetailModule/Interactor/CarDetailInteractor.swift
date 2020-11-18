@@ -9,7 +9,7 @@
 
 
 class CarDetailInteractor: ICarDetailPresenterInput {
-	var carService: IDetailsCarServiceInterface?
+	var carService: IDetailsCarService?
 	func getCar(key: String) -> CarModel? {
 		return carService?.getCar(key: key)
 	}

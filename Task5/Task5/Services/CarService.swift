@@ -8,12 +8,12 @@
 
 import UIKit
 
-protocol ICarsListServiceInterface {
+protocol ICarsListService {
 	func getCars() -> [CarModel]?
 	func deleteCar(key: String)
 }
 
-protocol IDetailsCarServiceInterface {
+protocol IDetailsCarService {
 	func getCar(key: String) -> CarModel?
 	func addCar(car: CarModel)
 	func updateCar(car: CarModel)
@@ -43,7 +43,7 @@ class CarService {
 	}
 }
 
-extension CarService: ICarsListServiceInterface
+extension CarService: ICarsListService
 {
 	func getCars() -> [CarModel]? {
 		let allValues: Data? = UserDefaults.standard.data(forKey: "cars")
@@ -71,7 +71,7 @@ extension CarService: ICarsListServiceInterface
 	}
 }
 
-extension CarService: IDetailsCarServiceInterface
+extension CarService: IDetailsCarService
 {
 	func updateCar(car: CarModel) {
 		var cars = getCars() ?? [CarModel]()
