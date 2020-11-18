@@ -109,11 +109,17 @@ extension CarDetailViewController: INavigationSeed
 private extension CarDetailViewController
 {
 	func configureDetailView(withObject object: CarDetailViewModel) {
+		if let _ = self.carModel,
+		   let _ = self.carCountry,
+		   let _ = self.carBodyStyle,
+		   let _ = self.carNumberLabel,
+		   let _ = self.carYear {
 		self.carModel.text = object.carModel
 		self.carCountry.text = object.carCountry
 		self.carBodyStyle.text = object.carBodyStyle
 		self.carNumberLabel.text = object.carNumber
 		self.carYear.text = object.carYear
+		}
 	}
 }
 

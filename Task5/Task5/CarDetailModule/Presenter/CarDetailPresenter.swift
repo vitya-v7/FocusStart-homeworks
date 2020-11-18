@@ -85,7 +85,7 @@ extension CarDetailPresenter: ICarDetailViewOutput
 			interactor?.addCar(car: carModel)
 		}
 		if let carModel = carModel, carModel.carKey != nil {
-			interactor?.addCar(car: carModel)
+			interactor?.updateCar(car: carModel)
 		}
 		self.view?.navigationController?.popViewController(animated: true)
 	}
