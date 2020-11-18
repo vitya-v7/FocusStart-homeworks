@@ -24,8 +24,8 @@ class CarsListPresenter {
 	func viewDidLoadDone(ui: IUI) {
 		view?.setInitialState()
 		self.ui = ui
-		self.ui?.tapButtonHandler = { [weak self] in
-			self?.router?.nextModule(carKey: (self?.carModels![ui.index ?? 0].carKey)!)
+		self.ui?.handlerChain = { [weak self] in
+			self?.router?.nextModule(carKey: (self?.carModels![ui.indexRow ?? 0].carKey)!)
 		}
 	}
 	

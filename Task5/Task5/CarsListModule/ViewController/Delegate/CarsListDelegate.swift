@@ -12,7 +12,9 @@ import UIKit
 
 class CarsListDelegate: NSObject, UITableViewDelegate {
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-		(tableView.cellForRow(at: indexPath) as! CarsElementCell).handlerChain?.tapButtonHandler!()
+
+		
+		(tableView.cellForRow(at: indexPath) as! CarsElementCell).handlerChain!()
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 }

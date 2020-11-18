@@ -13,26 +13,29 @@ protocol CarsListDataSourceProtocol: UITableViewDataSource {
 	var view: IViewForRoutingProtocol? { get set }
 }
 
+
+
 class CarsListDataSource: NSObject, CarsListDataSourceProtocol {
+
 	var cellModels = [CarsElementViewModel]()
 	var view: IViewForRoutingProtocol?
+	var handlerChain: [UIView]?
 	func setItems(_ CellModels: [CarsElementViewModel]) {
 		cellModels = CellModels
+		handlerChain = [UIView].init(repeating: UIView(),  count: cellModels.count)
 	}
 
 	func getItem(for indexPath: IndexPath) -> CarsElementViewModel {
 		return cellModels[indexPath.row]
 	}
-
+	var cells = [CarsElementCell]()
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
-		if cell.handlerChain == nil {
-			cell.handlerChain = handlerChain()
-		}
-		cell.handlerChain!.index = indexPath.row
-		cell.delegate = view
-		cell.configureCell(withObject: cellModels[indexPath.row])
+		cell.indexRow = indexPath.row
+		view?.callNextModule(ui: cell)
 
+		cell.configureCell(withObject: cellModels[indexPath.row])
+		cells.append(cell)
 		return cell
 	}
 

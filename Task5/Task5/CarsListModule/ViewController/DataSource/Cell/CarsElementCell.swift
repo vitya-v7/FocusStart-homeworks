@@ -11,17 +11,16 @@ import UIKit
 
 protocol IUI: AnyObject
 {
-	var tapButtonHandler: (() -> Void)? { get set }
-	var index: Int? { get set }
+	var handlerChain: (() -> Void)? { get set }
+	var indexRow: Int? { get set }
 }
-class handlerChain: IUI {
-	var index: Int?
-	var tapButtonHandler: (() -> Void)?
-}
-class CarsElementCell: UITableViewCell {
+
+
+class CarsElementCell: UITableViewCell, IUI {
+	var handlerChain: (() -> Void)?
+
+	var indexRow: Int?
 	var viewModel: CarsElementViewModel?
-	var delegate: IViewForRoutingProtocol?
-	var handlerChain: IUI?
 
 	@IBOutlet weak var carModel: UILabel!
 	@IBOutlet weak var carYear: UILabel!
@@ -48,7 +47,6 @@ class CarsElementCell: UITableViewCell {
 
 	func configureCell(withObject object: CarsElementViewModel?) {
 		viewModel = object
-		delegate?.callNextModule(ui: handlerChain!)
 
 		guard let object = object, let carModel = object.carModel, let carBodyStyle = object.carBodyStyle, let carCountry = object.carCountry else {
 			return
