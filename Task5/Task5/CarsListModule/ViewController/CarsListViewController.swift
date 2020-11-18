@@ -19,12 +19,12 @@ protocol ICarsListViewOutput {
 	func viewWillAppearDone()
 	func callPopover(fromView view: UIView, option: String?)
 	func filterCars(bodyStyle: CarService.CarBodyStyle?)
-	func routeToDetailModule(indexPath: IndexPath)
+	func cellSelectedAt(indexPath: IndexPath)
 	func plusButtonClicked()
 }
 
 protocol CarsListViewProtocolForDelegate {
-	func callNextModule(indexPath: IndexPath)
+	func cellSelectedAt(indexPath: IndexPath)
 }
 
 class CarsListViewController: UIViewController, UITextFieldDelegate{
@@ -68,8 +68,8 @@ class CarsListViewController: UIViewController, UITextFieldDelegate{
 }
 
 extension CarsListViewController: CarsListViewProtocolForDelegate {
-	func callNextModule(indexPath: IndexPath) {
-		output?.routeToDetailModule(indexPath: indexPath)
+	func cellSelectedAt(indexPath: IndexPath) {
+		output?.cellSelectedAt(indexPath: indexPath)
 	}
 }
 

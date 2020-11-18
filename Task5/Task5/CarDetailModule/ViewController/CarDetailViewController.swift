@@ -28,6 +28,8 @@ class CarDetailViewController: UIViewController {
 	var output: ICarDetailViewOutput?
 	var viewModel: CarDetailViewModel?
 	var key: String?
+	var year = ""
+	var number = ""
 	enum textFieldsWithTags: Int {
 		case carModel = 1
 		case carBodyStyle
@@ -46,6 +48,9 @@ class CarDetailViewController: UIViewController {
 		super.viewDidLoad()
 		setInitialState()
 		output?.viewDidLoadDone()
+		year = viewModel?.carYear ?? ""
+		number = viewModel?.carNumber ?? ""
+
 	}
 
 	@objc func saveCar(_ sender: Any) {
@@ -65,7 +70,13 @@ class CarDetailViewController: UIViewController {
 			SceneDelegate.coordinatingController.back(animated: true)
 		  }
 	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		carYear.text = year
+		carNumberLabel.text = number
+	}
 }
+
 
 extension CarDetailViewController: UITextFieldDelegate {
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
@@ -73,8 +84,19 @@ extension CarDetailViewController: UITextFieldDelegate {
 			output?.callPopover(fromView: textField, option: textField.text ?? "")
 			return false
 		}
+
 		return true
 	}
+	func textFieldDidEndEditing(_ textField: UITextField) {
+		if textField.tag == textFieldsWithTags.carYear.rawValue {
+			year = textField.text ?? ""
+		}
+		if textField.tag == textFieldsWithTags.carNumber.rawValue {
+			number = textField.text ?? ""
+		}
+	}
+
+	
 }
 
 extension CarDetailViewController: ICarDetailViewInput
@@ -90,7 +112,10 @@ extension CarDetailViewController: ICarDetailViewInput
 	}
 
 	func setViewModel(viewModel: CarDetailViewModel) {
+
 		self.viewModel = viewModel
+		year = self.viewModel?.carYear ?? ""
+		number = self.viewModel?.carNumber ?? ""
 		self.configureDetailView(withObject: viewModel)
 	}
 }

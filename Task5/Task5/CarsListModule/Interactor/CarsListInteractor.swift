@@ -6,9 +6,10 @@
 //  Copyright © 2020 Admin. All rights reserved.
 //
 
-class CarsListInteractor: ICarListPresenterInput {
+class CarsListInteractor: ICarListInteractorInput {
 	weak var presenter: CarsListPresenter?
 	var carService: ICarsListService?
+	
 	func getCars() -> [CarModel]? {
 		carService?.getCars()
 	}

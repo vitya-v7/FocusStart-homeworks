@@ -15,6 +15,7 @@ enum PickerType: String {
 	case carNumber
 }
 
+
 class PickerViewController: UIViewController {
 
 	@IBOutlet weak var picker: UIPickerView!

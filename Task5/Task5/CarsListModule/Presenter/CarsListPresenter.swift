@@ -7,13 +7,13 @@
 //
 
 import UIKit
-protocol ICarListPresenterInput {
+protocol ICarListInteractorInput {
 	func getCars() -> [CarModel]?
 	func deleteCar(key: String)
 }
 
 class CarsListPresenter {
-	var interactor: ICarListPresenterInput?
+	var interactor: ICarListInteractorInput?
 	weak var view: ICarsListViewInput?
 	var router: IRouterListToDetail?
 	var carModels: [CarModel]?
@@ -41,6 +41,10 @@ class CarsListPresenter {
 
 extension CarsListPresenter: ICarsListViewOutput
 {
+	func cellSelectedAt(indexPath: IndexPath) {
+		router?.nextModule(carKey: carModels![indexPath.row].carKey )
+	}
+
 
 	func convertCarModelToViewModel(car: CarModel) -> CarsElementViewModel {
 		let viewModel = CarsElementViewModel(withElementModel: car)
