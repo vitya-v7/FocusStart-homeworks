@@ -96,7 +96,7 @@ extension CarDetailViewController: INavigationSeed
 
 	func set<Parameters>(parameters: Parameters) {
 		output?.setKey(key: parameters as! String)
-		output?.viewDidLoadDone()
+		//output?.viewDidLoadDone()
 	}
 	
 }

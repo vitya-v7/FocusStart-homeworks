@@ -33,7 +33,7 @@ final class FlowController
 		let router = RouterListToDetail()
 		presenter.router = router
 		self.coordinatingController.registerFirst(module: .first, seed: view)
-		self.modules.append(self.createCarDetailModule())
+		self.modules.append(view)
 		return view
 
 	}

@@ -79,8 +79,6 @@ extension CoordinatingController: ICoordinatingController
 			assertionFailure("navigationController is nil, push unavailable")
 			return
 		}
-
-
 		nc.pushViewController(nextModule.vc, animated: animated)
 		self.stack.append(nextModule)
 		nextModule.set(parameters: parameters)
