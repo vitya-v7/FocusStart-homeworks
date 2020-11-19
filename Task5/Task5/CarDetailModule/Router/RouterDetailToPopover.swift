@@ -26,7 +26,5 @@ final class RouterDetailToPopover: IRouterDetailToPopover
 		SceneDelegate.coordinatingController.push(module: .popoverModule, parameters: parameters, animated: true)
 	}
 
-
-	
 }
 

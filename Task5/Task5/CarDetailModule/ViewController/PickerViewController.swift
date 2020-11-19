@@ -50,12 +50,15 @@ class PickerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		picker.delegate = self
+		button?.addTarget(self, action: #selector(saveData(_:)), for: .touchUpInside)
+		picker?.selectRow(0, inComponent: 0, animated: true)
+	}
+
+	func updatePicker() {
 		options = selectedOption()
 		if outputList != nil {
 			options?.insert("All bodystyles", at: 0)
 		}
-		button?.addTarget(self, action: #selector(saveData(_:)), for: .touchUpInside)
-		picker?.selectRow(0, inComponent: 0, animated: true)
 		guard let options = options  else {
 			return
 		}
@@ -75,6 +78,7 @@ class PickerViewController: UIViewController {
 				picker?.selectRow(selectedIndexInPicker + 1, inComponent: 0, animated: true)
 			}
 		}
+
 	}
 
 	@objc func saveData(_ but: UIButton) {
@@ -133,6 +137,7 @@ extension PickerViewController: INavigationSeed
 	func set(parameters: ParametersStruct) {
 		type = parameters.pickerType
 		currentOption = parameters.choice
+		updatePicker()
 	}
 
 }

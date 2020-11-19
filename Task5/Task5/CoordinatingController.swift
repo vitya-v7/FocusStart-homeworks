@@ -79,18 +79,19 @@ extension CoordinatingController: ICoordinatingController
 			assertionFailure("navigationController is nil, push unavailable")
 			return
 		}
+		
 		switch module {
 		case .detailModule:
 			nc.pushViewController(nextModule.vc, animated: animated)
+			self.stack.append(nextModule)
+			nextModule.set(parameters: parameters)
 		case .popoverModule:
 			nc.present(nextModule.vc, animated: true, completion: nil)
+			self.stack.append(nextModule)
+			nextModule.set(parameters: parameters as! ParametersStruct)
 		default:
 			fatalError("this module does not exist!")
 		}
-		
-		self.stack.append(nextModule)
-		if parameters != nil {
-			nextModule.set(parameters: parameters)
-		}
+
 	}
 }

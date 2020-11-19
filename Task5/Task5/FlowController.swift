@@ -57,7 +57,6 @@ final class FlowController
 	}
 
 	var detailPresenter: CarDetailPresenter?
-	var detailview: CarDetailViewController?
 
 	func createPopoverModule() -> INavigationSeed {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
@@ -69,8 +68,8 @@ final class FlowController
 		pv.output = detailPresenter
 		let popover = pv.popoverPresentationController
 		popover?.permittedArrowDirections = .any
-		popover?.sourceView = detailview!.view
-		popover?.sourceRect = detailview!.view.bounds
+		popover?.sourceView = UIView()
+		popover?.sourceRect = UIView().bounds
 
 		self.coordinatingController.register(module: .popoverModule, seed: pv)
 		return pv

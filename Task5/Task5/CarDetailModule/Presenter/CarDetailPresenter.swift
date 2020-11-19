@@ -49,7 +49,6 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	}
 	
 	func viewDidLoadDone() {
-		
 		if let key = key {
 			carModel = interactor?.getCar(key: key)
 		}
