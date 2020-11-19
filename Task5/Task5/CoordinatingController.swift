@@ -26,8 +26,9 @@ extension INavigationSeed
 
 public enum NavigationModule
 {
-	case first
-	case second
+	case listModule
+	case detailModule
+	case popoverModule
 }
 
 protocol ICoordinatingController: AnyObject
@@ -64,8 +65,8 @@ extension CoordinatingController: ICoordinatingController
 			return
 		}
 		nc.popViewController(animated: animated)
-
 	}
+	
 
 	func push<Parameters>(module: NavigationModule, parameters: Parameters?, animated: Bool) {
 
@@ -78,7 +79,15 @@ extension CoordinatingController: ICoordinatingController
 			assertionFailure("navigationController is nil, push unavailable")
 			return
 		}
-		nc.pushViewController(nextModule.vc, animated: animated)
+		switch module {
+		case .detailModule:
+			nc.pushViewController(nextModule.vc, animated: animated)
+		case .popoverModule:
+			nc.present(nextModule.vc, animated: true, completion: nil)
+		default:
+			fatalError("this module does not exist!")
+		}
+		
 		self.stack.append(nextModule)
 		if parameters != nil {
 			nextModule.set(parameters: parameters)

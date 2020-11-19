@@ -10,13 +10,17 @@ import Foundation
 
 protocol IRouterListToDetail: AnyObject
 {
-	func nextModule(carKey: String?)
+	func nextDetailModule(carKey: String?)
+	func nextPopoverModule()
 }
 
 final class RouterListToDetail: IRouterListToDetail
 {
-	func nextModule(carKey: String?) {
-		SceneDelegate.coordinatingController.push(module: .second, parameters: carKey, animated: true)
+	func nextDetailModule(carKey: String?) {
+		SceneDelegate.coordinatingController.push(module: .detailModule, parameters: carKey, animated: true)
+	}
+	func nextPopoverModule() {
+		
 	}
 }
 

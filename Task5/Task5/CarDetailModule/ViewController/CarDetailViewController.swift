@@ -13,8 +13,10 @@ protocol ICarDetailViewInput : UIViewController  {
 	func setViewModel(viewModel: CarDetailViewModel)
 }
 
+
+
 protocol ICarDetailViewOutput {
-	func callPopover(fromView: UIView, option: String)
+	func callPopover(pickerType: PickerType, option: String)
 	func changeSelectedDataInView(type: PickerType, index: Int)
 	func saveSelectedTextFieldValue(type: PickerType, value: String)
 	func viewDidLoadDone()
@@ -65,6 +67,7 @@ class CarDetailViewController: UIViewController {
 		output?.reloadData()
 		output?.saveCarInDB()
 	}
+	
 	override func viewWillDisappear(_ animated: Bool) {
 		if (self.isMovingFromParent) {
 			SceneDelegate.coordinatingController.back(animated: true)
@@ -81,7 +84,20 @@ class CarDetailViewController: UIViewController {
 extension CarDetailViewController: UITextFieldDelegate {
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		if output != nil && textField.tag != textFieldsWithTags.carYear.rawValue && textField.tag != textFieldsWithTags.carNumber.rawValue {
-			output?.callPopover(fromView: textField, option: textField.text ?? "")
+
+			var pickerType: PickerType = .carBodyStyle
+			switch view.tag {
+			case 1:
+				pickerType = .carModel
+			case 2:
+				pickerType = .carBodyStyle
+			case 4:
+				pickerType = .carCountry
+			default:
+				pickerType = .carBodyStyle
+			}
+
+			output?.callPopover(pickerType: pickerType, option: textField.text!)
 			return false
 		}
 
@@ -124,8 +140,8 @@ extension CarDetailViewController: INavigationSeed
 {
 	var vc: UIViewController { self }
 
-	func set<Parameters>(parameters: Parameters) {
-		output?.setKey(key: parameters as! String)
+	func set(parameters: String) {
+		output?.setKey(key: parameters)
 		output?.viewDidLoadDone()
 	}
 	

@@ -48,7 +48,10 @@ extension CarDetailPresenter: ICarDetailViewOutput
 		popover?.sourceView = view
 		popover?.sourceRect = (view.bounds)
 	}
-	
+
+
+
+
 	func changeSelectedDataInView(type: PickerType, index: Int) {
 		switch type {
 		case .carModel:

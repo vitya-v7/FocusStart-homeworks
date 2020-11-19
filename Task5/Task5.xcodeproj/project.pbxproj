@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8432906A2566E2EB00D5111A /* RouterDetailToPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843290692566E2EB00D5111A /* RouterDetailToPopover.swift */; };
 		843D02842561EB7C001B3588 /* CarDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D02832561EB7C001B3588 /* CarDetailInteractor.swift */; };
 		843D02902561EBC4001B3588 /* CarsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D028F2561EBC4001B3588 /* CarsListInteractor.swift */; };
 		843D029C2561ED1A001B3588 /* RouterListToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D029B2561ED1A001B3588 /* RouterListToDetail.swift */; };
@@ -51,6 +52,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		843290692566E2EB00D5111A /* RouterDetailToPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterDetailToPopover.swift; sourceTree = "<group>"; };
 		843D02832561EB7C001B3588 /* CarDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailInteractor.swift; sourceTree = "<group>"; };
 		843D028F2561EBC4001B3588 /* CarsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsListInteractor.swift; sourceTree = "<group>"; };
 		843D029B2561ED1A001B3588 /* RouterListToDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterListToDetail.swift; sourceTree = "<group>"; };
@@ -108,6 +110,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		843290682566E2D200D5111A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				843290692566E2EB00D5111A /* RouterDetailToPopover.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		843D02792561EAFE001B3588 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -271,6 +281,7 @@
 		8448130225141935003868DF /* CarDetailModule */ = {
 			isa = PBXGroup;
 			children = (
+				843290682566E2D200D5111A /* Router */,
 				8448130525141935003868DF /* ViewController */,
 				8448130325141935003868DF /* Presenter */,
 				843D02792561EAFE001B3588 /* Interactor */,
@@ -442,6 +453,7 @@
 				8445532D2562F9DC001E139C /* CarsListDelegate.swift in Sources */,
 				844812E825133CEE003868DF /* CarsListPresenter.swift in Sources */,
 				8451DCBB2517474700BB2A56 /* CarModel.swift in Sources */,
+				8432906A2566E2EB00D5111A /* RouterDetailToPopover.swift in Sources */,
 				84E9107E251741B10026555A /* CarDetailViewController.swift in Sources */,
 				843D02902561EBC4001B3588 /* CarsListInteractor.swift in Sources */,
 				844812B225133CB2003868DF /* SceneDelegate.swift in Sources */,

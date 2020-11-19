@@ -17,7 +17,7 @@ class CarDetailPresenter {
 	var interactor: ICarDetailPresenterInput?
 	var view: ICarDetailViewInput?
 	var carModel: CarModel?
-	
+	var router: IRouterDetailToPopover?
 	func convertCarModelToViewModel(car: CarModel) -> CarDetailViewModel {
 		let viewModel = CarDetailViewModel(withElementModel: car)
 		return viewModel
@@ -31,30 +31,8 @@ class CarDetailPresenter {
 extension CarDetailPresenter: ICarDetailViewOutput
 {
 
-	func callPopover(fromView view: UIView, option: String) {
-		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-		let pv = storyboard.instantiateViewController(withIdentifier: "PickerViewIdentifier") as! PickerViewController
-		pv.output = self
-		pv.currentOption = option
-		switch view.tag {
-		case 1:
-			pv.type = .carModel
-		case 2:
-			pv.type = .carBodyStyle
-		case 4:
-			pv.type = .carCountry
-		default:
-			pv.type = .carYear
-		}
-		pv.modalPresentationStyle = UIModalPresentationStyle.popover
-		pv.preferredContentSize = CGSize(width: 300, height: 300)
-		pv.picker?.backgroundColor = UIColor.white
-		pv.output = self
-		self.view?.present(pv, animated: true, completion: nil)
-		let popover = pv.popoverPresentationController
-		popover?.permittedArrowDirections = .any
-		popover?.sourceView = view
-		popover?.sourceRect = (view.bounds)
+	func callPopover(pickerType: PickerType, option: String) {
+		router?.nextPopoverModule(pickerType: pickerType, choice: option)
 	}
 	
 	func changeSelectedDataInView(type: PickerType, index: Int) {

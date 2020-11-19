@@ -22,7 +22,6 @@ class PickerViewController: UIViewController {
 	@IBOutlet weak var button: UIButton!
 	var type: PickerType?
 	var options: [String]?
-	var carID: Int?
 	var currentOption: String?
 	var selectedIndexInPicker: Int?
 	var output: ICarDetailViewOutput?
@@ -124,4 +123,16 @@ extension PickerViewController: UIPickerViewDataSource
 	func numberOfComponents(in pickerView: UIPickerView) -> Int {
 		return 1
 	}
+}
+
+
+extension PickerViewController: INavigationSeed
+{
+	var vc: UIViewController { self }
+
+	func set(parameters: ParametersStruct) {
+		type = parameters.pickerType
+		currentOption = parameters.choice
+	}
+
 }

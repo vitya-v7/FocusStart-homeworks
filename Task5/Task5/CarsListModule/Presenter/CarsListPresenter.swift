@@ -24,11 +24,11 @@ class CarsListPresenter {
 	}
 
 	func routeToDetailModule(indexPath: IndexPath) {
-		router?.nextModule(carKey: carModels![indexPath.row].carKey!)
+		router?.nextDetailModule(carKey: carModels![indexPath.row].carKey!)
 	}
 
 	func plusButtonClicked() {
-		router?.nextModule(carKey: nil)
+		router?.nextDetailModule(carKey: nil)
 	}
 
 	func viewWillAppearDone() {
@@ -42,7 +42,7 @@ class CarsListPresenter {
 extension CarsListPresenter: ICarsListViewOutput
 {
 	func cellSelectedAt(indexPath: IndexPath) {
-		router?.nextModule(carKey: carModels![indexPath.row].carKey )
+		router?.nextDetailModule(carKey: carModels![indexPath.row].carKey )
 	}
 
 
