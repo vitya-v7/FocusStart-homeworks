@@ -20,7 +20,7 @@ protocol ICarDetailViewOutput {
 	func viewDidLoadDone()
 	func saveCarInDB()
 	func reloadData()
-	func setKey(key: String)
+	func setKey(key: String?)
 }
 
 class CarDetailViewController: UIViewController {
@@ -140,6 +140,9 @@ extension CarDetailViewController: INavigationSeed
 		if type == .forDetailController {
 			if let parameters = parameters {
 				output?.setKey(key: parameters as! String)
+			}
+			else {
+				output?.setKey(key: nil)
 			}
 			output?.viewDidLoadDone()
 		}

@@ -23,7 +23,7 @@ class CarDetailPresenter {
 		return viewModel
 	}
 
-	func setKey(key: String) {
+	func setKey(key: String?) {
 		self.key = key
 	}
 }
