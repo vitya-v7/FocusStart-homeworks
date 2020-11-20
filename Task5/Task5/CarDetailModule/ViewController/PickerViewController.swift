@@ -23,6 +23,7 @@ struct ParametersStruct {
 	var outputList: ICarsListViewOutput?
 }
 
+
 class PickerViewController: UIViewController {
 
 	@IBOutlet weak var picker: UIPickerView!
@@ -33,6 +34,7 @@ class PickerViewController: UIViewController {
 	var selectedIndexInPicker: Int?
 	var output: ICarDetailViewOutput?
 	var outputList: ICarsListViewOutput?
+	var callback: (()->())?
 	private func selectedOption() -> [String] {
 		var itemArray = [String]()
 		switch type {
@@ -109,7 +111,7 @@ class PickerViewController: UIViewController {
 				outputList.filterCars(bodyStyle: nil)
 			}
 		}
-		self.dismiss(animated: true, completion: nil)
+		self.dismiss(animated: true, completion: callback)
 	}
 }
 

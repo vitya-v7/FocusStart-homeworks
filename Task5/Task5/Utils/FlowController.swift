@@ -68,6 +68,7 @@ final class FlowController
 		popover?.sourceView = UIView()
 		popover?.sourceRect = UIView().bounds
 		self.coordinatingController.register(module: type, seed: pv)
+
 	}
 	
 }

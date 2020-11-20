@@ -11,6 +11,8 @@ import UIKit
 protocol ICarDetailViewInput : UIViewController  {
 	func setInitialState()
 	func setViewModel(viewModel: CarDetailViewModel)
+	func getYear() -> String
+	func getNumber() -> String
 }
 
 protocol ICarDetailViewOutput {
@@ -21,6 +23,7 @@ protocol ICarDetailViewOutput {
 	func saveCarInDB()
 	func reloadData()
 	func setKey(key: String?)
+
 }
 
 class CarDetailViewController: UIViewController {
@@ -69,11 +72,6 @@ class CarDetailViewController: UIViewController {
 		}
 		output?.reloadData()
 		output?.saveCarInDB()
-	}
-
-	override func viewWillAppear(_ animated: Bool) {
-		carYear.text = year
-		carNumberLabel.text = number
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
@@ -127,6 +125,14 @@ extension CarDetailViewController: ICarDetailViewInput
 		self.viewModel = viewModel
 		self.configureDetailView(withObject: viewModel)
 	}
+
+	func getYear() -> String {
+		return year
+	}
+
+	func getNumber() -> String {
+		return number
+	}
 }
 
 extension CarDetailViewController: INavigationSeed
@@ -135,7 +141,7 @@ extension CarDetailViewController: INavigationSeed
 	func set<Parameters>(type: TypeOfParameters, parameters: Parameters?) {
 		if type == .forDetailController {
 			if let parameters = parameters {
-				output?.setKey(key: parameters as! String)
+				output?.setKey(key: parameters as? String)
 			}
 			else {
 				output?.setKey(key: nil)

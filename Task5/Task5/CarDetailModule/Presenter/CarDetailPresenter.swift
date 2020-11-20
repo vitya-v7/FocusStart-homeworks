@@ -44,6 +44,10 @@ extension CarDetailPresenter: ICarDetailViewOutput
 			carModel?.manufacturer = CarService.CarCountry.allCases[index]
 		default: print("unknown option")
 		}
+		if let integer = Int((view?.getYear())!) {
+			carModel?.yearOfIssue = integer
+		}
+		carModel?.carNumber = view?.getNumber()
 		reloadData()
 	}
 	
