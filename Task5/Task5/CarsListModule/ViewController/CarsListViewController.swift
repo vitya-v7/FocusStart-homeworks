@@ -27,14 +27,13 @@ protocol CarsListViewProtocolForDelegate {
 	func cellSelectedAt(indexPath: IndexPath)
 }
 
-class CarsListViewController: UIViewController, UITextFieldDelegate{
+class CarsListViewController: UIViewController {
 	var maxCarNumber = 3
 	var output: ICarsListViewOutput?
 	var dataSource: CarsListDataSourceProtocol = CarsListDataSource()
 	var delegate: CarsListDelegate = CarsListDelegate()
 	
 	@IBOutlet var tableView: UITableView?
-	
 	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)

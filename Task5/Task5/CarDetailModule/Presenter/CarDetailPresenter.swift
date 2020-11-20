@@ -17,7 +17,7 @@ class CarDetailPresenter {
 	var interactor: ICarDetailPresenterInput?
 	var view: ICarDetailViewInput?
 	var carModel: CarModel?
-	var router: IRouterDetailToPopover?
+	var router: IRouterDetailToPopoverInput?
 	func convertCarModelToViewModel(car: CarModel) -> CarDetailViewModel {
 		let viewModel = CarDetailViewModel(withElementModel: car)
 		return viewModel

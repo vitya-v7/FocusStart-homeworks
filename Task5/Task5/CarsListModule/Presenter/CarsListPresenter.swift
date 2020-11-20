@@ -16,8 +16,8 @@ protocol ICarListInteractorInput {
 class CarsListPresenter {
 	var interactor: ICarListInteractorInput?
 	weak var view: ICarsListViewInput?
-	var router: IRouterListToDetail?
-	var routerToPopover: IRouterListToPopover?
+	var router: IRouterListToDetailInput?
+	var routerToPopover: IRouterListToPopoverInput?
 	var carModels: [CarModel]?
 	var filterBodyStyle: CarService.CarBodyStyle?
 
