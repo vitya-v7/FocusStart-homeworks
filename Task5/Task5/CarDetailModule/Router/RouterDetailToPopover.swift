@@ -9,13 +9,13 @@
 import Foundation
 
 protocol IRouterDetailToPopoverInput: AnyObject {
-	func nextPopoverModule(pickerType: PickerType, choice: String)
+	func nextPopoverModule(pickerType: PickerType, currentChoice: String)
 }
 
 final class RouterDetailToPopover: IRouterDetailToPopoverInput {
-	var detailPresenter : ICarDetailViewOutput?
-	func nextPopoverModule(pickerType: PickerType, choice: String) {
-		let parameters = ParametersStruct(pickerType: pickerType, choice: choice, output: detailPresenter, outputList: nil)
+	var detailPresenter : CarDetailPresenter?
+	func nextPopoverModule(pickerType: PickerType, currentChoice: String) {
+		let parameters = ParametersStruct(pickerType: pickerType, currentChoice: currentChoice, output: detailPresenter, outputList: nil)
 		SceneDelegate.coordinatingController.push(module: .popoverModule, parameters: parameters, animated: true)
 	}
 }

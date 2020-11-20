@@ -11,24 +11,12 @@ import UIKit
 protocol ICarDetailViewInput : UIViewController  {
 	func setInitialState()
 	func setViewModel(viewModel: CarDetailViewModel)
-	func getYear() -> String
-	func getNumber() -> String
 }
 
-protocol ICarDetailViewOutput {
-	func callPopover(pickerType: PickerType, option: String)
-	func changeSelectedDataInView(type: PickerType, index: Int)
-	func saveSelectedTextFieldValue(type: PickerType, value: String)
-	func viewDidLoadDone()
-	func saveCarInDB()
-	func reloadData()
-	func setKey(key: String?)
-
-}
 
 class CarDetailViewController: UIViewController {
 
-	var output: ICarDetailViewOutput?
+	var output: CarDetailPresenter?
 	var viewModel: CarDetailViewModel?
 	var key: String?
 	var year = ""
@@ -51,8 +39,7 @@ class CarDetailViewController: UIViewController {
 		super.viewDidLoad()
 		setInitialState()
 		output?.viewDidLoadDone()
-		year = viewModel?.carYear ?? ""
-		number = viewModel?.carNumber ?? ""
+		
 		let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
 		view.addGestureRecognizer(tap)
 	}
@@ -96,16 +83,13 @@ extension CarDetailViewController: UITextFieldDelegate
 			default:
 				pickerType = .carBodyStyle
 			}
-
+			output?.carModel?.carNumber = carNumberLabel.text
+			output?.carModel?.yearOfIssue = Int(carYear.text!)
+			
 			output?.callPopover(pickerType: pickerType!, option: textField.text!)
 			return false
 		}
 		return true
-	}
-
-	func textFieldDidEndEditing(_ textField: UITextField) {
-		year = carYear.text!
-		number = carNumberLabel.text!
 	}
 }
 
@@ -124,14 +108,6 @@ extension CarDetailViewController: ICarDetailViewInput
 	func setViewModel(viewModel: CarDetailViewModel) {
 		self.viewModel = viewModel
 		self.configureDetailView(withObject: viewModel)
-	}
-
-	func getYear() -> String {
-		return year
-	}
-
-	func getNumber() -> String {
-		return number
 	}
 }
 

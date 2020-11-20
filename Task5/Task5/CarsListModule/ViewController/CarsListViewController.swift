@@ -29,7 +29,7 @@ protocol CarsListViewProtocolForDelegate {
 
 class CarsListViewController: UIViewController {
 	var maxCarNumber = 3
-	var output: ICarsListViewOutput?
+	var output: CarsListPresenter?
 	var dataSource: CarsListDataSourceProtocol = CarsListDataSource()
 	var delegate: CarsListDelegate = CarsListDelegate()
 	

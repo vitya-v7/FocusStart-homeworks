@@ -6,8 +6,6 @@
 //  Copyright © 2020 Admin. All rights reserved.
 //
 
-
-
 class CarDetailInteractor: ICarDetailPresenterInput {
 	var carService: IDetailsCarService?
 	func getCar(key: String) -> CarModel? {

@@ -39,10 +39,8 @@ class CarsListPresenter {
 			filterCars(bodyStyle: filterBodyStyle)
 		}
 	}
-}
 
-extension CarsListPresenter: ICarsListViewOutput
-{
+
 	func cellSelectedAt(indexPath: IndexPath) {
 		router?.nextDetailModule(carKey: carModels![indexPath.row].carKey )
 	}
@@ -51,32 +49,34 @@ extension CarsListPresenter: ICarsListViewOutput
 		let viewModel = CarsElementViewModel(withElementModel: car)
 		return viewModel
 	}
-	
+
 	func convertModelsToViewModels(models: [CarModel]) -> [CarsElementViewModel] {
 		var carCells = [CarsElementViewModel]()
-		
+
 		for car in models {
 			carCells.append(CarsElementViewModel.init(withElementModel: car))
 		}
 		return carCells
 	}
-	
+
 	func filterCars(bodyStyle: CarService.CarBodyStyle?) {
 		filterBodyStyle = bodyStyle
 		var carModelsFiltered = [CarModel]()
-		var carModels = interactor?.getCars() ?? [CarModel]()
-
+		self.carModels = interactor?.getCars() ?? [CarModel]()
+		guard let cars = self.carModels else {
+			return
+		}
 		if let bodyStyle = bodyStyle {
-			for item in carModels {
+			for item in cars {
 				if item.body == bodyStyle {
 					carModelsFiltered.append(item)
 				}
 			}
-			carModels = carModelsFiltered
+			self.carModels = carModelsFiltered
 			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModelsFiltered))
 		}
 		else {
-			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels))
+			view?.setViewModels(viewModels: convertModelsToViewModels(models: cars))
 		}
 	}
 	
@@ -90,7 +90,7 @@ extension CarsListPresenter: ICarsListViewOutput
 			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels))
 		}
 	}
-	
+
 	func deleteButtonPressedWithIndexRow(row: Int) {
 		if let carKey = carModels?[row].carKey {
 			interactor?.deleteCar(key: carKey)
@@ -98,3 +98,4 @@ extension CarsListPresenter: ICarsListViewOutput
 		}
 	}
 }
+

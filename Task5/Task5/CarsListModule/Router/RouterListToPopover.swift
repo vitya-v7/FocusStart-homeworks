@@ -13,9 +13,9 @@ protocol IRouterListToPopoverInput: AnyObject {
 }
 
 final class RouterListToPopover: IRouterListToPopoverInput {
-	var listPresenter : ICarsListViewOutput?
+	var listPresenter : CarsListPresenter?
 	func nextPopoverModule() {
-		let parameters = ParametersStruct(pickerType: .carBodyStyle, choice: nil, output: nil, outputList: listPresenter)
+		let parameters = ParametersStruct(pickerType: .carBodyStyle, currentChoice: nil, output: nil, outputList: listPresenter)
 		SceneDelegate.coordinatingController.push(module: .popoverModule, parameters: parameters, animated: true)
 	}
 }

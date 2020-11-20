@@ -18,9 +18,9 @@ enum PickerType: String {
 
 struct ParametersStruct {
 	var pickerType: PickerType?
-	var choice: String?
-	var output: ICarDetailViewOutput?
-	var outputList: ICarsListViewOutput?
+	var currentChoice: String?
+	var output: CarDetailPresenter?
+	var outputList: CarsListPresenter?
 }
 
 
@@ -32,9 +32,8 @@ class PickerViewController: UIViewController {
 	var options: [String]?
 	var currentOption: String?
 	var selectedIndexInPicker: Int?
-	var output: ICarDetailViewOutput?
-	var outputList: ICarsListViewOutput?
-	var callback: (()->())?
+	var output: CarDetailPresenter?
+	var outputList: CarsListPresenter?
 	private func selectedOption() -> [String] {
 		var itemArray = [String]()
 		switch type {
@@ -62,12 +61,7 @@ class PickerViewController: UIViewController {
 		button?.addTarget(self, action: #selector(saveData(_:)), for: .touchUpInside)
 		picker?.selectRow(0, inComponent: 0, animated: true)
 	}
-	override func viewWillDisappear(_ animated: Bool) {
-		super.viewWillDisappear(animated)
-		if isBeingDismissed {
-			SceneDelegate.coordinatingController.back(animated: true)
-		}
-	}
+	
 	func updatePicker() {
 		options = selectedOption()
 		if outputList != nil {
@@ -111,7 +105,7 @@ class PickerViewController: UIViewController {
 				outputList.filterCars(bodyStyle: nil)
 			}
 		}
-		self.dismiss(animated: true, completion: callback)
+		SceneDelegate.coordinatingController.back(animated: true)
 	}
 }
 
@@ -150,8 +144,8 @@ extension PickerViewController: INavigationSeed
 		if typeOfParameters == .forPopover {
 			let parametersIn = parameters as! ParametersStruct
 			type = parametersIn.pickerType
-			currentOption = parametersIn.choice
-			outputList =  parametersIn.outputList
+			currentOption = parametersIn.currentChoice
+			outputList = parametersIn.outputList
 			output = parametersIn.output
 			updatePicker()
 		}

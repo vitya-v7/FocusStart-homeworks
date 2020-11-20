@@ -26,12 +26,9 @@ class CarDetailPresenter {
 	func setKey(key: String?) {
 		self.key = key
 	}
-}
 
-extension CarDetailPresenter: ICarDetailViewOutput
-{
 	func callPopover(pickerType: PickerType, option: String) {
-		router?.nextPopoverModule(pickerType: pickerType, choice: option)
+		router?.nextPopoverModule(pickerType: pickerType, currentChoice: option)
 	}
 	
 	func changeSelectedDataInView(type: PickerType, index: Int) {
@@ -44,10 +41,6 @@ extension CarDetailPresenter: ICarDetailViewOutput
 			carModel?.manufacturer = CarService.CarCountry.allCases[index]
 		default: print("unknown option")
 		}
-		if let integer = Int((view?.getYear())!) {
-			carModel?.yearOfIssue = integer
-		}
-		carModel?.carNumber = view?.getNumber()
 		reloadData()
 	}
 	
