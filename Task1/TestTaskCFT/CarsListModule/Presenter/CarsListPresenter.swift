@@ -45,19 +45,21 @@ extension CarsListPresenter: ICarsListViewOutput
 	func filterCars(bodyStyle: CarService.CarBodyStyle?) {
 		filterBodyStyle = bodyStyle
 		var carModelsFiltered = [CarModel]()
-		var carModels = carService?.getCars() ?? [CarModel]()
+		guard let cars = carService?.getCars() else {
+			return
+		}
 
 		if let bodyStyle = bodyStyle {
-			for item in carModels {
+			for item in cars {
 				if item.body == bodyStyle {
 					carModelsFiltered.append(item)
 				}
 			}
-			carModels = carModelsFiltered
+			self.carModels = carModelsFiltered
 			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModelsFiltered))
 		}
 		else {
-			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModels))
+			view?.setViewModels(viewModels: convertModelsToViewModels(models: cars))
 		}
 	}
 	
