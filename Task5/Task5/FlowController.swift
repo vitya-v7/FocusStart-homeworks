@@ -16,8 +16,8 @@ final class FlowController
 	init(coordinatingController: CoordinatingController) {
 		self.coordinatingController = coordinatingController
 		firstVC = createCarsListModule()
-		createCarDetailModule()
-		createPopoverModule()
+		createCarDetailModule(type: .detailModule)
+		createPopoverModule(type: .popoverModule)
 	}
 	func createCarsListModule() -> INavigationSeed {
 
@@ -32,7 +32,9 @@ final class FlowController
 		view.output = presenter
 		presenter.view = view
 		let router = RouterListToDetail()
+		let routerToPopover = RouterListToPopover()
 		presenter.router = router
+		presenter.routerToPopover = routerToPopover
 		self.coordinatingController.registerFirst(module: .listModule, seed: view)
 		self.modules.append(view)
 		return view
@@ -40,7 +42,7 @@ final class FlowController
 	}
 
 
-	func createCarDetailModule() -> INavigationSeed {
+	func createCarDetailModule(type: NavigationModule) -> INavigationSeed {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let view = storyboard.instantiateViewController(identifier: "CarDetailViewIdentifier") as! CarDetailViewController
 		let carService = CarService.init()
@@ -51,13 +53,13 @@ final class FlowController
 		view.output = detailPresenter
 		detailPresenter.view = view
 		let router = RouterDetailToPopover()
-		router.firstPresenter = detailPresenter
+		router.detailPresenter = detailPresenter
 		detailPresenter.router = router
-		self.coordinatingController.register(module: .detailModule, seed: view)
+		self.coordinatingController.register(module: type, seed: view)
 		return view
 	}
 
-	func createPopoverModule() -> INavigationSeed {
+	func createPopoverModule(type: NavigationModule) -> INavigationSeed {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let pv = storyboard.instantiateViewController(identifier: "PickerViewIdentifier") as! PickerViewController
 
@@ -69,7 +71,8 @@ final class FlowController
 		popover?.sourceView = UIView()
 		popover?.sourceRect = UIView().bounds
 
-		self.coordinatingController.register(module: .popoverModule, seed: pv)
+		self.coordinatingController.register(module: type, seed: pv)
 		return pv
 	}
+
 }

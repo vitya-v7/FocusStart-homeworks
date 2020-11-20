@@ -81,12 +81,13 @@ class CarDetailViewController: UIViewController {
 }
 
 
+
 extension CarDetailViewController: UITextFieldDelegate {
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		if output != nil && textField.tag != textFieldsWithTags.carYear.rawValue && textField.tag != textFieldsWithTags.carNumber.rawValue {
 
-			var pickerType: PickerType = .carBodyStyle
-			switch view.tag {
+			var pickerType: PickerType?
+			switch textField.tag {
 			case 1:
 				pickerType = .carModel
 			case 2:
@@ -97,7 +98,7 @@ extension CarDetailViewController: UITextFieldDelegate {
 				pickerType = .carBodyStyle
 			}
 
-			output?.callPopover(pickerType: pickerType, option: textField.text!)
+			output?.callPopover(pickerType: pickerType!, option: textField.text!)
 			return false
 		}
 
@@ -140,10 +141,15 @@ extension CarDetailViewController: INavigationSeed
 {
 	var vc: UIViewController { self }
 
-	func set<Parameters>(parameters: Parameters) {
-		output?.setKey(key: parameters as! String)
-		output?.viewDidLoadDone()
+	func set<Parameters>(type: TypeOfParameters, parameters: Parameters?) {
+		if type == .forDetailController {
+			if let parameters = parameters {
+				output?.setKey(key: parameters as! String)
+			}
+			output?.viewDidLoadDone()
+		}
 	}
+	
 	
 }
 

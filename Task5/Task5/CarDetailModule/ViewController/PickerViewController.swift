@@ -15,6 +15,13 @@ enum PickerType: String {
 	case carNumber
 }
 
+struct ParametersStruct {
+	var pickerType: PickerType?
+	var choice: String?
+	var output: ICarDetailViewOutput?
+	var outputList: ICarsListViewOutput?
+
+}
 
 class PickerViewController: UIViewController {
 
@@ -78,6 +85,7 @@ class PickerViewController: UIViewController {
 				picker?.selectRow(selectedIndexInPicker + 1, inComponent: 0, animated: true)
 			}
 		}
+		self.picker.reloadAllComponents()
 
 	}
 
@@ -134,13 +142,14 @@ extension PickerViewController: INavigationSeed
 {
 	var vc: UIViewController { self }
 
-	func set<Parameters>(parameters: Parameters) {
-		let parametersIn = parameters as! ParametersStruct
-		type = parametersIn.pickerType
-		currentOption = parametersIn.choice
-		output = parametersIn.output
-		updatePicker()
-
+	func set<Parameters>(type typeOfParameters: TypeOfParameters, parameters: Parameters) {
+		if typeOfParameters == .forPopover {
+			let parametersIn = parameters as! ParametersStruct
+			type = parametersIn.pickerType
+			currentOption = parametersIn.choice
+			outputList =  parametersIn.outputList
+			output = parametersIn.output
+			updatePicker()
+		}
 	}
-
 }

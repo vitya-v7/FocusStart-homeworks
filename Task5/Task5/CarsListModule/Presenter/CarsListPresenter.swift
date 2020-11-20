@@ -16,6 +16,7 @@ class CarsListPresenter {
 	var interactor: ICarListInteractorInput?
 	weak var view: ICarsListViewInput?
 	var router: IRouterListToDetail?
+	var routerToPopover: IRouterListToPopover?
 	var carModels: [CarModel]?
 	var filterBodyStyle: CarService.CarBodyStyle?
 
@@ -79,20 +80,8 @@ extension CarsListPresenter: ICarsListViewOutput
 		}
 	}
 	
-	func callPopover(fromView view: UIView, option: String?) {
-		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
-		let pv = storyboard.instantiateViewController(withIdentifier: "PickerViewIdentifier") as! PickerViewController
-		pv.outputList = self
-		pv.currentOption = option
-		pv.type = .carBodyStyle
-		pv.modalPresentationStyle = UIModalPresentationStyle.popover
-		pv.preferredContentSize = CGSize(width: 300, height: 300)
-		pv.picker?.backgroundColor = UIColor.white
-		self.view?.present(pv, animated: true, completion: nil)
-		let popover = pv.popoverPresentationController
-		popover?.permittedArrowDirections = .any
-		popover?.sourceView = view
-		popover?.sourceRect = (view.bounds)
+	func callPopover() {
+		routerToPopover?.nextPopoverModule()
 	}
 	
 

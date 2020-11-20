@@ -8,11 +8,7 @@
 
 import Foundation
 
-struct ParametersStruct {
-	var pickerType: PickerType
-	var choice: String
-	var output: ICarDetailViewOutput?
-}
+
 
 protocol IRouterDetailToPopover: AnyObject
 {
@@ -21,9 +17,9 @@ protocol IRouterDetailToPopover: AnyObject
 
 final class RouterDetailToPopover: IRouterDetailToPopover
 {
-	var firstPresenter : ICarDetailViewOutput?
+	var detailPresenter : ICarDetailViewOutput?
 	func nextPopoverModule(pickerType: PickerType, choice: String) {
-		let parameters = ParametersStruct(pickerType: pickerType, choice: choice, output: firstPresenter)
+		let parameters = ParametersStruct(pickerType: pickerType, choice: choice, output: detailPresenter, outputList: nil)
 		SceneDelegate.coordinatingController.push(module: .popoverModule, parameters: parameters, animated: true)
 	}
 }

@@ -14,14 +14,20 @@ protocol INavigationSeed: AnyObject
 {
 	var vc: UIViewController { get }
 
-	func set<Parameters>(parameters: Parameters)
+	func set<Parameters>(type: TypeOfParameters, parameters: Parameters?)
+
 }
 
 extension INavigationSeed
 {
-	func set<Parameters>(parameters: Parameters) {
+	func set<Parameters>(type: TypeOfParameters, parameters: Parameters?) {
 		// do nothing
 	}
+}
+
+public enum TypeOfParameters {
+	case forPopover
+	case forDetailController
 }
 
 public enum NavigationModule
@@ -84,15 +90,12 @@ extension CoordinatingController: ICoordinatingController
 		case .detailModule:
 			nc.pushViewController(nextModule.vc, animated: animated)
 			self.stack.append(nextModule)
-			if parameters != nil {
-				nextModule.set(parameters: parameters)
-			}
+			nextModule.set(type: .forDetailController, parameters: parameters)
+
 		case .popoverModule:
 			nc.present(nextModule.vc, animated: true, completion: nil)
 			self.stack.append(nextModule)
-			if parameters != nil {
-				nextModule.set(parameters: parameters as! ParametersStruct)
-			}
+			nextModule.set(type: .forPopover, parameters: parameters as! ParametersStruct)
 		default:
 			fatalError("this module does not exist!")
 		}

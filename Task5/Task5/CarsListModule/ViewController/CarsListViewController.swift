@@ -17,7 +17,7 @@ protocol ICarsListViewOutput {
 	func viewDidLoadDone()
 	func deleteButtonPressedWithIndexRow(row: Int)
 	func viewWillAppearDone()
-	func callPopover(fromView view: UIView, option: String?)
+	func callPopover()
 	func filterCars(bodyStyle: CarService.CarBodyStyle?)
 	func cellSelectedAt(indexPath: IndexPath)
 	func plusButtonClicked()
@@ -61,7 +61,7 @@ class CarsListViewController: UIViewController, UITextFieldDelegate{
 	}
 	
 	@objc func filerCarsByBodyStyle(_ sender: Any) {
-		output?.callPopover(fromView: self.view, option: nil)
+		output?.callPopover()
 	}
 
 
