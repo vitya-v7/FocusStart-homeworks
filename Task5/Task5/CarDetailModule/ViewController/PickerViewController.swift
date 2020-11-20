@@ -137,6 +137,7 @@ extension PickerViewController: INavigationSeed
 	func set(parameters: ParametersStruct) {
 		type = parameters.pickerType
 		currentOption = parameters.choice
+		output = parameters.output
 		updatePicker()
 	}
 

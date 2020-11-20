@@ -11,6 +11,7 @@ import Foundation
 struct ParametersStruct {
 	var pickerType: PickerType
 	var choice: String
+	var output: ICarDetailViewOutput?
 }
 
 protocol IRouterDetailToPopover: AnyObject

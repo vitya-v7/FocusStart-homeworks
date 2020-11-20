@@ -56,8 +56,6 @@ final class FlowController
 		return view
 	}
 
-	var detailPresenter: CarDetailPresenter?
-
 	func createPopoverModule() -> INavigationSeed {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let pv = storyboard.instantiateViewController(identifier: "PickerViewIdentifier") as! PickerViewController
@@ -65,7 +63,6 @@ final class FlowController
 		pv.modalPresentationStyle = UIModalPresentationStyle.popover
 		pv.preferredContentSize = CGSize(width: 300, height: 300)
 		pv.picker?.backgroundColor = UIColor.white
-		pv.output = detailPresenter
 		let popover = pv.popoverPresentationController
 		popover?.permittedArrowDirections = .any
 		popover?.sourceView = UIView()
