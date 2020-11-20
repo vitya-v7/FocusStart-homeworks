@@ -21,11 +21,10 @@ protocol IRouterDetailToPopover: AnyObject
 
 final class RouterDetailToPopover: IRouterDetailToPopover
 {
-
+	var firstPresenter : ICarDetailViewOutput?
 	func nextPopoverModule(pickerType: PickerType, choice: String) {
-		let parameters = ParametersStruct(pickerType: pickerType, choice: choice)
+		let parameters = ParametersStruct(pickerType: pickerType, choice: choice, output: firstPresenter)
 		SceneDelegate.coordinatingController.push(module: .popoverModule, parameters: parameters, animated: true)
 	}
-
 }
 

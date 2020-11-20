@@ -140,8 +140,8 @@ extension CarDetailViewController: INavigationSeed
 {
 	var vc: UIViewController { self }
 
-	func set(parameters: String) {
-		output?.setKey(key: parameters)
+	func set<Parameters>(parameters: Parameters) {
+		output?.setKey(key: parameters as! String)
 		output?.viewDidLoadDone()
 	}
 	

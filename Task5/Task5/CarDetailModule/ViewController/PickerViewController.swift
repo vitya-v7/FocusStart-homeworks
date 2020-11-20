@@ -134,11 +134,13 @@ extension PickerViewController: INavigationSeed
 {
 	var vc: UIViewController { self }
 
-	func set(parameters: ParametersStruct) {
-		type = parameters.pickerType
-		currentOption = parameters.choice
-		output = parameters.output
+	func set<Parameters>(parameters: Parameters) {
+		let parametersIn = parameters as! ParametersStruct
+		type = parametersIn.pickerType
+		currentOption = parametersIn.choice
+		output = parametersIn.output
 		updatePicker()
+
 	}
 
 }

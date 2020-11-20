@@ -51,6 +51,7 @@ final class FlowController
 		view.output = detailPresenter
 		detailPresenter.view = view
 		let router = RouterDetailToPopover()
+		router.firstPresenter = detailPresenter
 		detailPresenter.router = router
 		self.coordinatingController.register(module: .detailModule, seed: view)
 		return view
