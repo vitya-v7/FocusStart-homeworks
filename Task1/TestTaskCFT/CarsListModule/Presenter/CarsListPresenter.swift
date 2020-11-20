@@ -45,24 +45,22 @@ extension CarsListPresenter: ICarsListViewOutput
 	func filterCars(bodyStyle: CarService.CarBodyStyle?) {
 		filterBodyStyle = bodyStyle
 		var carModelsFiltered = [CarModel]()
-		guard let cars = carService?.getCars() else {
-			return
-		}
-
-		if let bodyStyle = bodyStyle {
-			for item in cars {
-				if item.body == bodyStyle {
+		let carModelsIn = carService?.getCars()
+		if let models = carModelsIn, bodyStyle != nil {
+			for item in models {
+				if item.body == bodyStyle! {
 					carModelsFiltered.append(item)
 				}
 			}
-			self.carModels = carModelsFiltered
-			view?.setViewModels(viewModels: convertModelsToViewModels(models: carModelsFiltered))
+			carModels = carModelsFiltered
+			view!.setViewModels(viewModels: convertModelsToViewModels(models: carModelsFiltered))
 		}
 		else {
-			view?.setViewModels(viewModels: convertModelsToViewModels(models: cars))
+			carModels = carModelsIn
+			view!.setViewModels(viewModels: convertModelsToViewModels(models: carModels!))
 		}
 	}
-	
+
 	func callPopover(fromView view: UIView, option: String?) {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let pv = storyboard.instantiateViewController(withIdentifier: "PickerViewIdentifier") as! PickerView
