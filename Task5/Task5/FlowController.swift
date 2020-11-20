@@ -24,6 +24,7 @@ final class FlowController
 
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let view = storyboard.instantiateViewController(identifier: "CarsListViewIdentifier") as! CarsListViewController
+		
 		let carService = CarService.init()
 		let presenter = CarsListPresenter()
 		let interactor = CarsListInteractor()
@@ -33,6 +34,7 @@ final class FlowController
 		presenter.view = view
 		let router = RouterListToDetail()
 		let routerToPopover = RouterListToPopover()
+		routerToPopover.listPresenter = presenter
 		presenter.router = router
 		presenter.routerToPopover = routerToPopover
 		self.coordinatingController.registerFirst(module: .listModule, seed: view)

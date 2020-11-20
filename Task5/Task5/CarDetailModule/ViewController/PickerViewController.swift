@@ -60,7 +60,12 @@ class PickerViewController: UIViewController {
 		button?.addTarget(self, action: #selector(saveData(_:)), for: .touchUpInside)
 		picker?.selectRow(0, inComponent: 0, animated: true)
 	}
-
+	override func viewWillDisappear(_ animated: Bool) {
+		super.viewWillDisappear(animated)
+		if isBeingDismissed {
+			SceneDelegate.coordinatingController.back(animated: true)
+		}
+	}
 	func updatePicker() {
 		options = selectedOption()
 		if outputList != nil {
@@ -90,6 +95,7 @@ class PickerViewController: UIViewController {
 	}
 
 	@objc func saveData(_ but: UIButton) {
+
 		let row = picker?.selectedRow(inComponent: 0)
 		if let row = row, let out = output, let type = type {
 			out.changeSelectedDataInView(type: type, index: row)
