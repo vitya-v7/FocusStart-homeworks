@@ -30,7 +30,6 @@ class CarDetailPresenter {
 
 extension CarDetailPresenter: ICarDetailViewOutput
 {
-
 	func callPopover(pickerType: PickerType, option: String) {
 		router?.nextPopoverModule(pickerType: pickerType, choice: option)
 	}

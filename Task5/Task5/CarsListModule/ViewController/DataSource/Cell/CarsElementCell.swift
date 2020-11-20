@@ -8,9 +8,8 @@
 
 import UIKit
 
-
 class CarsElementCell: UITableViewCell {
-
+	static let reuseIdentifier = "CarsListCellIdentifier"
 	var viewModel: CarsElementViewModel?
 
 	@IBOutlet weak var carModel: UILabel!
@@ -18,11 +17,6 @@ class CarsElementCell: UITableViewCell {
 	@IBOutlet weak var carCountry: UILabel!
 	@IBOutlet weak var carBodyStyle: UILabel!
 	@IBOutlet weak var carNumber: UILabel!
-	
-	
-	static let reuseIdentifier = "CarsListCellIdentifier"
-	
-
 
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 100
@@ -38,7 +32,6 @@ class CarsElementCell: UITableViewCell {
 
 	func configureCell(withObject object: CarsElementViewModel?) {
 		viewModel = object
-
 		guard let object = object, let carModel = object.carModel, let carBodyStyle = object.carBodyStyle, let carCountry = object.carCountry else {
 			return
 		}

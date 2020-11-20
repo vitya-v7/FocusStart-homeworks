@@ -120,6 +120,15 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
+		8432907E256773F200D5111A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				844553042562D49A001E139C /* CoordinatingController.swift */,
+				844553092562D4B2001E139C /* FlowController.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		843D02792561EAFE001B3588 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,8 +194,7 @@
 		844812AE25133CB2003868DF /* Task5 */ = {
 			isa = PBXGroup;
 			children = (
-				844553042562D49A001E139C /* CoordinatingController.swift */,
-				844553092562D4B2001E139C /* FlowController.swift */,
+				8432907E256773F200D5111A /* Utils */,
 				844812EF25135B5B003868DF /* Services */,
 				8448130225141935003868DF /* CarDetailModule */,
 				844812DF25133CEE003868DF /* CarsListModule */,

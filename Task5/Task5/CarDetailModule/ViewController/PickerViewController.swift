@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 enum PickerType: String {
 	case carModel
 	case carCountry
@@ -20,7 +21,6 @@ struct ParametersStruct {
 	var choice: String?
 	var output: ICarDetailViewOutput?
 	var outputList: ICarsListViewOutput?
-
 }
 
 class PickerViewController: UIViewController {
@@ -91,11 +91,9 @@ class PickerViewController: UIViewController {
 			}
 		}
 		self.picker.reloadAllComponents()
-
 	}
 
 	@objc func saveData(_ but: UIButton) {
-
 		let row = picker?.selectedRow(inComponent: 0)
 		if let row = row, let out = output, let type = type {
 			out.changeSelectedDataInView(type: type, index: row)
@@ -143,11 +141,9 @@ extension PickerViewController: UIPickerViewDataSource
 	}
 }
 
-
 extension PickerViewController: INavigationSeed
 {
 	var vc: UIViewController { self }
-
 	func set<Parameters>(type typeOfParameters: TypeOfParameters, parameters: Parameters) {
 		if typeOfParameters == .forPopover {
 			let parametersIn = parameters as! ParametersStruct

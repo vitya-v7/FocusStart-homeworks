@@ -16,7 +16,7 @@ class ModulesFactory {
 		let presenter = CarsListPresenter()
 		view.output = presenter
 		presenter.view = view
-		interactor.carService = carService
+		presenter.carService = carService
 		return view
 	}
 	
@@ -28,7 +28,7 @@ class ModulesFactory {
 		view.output = presenter
 		presenter.view = view
 		presenter.key = key
-		interactor.carService = carService
+		presenter.carService = carService
 		return view
 	}
 }

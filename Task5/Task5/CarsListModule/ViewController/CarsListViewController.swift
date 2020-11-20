@@ -29,20 +29,17 @@ protocol CarsListViewProtocolForDelegate {
 
 class CarsListViewController: UIViewController, UITextFieldDelegate{
 	var maxCarNumber = 3
-
 	var output: ICarsListViewOutput?
-	
 	var dataSource: CarsListDataSourceProtocol = CarsListDataSource()
-
 	var delegate: CarsListDelegate = CarsListDelegate()
-
+	
 	@IBOutlet var tableView: UITableView?
-
+	
 	
 	required init?(coder aDecoder: NSCoder) {
-	   super.init(coder: aDecoder)
+		super.init(coder: aDecoder)
 	}
-
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.tableView?.delegate = delegate
@@ -63,8 +60,6 @@ class CarsListViewController: UIViewController, UITextFieldDelegate{
 	@objc func filerCarsByBodyStyle(_ sender: Any) {
 		output?.callPopover()
 	}
-
-
 }
 
 extension CarsListViewController: CarsListViewProtocolForDelegate {
@@ -80,8 +75,6 @@ extension CarsListViewController: ICarsListViewInput
 		let leftButton = UIBarButtonItem.init(title: "Filter", style: .plain, target: self, action: #selector(filerCarsByBodyStyle(_:)))
 		self.navigationItem.rightBarButtonItem = rightButton
 		self.navigationItem.leftBarButtonItem = leftButton
-
-
 	}
 	
 	func setViewModels(viewModels: [CarsElementViewModel]) {

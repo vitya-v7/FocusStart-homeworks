@@ -13,8 +13,6 @@ protocol ICarDetailViewInput : UIViewController  {
 	func setViewModel(viewModel: CarDetailViewModel)
 }
 
-
-
 protocol ICarDetailViewOutput {
 	func callPopover(pickerType: PickerType, option: String)
 	func changeSelectedDataInView(type: PickerType, index: Int)
@@ -71,7 +69,7 @@ class CarDetailViewController: UIViewController {
 	override func viewWillDisappear(_ animated: Bool) {
 		if (self.isMovingFromParent) {
 			SceneDelegate.coordinatingController.back(animated: true)
-		  }
+		}
 	}
 
 	override func viewWillAppear(_ animated: Bool) {
@@ -80,12 +78,10 @@ class CarDetailViewController: UIViewController {
 	}
 }
 
-
-
-extension CarDetailViewController: UITextFieldDelegate {
+extension CarDetailViewController: UITextFieldDelegate
+{
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		if output != nil && textField.tag != textFieldsWithTags.carYear.rawValue && textField.tag != textFieldsWithTags.carNumber.rawValue {
-
 			var pickerType: PickerType?
 			switch textField.tag {
 			case 1:
@@ -97,11 +93,9 @@ extension CarDetailViewController: UITextFieldDelegate {
 			default:
 				pickerType = .carBodyStyle
 			}
-
 			output?.callPopover(pickerType: pickerType!, option: textField.text!)
 			return false
 		}
-
 		return true
 	}
 	func textFieldDidEndEditing(_ textField: UITextField) {
@@ -112,8 +106,6 @@ extension CarDetailViewController: UITextFieldDelegate {
 			number = textField.text ?? ""
 		}
 	}
-
-	
 }
 
 extension CarDetailViewController: ICarDetailViewInput
@@ -129,7 +121,6 @@ extension CarDetailViewController: ICarDetailViewInput
 	}
 
 	func setViewModel(viewModel: CarDetailViewModel) {
-
 		self.viewModel = viewModel
 		year = self.viewModel?.carYear ?? ""
 		number = self.viewModel?.carNumber ?? ""
@@ -140,7 +131,6 @@ extension CarDetailViewController: ICarDetailViewInput
 extension CarDetailViewController: INavigationSeed
 {
 	var vc: UIViewController { self }
-
 	func set<Parameters>(type: TypeOfParameters, parameters: Parameters?) {
 		if type == .forDetailController {
 			if let parameters = parameters {
@@ -149,8 +139,6 @@ extension CarDetailViewController: INavigationSeed
 			output?.viewDidLoadDone()
 		}
 	}
-	
-	
 }
 
 private extension CarDetailViewController
@@ -161,11 +149,11 @@ private extension CarDetailViewController
 		   let _ = self.carBodyStyle,
 		   let _ = self.carNumberLabel,
 		   let _ = self.carYear {
-		self.carModel.text = object.carModel
-		self.carCountry.text = object.carCountry
-		self.carBodyStyle.text = object.carBodyStyle
-		self.carNumberLabel.text = object.carNumber
-		self.carYear.text = object.carYear
+			self.carModel.text = object.carModel
+			self.carCountry.text = object.carCountry
+			self.carBodyStyle.text = object.carBodyStyle
+			self.carNumberLabel.text = object.carNumber
+			self.carYear.text = object.carYear
 		}
 	}
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+
 protocol ICarListInteractorInput {
 	func getCars() -> [CarModel]?
 	func deleteCar(key: String)
@@ -46,7 +47,6 @@ extension CarsListPresenter: ICarsListViewOutput
 		router?.nextDetailModule(carKey: carModels![indexPath.row].carKey )
 	}
 
-
 	func convertCarModelToViewModel(car: CarModel) -> CarsElementViewModel {
 		let viewModel = CarsElementViewModel(withElementModel: car)
 		return viewModel
@@ -83,10 +83,7 @@ extension CarsListPresenter: ICarsListViewOutput
 	func callPopover() {
 		routerToPopover?.nextPopoverModule()
 	}
-	
 
-	
-	
 	func reloadData() {
 		carModels = interactor?.getCars()
 		if let carModels = carModels {
@@ -100,5 +97,4 @@ extension CarsListPresenter: ICarsListViewOutput
 			reloadData()
 		}
 	}
-
 }

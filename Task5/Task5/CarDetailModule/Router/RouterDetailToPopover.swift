@@ -8,15 +8,11 @@
 
 import Foundation
 
-
-
-protocol IRouterDetailToPopover: AnyObject
-{
+protocol IRouterDetailToPopover: AnyObject {
 	func nextPopoverModule(pickerType: PickerType, choice: String)
 }
 
-final class RouterDetailToPopover: IRouterDetailToPopover
-{
+final class RouterDetailToPopover: IRouterDetailToPopover {
 	var detailPresenter : ICarDetailViewOutput?
 	func nextPopoverModule(pickerType: PickerType, choice: String) {
 		let parameters = ParametersStruct(pickerType: pickerType, choice: choice, output: detailPresenter, outputList: nil)

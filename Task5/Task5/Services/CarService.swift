@@ -8,8 +8,6 @@
 
 import UIKit
 
-
-
 protocol ICarsListService {
 	func getCars() -> [CarModel]?
 	func deleteCar(key: String)
@@ -28,14 +26,14 @@ class CarService {
 		case Coupe
 		case Hatchback
 	}
-
+	
 	enum CarCountry: String, CaseIterable, Codable  {
 		case Germany
 		case Japan
 		case Russia
 		case USA
 	}
-
+	
 	enum CarModels: String, CaseIterable, Codable   {
 		case Toyota
 		case Mazda
@@ -60,7 +58,7 @@ extension CarService: ICarsListService
 			return [CarModel]()
 		}
 	}
-
+	
 	func deleteCar(key: String) {
 		var cars = getCars() ?? [CarModel]()
 		for index in 0 ..< cars.count {
@@ -85,7 +83,7 @@ extension CarService: IDetailsCarService
 		}
 		setCars(cars: cars)
 	}
-
+	
 	func addCar(car: CarModel) {
 		let cars = getCars()
 		if var carArray = cars {
@@ -95,7 +93,7 @@ extension CarService: IDetailsCarService
 			setCars(cars: carArray)
 		}
 	}
-
+	
 	func getCar(key: String) -> CarModel? {
 		let cars = getCars() ?? [CarModel]()
 		for car in cars {
@@ -107,7 +105,8 @@ extension CarService: IDetailsCarService
 	}
 }
 
-private extension CarService {
+private extension CarService
+{
 	func setCars(cars: [CarModel]) {
 		let encoded = try? JSONEncoder().encode(cars)
 		guard let encodedData = encoded else {

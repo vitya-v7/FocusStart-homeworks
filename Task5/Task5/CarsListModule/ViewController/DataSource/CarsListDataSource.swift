@@ -7,36 +7,35 @@
 //
 
 import UIKit
+
 protocol CarsListDataSourceProtocol: UITableViewDataSource {
 	func setItems(_ CellModels: [CarsElementViewModel])
 	func getItem(for indexPath: IndexPath) -> CarsElementViewModel
 }
 
-
-
 class CarsListDataSource: NSObject, CarsListDataSourceProtocol {
-
+	var cells = [CarsElementCell]()
 	var cellModels = [CarsElementViewModel]()
 	var handlerChain: [UIView]?
 	func setItems(_ CellModels: [CarsElementViewModel]) {
 		cellModels = CellModels
 	}
-
+	
 	func getItem(for indexPath: IndexPath) -> CarsElementViewModel {
 		return cellModels[indexPath.row]
 	}
-	var cells = [CarsElementCell]()
+	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: CarsElementCell.reuseIdentifier) as! CarsElementCell
 		cell.configureCell(withObject: cellModels[indexPath.row])
 		cells.append(cell)
 		return cell
 	}
-
+	
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return 1
 	}
-
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return self.cellModels.count
 	}

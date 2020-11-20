@@ -8,13 +8,11 @@
 
 import Foundation
 
-protocol IRouterListToDetail: AnyObject
-{
+protocol IRouterListToDetail: AnyObject {
 	func nextDetailModule(carKey: String?)
 }
 
-final class RouterListToDetail: IRouterListToDetail
-{
+final class RouterListToDetail: IRouterListToDetail {
 	func nextDetailModule(carKey: String?) {
 		SceneDelegate.coordinatingController.push(module: .detailModule, parameters: carKey, animated: true)
 	}

@@ -8,11 +8,7 @@
 
 import UIKit
 
-
-
-
 struct CarsElementViewModel {
-	
 	var carModel: String?
 	var carYear: String?
 	var carCountry: String?

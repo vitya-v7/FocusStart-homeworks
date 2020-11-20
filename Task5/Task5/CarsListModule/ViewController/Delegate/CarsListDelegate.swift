@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class CarsListDelegate: NSObject, UITableViewDelegate {
 	var view: CarsListViewProtocolForDelegate?
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
