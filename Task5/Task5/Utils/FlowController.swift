@@ -60,7 +60,7 @@ final class FlowController
 	func createPopoverModule(type: NavigationModule) {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let pv = storyboard.instantiateViewController(identifier: "PickerViewIdentifier") as! PickerViewController
-		pv.modalPresentationStyle = UIModalPresentationStyle.popover
+		pv.modalPresentationStyle = UIModalPresentationStyle.fullScreen
 		pv.preferredContentSize = CGSize(width: 300, height: 300)
 		pv.picker?.backgroundColor = UIColor.white
 		let popover = pv.popoverPresentationController

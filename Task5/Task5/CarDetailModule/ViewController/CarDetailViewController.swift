@@ -70,16 +70,16 @@ class CarDetailViewController: UIViewController {
 		output?.reloadData()
 		output?.saveCarInDB()
 	}
+
+	override func viewWillAppear(_ animated: Bool) {
+		carYear.text = year
+		carNumberLabel.text = number
+	}
 	
 	override func viewWillDisappear(_ animated: Bool) {
 		if (self.isMovingFromParent) {
 			SceneDelegate.coordinatingController.back(animated: true)
 		}
-	}
-
-	override func viewWillAppear(_ animated: Bool) {
-		carYear.text = year
-		carNumberLabel.text = number
 	}
 }
 
@@ -98,18 +98,16 @@ extension CarDetailViewController: UITextFieldDelegate
 			default:
 				pickerType = .carBodyStyle
 			}
+
 			output?.callPopover(pickerType: pickerType!, option: textField.text!)
 			return false
 		}
 		return true
 	}
+
 	func textFieldDidEndEditing(_ textField: UITextField) {
-		if textField.tag == textFieldsWithTags.carYear.rawValue {
-			year = textField.text ?? ""
-		}
-		if textField.tag == textFieldsWithTags.carNumber.rawValue {
-			number = textField.text ?? ""
-		}
+		year = carYear.text!
+		number = carNumberLabel.text!
 	}
 }
 
@@ -127,8 +125,6 @@ extension CarDetailViewController: ICarDetailViewInput
 
 	func setViewModel(viewModel: CarDetailViewModel) {
 		self.viewModel = viewModel
-		year = self.viewModel?.carYear ?? ""
-		number = self.viewModel?.carNumber ?? ""
 		self.configureDetailView(withObject: viewModel)
 	}
 }
