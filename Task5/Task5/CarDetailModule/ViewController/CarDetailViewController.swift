@@ -50,7 +50,12 @@ class CarDetailViewController: UIViewController {
 		output?.viewDidLoadDone()
 		year = viewModel?.carYear ?? ""
 		number = viewModel?.carNumber ?? ""
+		let tap = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
+		view.addGestureRecognizer(tap)
+	}
 
+	@objc func dismissKeyboard() {
+		view.endEditing(true)
 	}
 
 	@objc func saveCar(_ sender: Any) {
