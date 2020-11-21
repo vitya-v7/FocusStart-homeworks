@@ -39,8 +39,8 @@ class FirstView: UIView {
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 
-		setupViewsAppearances()
-		setupLayout()
+		configureSubviews()
+		setupConstraints()
 	}
 
 	required init?(coder: NSCoder) {
@@ -60,36 +60,35 @@ extension FirstView
 
 private extension FirstView
 {
-	func setupViewsAppearances() {
-		setupSuperViewAppearances()
-		setupImageViewAppearances()
-		setupLabel1Appearances()
-		setupLabel2Appearances()
-		setupLabel3Appearances()
-		setupButton1Appearances()
-		setupButton2Appearances()
-		setupImageViewAppearances()
-		setupActivityIndicatorAppearances()
+	func configureSubviews() {
+		configureSuperView()
+		configureImageView()
+		configureLabel1()
+		configureLabel2()
+		configureLabel3()
+		configureButton1()
+		configureButton2()
+		configureActivityIndicator()
 	}
 
-	func setupSuperViewAppearances() {
+	func configureSuperView() {
 		backgroundColor = .systemBackground
 	}
 
-	func setupLabel1Appearances() {
+	func configureLabel1() {
 		label1.numberOfLines = 1
 		label1.textAlignment = .center
 		label1.text = "Simple Label"
 	}
 
-	func setupLabel2Appearances() {
+	func configureLabel2() {
 		label2.numberOfLines = 1
 		label2.textAlignment = .center
 		label2.font = UIFont.boldSystemFont(ofSize: Constants.labelFontSize)
 		label2.text = "Different font"
 	}
 
-	func setupLabel3Appearances() {
+	func configureLabel3() {
 		label3.numberOfLines = 2
 		label3.textAlignment = .center
 		label3.font = UIFont.italicSystemFont(ofSize: Constants.labelFontSize)
@@ -100,7 +99,7 @@ private extension FirstView
             """
 	}
 
-	func setupButton1Appearances() {
+	func configureButton1() {
 		button1.layer.cornerRadius = Constants.bottomAndTopSpace
 		button1.backgroundColor = .cyan
 		button1.clipsToBounds = true
@@ -110,7 +109,7 @@ private extension FirstView
 		button1.layer.borderColor = UIColor.systemRed.cgColor
 	}
 
-	func setupButton2Appearances() {
+	func configureButton2() {
 		button2.backgroundColor = .red
 		button2.clipsToBounds = true
 		button2.setTitleColor(.black, for: .normal)
@@ -120,13 +119,13 @@ private extension FirstView
 		button2.layer.borderColor = UIColor.systemGreen.cgColor
 	}
 
-	func setupImageViewAppearances() {
+	func configureImageView() {
 		imageView.image = Images.test.image
 		imageView.contentMode = .scaleAspectFill
 		imageView.clipsToBounds = true
 	}
 
-	func setupActivityIndicatorAppearances() {
+	func configureActivityIndicator() {
 		activityIndicator.color = .black
 		activityIndicator.startAnimating()
 	}
@@ -136,18 +135,18 @@ private extension FirstView
 
 private extension FirstView
 {
-	func setupLayout() {
-		setupLabel1Layout()
-		setupLabel2Layout()
-		setupLabel3Layout()
-		setupButton1Layout()
-		setupButton2Layout()
-		setupImageViewLayout()
-		setupActivityIndicatorLayout()
+	func setupConstraints() {
+		setupLabel1Constraints()
+		setupLabel2Constraints()
+		setupLabel3Constraints()
+		setupButton1Constraints()
+		setupButton2Constraints()
+		setupImageViewConstraints()
+		setupActivityIndicatorConstraints()
 		NSLayoutConstraint.activate(Constraints)
 	}
 
-	func setupLabel1Layout() {
+	func setupLabel1Constraints() {
 		addSubview(label1)
 		label1.translatesAutoresizingMaskIntoConstraints = false
 
@@ -162,7 +161,7 @@ private extension FirstView
 				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.05)])
 	}
 
-	func setupLabel2Layout() {
+	func 		setupLabel2Constraints() {
 		addSubview(label2)
 		label2.translatesAutoresizingMaskIntoConstraints = false
 
@@ -177,7 +176,7 @@ private extension FirstView
 		])
 	}
 
-	func setupLabel3Layout() {
+	func setupLabel3Constraints() {
 		addSubview(label3)
 		label3.translatesAutoresizingMaskIntoConstraints = false
 
@@ -193,7 +192,7 @@ private extension FirstView
 		])
 	}
 
-	func setupButton1Layout() {
+	func setupButton1Constraints() {
 		addSubview(button1)
 		button1.translatesAutoresizingMaskIntoConstraints = false
 
@@ -209,7 +208,7 @@ private extension FirstView
 		])
 	}
 
-	func setupButton2Layout() {
+	func setupButton2Constraints() {
 		addSubview(button2)
 		button2.translatesAutoresizingMaskIntoConstraints = false
 
@@ -226,7 +225,7 @@ private extension FirstView
 		])
 	}
 
-	func setupImageViewLayout() {
+	func setupImageViewConstraints() {
 		addSubview(imageView)
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -242,7 +241,7 @@ private extension FirstView
 		])
 	}
 
-	func setupActivityIndicatorLayout() {
+	func setupActivityIndicatorConstraints() {
 		imageView.addSubview(activityIndicator)
 		activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
