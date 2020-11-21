@@ -9,14 +9,14 @@
 import UIKit
 
 protocol ICarsListServiceInterface {
-    func getCars() -> [CarModel]?
-    func deleteCar(key: String)
+	func getCars() -> [CarModel]?
+	func deleteCar(key: String)
 }
 
 protocol IDetailsCarServiceInterface {
-    func getCar(key: String) -> CarModel?
-    func addCar(car: CarModel)
-    func updateCar(car: CarModel)
+	func getCar(key: String) -> CarModel?
+	func addCar(car: CarModel)
+	func updateCar(car: CarModel)
 }
 
 class CarService {
@@ -48,7 +48,10 @@ extension CarService: ICarsListServiceInterface
 	func getCars() -> [CarModel]? {
 		let allValues: Data? = UserDefaults.standard.data(forKey: "cars")
 		if let cars = allValues {
-			let decodedCars = try! JSONDecoder().decode([CarModel].self, from: cars)
+			let decoded = try? JSONDecoder().decode([CarModel].self, from: cars)
+			guard let decodedCars = decoded else {
+				return nil
+			}
 			return decodedCars
 		}
 		else {
@@ -57,28 +60,28 @@ extension CarService: ICarsListServiceInterface
 	}
 
 	func deleteCar(key: String) {
-		var cars = getCars()
-		for index in 0 ..< cars!.count {
-			if cars![index].carKey == key {
-				cars!.remove(at: index)
+		var cars = getCars() ?? [CarModel]()
+		for index in 0 ..< cars.count {
+			if cars[index].carKey == key {
+				cars.remove(at: index)
 				break
 			}
 		}
-		setCars(cars: cars!)
+		setCars(cars: cars)
 	}
 }
 
 extension CarService: IDetailsCarServiceInterface
 {
 	func updateCar(car: CarModel) {
-		var cars = getCars()
-		for index in 0 ..< cars!.count {
-			if cars![index].carKey == car.carKey {
-				cars![index] = car
+		var cars = getCars() ?? [CarModel]()
+		for index in 0 ..< cars.count {
+			if cars[index].carKey == car.carKey {
+				cars[index] = car
 				break
 			}
 		}
-		setCars(cars: cars!)
+		setCars(cars: cars)
 	}
 
 	func addCar(car: CarModel) {
@@ -92,8 +95,8 @@ extension CarService: IDetailsCarServiceInterface
 	}
 
 	func getCar(key: String) -> CarModel? {
-		let cars = getCars()
-		for car in cars! {
+		let cars = getCars() ?? [CarModel]()
+		for car in cars {
 			if car.carKey == key {
 				return car
 			}
@@ -103,8 +106,11 @@ extension CarService: IDetailsCarServiceInterface
 }
 
 private extension CarService {
-	private func setCars(cars: [CarModel]) {
-		let encodedData =  try! JSONEncoder().encode(cars)
+	func setCars(cars: [CarModel]) {
+		let encoded = try? JSONEncoder().encode(cars)
+		guard let encodedData = encoded else {
+			return
+		}
 		UserDefaults.standard.set(encodedData, forKey: "cars")
 		UserDefaults.standard.synchronize()
 	}
