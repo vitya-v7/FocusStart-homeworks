@@ -9,11 +9,17 @@
 import Foundation
 
 
-public enum CarBodyStyle: String, CaseIterable, Codable   {
+enum CarBodyStyle: String, CaseIterable, Codable   {
 	case Sedan
 	case Universal
 	case Coupe
 	case Hatchback
+}
+
+extension CarBodyStyle {
+	var index: Self.AllCases.Index? {
+		return Self.allCases.firstIndex { self == $0 }
+	}
 }
 
 public enum CarCountry: String, CaseIterable, Codable  {
@@ -23,12 +29,24 @@ public enum CarCountry: String, CaseIterable, Codable  {
 	case USA
 }
 
+extension CarCountry {
+	var index: Self.AllCases.Index? {
+		return Self.allCases.firstIndex { self == $0 }
+	}
+}
+
 public enum CarModels: String, CaseIterable, Codable   {
 	case Toyota
 	case Mazda
 	case Nissan
 	case Wolkswagen
 	case BMW
+}
+
+extension CarModels {
+	var index: Self.AllCases.Index? {
+		return Self.allCases.firstIndex { self == $0 }
+	}
 }
 
 public enum PickerType: String {
@@ -41,9 +59,15 @@ public enum PickerType: String {
 
 public struct ParametersStruct {
 	var pickerType: PickerType?
-	var currentChoice: String?
-	var output: CarDetailPresenter?
-	var outputList: CarsListPresenter?
+	var currentChoice: Int?
+	var output: PopoverOutput?
+	var options: [String]?
+	var moduleType: ModuleType?
+}
+
+enum ModuleType {
+	case listModule
+	case detailModule
 }
 
 public enum textFieldsWithTags: Int {

@@ -66,8 +66,26 @@ extension CarDetailPresenter: ICarDetailViewOutput {
 		self.key = key
 	}
 
-	func callPopover(pickerType: PickerType, option: String) {
-		router?.nextPopoverModule(pickerType: pickerType, currentChoice: option)
+	func callPopover(pickerType: PickerType, option: Int) {
+		var itemArray = [String]()
+		switch pickerType {
+		case .carModel:
+			for item in CarModels.allCases {
+				itemArray.append(item.rawValue)
+			}
+		case .carBodyStyle:
+			for item in CarBodyStyle.allCases {
+				itemArray.append(item.rawValue)
+			}
+		case .carCountry:
+			for item in CarCountry.allCases {
+				itemArray.append(item.rawValue)
+			}
+		default:
+			print("error: callPopover")
+		}
+
+		router?.nextPopoverModule(pickerType: pickerType, currentChoice: option, options: itemArray)
 	}
 
 	func changeSelectedDataInView(type: PickerType, index: Int) {
@@ -96,5 +114,11 @@ extension CarDetailPresenter: ICarDetailViewOutput {
 			carModel = CarModel.init(model: CarModels.allCases[0], manufacturer: CarCountry.allCases[0], body: CarBodyStyle.allCases[0], carKey: nil)
 		}
 		reloadData()
+	}
+}
+
+extension CarDetailPresenter: PopoverOutput {
+	func changeData(type: PickerType, index: Int) {
+		changeSelectedDataInView(type: type, index: index)
 	}
 }

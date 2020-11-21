@@ -15,7 +15,13 @@ protocol IRouterListToPopoverInput: AnyObject {
 final class RouterListToPopover: IRouterListToPopoverInput {
 	var listPresenter : CarsListPresenter?
 	func nextPopoverModule() {
-		let parameters = ParametersStruct(pickerType: .carBodyStyle, currentChoice: nil, output: nil, outputList: listPresenter)
+		var options = [String]()
+		for item in CarBodyStyle.allCases {
+			options.append(item.rawValue)
+		}
+
+		let parameters = ParametersStruct(pickerType: .carBodyStyle, currentChoice: nil, output: listPresenter, options: options, moduleType: ModuleType.listModule)
+
 		SceneDelegate.coordinatingController.push(module: .popoverModule, parameters: parameters, animated: true)
 	}
 }

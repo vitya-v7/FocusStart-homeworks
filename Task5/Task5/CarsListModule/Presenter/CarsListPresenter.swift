@@ -96,3 +96,15 @@ extension CarsListPresenter: ICarsListViewOutput {
 }
 
 
+extension CarsListPresenter: PopoverOutput {
+	func changeData(type: PickerType, index: Int) {
+		if type == .carBodyStyle {
+			if index > -1 {
+				filterCars(bodyStyle: CarBodyStyle.allCases[index])
+			}
+			else {
+				filterCars(bodyStyle: nil)
+			}
+		}
+	}
+}

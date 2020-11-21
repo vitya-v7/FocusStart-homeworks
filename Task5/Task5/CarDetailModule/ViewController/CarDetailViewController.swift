@@ -14,7 +14,7 @@ protocol ICarDetailViewInput : UIViewController  {
 }
 
 protocol ICarDetailViewOutput {
-	func callPopover(pickerType: PickerType, option: String)
+	func callPopover(pickerType: PickerType, option: Int)
 	func changeSelectedDataInView(type: PickerType, index: Int)
 	func saveSelectedTextFieldValue(type: PickerType, value: String)
 	func viewDidLoadDone()
@@ -77,19 +77,25 @@ extension CarDetailViewController: UITextFieldDelegate
 	func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
 		if output != nil && textField.tag != textFieldsWithTags.carYear.rawValue && textField.tag != textFieldsWithTags.carNumber.rawValue {
 			var pickerType: PickerType?
+			output?.setCarNumber(carNumber: carNumberLabel.text)
+			output?.setCarYear(year: Int(carYear.text!))
 			switch textField.tag {
 			case 1:
 				pickerType = .carModel
+				let enumeration = CarModels.init(rawValue: textField.text!)
+				output?.callPopover(pickerType: pickerType!, option: enumeration!.index!)
 			case 2:
 				pickerType = .carBodyStyle
+				let enumeration = CarBodyStyle.init(rawValue: textField.text!)
+				output?.callPopover(pickerType: pickerType!, option: enumeration!.index!)
 			case 4:
 				pickerType = .carCountry
+				let enumeration = CarCountry.init(rawValue: textField.text!)
+				output?.callPopover(pickerType: pickerType!, option: enumeration!.index!)
 			default:
 				pickerType = .carBodyStyle
 			}
-			output?.setCarNumber(carNumber: carNumberLabel.text)
-			output?.setCarYear(year: Int(carYear.text!))
-			output?.callPopover(pickerType: pickerType!, option: textField.text!)
+
 			return false
 		}
 		return true

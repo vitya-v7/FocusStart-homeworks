@@ -8,37 +8,20 @@
 
 import UIKit
 
+protocol PopoverOutput {
+	func changeData(type: PickerType, index: Int)
+}
+
 class PickerViewController: UIViewController {
 
 	@IBOutlet weak var picker: UIPickerView!
 	@IBOutlet weak var button: UIButton!
 	var type: PickerType?
+	var moduleType: ModuleType?
 	var options: [String]?
-	var currentOption: String?
-	var selectedIndexInPicker: Int?
-	var outputDetail: ICarDetailViewOutput?
-	var outputList: ICarsListViewOutput?
-	private func selectedOption() -> [String] {
-		var itemArray = [String]()
-		switch type {
-		case .carModel:
-			for item in CarModels.allCases {
-				itemArray.append(item.rawValue)
-			}
-		case .carBodyStyle:
-			for item in CarBodyStyle.allCases {
-				itemArray.append(item.rawValue)
-			}
-		case .carCountry:
-			for item in CarCountry.allCases {
-				itemArray.append(item.rawValue)
-			}
-		default:
-			return [String]()
-		}
-		return itemArray
-	}
-
+	var currentOption: Int?
+	var output: PopoverOutput?
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		picker.delegate = self
@@ -47,46 +30,25 @@ class PickerViewController: UIViewController {
 	}
 	
 	func updatePicker() {
-		options = selectedOption()
-		if outputList != nil {
+		if moduleType == .listModule {
 			options?.insert("All bodystyles", at: 0)
+			picker?.selectRow(0, inComponent: 0, animated: true)
 		}
-		guard let options = options  else {
-			return
-		}
-		var selectedIndexInPicker = 0
-		if currentOption != nil {
-			for i in 0 ..< options.count {
-				if currentOption == options[i] {
-					selectedIndexInPicker = i
-				}
-			}
-		}
-		if outputDetail != nil {
-			picker?.selectRow(selectedIndexInPicker, inComponent: 0, animated: true)
-		}
-		else {
-			if selectedIndexInPicker > 0 {
-				picker?.selectRow(selectedIndexInPicker + 1, inComponent: 0, animated: true)
-			}
+		if moduleType == .detailModule  {
+			picker?.selectRow(currentOption!, inComponent: 0, animated: true)
 		}
 		self.picker.reloadAllComponents()
 	}
 
 	@objc func saveData(_ but: UIButton) {
 		let row = picker?.selectedRow(inComponent: 0)
-		if let row = row, let out = outputDetail, let type = type {
-			out.changeSelectedDataInView(type: type, index: row)
-		}
-		if let outputList = outputList {
-			guard let options = options, let row = row else {
-				return
+		if let row = row, let out = output, let type = type {
+			if moduleType == .detailModule {
+				out.changeData(type: type, index: row)
 			}
-			if row > 0 {
-				outputList.filterCars(bodyStyle: CarBodyStyle(rawValue: options[row]))
-			}
-			else {
-				outputList.filterCars(bodyStyle: nil)
+			if moduleType == .listModule  {
+				let rowIn = row - 1
+				out.changeData(type: type, index: rowIn)
 			}
 		}
 		SceneDelegate.coordinatingController.back(animated: true)
@@ -128,9 +90,10 @@ extension PickerViewController: INavigationSeed
 		if typeOfParameters == .forPopover {
 			let parametersIn = parameters as! ParametersStruct
 			type = parametersIn.pickerType
-			currentOption = parametersIn.currentChoice
-			outputList = parametersIn.outputList
-			outputDetail = parametersIn.output
+			currentOption = parametersIn.currentChoice ?? 0
+			output = parametersIn.output
+			options = parametersIn.options
+			moduleType = parametersIn.moduleType
 			updatePicker()
 		}
 	}
