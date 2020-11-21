@@ -16,8 +16,8 @@ class PickerViewController: UIViewController {
 	var options: [String]?
 	var currentOption: String?
 	var selectedIndexInPicker: Int?
-	var outputDetail: CarDetailPresenter?
-	var outputList: CarsListPresenter?
+	var outputDetail: ICarDetailViewOutput?
+	var outputList: ICarsListViewOutput?
 	private func selectedOption() -> [String] {
 		var itemArray = [String]()
 		switch type {
