@@ -11,9 +11,9 @@
       location = "group:Task3/Task3.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:/Users/admin/Documents/project/FocusStart-homeworks/Task4/Task4.xcodeproj">
+      location = "group:Task4/Task4.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Task4/../Task5/Task5.xcodeproj">
+      location = "group:Task5/Task5.xcodeproj">
    </FileRef>
 </Workspace>
