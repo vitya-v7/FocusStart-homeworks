@@ -33,7 +33,7 @@ class FirstView: UIView {
 	private let button2 = UIButton(type: .custom)
 	private let imageView = UIImageView()
 	private let activityIndicator = UIActivityIndicatorView()
-    
+
 	// MARK: Life Cycle
 
 	public override init(frame: CGRect) {
@@ -46,20 +46,14 @@ class FirstView: UIView {
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-}
 
 	// MARK: Configuring Subviews
 
-extension FirstView
-{
 	func makeButton2Rounded() {
 		let minimum = min(button2.bounds.height, button2.bounds.width)
 		button2.layer.cornerRadius = minimum/2
 	}
-}
 
-private extension FirstView
-{
 	func configureSubviews() {
 		configureSuperView()
 		configureImageView()
@@ -129,12 +123,9 @@ private extension FirstView
 		activityIndicator.color = .black
 		activityIndicator.startAnimating()
 	}
-}
 
-// MARK: Constraints
+	// MARK: Constraints
 
-private extension FirstView
-{
 	func setupConstraints() {
 		setupLabel1Constraints()
 		setupLabel2Constraints()
@@ -161,7 +152,7 @@ private extension FirstView
 				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.05)])
 	}
 
-	func 		setupLabel2Constraints() {
+	func setupLabel2Constraints() {
 		addSubview(label2)
 		label2.translatesAutoresizingMaskIntoConstraints = false
 
@@ -253,5 +244,3 @@ private extension FirstView
 		])
 	}
 }
-
-

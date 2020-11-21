@@ -50,12 +50,9 @@ class SecondView: UIView {
 		super.traitCollectionDidChange(previousTraitCollection)
 		changeViewsLayout(traitCollection: traitCollection)
 	}
-}
 
-// MARK: Configuring Subviews
+	// MARK: Configuring Subviews
 
-private extension SecondView
-{
 	func configureSubviews() {
 		configureSuperView()
 		configureImageView()
@@ -97,12 +94,9 @@ private extension SecondView
 			"""
 		textLabel.textAlignment = .center
 	}
-}
 
-// MARK: Shared Constraints
+	// MARK: Shared Constraints
 
-private extension SecondView
-{
 	func changeViewsLayout(traitCollection: UITraitCollection) {
 		switch(traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
 		case (.compact, .regular):
@@ -190,12 +184,9 @@ private extension SecondView
 				equalTo: scrollView.bottomAnchor)
 		])
 	}
-}
 
-// MARK: Compact Constraints
+	// MARK: Compact Constraints
 
-private extension SecondView
-{
 	func setupCompactConstraints() {
 		setupImageViewCompactConstraints()
 		setupTitleLabelCompactConstraints()
@@ -227,12 +218,9 @@ private extension SecondView
 				constant: Constants.labelSpace)
 		])
 	}
-}
 
-// MARK: Regular Constraints
+	// MARK: Regular Constraints
 
-private extension SecondView
-{
 	func setupRegularConstraints() {
 		setupImageViewRegularConstraints()
 		setupTitleLabelRegularConstraints()
@@ -270,3 +258,4 @@ private extension SecondView
 		])
 	}
 }
+

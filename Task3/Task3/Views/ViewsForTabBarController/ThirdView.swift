@@ -59,20 +59,14 @@ class ThirdView: UIView {
 	internal override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		endEditing(true)
 	}
-}
 
 // MARK: Configuring Subviews
 
-extension ThirdView
-{
 	func makeButtonRounded() {
 		let minimum = min(button.bounds.height, button.bounds.width)
 		button.layer.cornerRadius = minimum/2
 	}
-}
 
-private extension ThirdView
-{
 	func configureSubviews() {
 		configureSuperView()
 		configureLoginTextField()
@@ -112,12 +106,8 @@ private extension ThirdView
 		button.setTitle("Enter", for: .normal)
 	}
 
-}
-
 // MARK: Constraints
 
-private extension ThirdView
-{
 	func setupConstraints() {
 		setupLoginTextFieldConstraints()
 		setupPasswordTextFieldConstraints()
@@ -191,19 +181,9 @@ private extension ThirdView
 		}
 		NSLayoutConstraint.activate([buttonBottomConstraintIn])
 	}
-}
-
-extension ThirdView: UITextFieldDelegate
-{
-	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-		endEditing(true)
-		return true
-	}
-}
 
 //MARK: - Keyboard Manipulations
-extension ThirdView
-{
+
 	@objc func keyboardWillShow(notification: NSNotification) {
 		guard let userInfo = notification.userInfo else {return}
 		guard let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else {return}
@@ -232,5 +212,13 @@ extension ThirdView
 			self.setButtonBottomConstraint(space: 0)
 			self.layoutIfNeeded()
 		})
+	}
+}
+
+extension ThirdView: UITextFieldDelegate
+{
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		endEditing(true)
+		return true
 	}
 }
