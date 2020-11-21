@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		8432906A2566E2EB00D5111A /* RouterDetailToPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843290692566E2EB00D5111A /* RouterDetailToPopover.swift */; };
 		843290772567463B00D5111A /* RouterListToPopover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843290762567463B00D5111A /* RouterListToPopover.swift */; };
+		84382A762568AFD5000C6421 /* PublicConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84382A752568AFD5000C6421 /* PublicConstants.swift */; };
 		843D02842561EB7C001B3588 /* CarDetailInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D02832561EB7C001B3588 /* CarDetailInteractor.swift */; };
 		843D02902561EBC4001B3588 /* CarsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D028F2561EBC4001B3588 /* CarsListInteractor.swift */; };
 		843D029C2561ED1A001B3588 /* RouterListToDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 843D029B2561ED1A001B3588 /* RouterListToDetail.swift */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		843290692566E2EB00D5111A /* RouterDetailToPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterDetailToPopover.swift; sourceTree = "<group>"; };
 		843290762567463B00D5111A /* RouterListToPopover.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterListToPopover.swift; sourceTree = "<group>"; };
+		84382A752568AFD5000C6421 /* PublicConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicConstants.swift; sourceTree = "<group>"; };
 		843D02832561EB7C001B3588 /* CarDetailInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarDetailInteractor.swift; sourceTree = "<group>"; };
 		843D028F2561EBC4001B3588 /* CarsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsListInteractor.swift; sourceTree = "<group>"; };
 		843D029B2561ED1A001B3588 /* RouterListToDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterListToDetail.swift; sourceTree = "<group>"; };
@@ -276,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				844812F725135B5B003868DF /* CarService.swift */,
+				84382A752568AFD5000C6421 /* PublicConstants.swift */,
 				844812F325135B5B003868DF /* Models */,
 			);
 			path = Services;
@@ -381,7 +384,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1160;
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1220;
 				ORGANIZATIONNAME = Admin;
 				TargetAttributes = {
 					844812AB25133CB2003868DF = {
@@ -457,6 +460,7 @@
 				844812E925133CEE003868DF /* CarsElementViewModel.swift in Sources */,
 				844812EA25133CEE003868DF /* CarsElementCell.swift in Sources */,
 				843D02842561EB7C001B3588 /* CarDetailInteractor.swift in Sources */,
+				84382A762568AFD5000C6421 /* PublicConstants.swift in Sources */,
 				844553052562D49A001E139C /* CoordinatingController.swift in Sources */,
 				844812B025133CB2003868DF /* AppDelegate.swift in Sources */,
 				8445530A2562D4B2001E139C /* FlowController.swift in Sources */,
@@ -550,6 +554,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -610,6 +615,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;

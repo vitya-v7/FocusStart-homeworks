@@ -18,7 +18,7 @@ protocol ICarsListViewOutput {
 	func deleteButtonPressedWithIndexRow(row: Int)
 	func viewWillAppearDone()
 	func callPopover()
-	func filterCars(bodyStyle: CarService.CarBodyStyle?)
+	func filterCars(bodyStyle: CarBodyStyle?)
 	func cellSelectedAt(indexPath: IndexPath)
 	func plusButtonClicked()
 }
@@ -29,7 +29,7 @@ protocol CarsListViewProtocolForDelegate {
 
 class CarsListViewController: UIViewController {
 	var maxCarNumber = 3
-	var output: CarsListPresenter?
+	var output: ICarsListViewOutput?
 	var dataSource: CarsListDataSourceProtocol = CarsListDataSource()
 	var delegate: CarsListDelegate = CarsListDelegate()
 	

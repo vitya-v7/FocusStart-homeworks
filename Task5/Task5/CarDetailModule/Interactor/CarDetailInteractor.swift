@@ -6,7 +6,13 @@
 //  Copyright © 2020 Admin. All rights reserved.
 //
 
-class CarDetailInteractor: ICarDetailPresenterInput {
+protocol ICarDetailInteractorInput {
+	func getCar(key: String) -> CarModel?
+	func addCar(car: CarModel)
+	func updateCar(car: CarModel)
+}
+
+class CarDetailInteractor: ICarDetailInteractorInput {
 	var carService: IDetailsCarService?
 	func getCar(key: String) -> CarModel? {
 		return carService?.getCar(key: key)

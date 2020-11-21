@@ -8,18 +8,13 @@
 
 import UIKit
 
-protocol ICarListInteractorInput {
-	func getCars() -> [CarModel]?
-	func deleteCar(key: String)
-}
-
 class CarsListPresenter {
 	var interactor: ICarListInteractorInput?
 	weak var view: ICarsListViewInput?
 	var router: IRouterListToDetailInput?
 	var routerToPopover: IRouterListToPopoverInput?
 	var carModels: [CarModel]?
-	var filterBodyStyle: CarService.CarBodyStyle?
+	var filterBodyStyle: CarBodyStyle?
 
 	func viewDidLoadDone() {
 		view?.setInitialState()
@@ -39,8 +34,9 @@ class CarsListPresenter {
 			filterCars(bodyStyle: filterBodyStyle)
 		}
 	}
+}
 
-
+extension CarsListPresenter: ICarsListViewOutput {
 	func cellSelectedAt(indexPath: IndexPath) {
 		router?.nextDetailModule(carKey: carModels![indexPath.row].carKey )
 	}
@@ -59,7 +55,7 @@ class CarsListPresenter {
 		return carCells
 	}
 
-	func filterCars(bodyStyle: CarService.CarBodyStyle?) {
+	func filterCars(bodyStyle: CarBodyStyle?) {
 		filterBodyStyle = bodyStyle
 		var carModelsFiltered = [CarModel]()
 		self.carModels = interactor?.getCars() ?? [CarModel]()
@@ -79,7 +75,7 @@ class CarsListPresenter {
 			view?.setViewModels(viewModels: convertModelsToViewModels(models: cars))
 		}
 	}
-	
+
 	func callPopover() {
 		routerToPopover?.nextPopoverModule()
 	}
@@ -98,4 +94,5 @@ class CarsListPresenter {
 		}
 	}
 }
+
 

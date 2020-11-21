@@ -29,7 +29,7 @@ final class FlowController
 		let interactor = CarsListInteractor()
 		interactor.carService = carService
 		presenter.interactor = interactor
-		view.output = presenter
+		view.output = presenter as? ICarsListViewOutput
 		presenter.view = view
 		let router = RouterListToDetail()
 		let routerToPopover = RouterListToPopover()
@@ -49,7 +49,7 @@ final class FlowController
 		let interactor = CarDetailInteractor()
 		interactor.carService = carService
 		detailPresenter.interactor = interactor
-		view.output = detailPresenter
+		view.output = detailPresenter as? ICarDetailViewOutput
 		detailPresenter.view = view
 		let router = RouterDetailToPopover()
 		router.detailPresenter = detailPresenter

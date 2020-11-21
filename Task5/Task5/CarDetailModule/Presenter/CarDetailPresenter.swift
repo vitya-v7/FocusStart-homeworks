@@ -7,53 +7,25 @@
 //
 
 import UIKit
-protocol ICarDetailPresenterInput {
-	func getCar(key: String) -> CarModel?
-	func addCar(car: CarModel)
-	func updateCar(car: CarModel)
-}
+
 class CarDetailPresenter {
 	var key: String?
-	var interactor: ICarDetailPresenterInput?
+	var interactor: ICarDetailInteractorInput?
 	var view: ICarDetailViewInput?
 	var carModel: CarModel?
 	var router: IRouterDetailToPopoverInput?
-	func convertCarModelToViewModel(car: CarModel) -> CarDetailViewModel {
-		let viewModel = CarDetailViewModel(withElementModel: car)
-		return viewModel
+}
+
+extension CarDetailPresenter: ICarDetailViewOutput {
+
+	func setCarNumber(carNumber: String?) {
+		carModel?.carNumber = carNumber
 	}
 
-	func setKey(key: String?) {
-		self.key = key
+	func setCarYear(year: Int?) {
+		carModel?.yearOfIssue = year
 	}
 
-	func callPopover(pickerType: PickerType, option: String) {
-		router?.nextPopoverModule(pickerType: pickerType, currentChoice: option)
-	}
-	
-	func changeSelectedDataInView(type: PickerType, index: Int) {
-		switch type {
-		case .carModel:
-			carModel?.model = CarService.CarModels.allCases[index]
-		case .carBodyStyle:
-			carModel?.body = CarService.CarBodyStyle.allCases[index]
-		case .carCountry:
-			carModel?.manufacturer = CarService.CarCountry.allCases[index]
-		default: print("unknown option")
-		}
-		reloadData()
-	}
-	
-	func viewDidLoadDone() {
-		if let key = key {
-			carModel = interactor?.getCar(key: key)
-		}
-		else {
-			carModel = CarModel.init(model: CarService.CarModels.allCases[0], manufacturer: CarService.CarCountry.allCases[0], body: CarService.CarBodyStyle.allCases[0], carKey: nil)
-		}
-		reloadData()
-	}
-	
 	func saveCarInDB() {
 		if let carModel = carModel, carModel.carKey == nil {
 			interactor?.addCar(car: carModel)
@@ -63,7 +35,7 @@ class CarDetailPresenter {
 		}
 		self.view?.navigationController?.popViewController(animated: true)
 	}
-	
+
 	func saveSelectedTextFieldValue(type: PickerType, value: String) {
 		switch type {
 		case .carYear:
@@ -83,11 +55,46 @@ class CarDetailPresenter {
 		default: print("unknown option")
 		}
 	}
-	
+
 	func reloadData() {
 		guard let carModel = carModel else {
 			return
 		}
 		view?.setViewModel(viewModel: CarDetailViewModel.init(withElementModel: carModel))
+	}
+	func setKey(key: String?) {
+		self.key = key
+	}
+
+	func callPopover(pickerType: PickerType, option: String) {
+		router?.nextPopoverModule(pickerType: pickerType, currentChoice: option)
+	}
+
+	func changeSelectedDataInView(type: PickerType, index: Int) {
+		switch type {
+		case .carModel:
+			carModel?.model = CarModels.allCases[index]
+		case .carBodyStyle:
+			carModel?.body = CarBodyStyle.allCases[index]
+		case .carCountry:
+			carModel?.manufacturer = CarCountry.allCases[index]
+		default: print("unknown option")
+		}
+		reloadData()
+	}
+
+	func convertCarModelToViewModel(car: CarModel) -> CarDetailViewModel {
+		let viewModel = CarDetailViewModel(withElementModel: car)
+		return viewModel
+	}
+
+	func viewDidLoadDone() {
+		if let key = key {
+			carModel = interactor?.getCar(key: key)
+		}
+		else {
+			carModel = CarModel.init(model: CarModels.allCases[0], manufacturer: CarCountry.allCases[0], body: CarBodyStyle.allCases[0], carKey: nil)
+		}
+		reloadData()
 	}
 }

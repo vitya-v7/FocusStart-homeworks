@@ -13,21 +13,25 @@ protocol ICarDetailViewInput : UIViewController  {
 	func setViewModel(viewModel: CarDetailViewModel)
 }
 
+protocol ICarDetailViewOutput {
+	func callPopover(pickerType: PickerType, option: String)
+	func changeSelectedDataInView(type: PickerType, index: Int)
+	func saveSelectedTextFieldValue(type: PickerType, value: String)
+	func viewDidLoadDone()
+	func saveCarInDB()
+	func reloadData()
+	func setKey(key: String?)
+	func setCarNumber(carNumber: String?)
+	func setCarYear(year: Int?)
+}
 
 class CarDetailViewController: UIViewController {
 
-	var output: CarDetailPresenter?
+	var output: ICarDetailViewOutput?
 	var viewModel: CarDetailViewModel?
 	var key: String?
 	var year = ""
 	var number = ""
-	enum textFieldsWithTags: Int {
-		case carModel = 1
-		case carBodyStyle
-		case carYear
-		case carCountry
-		case carNumber
-	}
 
 	@IBOutlet weak var carModel: UITextField!
 	@IBOutlet weak var carYear: UITextField!
@@ -83,9 +87,8 @@ extension CarDetailViewController: UITextFieldDelegate
 			default:
 				pickerType = .carBodyStyle
 			}
-			output?.carModel?.carNumber = carNumberLabel.text
-			output?.carModel?.yearOfIssue = Int(carYear.text!)
-			
+			output?.setCarNumber(carNumber: carNumberLabel.text)
+			output?.setCarYear(year: Int(carYear.text!))
 			output?.callPopover(pickerType: pickerType!, option: textField.text!)
 			return false
 		}

@@ -32,15 +32,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 	func loadDefaultCars() {
 		
 		let carsService = CarService.init()
-		var car = CarModel.init(model: CarService.CarModels.allCases[0], manufacturer: CarService.CarCountry.allCases[1], yearOfIssue: 2001, body: CarService.CarBodyStyle.allCases[3], carNumber: "123fads", carKey: UUID().uuidString)
+		var car = CarModel.init(model: CarModels.allCases[0], manufacturer: CarCountry.allCases[1], yearOfIssue: 2001, body: CarBodyStyle.allCases[3], carNumber: "123fads", carKey: UUID().uuidString)
 		
 		carsService.addCar(car: car)
 		
-		car = CarModel.init(model: CarService.CarModels.allCases[1], manufacturer: CarService.CarCountry.allCases[2], yearOfIssue: 2000, body: CarService.CarBodyStyle.allCases[1], carNumber: "ds fd1", carKey: UUID().uuidString)
+		car = CarModel.init(model: CarModels.allCases[1], manufacturer: CarCountry.allCases[2], yearOfIssue: 2000, body: CarBodyStyle.allCases[1], carNumber: "ds fd1", carKey: UUID().uuidString)
 		
 		carsService.addCar(car: car)
 		
-		car = CarModel.init(model: CarService.CarModels.allCases[2], manufacturer: CarService.CarCountry.allCases[3], body: CarService.CarBodyStyle.allCases[0], carKey: UUID().uuidString)
+		car = CarModel.init(model: CarModels.allCases[2], manufacturer: CarCountry.allCases[3], body: CarBodyStyle.allCases[0], carKey: UUID().uuidString)
 		
 		carsService.addCar(car: car)
 		

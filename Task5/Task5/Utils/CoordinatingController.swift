@@ -21,16 +21,6 @@ extension INavigationSeed
 	}
 }
 
-public enum TypeOfParameters {
-	case forPopover
-	case forDetailController
-}
-
-public enum NavigationModule {
-	case listModule
-	case detailModule
-	case popoverModule
-}
 
 protocol ICoordinatingController: AnyObject {
 	func back(animated: Bool)

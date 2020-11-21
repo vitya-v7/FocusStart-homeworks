@@ -12,7 +12,7 @@ class CarsListPresenter {
 	var carService: ICarsListServiceInterface?
 	var view: ICarsListViewInput?
 	var carModels: [CarModel]?
-	var filterBodyStyle: CarService.CarBodyStyle?
+	var filterBodyStyle: CarBodyStyle?
 	
 	func viewDidLoadDone() {
 		view?.setInitialState()
@@ -42,7 +42,7 @@ extension CarsListPresenter: ICarsListViewOutput
 		return carCells
 	}
 	
-	func filterCars(bodyStyle: CarService.CarBodyStyle?) {
+	func filterCars(bodyStyle: CarBodyStyle?) {
 		filterBodyStyle = bodyStyle
 		var carModelsFiltered = [CarModel]()
 		guard let cars = carService?.getCars() else {

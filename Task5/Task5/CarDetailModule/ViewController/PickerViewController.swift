@@ -8,22 +8,6 @@
 
 import UIKit
 
-enum PickerType: String {
-	case carModel
-	case carCountry
-	case carBodyStyle
-	case carYear
-	case carNumber
-}
-
-struct ParametersStruct {
-	var pickerType: PickerType?
-	var currentChoice: String?
-	var output: CarDetailPresenter?
-	var outputList: CarsListPresenter?
-}
-
-
 class PickerViewController: UIViewController {
 
 	@IBOutlet weak var picker: UIPickerView!
@@ -38,15 +22,15 @@ class PickerViewController: UIViewController {
 		var itemArray = [String]()
 		switch type {
 		case .carModel:
-			for item in CarService.CarModels.allCases {
+			for item in CarModels.allCases {
 				itemArray.append(item.rawValue)
 			}
 		case .carBodyStyle:
-			for item in CarService.CarBodyStyle.allCases {
+			for item in CarBodyStyle.allCases {
 				itemArray.append(item.rawValue)
 			}
 		case .carCountry:
-			for item in CarService.CarCountry.allCases {
+			for item in CarCountry.allCases {
 				itemArray.append(item.rawValue)
 			}
 		default:
@@ -99,7 +83,7 @@ class PickerViewController: UIViewController {
 				return
 			}
 			if row > 0 {
-				outputList.filterCars(bodyStyle: CarService.CarBodyStyle(rawValue: options[row]))
+				outputList.filterCars(bodyStyle: CarBodyStyle(rawValue: options[row]))
 			}
 			else {
 				outputList.filterCars(bodyStyle: nil)

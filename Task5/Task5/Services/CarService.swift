@@ -1,5 +1,5 @@
 //
-//  CarService.swift
+//  swift
 //  Task5
 //
 //  Created by Viktor D. on 16.09.2020.
@@ -20,27 +20,7 @@ protocol IDetailsCarService {
 }
 
 class CarService {
-	enum CarBodyStyle: String, CaseIterable, Codable   {
-		case Sedan
-		case Universal
-		case Coupe
-		case Hatchback
-	}
-	
-	enum CarCountry: String, CaseIterable, Codable  {
-		case Germany
-		case Japan
-		case Russia
-		case USA
-	}
-	
-	enum CarModels: String, CaseIterable, Codable   {
-		case Toyota
-		case Mazda
-		case Nissan
-		case Wolkswagen
-		case BMW
-	}
+	init() {}
 }
 
 extension CarService: ICarsListService
