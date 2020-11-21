@@ -131,6 +131,14 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
+		84382AD12568EA42000C6421 /* PickerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				84BED31325164FEF00F4F785 /* PickerViewController.swift */,
+			);
+			path = PickerViewController;
+			sourceTree = "<group>";
+		};
 		843D02792561EAFE001B3588 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
@@ -198,6 +206,7 @@
 			children = (
 				8432907E256773F200D5111A /* Utils */,
 				844812EF25135B5B003868DF /* Services */,
+				84382AD12568EA42000C6421 /* PickerViewController */,
 				8448130225141935003868DF /* CarDetailModule */,
 				844812DF25133CEE003868DF /* CarsListModule */,
 				844812AF25133CB2003868DF /* AppDelegate.swift */,
@@ -314,7 +323,6 @@
 		8448130525141935003868DF /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				84BED31325164FEF00F4F785 /* PickerViewController.swift */,
 				84E9107C251741B10026555A /* CarDetailViewController.swift */,
 				84E9107D251741B10026555A /* CarDetailViewModel.swift */,
 			);
