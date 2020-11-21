@@ -1,5 +1,5 @@
 //
-//  View2.swift
+//  SecondView.swift
 //  Task3
 //
 //  Created by user183410 on 11/1/20.
@@ -7,22 +7,22 @@
 
 import UIKit
 
-class View2: UIView {
+class SecondView: UIView {
 	
 	// MARK: Properties
 
-	private var isLayoutCompact = true
+	private struct Constants
+	{
+		static let imageViewHeight: CGFloat = 300
+		static let imageMargin: CGFloat = 12
+		static let labelSpace: CGFloat = 15
+	}
+
+	private var isLayoutCompact = false
 
 	private var sharedConstraints: [NSLayoutConstraint] = []
 	private var compactConstraints: [NSLayoutConstraint] = []
 	private var regularConstraints: [NSLayoutConstraint] = []
-
-	private enum Constants: CGFloat
-	{
-		case imageViewHeight = 300
-		case imageMargin = 12
-		case labelSpace = 15
-	}
 
 	// MARK: Views
 
@@ -35,7 +35,6 @@ class View2: UIView {
 
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
-
 		setupViewsAppearances()
 		setupViewsLayout()
 		changeViewsLayout(traitCollection: traitCollection)
@@ -55,7 +54,7 @@ class View2: UIView {
 
 // MARK: Appearances
 
-private extension View2
+private extension SecondView
 {
 	func setupViewsAppearances() {
 		setupSuperViewAppearances()
@@ -102,7 +101,7 @@ private extension View2
 
 // MARK: Shared Layout
 
-private extension View2
+private extension SecondView
 {
 	func changeViewsLayout(traitCollection: UITraitCollection) {
 		switch(traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
@@ -149,7 +148,6 @@ private extension View2
 			scrollView.widthAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.widthAnchor)
 		])
-
 	}
 
 	func setupImageViewLayout() {
@@ -158,11 +156,11 @@ private extension View2
 
 		sharedConstraints.append(contentsOf: [
 			imageView.topAnchor.constraint(
-				equalTo: scrollView.topAnchor, constant: Constants.imageMargin.rawValue),
+				equalTo: scrollView.topAnchor, constant: Constants.imageMargin),
 			imageView.leadingAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.imageMargin.rawValue),
+				equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.imageMargin),
 			imageView.heightAnchor.constraint(
-				equalToConstant: Constants.imageViewHeight.rawValue)
+				equalToConstant: Constants.imageViewHeight)
 		])
 	}
 
@@ -173,7 +171,7 @@ private extension View2
 		sharedConstraints.append(contentsOf: [
 			titleLabel.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor,
-				constant: -Constants.labelSpace.rawValue)
+				constant: -Constants.labelSpace)
 		])
 	}
 
@@ -184,10 +182,10 @@ private extension View2
 		sharedConstraints.append(contentsOf: [
 			textLabel.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor,
-				constant: -Constants.labelSpace.rawValue),
+				constant: -Constants.labelSpace),
 			textLabel.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.labelSpace.rawValue),
+				constant: Constants.labelSpace),
 			textLabel.bottomAnchor.constraint(
 				equalTo: scrollView.bottomAnchor)
 		])
@@ -196,7 +194,7 @@ private extension View2
 
 // MARK: Compact Layout
 
-private extension View2
+private extension SecondView
 {
 	func setupCompactLayout() {
 		setupImageViewCompactLayout()
@@ -207,7 +205,7 @@ private extension View2
 	func setupImageViewCompactLayout() {
 		compactConstraints.append(contentsOf: [
 			imageView.trailingAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Constants.imageMargin.rawValue),
+				equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Constants.imageMargin),
 		])
 	}
 
@@ -215,10 +213,10 @@ private extension View2
 		compactConstraints.append(contentsOf: [
 			titleLabel.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.labelSpace.rawValue),
+				constant: Constants.labelSpace),
 			titleLabel.topAnchor.constraint(
 				equalTo: imageView.bottomAnchor,
-				constant: Constants.labelSpace.rawValue)
+				constant: Constants.labelSpace)
 		])
 	}
 
@@ -226,14 +224,14 @@ private extension View2
 		compactConstraints.append(contentsOf: [
 			textLabel.topAnchor.constraint(
 				equalTo: titleLabel.bottomAnchor,
-				constant: Constants.labelSpace.rawValue)
+				constant: Constants.labelSpace)
 		])
 	}
 }
 
 // MARK: Regular Layout
 
-private extension View2
+private extension SecondView
 {
 	func setupRegularLayout() {
 		setupImageViewRegularLayout()
@@ -245,12 +243,12 @@ private extension View2
 		regularConstraints.append(contentsOf: [
 			imageView.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.imageMargin.rawValue),
+				constant: Constants.imageMargin),
 			imageView.trailingAnchor.constraint(
 				equalTo: textLabel.leadingAnchor,
-				constant: -Constants.imageMargin.rawValue),
+				constant: -Constants.imageMargin),
 			imageView.widthAnchor.constraint(
-				equalToConstant: Constants.imageViewHeight.rawValue)
+				equalToConstant: Constants.imageViewHeight)
 		])
 	}
 
@@ -258,7 +256,7 @@ private extension View2
 		regularConstraints.append(contentsOf: [
 			titleLabel.leadingAnchor.constraint(
 				equalTo: imageView.trailingAnchor,
-				constant: Constants.labelSpace.rawValue),
+				constant: Constants.labelSpace),
 			titleLabel.centerYAnchor.constraint(
 				equalTo: imageView.centerYAnchor)
 		])
@@ -268,7 +266,7 @@ private extension View2
 		regularConstraints.append(contentsOf: [
 			textLabel.topAnchor.constraint(
 				equalTo: imageView.bottomAnchor,
-				constant: Constants.labelSpace.rawValue)
+				constant: Constants.labelSpace)
 		])
 	}
 }

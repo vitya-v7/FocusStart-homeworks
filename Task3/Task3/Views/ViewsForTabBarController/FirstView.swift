@@ -1,5 +1,5 @@
 //
-//  View1.swift
+//  FirstView.swift
 //  Task3
 //
 //  Created by user183410 on 11/1/20.
@@ -7,24 +7,22 @@
 
 import UIKit
 
-class View1: UIView {
+class FirstView: UIView {
 
 	// MARK: Properties
 
-	private var isLayoutCompact = true
+	private struct Constants
+	{
+		static let imageViewHeight: CGFloat = 300
+		static let bottomAndTopSpace: CGFloat = 8
+		static let spaceBetweenButtons: CGFloat = 3
+		static let labelFontSize: CGFloat = 14
+		static let buttonFontSize: CGFloat = 10
+	}
 
-	private var sharedConstraints: [NSLayoutConstraint] = []
+	private var Constraints: [NSLayoutConstraint] = []
 	private var compactConstraints: [NSLayoutConstraint] = []
 	private var regularConstraints: [NSLayoutConstraint] = []
-
-	private enum Constants: CGFloat
-	{
-		case imageViewHeight = 300
-		case bottomAndTopSpace = 8
-		case spaceBetweenButtons = 3
-		case labelFontSize = 14
-		case buttonFontSize = 10
-	}
 
 	// MARK: Views
 
@@ -42,23 +40,17 @@ class View1: UIView {
 		super.init(frame: frame)
 
 		setupViewsAppearances()
-		setupViewsLayout()
+		setupLayout()
 	}
 
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
-	// MARK: Changes Cycle
-
-	override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-		super.traitCollectionDidChange(previousTraitCollection)
-	}
 }
 
 	// MARK: Appearances
 
-extension View1
+extension FirstView
 {
 	func makeButton2Rounded() {
 		let minimum = min(button2.bounds.height, button2.bounds.width)
@@ -66,7 +58,7 @@ extension View1
 	}
 }
 
-private extension View1
+private extension FirstView
 {
 	func setupViewsAppearances() {
 		setupSuperViewAppearances()
@@ -93,14 +85,14 @@ private extension View1
 	func setupLabel2Appearances() {
 		label2.numberOfLines = 1
 		label2.textAlignment = .center
-		label2.font = UIFont.boldSystemFont(ofSize: Constants.labelFontSize.rawValue)
+		label2.font = UIFont.boldSystemFont(ofSize: Constants.labelFontSize)
 		label2.text = "Different font"
 	}
 
 	func setupLabel3Appearances() {
 		label3.numberOfLines = 2
 		label3.textAlignment = .center
-		label3.font = UIFont.italicSystemFont(ofSize: Constants.labelFontSize.rawValue)
+		label3.font = UIFont.italicSystemFont(ofSize: Constants.labelFontSize)
 		label3.text = """
             Different font
             line 2
@@ -109,13 +101,13 @@ private extension View1
 	}
 
 	func setupButton1Appearances() {
-		button1.layer.cornerRadius = Constants.bottomAndTopSpace.rawValue
+		button1.layer.cornerRadius = Constants.bottomAndTopSpace
 		button1.backgroundColor = .cyan
 		button1.clipsToBounds = true
 		button1.setTitleColor(.black, for: .normal)
 		button1.setTitle("Button1", for: .normal)
 		button1.layer.borderWidth = 1
-		button1.layer.borderColor = .init(red: 1, green: 0, blue: 0, alpha: 1)
+		button1.layer.borderColor = UIColor.systemRed.cgColor
 	}
 
 	func setupButton2Appearances() {
@@ -123,9 +115,9 @@ private extension View1
 		button2.clipsToBounds = true
 		button2.setTitleColor(.black, for: .normal)
 		button2.setTitle("Button2", for: .normal)
-		button2.titleLabel?.font = .italicSystemFont(ofSize: Constants.buttonFontSize.rawValue)
+		button2.titleLabel?.font = .italicSystemFont(ofSize: Constants.buttonFontSize)
 		button2.layer.borderWidth = 1
-		button2.layer.borderColor = .init(red: 0, green: 1, blue: 1, alpha: 1)
+		button2.layer.borderColor = UIColor.systemGreen.cgColor
 	}
 
 	func setupImageViewAppearances() {
@@ -140,15 +132,11 @@ private extension View1
 	}
 }
 
-// MARK: Shared Layout
+// MARK: Layout
 
-private extension View1
+private extension FirstView
 {
-	func setupViewsLayout() {
-		setupSharedLayout()
-	}
-
-	func setupSharedLayout() {
+	func setupLayout() {
 		setupLabel1Layout()
 		setupLabel2Layout()
 		setupLabel3Layout()
@@ -156,7 +144,7 @@ private extension View1
 		setupButton2Layout()
 		setupImageViewLayout()
 		setupActivityIndicatorLayout()
-		NSLayoutConstraint.activate(sharedConstraints)
+		NSLayoutConstraint.activate(Constraints)
 	}
 
 	func setupLabel1Layout() {
@@ -169,7 +157,7 @@ private extension View1
 			label1.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor),
 			label1.topAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.bottomAndTopSpace.rawValue),
+				equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.bottomAndTopSpace),
 			label1.heightAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.05)])
 	}
@@ -233,7 +221,7 @@ private extension View1
 			button2.centerXAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.centerXAnchor),
 			button2.topAnchor.constraint(
-				equalTo: button1.bottomAnchor, constant: Constants.spaceBetweenButtons.rawValue
+				equalTo: button1.bottomAnchor, constant: Constants.spaceBetweenButtons
 			),
 		])
 	}
@@ -244,9 +232,9 @@ private extension View1
 
 		NSLayoutConstraint.activate([
 			imageView.topAnchor.constraint(
-				equalTo: button2.bottomAnchor, constant: Constants.spaceBetweenButtons.rawValue),
+				equalTo: button2.bottomAnchor, constant: Constants.spaceBetweenButtons),
 			imageView.bottomAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Constants.bottomAndTopSpace.rawValue),
+				equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Constants.bottomAndTopSpace),
 			imageView.widthAnchor.constraint(
 				equalTo: imageView.heightAnchor),
 			imageView.centerXAnchor.constraint(
@@ -255,14 +243,10 @@ private extension View1
 	}
 
 	func setupActivityIndicatorLayout() {
-		addSubview(activityIndicator)
+		imageView.addSubview(activityIndicator)
 		activityIndicator.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
-			activityIndicator.widthAnchor.constraint(
-				equalTo: imageView.widthAnchor),
-			activityIndicator.heightAnchor.constraint(
-				equalTo: imageView.heightAnchor),
 			activityIndicator.centerYAnchor.constraint(
 				equalTo: imageView.centerYAnchor),
 			activityIndicator.centerXAnchor.constraint(
