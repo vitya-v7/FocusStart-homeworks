@@ -16,7 +16,7 @@ class PickerViewController: UIViewController {
 	var options: [String]?
 	var currentOption: String?
 	var selectedIndexInPicker: Int?
-	var output: CarDetailPresenter?
+	var outputDetail: CarDetailPresenter?
 	var outputList: CarsListPresenter?
 	private func selectedOption() -> [String] {
 		var itemArray = [String]()
@@ -62,7 +62,7 @@ class PickerViewController: UIViewController {
 				}
 			}
 		}
-		if output != nil {
+		if outputDetail != nil {
 			picker?.selectRow(selectedIndexInPicker, inComponent: 0, animated: true)
 		}
 		else {
@@ -75,7 +75,7 @@ class PickerViewController: UIViewController {
 
 	@objc func saveData(_ but: UIButton) {
 		let row = picker?.selectedRow(inComponent: 0)
-		if let row = row, let out = output, let type = type {
+		if let row = row, let out = outputDetail, let type = type {
 			out.changeSelectedDataInView(type: type, index: row)
 		}
 		if let outputList = outputList {
@@ -130,7 +130,7 @@ extension PickerViewController: INavigationSeed
 			type = parametersIn.pickerType
 			currentOption = parametersIn.currentChoice
 			outputList = parametersIn.outputList
-			output = parametersIn.output
+			outputDetail = parametersIn.output
 			updatePicker()
 		}
 	}
