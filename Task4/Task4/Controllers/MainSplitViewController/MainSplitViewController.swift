@@ -22,5 +22,4 @@ class MainSplitViewController: UISplitViewController, UISplitViewControllerDeleg
 		onto primaryViewController: UIViewController) -> Bool {
 		return true
 	}
-
 }

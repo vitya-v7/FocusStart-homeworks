@@ -26,5 +26,4 @@ public struct CellModel {
 					""", date: Date.randomDate(), firstImage: UIImage.init(named: ImagesNames.WolfName.rawValue), secondImage: UIImage.init(named: ImagesNames.CatName.rawValue)),
 				CellModel(title: "title5", firstImage: UIImage.init(named: ImagesNames.HorsesName.rawValue), secondImage: UIImage.init(named: ImagesNames.BearName.rawValue))]
 	}
-
 }

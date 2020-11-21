@@ -8,19 +8,15 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-
 	var window: UIWindow?
 	@available(iOS 13.0, *)
 	func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 		guard let windowScene = scene as? UIWindowScene else { return assertionFailure() }
 		window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-
 		guard let window = window else { return assertionFailure() }
 		window.windowScene = windowScene
-
 		let viewController = TabBarController()
-		let navigationController = UINavigationController(rootViewController: viewController)
-		window.rootViewController = navigationController
+		window.rootViewController = viewController
 		window.makeKeyAndVisible()
 	}
 }

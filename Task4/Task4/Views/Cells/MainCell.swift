@@ -30,7 +30,7 @@ class MainCell: UITableViewCell {
 	}
 	
 	static func getEstimatedHeight() -> CGFloat {
-		return 100
+		return Constants.estimatedCellHeight
 	}
 
 	override func setSelected(_ selected: Bool, animated: Bool) {

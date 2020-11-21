@@ -13,13 +13,12 @@ final class DetailViewController: UIViewController {
 	var myView: DetailView = DetailView(frame: .zero)
 	var masterNavigationController: UINavigationController?
 
-
 	func setItem(item: CellModel) {
 		object = item
 		let label = UILabel()
 		label.backgroundColor = .clear
 		label.numberOfLines = 2
-		label.font = UIFont.boldSystemFont(ofSize: 16.0)
+		label.font = UIFont.boldSystemFont(ofSize: ConstantsForFontSize.titleInDetailLabelFontSize)
 		label.textAlignment = .center
 		label.textColor = .black
 		if #available(iOS 13.0, *) {
@@ -29,7 +28,6 @@ final class DetailViewController: UIViewController {
 		}
 		label.text = item.title
 		self.navigationItem.titleView = label
-		//self.navigationItem.title = item.title
 		myView.configure(object: object)
 	}
 
@@ -38,6 +36,7 @@ final class DetailViewController: UIViewController {
 	override func loadView() {
 		view = myView
 	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.navigationController?.navigationBar.prefersLargeTitles = true

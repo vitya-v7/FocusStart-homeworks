@@ -1,5 +1,5 @@
 //
-//  ViewController1.swift
+//  FirstViewController.swift
 //  Task3
 //
 //  Created by user183410 on 11/1/20.
@@ -7,11 +7,12 @@
 
 import UIKit
 
-class ViewController1: UIViewController {
+class FirstViewController: UIViewController {
 
 	// MARK: Life Cycle
 	
-	var myView: View1 = View1(frame: .zero)
+	private let myView = FirstView(frame: .zero)
+
 	override func loadView() {
 		view = myView
 	}

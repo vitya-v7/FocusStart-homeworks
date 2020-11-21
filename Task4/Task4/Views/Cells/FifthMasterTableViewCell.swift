@@ -38,19 +38,19 @@ private extension FifthMasterTableViewCell {
 	func setupTitleLabelAppearances() {
 		titleLabel.numberOfLines = 1
 		titleLabel.textAlignment = .left
-		titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+		titleLabel.font = UIFont.boldSystemFont(ofSize: ConstantsForFontSize.titleInDetailLabelFontSize)
 	}
 
 	func setupDescriptionLabelAppearances() {
 		descriptionLabel.numberOfLines = 1
 		descriptionLabel.textAlignment = .left
-		descriptionLabel.font = UIFont.italicSystemFont(ofSize: 20)
+		descriptionLabel.font = UIFont.italicSystemFont(ofSize: ConstantsForFontSize.descriptionLabelFontSize)
 	}
 
 	func setupDateAppearances() {
 		date.numberOfLines = 1
 		date.textAlignment = .left
-		date.font = UIFont.italicSystemFont(ofSize: 12)
+		date.font = UIFont.italicSystemFont(ofSize: ConstantsForFontSize.dateFontInCellSize)
 
 	}
 }
@@ -69,17 +69,17 @@ private extension FifthMasterTableViewCell {
 		
 		NSLayoutConstraint.activate([titleLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: CGFloat(Constants.leftAndRight.rawValue)),
+										constant: Constants.leftAndRight),
 									 titleLabel.topAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.topAnchor,
-										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
+										constant: Constants.bottomAndTopSpace),
 									 titleLabel.trailingAnchor.constraint(
 										equalTo: self.safeAreaLayoutGuide.trailingAnchor,
-										constant: -CGFloat(Constants.leftAndRight.rawValue)),
+										constant: -Constants.leftAndRight),
 									 titleLabel.bottomAnchor.constraint(
 										equalTo: self.safeAreaLayoutGuide.bottomAnchor,
 										constant:
-										-CGFloat(Constants.bottomAndTopSpace.rawValue))])
+										-Constants.bottomAndTopSpace)])
 	}
 }
 
