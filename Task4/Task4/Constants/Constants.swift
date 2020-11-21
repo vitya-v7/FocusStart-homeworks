@@ -21,6 +21,14 @@ public enum ImagesNames: String {
 	case BearName = "cute-bear"
 }
 
+public enum identifier: Int {
+	case firstCell = 0
+	case secondCell
+	case thirdCell
+	case fourthCell
+	case fifthCell
+}
+
 public struct Constants {
 	static let bottomAndTopSpace: CGFloat  = 10
 	static let leftAndRight: CGFloat  = 20

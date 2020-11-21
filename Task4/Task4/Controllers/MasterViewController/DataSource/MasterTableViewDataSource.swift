@@ -14,13 +14,7 @@ protocol MasterTableViewDataSourceProtocol: UITableViewDataSource {
 final class MasterTableViewDataSource: NSObject {
 
 	// MARK: - Properties
-	enum identifier: Int {
-		case firstCell = 0
-		case secondCell
-		case thirdCell
-		case fourthCell
-		case fifthCell
-	}
+	
 	var dictionaryIndentifies = [
 		identifier.firstCell: FirstMasterTableViewCell.reuseIdentifier,
 		identifier.secondCell: SecondMasterTableViewCell.reuseIdentifier,
