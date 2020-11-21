@@ -35,8 +35,8 @@ class SecondView: UIView {
 
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
-		setupViewsAppearances()
-		setupViewsLayout()
+		configureSubviews()
+		setupConstraints()
 		changeViewsLayout(traitCollection: traitCollection)
 	}
 
@@ -52,34 +52,34 @@ class SecondView: UIView {
 	}
 }
 
-// MARK: Appearances
+// MARK: Configuring Subviews
 
 private extension SecondView
 {
-	func setupViewsAppearances() {
-		setupSuperViewAppearances()
-		setupImageViewAppearances()
-		setupTitleLabelAppearances()
-		setupTextLabelAppearances()
+	func configureSubviews() {
+		configureSuperView()
+		configureImageView()
+		configureTitleLabel()
+		configureTextLabel()
 	}
 
-	func setupSuperViewAppearances() {
+	func configureSuperView() {
 		backgroundColor = .systemBackground
 	}
 
-	func setupImageViewAppearances() {
+	func configureImageView() {
 		imageView.image = Images.test.image
 		imageView.contentMode = .scaleAspectFill
 		imageView.clipsToBounds = true
 	}
-	func setupTitleLabelAppearances() {
+	func configureTitleLabel() {
 		titleLabel.numberOfLines = 1
 		titleLabel.textAlignment = .center
 		titleLabel.font = .boldSystemFont(ofSize: 25)
 		titleLabel.text = "Header"
 	}
 
-	func setupTextLabelAppearances() {
+	func configureTextLabel() {
 		textLabel.numberOfLines = 0
 		textLabel.text =
 			"""
@@ -99,7 +99,7 @@ private extension SecondView
 	}
 }
 
-// MARK: Shared Layout
+// MARK: Shared Constraints
 
 private extension SecondView
 {
@@ -118,22 +118,22 @@ private extension SecondView
 		}
 	}
 
-	func setupViewsLayout() {
-		setupSharedLayout()
-		setupCompactLayout()
-		setupRegularLayout()
+	func setupConstraints() {
+		setupSharedConstraints()
+		setupCompactConstraints()
+		setupRegularConstraints()
 	}
 
-	func setupSharedLayout() {
-		setupScrollViewLayout()
-		setupImageViewLayout()
-		setupTitleLabelLayout()
-		setupTextLabelLayout()
+	func setupSharedConstraints() {
+		setupScrollViewConstraints()
+		setupScrollViewConstraints()
+		setupTitleLabelConstraints()
+		setupTextLabelConstraints()
 
 		NSLayoutConstraint.activate(sharedConstraints)
 	}
 
-	func setupScrollViewLayout() {
+	func setupScrollViewConstraints() {
 
 		addSubview(scrollView)
 		scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -164,7 +164,7 @@ private extension SecondView
 		])
 	}
 
-	func setupTitleLabelLayout() {
+	func setupTitleLabelConstraints() {
 		scrollView.addSubview(titleLabel)
 		titleLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -175,7 +175,7 @@ private extension SecondView
 		])
 	}
 
-	func setupTextLabelLayout() {
+	func setupTextLabelConstraints() {
 		scrollView.addSubview(textLabel)
 		textLabel.translatesAutoresizingMaskIntoConstraints = false
 
@@ -192,24 +192,24 @@ private extension SecondView
 	}
 }
 
-// MARK: Compact Layout
+// MARK: Compact Constraints
 
 private extension SecondView
 {
-	func setupCompactLayout() {
-		setupImageViewCompactLayout()
-		setupTitleLabelCompactLayout()
-		setupTextLabelCompactLayout()
+	func setupCompactConstraints() {
+		setupImageViewCompactConstraints()
+		setupTitleLabelCompactConstraints()
+		setupTextLabelCompactConstraints()
 	}
 
-	func setupImageViewCompactLayout() {
+	func setupImageViewCompactConstraints() {
 		compactConstraints.append(contentsOf: [
 			imageView.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Constants.imageMargin),
 		])
 	}
 
-	func setupTitleLabelCompactLayout() {
+	func setupTitleLabelCompactConstraints() {
 		compactConstraints.append(contentsOf: [
 			titleLabel.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
@@ -220,7 +220,7 @@ private extension SecondView
 		])
 	}
 
-	func setupTextLabelCompactLayout() {
+	func setupTextLabelCompactConstraints() {
 		compactConstraints.append(contentsOf: [
 			textLabel.topAnchor.constraint(
 				equalTo: titleLabel.bottomAnchor,
@@ -229,17 +229,17 @@ private extension SecondView
 	}
 }
 
-// MARK: Regular Layout
+// MARK: Regular Constraints
 
 private extension SecondView
 {
-	func setupRegularLayout() {
-		setupImageViewRegularLayout()
-		setupTitleLabelRegularLayout()
-		setupTextLabelRegularLayout()
+	func setupRegularConstraints() {
+		setupImageViewRegularConstraints()
+		setupTitleLabelRegularConstraints()
+		setupTextLabelRegularConstraints()
 	}
 
-	func setupImageViewRegularLayout() {
+	func setupImageViewRegularConstraints() {
 		regularConstraints.append(contentsOf: [
 			imageView.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
@@ -252,7 +252,7 @@ private extension SecondView
 		])
 	}
 
-	func setupTitleLabelRegularLayout() {
+	func setupTitleLabelRegularConstraints() {
 		regularConstraints.append(contentsOf: [
 			titleLabel.leadingAnchor.constraint(
 				equalTo: imageView.trailingAnchor,
@@ -262,7 +262,7 @@ private extension SecondView
 		])
 	}
 
-	func setupTextLabelRegularLayout() {
+	func setupTextLabelRegularConstraints() {
 		regularConstraints.append(contentsOf: [
 			textLabel.topAnchor.constraint(
 				equalTo: imageView.bottomAnchor,

@@ -48,7 +48,7 @@ class FirstView: UIView {
 	}
 }
 
-	// MARK: Appearances
+	// MARK: Configuring Subviews
 
 extension FirstView
 {
@@ -131,7 +131,7 @@ private extension FirstView
 	}
 }
 
-// MARK: Layout
+// MARK: Constraints
 
 private extension FirstView
 {

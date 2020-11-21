@@ -40,8 +40,8 @@ class ThirdView: UIView {
 		super.init(frame: frame)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
-		setupViewsAppearances()
-		setupLayout()
+		configureSubviews()
+		setupConstraints()
 	}
 
 	required init?(coder: NSCoder) {
@@ -61,7 +61,7 @@ class ThirdView: UIView {
 	}
 }
 
-// MARK: Appearances
+// MARK: Configuring Subviews
 
 extension ThirdView
 {
@@ -73,18 +73,18 @@ extension ThirdView
 
 private extension ThirdView
 {
-	func setupViewsAppearances() {
-		setupSuperViewAppearances()
-		setupLoginTextFieldAppearances()
-		setupPasswordTextFieldAppearances()
-		setupButtonAppearances()
+	func configureSubviews() {
+		configureSuperView()
+		configureLoginTextField()
+		configurePasswordTextField()
+		configureButton()
 	}
 
-	func setupSuperViewAppearances() {
+	func configureSuperView() {
 		backgroundColor = .systemBackground
 	}
 
-	func setupLoginTextFieldAppearances() {
+	func configureLoginTextField() {
 		loginTextField.placeholder = "Login"
 		loginTextField.font = UIFont.systemFont(ofSize: Constants.loginFontSize)
 		loginTextField.layer.borderWidth = 1
@@ -93,7 +93,7 @@ private extension ThirdView
 		loginTextField.delegate = self
 	}
 
-	func setupPasswordTextFieldAppearances() {
+	func configurePasswordTextField() {
 		passwordTextField.placeholder = "Password"
 		passwordTextField.font = UIFont.systemFont(ofSize: Constants.passwordSize)
 		passwordTextField.layer.borderWidth = 1
@@ -103,7 +103,7 @@ private extension ThirdView
 		passwordTextField.isSecureTextEntry = true
 	}
 
-	func setupButtonAppearances() {
+	func configureButton() {
 		button.backgroundColor = .cyan
 		button.clipsToBounds = true
 		button.setTitleColor(.black, for: .normal)
@@ -114,18 +114,18 @@ private extension ThirdView
 
 }
 
-// MARK: Layout
+// MARK: Constraints
 
 private extension ThirdView
 {
-	func setupLayout() {
-		setupLoginTextFieldLayout()
-		setupPasswordTextFieldLayout()
-		setupButtonLayout()
+	func setupConstraints() {
+		setupLoginTextFieldConstraints()
+		setupPasswordTextFieldConstraints()
+		setupButtonConstraints()
 		NSLayoutConstraint.activate(Constraints)
 	}
 
-	func setupLoginTextFieldLayout() {
+	func setupLoginTextFieldConstraints() {
 		addSubview(loginTextField)
 		loginTextField.translatesAutoresizingMaskIntoConstraints = false
 
@@ -145,7 +145,7 @@ private extension ThirdView
 		])
 	}
 
-	func setupPasswordTextFieldLayout() {
+	func setupPasswordTextFieldConstraints() {
 		addSubview(passwordTextField)
 		passwordTextField.translatesAutoresizingMaskIntoConstraints = false
 
@@ -165,7 +165,7 @@ private extension ThirdView
 		])
 	}
 
-	func setupButtonLayout() {
+	func setupButtonConstraints() {
 		addSubview(button)
 		button.translatesAutoresizingMaskIntoConstraints = false
 
