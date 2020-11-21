@@ -11,7 +11,8 @@ class ViewController1: UIViewController {
 
 	// MARK: Life Cycle
 	
-	var myView: View1 = View1(frame: .zero)
+	private let myView = View1(frame: .zero)
+
 	override func loadView() {
 		view = myView
 	}

@@ -31,7 +31,6 @@ class View2: UIView {
 	private let titleLabel = UILabel()
 	private let textLabel = UILabel()
 
-
 	// MARK: Life Cycle
 
 	public override init(frame: CGRect) {
@@ -108,12 +107,12 @@ private extension View2
 	func changeViewsLayout(traitCollection: UITraitCollection) {
 		switch(traitCollection.horizontalSizeClass, traitCollection.verticalSizeClass) {
 		case (.compact, .regular):
+			guard isLayoutCompact == false else { return }
 			isLayoutCompact = true
 			NSLayoutConstraint.deactivate(regularConstraints)
 			NSLayoutConstraint.activate(compactConstraints)
 		default:
-			guard isLayoutCompact != false else { return }
-
+			guard isLayoutCompact == true else { return }
 			isLayoutCompact = false
 			NSLayoutConstraint.deactivate(compactConstraints)
 			NSLayoutConstraint.activate(regularConstraints)

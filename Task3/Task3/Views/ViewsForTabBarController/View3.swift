@@ -97,6 +97,7 @@ private extension View3
 		passwordTextField.layer.borderColor = UIColor.systemBlue.cgColor
 		passwordTextField.borderStyle = .roundedRect
 		passwordTextField.delegate = self
+		passwordTextField.isSecureTextEntry = true
 	}
 
 	func setupButtonAppearances() {
@@ -186,26 +187,15 @@ private extension View3
 		buttonBottomConstraint = button.bottomAnchor.constraint(
 			equalTo: safeAreaLayoutGuide.bottomAnchor,
 			constant: -Constants.buttonBottomConstant.rawValue - space)
-		NSLayoutConstraint.activate([buttonBottomConstraint!])
+		guard let buttonBottomConstraintIn = buttonBottomConstraint else {
+			return assertionFailure("buttonBottomConstraint error")
+		}
+		NSLayoutConstraint.activate([buttonBottomConstraintIn])
 	}
 }
 
 extension View3: UITextFieldDelegate
 {
-	func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-		if textField == passwordTextField {
-			let asteriskString = String.init(repeating: "*", count: string.count)
-			if let text = textField.text,
-			   let textRange = Range(range, in: text) {
-				let updatedText = text.replacingCharacters(in: textRange,
-														   with: asteriskString)
-				textField.text = updatedText
-			}
-			return false
-		}
-		return true
-	}
-
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
 		endEditing(true)
 		return true
