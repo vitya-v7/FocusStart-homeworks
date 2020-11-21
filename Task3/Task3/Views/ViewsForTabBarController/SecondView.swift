@@ -126,7 +126,7 @@ private extension SecondView
 
 	func setupSharedConstraints() {
 		setupScrollViewConstraints()
-		setupScrollViewConstraints()
+		setupImageViewConstraints()
 		setupTitleLabelConstraints()
 		setupTextLabelConstraints()
 
@@ -150,7 +150,7 @@ private extension SecondView
 		])
 	}
 
-	func setupImageViewLayout() {
+	func setupImageViewConstraints() {
 		scrollView.addSubview(imageView)
 		imageView.translatesAutoresizingMaskIntoConstraints = false
 
