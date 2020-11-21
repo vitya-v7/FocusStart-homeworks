@@ -18,7 +18,6 @@ class FirstMasterTableViewCell: MainCell {
 		self.setupViewsLayout()
 		layoutIfNeeded()
 	}
-	
 }
 
 //MARK: - Appearances
@@ -38,19 +37,19 @@ private extension FirstMasterTableViewCell {
 	func setupTitleLabelAppearances() {
 		titleLabel.numberOfLines = 1
 		titleLabel.textAlignment = .left
-		titleLabel.font = UIFont.boldSystemFont(ofSize: 20)
+		titleLabel.font = UIFont.boldSystemFont(ofSize: ConstantsForFontSize.titleInDetailLabelFontSize)
 	}
 
 	func setupDescriptionLabelAppearances() {
 		descriptionLabel.numberOfLines = 1
 		descriptionLabel.textAlignment = .left
-		descriptionLabel.font = UIFont.italicSystemFont(ofSize: 20)
+		descriptionLabel.font = UIFont.italicSystemFont(ofSize: ConstantsForFontSize.descriptionLabelFontSize)
 	}
 
 	func setupDateAppearances() {
 		date.numberOfLines = 1
 		date.textAlignment = .left
-		date.font = UIFont.italicSystemFont(ofSize: 12)
+		date.font = UIFont.italicSystemFont(ofSize: ConstantsForFontSize.dateFontInCellSize)
 
 	}
 }
@@ -73,14 +72,14 @@ private extension FirstMasterTableViewCell {
 
 		NSLayoutConstraint.activate([titleLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: CGFloat(Constants.leftAndRight.rawValue)),
+										constant: Constants.leftAndRight),
 									 titleLabel.topAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.topAnchor,
-										constant: CGFloat(Constants.bottomAndTopSpace.rawValue)),
+										constant: Constants.bottomAndTopSpace),
 									 titleLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 1)])
 		NSLayoutConstraint.activate([descriptionLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: CGFloat(Constants.leftAndRight.rawValue)),
+										constant: Constants.leftAndRight),
 									 descriptionLabel.bottomAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.bottomAnchor),
 									 descriptionLabel.topAnchor.constraint(
@@ -88,7 +87,7 @@ private extension FirstMasterTableViewCell {
 									 descriptionLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5)])
 		NSLayoutConstraint.activate([date.trailingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.trailingAnchor,
-										constant: CGFloat(-Constants.leftAndRight.rawValue)),
+										constant: -Constants.leftAndRight),
 									 date.bottomAnchor.constraint(
 										equalTo: descriptionLabel.bottomAnchor),
 									 date.widthAnchor.constraint(

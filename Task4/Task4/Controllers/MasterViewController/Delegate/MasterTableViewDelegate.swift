@@ -16,5 +16,4 @@ extension MasterTableViewDelegate: UITableViewDelegate {
 		self.selectedItemHandler?(indexPath)
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
-
 }

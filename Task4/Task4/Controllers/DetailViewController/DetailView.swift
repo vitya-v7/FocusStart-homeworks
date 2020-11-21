@@ -24,8 +24,6 @@ class DetailView: UIView {
 	var firstImage = RoundShadowImageView()
 	var secondImage = RoundShadowImageView()
 
-	
-
 	// MARK: - Life сycle
 
 	override init(frame: CGRect) {
@@ -75,7 +73,7 @@ private extension DetailView {
 	func setupDescriptionAppearances() {
 		descriptionLabel.numberOfLines = 0
 		descriptionLabel.textAlignment = .center
-		descriptionLabel.font = UIFont.systemFont(ofSize: 20)
+		descriptionLabel.font = UIFont.systemFont(ofSize: ConstantsForFontSize.descriptionLabelFontSize)
 	}
 	func setupImage1Appearances() {
 		firstImage.backgroundColor = UIColor.white
@@ -83,8 +81,6 @@ private extension DetailView {
 	func setupImage2Appearances() {
 		secondImage.backgroundColor = UIColor.white
 	}
-
-
 }
 
 // MARK: - Shared Layout
@@ -107,8 +103,6 @@ private extension DetailView {
 		scrollableView.addSubview(descriptionLabel)
 		scrollableView.addSubview(firstImage)
 		scrollableView.addSubview(secondImage)
-
-
 	}
 	func setupSharedLayout() {
 		setupScrollViewLabelLayout()
@@ -147,20 +141,20 @@ private extension DetailView {
 	func setupDescriptionLayout() {
 		NSLayoutConstraint.activate([descriptionLabel.leadingAnchor.constraint(
 										equalTo: scrollableView.leadingAnchor,
-										constant: CGFloat(Constants.standard.rawValue)),
+										constant: Constants.standardSpace),
 									 descriptionLabel.trailingAnchor.constraint(
 										equalTo: scrollableView.trailingAnchor,
-										constant: CGFloat(-Constants.standard.rawValue)),
+										constant: -Constants.standardSpace),
 									 descriptionLabel.topAnchor.constraint(
 										equalTo: scrollableView.topAnchor,
-										constant: CGFloat(Constants.standard.rawValue))])
+										constant: Constants.standardSpace)])
 
 	}
 
 	func setupFirstImageLayout() {
 		NSLayoutConstraint.activate([firstImage.topAnchor.constraint(
 										equalTo: descriptionLabel.bottomAnchor,
-										constant: CGFloat(Constants.large.rawValue)),
+										constant: Constants.largeSpace),
 									 firstImage.widthAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.widthAnchor,
 										multiplier: 0.9),
@@ -175,10 +169,10 @@ private extension DetailView {
 	func setupSecondImageLayout() {
 		NSLayoutConstraint.activate([secondImage.topAnchor.constraint(
 										equalTo: firstImage.bottomAnchor,
-										constant: CGFloat(Constants.large.rawValue)),
+										constant: Constants.largeSpace),
 									 secondImage.bottomAnchor.constraint(
 										equalTo: scrollView.bottomAnchor,
-										constant: CGFloat(-Constants.large.rawValue)),
+										constant: -Constants.largeSpace),
 									 secondImage.widthAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.widthAnchor,
 										multiplier: 0.9),

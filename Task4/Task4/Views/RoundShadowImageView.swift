@@ -39,12 +39,12 @@ final class RoundShadowImageView: UIView {
 	// MARK: - Life Cycle
 
 	init(
-		cornerRadius: CGFloat = 12,
-		shadowColor: UIColor = .black,
-		shadowRadius: CGFloat = 8,
-		shadowOpacity: Float = 0.6,
-		shadowOffset: CGSize = CGSize(width: 8, height: 8),
-		imageOpacity: Float = 0.75
+		cornerRadius: CGFloat = ConstantsForImage.cornerRadius,
+		shadowColor: UIColor = ConstantsForImage.shadowColor,
+		shadowRadius: CGFloat = ConstantsForImage.shadowRadius,
+		shadowOpacity: Float = ConstantsForImage.shadowOpacity,
+		shadowOffset: CGSize = ConstantsForImage.shadowOffset,
+		imageOpacity: Float = ConstantsForImage.imageOpacity
 	) {
 		self.cornerRadius = cornerRadius
 		self.shadowColor = shadowColor
@@ -98,9 +98,7 @@ private extension RoundShadowImageView {
 			shadowLayer?.shadowPath = (image == nil) ? nil : shadowPath
 			return
 		}
-
 		shadowLayer = CAShapeLayer()
-
 		guard let shadowLayer = shadowLayer else { assertionFailure(); return }
 		shadowLayer.shadowPath = (image == nil) ? nil : shadowPath
 		shadowLayer.shadowColor = shadowColor.cgColor
