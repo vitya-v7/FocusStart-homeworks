@@ -29,8 +29,8 @@ class ThreadSafeArray <Element>
 	}
 
 	init(array: Array <Element>?) {
-		if let array = array {
-			self.safeArray = array
+		if let arrayIn = array {
+			self.safeArray = arrayIn
 		}
 		else {
 			self.safeArray = Array <Element>()

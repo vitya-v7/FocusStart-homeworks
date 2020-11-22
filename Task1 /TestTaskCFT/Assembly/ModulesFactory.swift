@@ -12,7 +12,7 @@ class ModulesFactory {
 	class func createCarsListModule() -> UIViewController {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let view = storyboard.instantiateViewController(identifier: "CarsListViewIdentifier") as! CarsListViewController
-		let carService = init()
+		let carService = CarService.init()
 		let presenter = CarsListPresenter()
 		view.output = presenter
 		presenter.view = view
@@ -23,7 +23,7 @@ class ModulesFactory {
 	class func createCarDetailModule(key: String?) -> UIViewController {
 		let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
 		let view = storyboard.instantiateViewController(identifier: "CarDetailViewIdentifier") as! CarDetailViewController
-		let carService = init()
+		let carService = CarService.init()
 		let presenter = CarDetailPresenter()
 		view.output = presenter
 		presenter.view = view
