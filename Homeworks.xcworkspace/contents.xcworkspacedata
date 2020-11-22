@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:Task1/TestTaskCFT.xcodeproj">
+      location = "group:Task1&#xa0;/TestTaskCFT.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Task2/Task2.xcodeproj">
