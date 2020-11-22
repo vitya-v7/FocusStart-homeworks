@@ -51,11 +51,11 @@ extension CarDetailPresenter: ICarDetailViewOutput
 	func changeSelectedDataInView(type: PickerType, index: Int) {
 		switch type {
 		case .carModel:
-			carModel?.model = CarModels.allCases[index]
+			carModel?.model = CarService.CarModels.allCases[index]
 		case .carBodyStyle:
-			carModel?.body = CarBodyStyle.allCases[index]
+			carModel?.body = CarService.CarBodyStyle.allCases[index]
 		case .carCountry:
-			carModel?.manufacturer = CarCountry.allCases[index]
+			carModel?.manufacturer = CarService.CarCountry.allCases[index]
 		default: print("unknown option")
 		}
 		reloadData()
@@ -67,7 +67,7 @@ extension CarDetailPresenter: ICarDetailViewOutput
 			carModel = carService?.getCar(key: key)
 		}
 		else {
-			carModel = CarModel.init(model: CarModels.allCases[0], manufacturer: CarCountry.allCases[0], body: CarBodyStyle.allCases[0], carKey: nil)
+			carModel = CarModel.init(model: CarService.CarModels.allCases[0], manufacturer: CarService.CarCountry.allCases[0], body: CarService.CarBodyStyle.allCases[0], carKey: nil)
 		}
 		reloadData()
 	}

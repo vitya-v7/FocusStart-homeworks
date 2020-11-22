@@ -31,15 +31,15 @@ class PickerViewController: UIViewController {
 		var itemArray = [String]()
 		switch type {
 		case .carModel:
-			for item in CarModels.allCases {
+			for item in CarService.CarModels.allCases {
 				itemArray.append(item.rawValue)
 			}
 		case .carBodyStyle:
-			for item in CarBodyStyle.allCases {
+			for item in CarService.CarBodyStyle.allCases {
 				itemArray.append(item.rawValue)
 			}
 		case .carCountry:
-			for item in CarCountry.allCases {
+			for item in CarService.CarCountry.allCases {
 				itemArray.append(item.rawValue)
 			}
 		default:
@@ -88,7 +88,7 @@ class PickerViewController: UIViewController {
 				return
 			}
 			if row > 0 {
-				outputList.filterCars(bodyStyle: CarBodyStyle(rawValue: options[row]))
+				outputList.filterCars(bodyStyle: CarService.CarBodyStyle(rawValue: options[row]))
 			}
 			else {
 				outputList.filterCars(bodyStyle: nil)
