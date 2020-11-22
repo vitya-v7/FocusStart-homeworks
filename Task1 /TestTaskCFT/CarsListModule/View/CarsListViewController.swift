@@ -20,7 +20,7 @@ protocol ICarsListViewOutput {
 	func plusButtonClicked()
 	func viewWillAppearDone()
 	func callPopover(fromView view: UIView, option: String?)
-	func filterCars(bodyStyle: CarBodyStyle?)
+	func filterCars(bodyStyle: CarService.CarBodyStyle?)
 }
 
 class CarsListViewController: UIViewController, UITextFieldDelegate {
