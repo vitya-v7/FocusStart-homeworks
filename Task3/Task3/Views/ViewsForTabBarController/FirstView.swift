@@ -11,15 +11,6 @@ class FirstView: UIView {
 
 	// MARK: Properties
 
-	private struct Constants
-	{
-		static let imageViewHeight: CGFloat = 300
-		static let bottomAndTopSpace: CGFloat = 8
-		static let spaceBetweenButtons: CGFloat = 3
-		static let labelFontSize: CGFloat = 14
-		static let buttonFontSize: CGFloat = 10
-	}
-
 	private var Constraints: [NSLayoutConstraint] = []
 	private var compactConstraints: [NSLayoutConstraint] = []
 	private var regularConstraints: [NSLayoutConstraint] = []
@@ -47,12 +38,15 @@ class FirstView: UIView {
 		fatalError("init(coder:) has not been implemented")
 	}
 
-	// MARK: Configuring Subviews
-
 	func makeButton2Rounded() {
 		let minimum = min(button2.bounds.height, button2.bounds.width)
 		button2.layer.cornerRadius = minimum/2
 	}
+}
+
+private extension FirstView
+{
+	// MARK: Configuring Subviews
 
 	func configureSubviews() {
 		configureSuperView()
@@ -78,14 +72,14 @@ class FirstView: UIView {
 	func configureLabel2() {
 		label2.numberOfLines = 1
 		label2.textAlignment = .center
-		label2.font = UIFont.boldSystemFont(ofSize: Constants.labelFontSize)
+		label2.font = UIFont.boldSystemFont(ofSize: FirstViewConstants.shared.labelFontSize)
 		label2.text = "Different font"
 	}
 
 	func configureLabel3() {
 		label3.numberOfLines = 2
 		label3.textAlignment = .center
-		label3.font = UIFont.italicSystemFont(ofSize: Constants.labelFontSize)
+		label3.font = UIFont.italicSystemFont(ofSize: FirstViewConstants.shared.labelFontSize)
 		label3.text = """
             Different font
             line 2
@@ -94,23 +88,24 @@ class FirstView: UIView {
 	}
 
 	func configureButton1() {
-		button1.layer.cornerRadius = Constants.bottomAndTopSpace
-		button1.backgroundColor = .cyan
+		button1.layer.cornerRadius = FirstViewConstants.shared.bottomAndTopSpace
+		button1.backgroundColor = FirstViewConstants.shared.backgroundButton1Color
 		button1.clipsToBounds = true
 		button1.setTitleColor(.black, for: .normal)
-		button1.setTitle("Button1", for: .normal)
-		button1.layer.borderWidth = 1
-		button1.layer.borderColor = UIColor.systemRed.cgColor
+		button1.setTitle(FirstViewConstants.shared.firstButtonTitle, for: .normal)
+		button2.titleLabel?.font = .boldSystemFont(ofSize: FirstViewConstants.shared.buttonFontSize)
+		button1.layer.borderWidth = FirstViewConstants.shared.button1BorderWidth
+		button1.layer.borderColor = FirstViewConstants.shared.borderButton1Color
 	}
 
 	func configureButton2() {
-		button2.backgroundColor = .red
+		button2.backgroundColor = FirstViewConstants.shared.backgroundButton2Color
 		button2.clipsToBounds = true
 		button2.setTitleColor(.black, for: .normal)
-		button2.setTitle("Button2", for: .normal)
-		button2.titleLabel?.font = .italicSystemFont(ofSize: Constants.buttonFontSize)
-		button2.layer.borderWidth = 1
-		button2.layer.borderColor = UIColor.systemGreen.cgColor
+		button2.setTitle(FirstViewConstants.shared.secondButtonTitle, for: .normal)
+		button2.titleLabel?.font = .italicSystemFont(ofSize: FirstViewConstants.shared.buttonFontSize)
+		button2.layer.borderWidth = FirstViewConstants.shared.button2BorderWidth
+		button2.layer.borderColor = FirstViewConstants.shared.borderButton2Color
 	}
 
 	func configureImageView() {
@@ -142,14 +137,14 @@ class FirstView: UIView {
 		label1.translatesAutoresizingMaskIntoConstraints = false
 
 		NSLayoutConstraint.activate([
-			label1.trailingAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.trailingAnchor),
-			label1.leadingAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.leadingAnchor),
-			label1.topAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.topAnchor, constant: Constants.bottomAndTopSpace),
-			label1.heightAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.05)])
+										label1.trailingAnchor.constraint(
+											equalTo: safeAreaLayoutGuide.trailingAnchor),
+										label1.leadingAnchor.constraint(
+											equalTo: safeAreaLayoutGuide.leadingAnchor),
+										label1.topAnchor.constraint(
+											equalTo: safeAreaLayoutGuide.topAnchor, constant: FirstViewConstants.shared.bottomAndTopSpace),
+										label1.heightAnchor.constraint(
+											equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: FirstViewConstants.shared.label1HeightRelativeToSafeArea)])
 	}
 
 	func setupLabel2Constraints() {
@@ -163,7 +158,7 @@ class FirstView: UIView {
 				equalTo: safeAreaLayoutGuide.leadingAnchor),
 			label2.topAnchor.constraint(
 				equalTo: label1.bottomAnchor),
-			label2.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.15)
+			label2.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: FirstViewConstants.shared.label2HeightRelativeToSafeArea)
 		])
 	}
 
@@ -179,7 +174,7 @@ class FirstView: UIView {
 			label3.topAnchor.constraint(
 				equalTo: label2.bottomAnchor),
 			label3.heightAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.26)
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: FirstViewConstants.shared.label3HeightRelativeToSafeArea)
 		])
 	}
 
@@ -193,9 +188,9 @@ class FirstView: UIView {
 			button1.topAnchor.constraint(
 				equalTo: label3.bottomAnchor),
 			button1.heightAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: FirstViewConstants.shared.button1HeightRelativeToSafeArea),
 			button1.widthAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
+				equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: FirstViewConstants.shared.button1WidthRelativeToSafeArea)
 		])
 	}
 
@@ -205,13 +200,13 @@ class FirstView: UIView {
 
 		NSLayoutConstraint.activate([
 			button2.heightAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.10),
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: FirstViewConstants.shared.button2HeightRelativeToSafeArea),
 			button2.widthAnchor.constraint(
 				equalTo: button2.heightAnchor),
 			button2.centerXAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.centerXAnchor),
 			button2.topAnchor.constraint(
-				equalTo: button1.bottomAnchor, constant: Constants.spaceBetweenButtons
+				equalTo: button1.bottomAnchor, constant: FirstViewConstants.shared.spaceBetweenButtons
 			),
 		])
 	}
@@ -222,9 +217,9 @@ class FirstView: UIView {
 
 		NSLayoutConstraint.activate([
 			imageView.topAnchor.constraint(
-				equalTo: button2.bottomAnchor, constant: Constants.spaceBetweenButtons),
+				equalTo: button2.bottomAnchor, constant: FirstViewConstants.shared.spaceBetweenButtons),
 			imageView.bottomAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -Constants.bottomAndTopSpace),
+				equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -FirstViewConstants.shared.bottomAndTopSpace),
 			imageView.widthAnchor.constraint(
 				equalTo: imageView.heightAnchor),
 			imageView.centerXAnchor.constraint(

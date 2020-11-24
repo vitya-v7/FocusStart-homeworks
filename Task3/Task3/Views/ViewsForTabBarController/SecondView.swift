@@ -11,13 +11,6 @@ class SecondView: UIView {
 	
 	// MARK: Properties
 
-	private struct Constants
-	{
-		static let imageViewHeight: CGFloat = 300
-		static let imageMargin: CGFloat = 12
-		static let labelSpace: CGFloat = 15
-	}
-
 	private var isLayoutCompact = false
 
 	private var sharedConstraints: [NSLayoutConstraint] = []
@@ -50,7 +43,10 @@ class SecondView: UIView {
 		super.traitCollectionDidChange(previousTraitCollection)
 		changeViewsLayout(traitCollection: traitCollection)
 	}
+}
 
+private extension SecondView
+{
 	// MARK: Configuring Subviews
 
 	func configureSubviews() {
@@ -72,8 +68,8 @@ class SecondView: UIView {
 	func configureTitleLabel() {
 		titleLabel.numberOfLines = 1
 		titleLabel.textAlignment = .center
-		titleLabel.font = .boldSystemFont(ofSize: 25)
-		titleLabel.text = "Header"
+		titleLabel.font = .boldSystemFont(ofSize: SecondViewConstants.shared.titleLabelFontSize)
+		titleLabel.text = SecondViewConstants.shared.titleLabel
 	}
 
 	func configureTextLabel() {
@@ -150,11 +146,11 @@ class SecondView: UIView {
 
 		sharedConstraints.append(contentsOf: [
 			imageView.topAnchor.constraint(
-				equalTo: scrollView.topAnchor, constant: Constants.imageMargin),
+				equalTo: scrollView.topAnchor, constant: SecondViewConstants.shared.imageMargin),
 			imageView.leadingAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.leadingAnchor, constant: Constants.imageMargin),
+				equalTo: safeAreaLayoutGuide.leadingAnchor, constant: SecondViewConstants.shared.imageMargin),
 			imageView.heightAnchor.constraint(
-				equalToConstant: Constants.imageViewHeight)
+				equalToConstant: SecondViewConstants.shared.imageViewHeight)
 		])
 	}
 
@@ -165,7 +161,7 @@ class SecondView: UIView {
 		sharedConstraints.append(contentsOf: [
 			titleLabel.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor,
-				constant: -Constants.labelSpace)
+				constant: -SecondViewConstants.shared.labelSpace)
 		])
 	}
 
@@ -176,10 +172,10 @@ class SecondView: UIView {
 		sharedConstraints.append(contentsOf: [
 			textLabel.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor,
-				constant: -Constants.labelSpace),
+				constant: -SecondViewConstants.shared.labelSpace),
 			textLabel.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.labelSpace),
+				constant: SecondViewConstants.shared.labelSpace),
 			textLabel.bottomAnchor.constraint(
 				equalTo: scrollView.bottomAnchor)
 		])
@@ -196,7 +192,7 @@ class SecondView: UIView {
 	func setupImageViewCompactConstraints() {
 		compactConstraints.append(contentsOf: [
 			imageView.trailingAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -Constants.imageMargin),
+				equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -SecondViewConstants.shared.imageMargin),
 		])
 	}
 
@@ -204,10 +200,10 @@ class SecondView: UIView {
 		compactConstraints.append(contentsOf: [
 			titleLabel.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.labelSpace),
+				constant: SecondViewConstants.shared.labelSpace),
 			titleLabel.topAnchor.constraint(
 				equalTo: imageView.bottomAnchor,
-				constant: Constants.labelSpace)
+				constant: SecondViewConstants.shared.labelSpace)
 		])
 	}
 
@@ -215,7 +211,7 @@ class SecondView: UIView {
 		compactConstraints.append(contentsOf: [
 			textLabel.topAnchor.constraint(
 				equalTo: titleLabel.bottomAnchor,
-				constant: Constants.labelSpace)
+				constant: SecondViewConstants.shared.labelSpace)
 		])
 	}
 
@@ -231,12 +227,12 @@ class SecondView: UIView {
 		regularConstraints.append(contentsOf: [
 			imageView.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
-				constant: Constants.imageMargin),
+				constant: SecondViewConstants.shared.imageMargin),
 			imageView.trailingAnchor.constraint(
 				equalTo: textLabel.leadingAnchor,
-				constant: -Constants.imageMargin),
+				constant: -SecondViewConstants.shared.imageMargin),
 			imageView.widthAnchor.constraint(
-				equalToConstant: Constants.imageViewHeight)
+				equalToConstant: SecondViewConstants.shared.imageViewHeight)
 		])
 	}
 
@@ -244,7 +240,7 @@ class SecondView: UIView {
 		regularConstraints.append(contentsOf: [
 			titleLabel.leadingAnchor.constraint(
 				equalTo: imageView.trailingAnchor,
-				constant: Constants.labelSpace),
+				constant: SecondViewConstants.shared.labelSpace),
 			titleLabel.centerYAnchor.constraint(
 				equalTo: imageView.centerYAnchor)
 		])
@@ -254,7 +250,7 @@ class SecondView: UIView {
 		regularConstraints.append(contentsOf: [
 			textLabel.topAnchor.constraint(
 				equalTo: imageView.bottomAnchor,
-				constant: Constants.labelSpace)
+				constant: SecondViewConstants.shared.labelSpace)
 		])
 	}
 }

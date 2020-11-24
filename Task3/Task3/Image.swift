@@ -11,9 +11,9 @@ enum Images: String {
 	case test
 
 	var image: UIImage {
-		guard let image = UIImage(named: rawValue)
-		else {
-			assertionFailure(); return UIImage()
+		guard let image = UIImage(named: rawValue) else {
+			assertionFailure("rawValue does not exist in Image file");
+			return UIImage()
 		}
 		return image
 	}
