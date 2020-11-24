@@ -11,10 +11,10 @@ class MyViewController: UIViewController {
 
 	// MARK: Life Cycle
 
-	private let myView = MyView(frame: .zero)
+	private let builder = PageBuilder()
 
 	override func loadView() {
-		view = myView
+		view = builder.addLabel1().addLabel2().addLabel3().addButton1().addButton2().addImageView().addActivityIndicator().build()
 	}
 
 	override func viewWillLayoutSubviews() {
