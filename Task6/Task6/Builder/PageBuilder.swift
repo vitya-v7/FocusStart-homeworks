@@ -82,6 +82,7 @@ class PageBuilder : UIView {
 	}
 
 	//MARK: Subviews
+	
 	func addLabel1() -> Self {
 		addSubview(label1)
 		label1.translatesAutoresizingMaskIntoConstraints = false
@@ -196,7 +197,7 @@ class PageBuilder : UIView {
 		return self
 	}
 
-	func build() -> UIView {
+	func build() -> Self {
 		return self
 	}
 }
