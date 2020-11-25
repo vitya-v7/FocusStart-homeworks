@@ -13,7 +13,8 @@ enum Images: String {
 	var image: UIImage {
 		guard let image = UIImage(named: rawValue)
 		else {
-			assertionFailure(); return UIImage()
+			assertionFailure();
+			return UIImage()
 		}
 		return image
 	}
