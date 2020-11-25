@@ -22,6 +22,9 @@ class MyViewController: UIViewController {
 		//self.view = builder.addLabel1().addLabel2().addLabel3().addButton1().addButton2().addImageView().build()
 		//self.view = builder.addLabel2().addButton1().addImageView().build()
 		//self.view = builder.addImageView().build()
+
+		//не покажется, так как отображается только если есть картинка
+		//self.view = builder.addActivityIndicator().build()
 		//self.view = builder.build()
 	}
 

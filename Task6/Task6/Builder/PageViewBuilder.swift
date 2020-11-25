@@ -273,10 +273,13 @@ extension PageViewBuilder
 	}
 
 	func addActivityIndicator() -> Self {
-		configureActivityIndicator()
-		setupActivityIndicatorConstraints()
-		topSubview = activityIndicator
-		lastElement = imageView
+		if subviews.contains(imageView) {
+			configureActivityIndicator()
+			setupActivityIndicatorConstraints()
+			topSubview = activityIndicator
+			lastElement = imageView
+			return self
+		}
 		return self
 	}
 
