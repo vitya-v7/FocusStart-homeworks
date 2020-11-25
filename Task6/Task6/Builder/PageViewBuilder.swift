@@ -24,20 +24,15 @@ class PageViewBuilder: UIView {
 
 	// MARK: Life Cycle
 
-
 	public override init(frame: CGRect) {
 		super.init(frame: frame)
 		backgroundColor = .white
 	}
-
 	
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
-
 }
-
 
 extension PageViewBuilder
 {
@@ -288,7 +283,7 @@ extension PageViewBuilder
 			NSLayoutConstraint.activate([
 				lastElement.bottomAnchor.constraint(
 					greaterThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor,
-					constant: Constants.shared.bottomAndTopSpace),
+					constant: -Constants.shared.bottomAndTopSpace),
 			])
 		}
 		return self
