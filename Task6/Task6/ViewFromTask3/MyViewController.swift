@@ -15,7 +15,10 @@ class MyViewController: UIViewController {
 
 	override func loadView() {
 		let builder = PageViewBuilder()
+		//пример полного собрания всех элементов
 		self.view = builder.addLabel1().addLabel2().addLabel3().addButton1().addButton2().addImageView().addActivityIndicator().build()
+
+		//self.view = builder.addButton1().addButton2().build()
 		//self.view = builder.addLabel1().addLabel2().addLabel3().addButton1().addButton2().addImageView().build()
 		//self.view = builder.addLabel2().addButton1().addImageView().build()
 		//self.view = builder.addImageView().build()

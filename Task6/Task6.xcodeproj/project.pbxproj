@@ -46,7 +46,6 @@
 		84489A3D256D2A18000A4018 = {
 			isa = PBXGroup;
 			children = (
-				84489A8A256D32E1000A4018 /* Constants */,
 				84489A48256D2A18000A4018 /* Task6 */,
 				84489A47256D2A18000A4018 /* Products */,
 			);
@@ -63,6 +62,7 @@
 		84489A48256D2A18000A4018 /* Task6 */ = {
 			isa = PBXGroup;
 			children = (
+				84489A8A256D32E1000A4018 /* Constants */,
 				84489A6D256D2AD0000A4018 /* ViewFromTask3 */,
 				84489A7B256D2B01000A4018 /* Builder */,
 				84489A49256D2A18000A4018 /* AppDelegate.swift */,
@@ -97,8 +97,7 @@
 			children = (
 				84489A8B256D32E1000A4018 /* Constants.swift */,
 			);
-			name = Constants;
-			path = Task6/Constants;
+			path = Constants;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
