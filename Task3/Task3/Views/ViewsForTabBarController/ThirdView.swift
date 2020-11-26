@@ -8,7 +8,34 @@
 import UIKit
 
 class ThirdView: UIView {
-	
+
+	// MARK: Constants
+
+	private enum Constants
+	{
+		static let textFieldsRelativeToSafeArea: CGFloat = 0.10
+		static let textFieldSpace: CGFloat = 10
+		static let loginTextFieldBorderWidth: CGFloat = 1
+		static let passwordTextFieldBorderWidth: CGFloat = 1
+		static let loginTextFieldBorderColor = UIColor.systemGreen.cgColor
+		static let passwordTextFieldBorderColor = UIColor.systemBlue.cgColor
+		static let loginFontSize: CGFloat = 17
+		static let passwordSize: CGFloat = 16
+		static let loginPlaceHolder = "Login"
+		static let passwordPlaceHolder = "Password"
+
+		static let imageViewHeight: CGFloat = 300
+		static let horizontalBigSpace: CGFloat = 32
+
+		static let buttonTitle = "Enter"
+		static let buttonWidthRelativeToSafeArea: CGFloat = 0.3
+		static let buttonHeightRelativeToSafeArea: CGFloat = 0.5
+		static let buttonBottomConstant: CGFloat = 12
+		static let buttonBorderWidth: CGFloat = 1
+		static let backgroundButtonColor = UIColor.cyan
+		static let borderButtonColor = UIColor.systemRed.cgColor
+	}
+
 	// MARK: Properties
 	
 	var tabBarHeight: CGFloat?
@@ -24,7 +51,7 @@ class ThirdView: UIView {
 	
 	// MARK: Life Cycle
 	
-	public override init(frame: CGRect) {
+	override init(frame: CGRect) {
 		super.init(frame: frame)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -78,31 +105,31 @@ private extension ThirdView
 	}
 	
 	func configureLoginTextField() {
-		loginTextField.placeholder = ThirdViewConstants.shared.loginPlaceHolder
-		loginTextField.font = UIFont.systemFont(ofSize: ThirdViewConstants.shared.loginFontSize)
-		loginTextField.layer.borderWidth = ThirdViewConstants.shared.loginTextFieldBorderWidth
-		loginTextField.layer.borderColor = ThirdViewConstants.shared.loginTextFieldBorderColor
+		loginTextField.placeholder = Constants.loginPlaceHolder
+		loginTextField.font = UIFont.systemFont(ofSize: Constants.loginFontSize)
+		loginTextField.layer.borderWidth = Constants.loginTextFieldBorderWidth
+		loginTextField.layer.borderColor = Constants.loginTextFieldBorderColor
 		loginTextField.borderStyle = .roundedRect
 		loginTextField.delegate = self
 	}
 	
 	func configurePasswordTextField() {
-		passwordTextField.placeholder = ThirdViewConstants.shared.passwordPlaceHolder
-		passwordTextField.font = UIFont.systemFont(ofSize: ThirdViewConstants.shared.passwordSize)
-		passwordTextField.layer.borderWidth = ThirdViewConstants.shared.passwordTextFieldBorderWidth
-		passwordTextField.layer.borderColor = ThirdViewConstants.shared.passwordTextFieldBorderColor
+		passwordTextField.placeholder = Constants.passwordPlaceHolder
+		passwordTextField.font = UIFont.systemFont(ofSize: Constants.passwordSize)
+		passwordTextField.layer.borderWidth = Constants.passwordTextFieldBorderWidth
+		passwordTextField.layer.borderColor = Constants.passwordTextFieldBorderColor
 		passwordTextField.borderStyle = .roundedRect
 		passwordTextField.delegate = self
 		passwordTextField.isSecureTextEntry = true
 	}
 	
 	func configureButton() {
-		button.backgroundColor = ThirdViewConstants.shared.backgroundButtonColor
+		button.backgroundColor = Constants.backgroundButtonColor
 		button.clipsToBounds = true
 		button.setTitleColor(.black, for: .normal)
-		button.layer.borderWidth = ThirdViewConstants.shared.buttonBorderWidth
-		button.layer.borderColor = ThirdViewConstants.shared.borderButtonColor
-		button.setTitle(ThirdViewConstants.shared.buttonTitle, for: .normal)
+		button.layer.borderWidth = Constants.buttonBorderWidth
+		button.layer.borderColor = Constants.borderButtonColor
+		button.setTitle(Constants.buttonTitle, for: .normal)
 	}
 	
 	// MARK: Constraints
@@ -121,16 +148,16 @@ private extension ThirdView
 		Constraints.append(contentsOf: [
 			loginTextField.topAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.topAnchor,
-				constant: ThirdViewConstants.shared.textFieldSpace),
+				constant: Constants.textFieldSpace),
 			loginTextField.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
-				constant: ThirdViewConstants.shared.textFieldSpace),
+				constant: Constants.textFieldSpace),
 			loginTextField.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor,
-				constant: -ThirdViewConstants.shared.textFieldSpace),
+				constant: -Constants.textFieldSpace),
 			loginTextField.heightAnchor.constraint(
 				equalTo: self.safeAreaLayoutGuide.heightAnchor,
-				multiplier: ThirdViewConstants.shared.textFieldsRelativeToSafeArea)
+				multiplier: Constants.textFieldsRelativeToSafeArea)
 		])
 	}
 	
@@ -141,13 +168,13 @@ private extension ThirdView
 		Constraints.append(contentsOf: [
 			passwordTextField.topAnchor.constraint(
 				equalTo: loginTextField.bottomAnchor,
-				constant: ThirdViewConstants.shared.textFieldSpace),
+				constant: Constants.textFieldSpace),
 			passwordTextField.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor,
-				constant: ThirdViewConstants.shared.textFieldSpace),
+				constant: Constants.textFieldSpace),
 			passwordTextField.trailingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.trailingAnchor,
-				constant: -ThirdViewConstants.shared.textFieldSpace),
+				constant: -Constants.textFieldSpace),
 			passwordTextField.heightAnchor.constraint(
 				equalTo: self.safeAreaLayoutGuide.heightAnchor,
 				multiplier: 0.10)
@@ -161,10 +188,10 @@ private extension ThirdView
 		Constraints.append(contentsOf: [
 			button.widthAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.widthAnchor,
-				multiplier: ThirdViewConstants.shared.buttonWidthRelativeToSafeArea),
+				multiplier: Constants.buttonWidthRelativeToSafeArea),
 			button.heightAnchor.constraint(
 				equalTo: button.widthAnchor,
-				multiplier: ThirdViewConstants.shared.buttonHeightRelativeToSafeArea),
+				multiplier: Constants.buttonHeightRelativeToSafeArea),
 			button.centerXAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.centerXAnchor)
 		])
@@ -174,7 +201,7 @@ private extension ThirdView
 	func setButtonBottomConstraint(space: CGFloat) {
 		buttonBottomConstraint = button.bottomAnchor.constraint(
 			equalTo: safeAreaLayoutGuide.bottomAnchor,
-			constant: -ThirdViewConstants.shared.buttonBottomConstant - space)
+			constant: -Constants.buttonBottomConstant - space)
 		guard let buttonBottomConstraintIn = buttonBottomConstraint else {
 			return assertionFailure("buttonBottomConstraint error in ThirdView")
 		}
