@@ -69,17 +69,17 @@ private extension FifthMasterTableViewCell {
 		
 		NSLayoutConstraint.activate([titleLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: Constants.leftAndRight),
+										constant: ConstantsForSpace.leftAndRight),
 									 titleLabel.topAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.topAnchor,
-										constant: Constants.bottomAndTopSpace),
+										constant: ConstantsForSpace.bottomAndTopSpace),
 									 titleLabel.trailingAnchor.constraint(
 										equalTo: self.safeAreaLayoutGuide.trailingAnchor,
-										constant: -Constants.leftAndRight),
+										constant: -ConstantsForSpace.leftAndRight),
 									 titleLabel.bottomAnchor.constraint(
 										equalTo: self.safeAreaLayoutGuide.bottomAnchor,
 										constant:
-										-Constants.bottomAndTopSpace)])
+										-ConstantsForSpace.bottomAndTopSpace)])
 	}
 }
 

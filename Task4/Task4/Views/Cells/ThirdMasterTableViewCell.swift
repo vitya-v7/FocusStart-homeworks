@@ -71,17 +71,17 @@ private extension ThirdMasterTableViewCell {
 		
 		NSLayoutConstraint.activate([titleLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: Constants.leftAndRight),
+										constant: ConstantsForSpace.leftAndRight),
 									 titleLabel.topAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.topAnchor,
-										constant: Constants.bottomAndTopSpace),
+										constant: ConstantsForSpace.bottomAndTopSpace),
 									 titleLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 1)])
 		NSLayoutConstraint.activate([descriptionLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: Constants.leftAndRight),
+										constant: ConstantsForSpace.leftAndRight),
 									 descriptionLabel.trailingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.trailingAnchor,
-										constant: -Constants.leftAndRight),
+										constant: -ConstantsForSpace.leftAndRight),
 									 descriptionLabel.bottomAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.bottomAnchor),
 									 descriptionLabel.topAnchor.constraint(

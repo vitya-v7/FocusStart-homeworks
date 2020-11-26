@@ -141,20 +141,20 @@ private extension DetailView {
 	func setupDescriptionLayout() {
 		NSLayoutConstraint.activate([descriptionLabel.leadingAnchor.constraint(
 										equalTo: scrollableView.leadingAnchor,
-										constant: Constants.standardSpace),
+										constant: ConstantsForSpace.standardSpace),
 									 descriptionLabel.trailingAnchor.constraint(
 										equalTo: scrollableView.trailingAnchor,
-										constant: -Constants.standardSpace),
+										constant: -ConstantsForSpace.standardSpace),
 									 descriptionLabel.topAnchor.constraint(
 										equalTo: scrollableView.topAnchor,
-										constant: Constants.standardSpace)])
+										constant: ConstantsForSpace.standardSpace)])
 
 	}
 
 	func setupFirstImageLayout() {
 		NSLayoutConstraint.activate([firstImage.topAnchor.constraint(
 										equalTo: descriptionLabel.bottomAnchor,
-										constant: Constants.largeSpace),
+										constant: ConstantsForSpace.largeSpace),
 									 firstImage.widthAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.widthAnchor,
 										multiplier: 0.9),
@@ -169,10 +169,10 @@ private extension DetailView {
 	func setupSecondImageLayout() {
 		NSLayoutConstraint.activate([secondImage.topAnchor.constraint(
 										equalTo: firstImage.bottomAnchor,
-										constant: Constants.largeSpace),
+										constant: ConstantsForSpace.largeSpace),
 									 secondImage.bottomAnchor.constraint(
 										equalTo: scrollView.bottomAnchor,
-										constant: -Constants.largeSpace),
+										constant: -ConstantsForSpace.largeSpace),
 									 secondImage.widthAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.widthAnchor,
 										multiplier: 0.9),

@@ -9,6 +9,17 @@ import UIKit
 
 final class RoundShadowImageView: UIView {
 
+	//MARK: - Constants
+
+	private enum ConstantsForImage {
+		static let cornerRadius: CGFloat = 12
+		static let shadowColor: UIColor = .black
+		static let shadowRadius: CGFloat = 8
+		static let shadowOpacity: Float = 0.6
+		static let shadowOffset: CGSize = CGSize(width: 8, height: 8)
+		static let imageOpacity: Float = 0.75
+	}
+
 	// MARK: - Properties
 
 	private let cornerRadius: CGFloat

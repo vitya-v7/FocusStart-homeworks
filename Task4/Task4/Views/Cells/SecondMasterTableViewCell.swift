@@ -72,14 +72,14 @@ private extension SecondMasterTableViewCell {
 		
 		NSLayoutConstraint.activate([titleLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: Constants.leftAndRight),
+										constant: ConstantsForSpace.leftAndRight),
 									 titleLabel.topAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.topAnchor,
-										constant: Constants.bottomAndTopSpace),
+										constant: ConstantsForSpace.bottomAndTopSpace),
 									 titleLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 1)])
 		NSLayoutConstraint.activate([descriptionLabel.leadingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.leadingAnchor,
-										constant: Constants.leftAndRight),
+										constant: ConstantsForSpace.leftAndRight),
 									 descriptionLabel.bottomAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.bottomAnchor),
 									 descriptionLabel.topAnchor.constraint(
@@ -87,7 +87,7 @@ private extension SecondMasterTableViewCell {
 									 descriptionLabel.widthAnchor.constraint(equalTo: self.safeAreaLayoutGuide.widthAnchor, multiplier: 0.5)])
 		NSLayoutConstraint.activate([date.trailingAnchor.constraint(
 										equalTo: safeAreaLayoutGuide.trailingAnchor,
-										constant: -Constants.leftAndRight),
+										constant: -ConstantsForSpace.leftAndRight),
 									 date.bottomAnchor.constraint(
 										equalTo: descriptionLabel.bottomAnchor),
 									 date.widthAnchor.constraint(
