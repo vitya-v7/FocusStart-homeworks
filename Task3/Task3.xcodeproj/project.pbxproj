@@ -88,13 +88,6 @@
 			path = ViewsForTabBarController;
 			sourceTree = "<group>";
 		};
-		84A5F752256CCD7500A51FD0 /* Constants */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Constants;
-			sourceTree = "<group>";
-		};
 		AAD2E4A7254EF3BB00FB0457 = {
 			isa = PBXGroup;
 			children = (
@@ -114,7 +107,6 @@
 		AAD2E4B2254EF3BB00FB0457 /* Task3 */ = {
 			isa = PBXGroup;
 			children = (
-				84A5F752256CCD7500A51FD0 /* Constants */,
 				849E4CBE25515ECF00A5F1F5 /* TabBarController */,
 				849E4CBA25515C7300A5F1F5 /* Views */,
 				AAD2E4B3254EF3BB00FB0457 /* AppDelegate.swift */,

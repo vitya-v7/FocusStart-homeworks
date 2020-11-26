@@ -34,13 +34,14 @@ class ThirdView: UIView {
 		static let buttonBorderWidth: CGFloat = 1
 		static let backgroundButtonColor = UIColor.cyan
 		static let borderButtonColor = UIColor.systemRed.cgColor
+        static let buttonBottomSpace: CGFloat = 0
 	}
 
 	// MARK: Properties
 	
 	var tabBarHeight: CGFloat?
 	
-	private var Constraints: [NSLayoutConstraint] = []
+	private var myConstraints: [NSLayoutConstraint] = []
 	private var buttonBottomConstraint : NSLayoutConstraint?
 	
 	// MARK: Views
@@ -138,14 +139,14 @@ private extension ThirdView
 		setupLoginTextFieldConstraints()
 		setupPasswordTextFieldConstraints()
 		setupButtonConstraints()
-		NSLayoutConstraint.activate(Constraints)
+		NSLayoutConstraint.activate(myConstraints)
 	}
 	
 	func setupLoginTextFieldConstraints() {
 		addSubview(loginTextField)
 		loginTextField.translatesAutoresizingMaskIntoConstraints = false
 		
-		Constraints.append(contentsOf: [
+		myConstraints.append(contentsOf: [
 			loginTextField.topAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.topAnchor,
 				constant: Constants.textFieldSpace),
@@ -165,7 +166,7 @@ private extension ThirdView
 		addSubview(passwordTextField)
 		passwordTextField.translatesAutoresizingMaskIntoConstraints = false
 		
-		Constraints.append(contentsOf: [
+		myConstraints.append(contentsOf: [
 			passwordTextField.topAnchor.constraint(
 				equalTo: loginTextField.bottomAnchor,
 				constant: Constants.textFieldSpace),
@@ -185,7 +186,7 @@ private extension ThirdView
 		addSubview(button)
 		button.translatesAutoresizingMaskIntoConstraints = false
 		
-		Constraints.append(contentsOf: [
+		myConstraints.append(contentsOf: [
 			button.widthAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.widthAnchor,
 				multiplier: Constants.buttonWidthRelativeToSafeArea),
@@ -195,7 +196,7 @@ private extension ThirdView
 			button.centerXAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.centerXAnchor)
 		])
-		setButtonBottomConstraint(space: 0)
+        setButtonBottomConstraint(space: Constants.buttonBottomSpace)
 	}
 	
 	func setButtonBottomConstraint(space: CGFloat) {
@@ -214,9 +215,7 @@ private extension ThirdView
 		guard let userInfo = notification.userInfo,
 			  let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
 			  let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
-		else {
-			return
-		}
+        else { return }
 		let keyboardFrame = keyboardSize.cgRectValue
 		var keyboardMinusTabBarHeight: CGFloat = 0.0
 		if let tabHeight = tabBarHeight {
@@ -236,14 +235,12 @@ private extension ThirdView
 	
 	@objc func keyboardWillHide(notification: NSNotification) {
 		guard let userInfo = notification.userInfo else { return }
-		guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else {
-			return
-		}
+        guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
 		
 		ThirdView.animate(withDuration: animationDuration) {
 			if let buttonConstraint = self.buttonBottomConstraint {
 				NSLayoutConstraint.deactivate([buttonConstraint])
-				self.setButtonBottomConstraint(space: 0)
+				self.setButtonBottomConstraint(space: Constants.buttonBottomSpace)
 				self.layoutIfNeeded()
 			}
 		}

@@ -38,12 +38,6 @@ class FirstView: UIView {
 		static let label3HeightRelativeToSafeArea: CGFloat = 0.26
 	}
 
-	// MARK: Properties
-
-	private var Constraints: [NSLayoutConstraint] = []
-	private var compactConstraints: [NSLayoutConstraint] = []
-	private var regularConstraints: [NSLayoutConstraint] = []
-
 	// MARK: Views
 
 	private let label1 = UILabel()
@@ -158,7 +152,6 @@ private extension FirstView
 		setupButton2Constraints()
 		setupImageViewConstraints()
 		setupActivityIndicatorConstraints()
-		NSLayoutConstraint.activate(Constraints)
 	}
 
 	func setupLabel1Constraints() {
