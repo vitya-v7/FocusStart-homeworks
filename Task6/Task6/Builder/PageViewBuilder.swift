@@ -9,7 +9,37 @@ import UIKit
 
 class PageViewBuilder: UIView {
 
+	//MARK: Constants
+
+	private enum Constants
+	{
+		static let firstButtonTitle = "Button1"
+		static let secondButtonTitle = "Button2"
+
+		static let imageViewHeightRelativeToSafeArea: CGFloat = 0.20
+
+		static let bottomAndTopSpace: CGFloat = 5
+		static let labelFontSize: CGFloat = 14
+
+		static let buttonFontSize: CGFloat = 10
+		static let button1BorderWidth: CGFloat = 1
+		static let backgroundButton1Color = UIColor.cyan
+		static let borderButton1Color = UIColor.systemRed.cgColor
+		static let button1HeightRelativeToSafeArea: CGFloat = 0.10
+		static let button1WidthRelativeToSafeArea: CGFloat = 0.7
+
+		static let button2HeightRelativeToSafeArea: CGFloat = 0.10
+		static let button2BorderWidth: CGFloat = 1
+		static let backgroundButton2Color = UIColor.systemRed
+		static let borderButton2Color = UIColor.systemGreen.cgColor
+
+		static let label1HeightRelativeToSafeArea: CGFloat = 0.05
+		static let label2HeightRelativeToSafeArea: CGFloat = 0.15
+		static let label3HeightRelativeToSafeArea: CGFloat = 0.26
+	}
+
 	// MARK: Views
+
 	var firstElement: UIView?
 	var lastElement: UIView?
 	var topSubview: UIView?
@@ -51,14 +81,14 @@ extension PageViewBuilder
 	func configureLabel2() {
 		label2.numberOfLines = 1
 		label2.textAlignment = .center
-		label2.font = UIFont.boldSystemFont(ofSize: Constants.shared.labelFontSize)
+		label2.font = UIFont.boldSystemFont(ofSize: Constants.labelFontSize)
 		label2.text = "Different font"
 	}
 
 	func configureLabel3() {
 		label3.numberOfLines = 2
 		label3.textAlignment = .center
-		label3.font = UIFont.italicSystemFont(ofSize: Constants.shared.labelFontSize)
+		label3.font = UIFont.italicSystemFont(ofSize: Constants.labelFontSize)
 		label3.text = """
 			Different font
 			line 2
@@ -67,24 +97,24 @@ extension PageViewBuilder
 	}
 
 	func configureButton1() {
-		button1.layer.cornerRadius = Constants.shared.bottomAndTopSpace
-		button1.backgroundColor = Constants.shared.backgroundButton1Color
+		button1.layer.cornerRadius = Constants.bottomAndTopSpace
+		button1.backgroundColor = Constants.backgroundButton1Color
 		button1.clipsToBounds = true
 		button1.setTitleColor(.black, for: .normal)
-		button1.setTitle(Constants.shared.firstButtonTitle, for: .normal)
-		button2.titleLabel?.font = .boldSystemFont(ofSize: Constants.shared.buttonFontSize)
-		button1.layer.borderWidth = Constants.shared.button1BorderWidth
-		button1.layer.borderColor = Constants.shared.borderButton1Color
+		button1.setTitle(Constants.firstButtonTitle, for: .normal)
+		button2.titleLabel?.font = .boldSystemFont(ofSize: Constants.buttonFontSize)
+		button1.layer.borderWidth = Constants.button1BorderWidth
+		button1.layer.borderColor = Constants.borderButton1Color
 	}
 
 	func configureButton2() {
-		button2.backgroundColor = Constants.shared.backgroundButton2Color
+		button2.backgroundColor = Constants.backgroundButton2Color
 		button2.clipsToBounds = true
 		button2.setTitleColor(.black, for: .normal)
-		button2.setTitle(Constants.shared.secondButtonTitle, for: .normal)
-		button2.titleLabel?.font = .italicSystemFont(ofSize: Constants.shared.buttonFontSize)
-		button2.layer.borderWidth = Constants.shared.button2BorderWidth
-		button2.layer.borderColor = Constants.shared.borderButton2Color
+		button2.setTitle(Constants.secondButtonTitle, for: .normal)
+		button2.titleLabel?.font = .italicSystemFont(ofSize: Constants.buttonFontSize)
+		button2.layer.borderWidth = Constants.button2BorderWidth
+		button2.layer.borderColor = Constants.borderButton2Color
 	}
 
 	func configureImageView() {
@@ -121,9 +151,9 @@ extension PageViewBuilder
 			label1.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor),
 			label1.topAnchor.constraint(
-				equalTo: anchor, constant: Constants.shared.bottomAndTopSpace),
+				equalTo: anchor, constant: Constants.bottomAndTopSpace),
 			label1.heightAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.shared.label1HeightRelativeToSafeArea)])
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.label1HeightRelativeToSafeArea)])
 	}
 
 	func setupLabel2Constraints() {
@@ -136,8 +166,8 @@ extension PageViewBuilder
 			label2.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor),
 			label2.topAnchor.constraint(
-				equalTo: anchor, constant: Constants.shared.bottomAndTopSpace),
-			label2.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.shared.label2HeightRelativeToSafeArea)
+				equalTo: anchor, constant: Constants.bottomAndTopSpace),
+			label2.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.label2HeightRelativeToSafeArea)
 		])
 	}
 
@@ -151,9 +181,9 @@ extension PageViewBuilder
 			label3.leadingAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.leadingAnchor),
 			label3.topAnchor.constraint(
-				equalTo: anchor, constant: Constants.shared.bottomAndTopSpace),
+				equalTo: anchor, constant: Constants.bottomAndTopSpace),
 			label3.heightAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.shared.label3HeightRelativeToSafeArea)
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.label3HeightRelativeToSafeArea)
 		])
 	}
 
@@ -165,11 +195,11 @@ extension PageViewBuilder
 			button1.centerXAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.centerXAnchor),
 			button1.topAnchor.constraint(
-				equalTo: anchor, constant: Constants.shared.bottomAndTopSpace),
+				equalTo: anchor, constant: Constants.bottomAndTopSpace),
 			button1.heightAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.shared.button1HeightRelativeToSafeArea),
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.button1HeightRelativeToSafeArea),
 			button1.widthAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: Constants.shared.button1WidthRelativeToSafeArea)
+				equalTo: safeAreaLayoutGuide.widthAnchor, multiplier: Constants.button1WidthRelativeToSafeArea)
 		])
 	}
 
@@ -179,13 +209,13 @@ extension PageViewBuilder
 		let anchor = setTopAnchor()
 		NSLayoutConstraint.activate([
 			button2.heightAnchor.constraint(
-				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.shared.button2HeightRelativeToSafeArea),
+				equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: Constants.button2HeightRelativeToSafeArea),
 			button2.widthAnchor.constraint(
 				equalTo: button2.heightAnchor),
 			button2.centerXAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.centerXAnchor),
 			button2.topAnchor.constraint(
-				equalTo: anchor, constant: Constants.shared.bottomAndTopSpace
+				equalTo: anchor, constant: Constants.bottomAndTopSpace
 			),
 		])
 	}
@@ -196,9 +226,9 @@ extension PageViewBuilder
 		let anchor = setTopAnchor()
 		NSLayoutConstraint.activate([
 			imageView.topAnchor.constraint(
-				equalTo: anchor, constant: Constants.shared.bottomAndTopSpace),
+				equalTo: anchor, constant: Constants.bottomAndTopSpace),
 			imageView.heightAnchor.constraint(
-				equalTo: layoutMarginsGuide.heightAnchor, multiplier: Constants.shared.imageViewHeightRelativeToSafeArea),
+				equalTo: layoutMarginsGuide.heightAnchor, multiplier: Constants.imageViewHeightRelativeToSafeArea),
 			imageView.widthAnchor.constraint(
 				equalTo: imageView.heightAnchor),
 			imageView.centerXAnchor.constraint(
@@ -283,7 +313,7 @@ extension PageViewBuilder
 			NSLayoutConstraint.activate([
 				lastElement.bottomAnchor.constraint(
 					greaterThanOrEqualTo: safeAreaLayoutGuide.bottomAnchor,
-					constant: -Constants.shared.bottomAndTopSpace),
+					constant: -Constants.bottomAndTopSpace),
 			])
 		}
 		return self
