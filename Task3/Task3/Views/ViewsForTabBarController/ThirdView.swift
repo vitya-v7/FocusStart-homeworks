@@ -8,9 +8,9 @@
 import UIKit
 
 class ThirdView: UIView {
-
+	
 	// MARK: Constants
-
+	
 	private enum Constants
 	{
 		static let textFieldsRelativeToSafeArea: CGFloat = 0.10
@@ -23,10 +23,10 @@ class ThirdView: UIView {
 		static let passwordSize: CGFloat = 16
 		static let loginPlaceHolder = "Login"
 		static let passwordPlaceHolder = "Password"
-
+		
 		static let imageViewHeight: CGFloat = 300
 		static let horizontalBigSpace: CGFloat = 32
-
+		
 		static let buttonTitle = "Enter"
 		static let buttonWidthRelativeToSafeArea: CGFloat = 0.3
 		static let buttonHeightRelativeToSafeArea: CGFloat = 0.5
@@ -34,9 +34,9 @@ class ThirdView: UIView {
 		static let buttonBorderWidth: CGFloat = 1
 		static let backgroundButtonColor = UIColor.cyan
 		static let borderButtonColor = UIColor.systemRed.cgColor
-        static let buttonBottomSpace: CGFloat = 0
+		static let buttonBottomSpace: CGFloat = 0
 	}
-
+	
 	// MARK: Properties
 	
 	var tabBarHeight: CGFloat?
@@ -75,7 +75,7 @@ class ThirdView: UIView {
 	internal override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		endEditing(true)
 	}
-
+	
 	func makeButtonRounded() {
 		let minimum = min(button.bounds.height, button.bounds.width)
 		button.layer.cornerRadius = minimum/2
@@ -196,7 +196,7 @@ private extension ThirdView
 			button.centerXAnchor.constraint(
 				equalTo: safeAreaLayoutGuide.centerXAnchor)
 		])
-        setButtonBottomConstraint(space: Constants.buttonBottomSpace)
+		setButtonBottomConstraint(space: Constants.buttonBottomSpace)
 	}
 	
 	func setButtonBottomConstraint(space: CGFloat) {
@@ -215,7 +215,7 @@ private extension ThirdView
 		guard let userInfo = notification.userInfo,
 			  let keyboardSize = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
 			  let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
-        else { return }
+		else { return }
 		let keyboardFrame = keyboardSize.cgRectValue
 		var keyboardMinusTabBarHeight: CGFloat = 0.0
 		if let tabHeight = tabBarHeight {
@@ -234,8 +234,9 @@ private extension ThirdView
 	}
 	
 	@objc func keyboardWillHide(notification: NSNotification) {
-		guard let userInfo = notification.userInfo else { return }
-        guard let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval else { return }
+		guard let userInfo = notification.userInfo,
+			  let animationDuration = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
+		else { return }
 		
 		ThirdView.animate(withDuration: animationDuration) {
 			if let buttonConstraint = self.buttonBottomConstraint {
