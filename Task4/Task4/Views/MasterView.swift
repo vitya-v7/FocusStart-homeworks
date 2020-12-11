@@ -9,7 +9,7 @@ import UIKit
 public protocol MasterViewProtocol: UIView {
 	func viewWillAppear(_ animated: Bool)
 	var selectedItemHandler: ((IndexPath) -> Void)? { get set }
-	func setItems(_ CellModel: [CellModel])
+	func setItems(_ cellModel: [CellModel])
 	func getItem(for indexPath: IndexPath) -> CellModel?
 }
 
@@ -49,14 +49,11 @@ public final class MasterView: UIView {
 	}
 }
 
-extension MasterView {
-    
-}
 // MARK: - View Interface
 
 extension MasterView: MasterViewProtocol {
-	public func setItems(_ CellModel: [CellModel]) {
-		dataSource.setItems(CellModel)
+	public func setItems(_ cellModel: [CellModel]) {
+		dataSource.setItems(cellModel)
 	}
 
 	public func getItem(for indexPath: IndexPath) -> CellModel? {

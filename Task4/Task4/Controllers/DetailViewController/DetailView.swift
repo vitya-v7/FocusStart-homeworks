@@ -11,7 +11,7 @@ import UIKit
 // MARK: - Protocols
 
 protocol IDetailViewInput: UIView {
-	func configure(object: CellModel?)
+	func configure(object: CellModel)
 }
 
 class DetailView: UIView {
@@ -39,12 +39,10 @@ class DetailView: UIView {
 }
 
 extension DetailView: IDetailViewInput {
-	func configure(object: CellModel?) {
-		if let object = object {
-			descriptionLabel.text = object.description
-			firstImage.image = object.firstImage
-			secondImage.image = object.secondImage
-		}
+	func configure(object: CellModel) {
+		descriptionLabel.text = object.description
+		firstImage.image = object.firstImage
+		secondImage.image = object.secondImage
 	}
 }
 // MARK: - Appearances

@@ -9,12 +9,11 @@ import UIKit
 
 final class DetailViewController: UIViewController {
 
-	var object: CellModel?
+
 	var myView: DetailView = DetailView(frame: .zero)
 	var masterNavigationController: UINavigationController?
 
 	func setItem(item: CellModel) {
-		object = item
 		let label = UILabel()
 		label.backgroundColor = .clear
 		label.numberOfLines = 2
@@ -28,7 +27,8 @@ final class DetailViewController: UIViewController {
 		}
 		label.text = item.title
 		self.navigationItem.titleView = label
-		myView.configure(object: object)
+		myView.configure(object: item)
+		//forced unwrapping (!), потому что я в первой строке метода присвоил object неопциональный item
 	}
 
 	// MARK: - Life Cycle
@@ -40,10 +40,6 @@ final class DetailViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		self.navigationController?.navigationBar.prefersLargeTitles = true
-	}
-
-	override func viewWillAppear(_ animated: Bool) {
-		myView.configure(object: object)
 	}
 
 	init(navigationTitle: String? = nil) {

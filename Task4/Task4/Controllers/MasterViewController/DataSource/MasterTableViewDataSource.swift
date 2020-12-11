@@ -7,7 +7,7 @@
 import UIKit
 
 protocol MasterTableViewDataSourceProtocol: UITableViewDataSource {
-	func setItems(_ CellModels: [CellModel])
+	func setItems(_ cellModels: [CellModel])
 	func getItem(for indexPath: IndexPath) -> CellModel
 }
 
@@ -30,33 +30,31 @@ final class MasterTableViewDataSource: NSObject {
 		identifier.thirdCell: ThirdMasterTableViewCell.reuseIdentifier,
 		identifier.fourthCell: FourthMasterTableViewCell.reuseIdentifier,
 		identifier.fifthCell: FifthMasterTableViewCell.reuseIdentifier]
-	private var CellModels = [CellModel]()
+	private var cellModels = [CellModel]()
 }
 
 // MARK: - Data Source Interface
 
 extension MasterTableViewDataSource: MasterTableViewDataSourceProtocol {
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return CellModels.count
+		return cellModels.count
 	}
 
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		var cell: UITableViewCell?
 		cell = tableView.dequeueReusableCell(withIdentifier: dictionaryIndentifies[identifier.init(rawValue: indexPath.row)!]!, for: indexPath) as? MainCell
-		let cellAccepted = cell as? MainCell
-		let masterCellModel = CellModels[indexPath.row]
-		cellAccepted?.configure(object: masterCellModel)
-		if cellAccepted == nil {
-			return UITableViewCell()
-		}
-		return cellAccepted!
+		let mainCell = cell as? MainCell
+		guard let mainCellAccepted = mainCell else { return UITableViewCell() }
+		let masterCellModel = cellModels[indexPath.row]
+		mainCellAccepted.configure(object: masterCellModel)
+		return mainCellAccepted
 	}
 
-	func setItems(_ CellModels: [CellModel]) {
-		self.CellModels = CellModels
+	func setItems(_ cellModels: [CellModel]) {
+		self.cellModels = cellModels
 	}
 
 	func getItem(for indexPath: IndexPath) -> CellModel {
-		return CellModels[indexPath.row]
+		return cellModels[indexPath.row]
 	}
 }

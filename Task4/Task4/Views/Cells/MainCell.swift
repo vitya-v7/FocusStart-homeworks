@@ -26,7 +26,7 @@ class MainCell: UITableViewCell {
 	override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
 		super.init(style: style, reuseIdentifier: reuseIdentifier)
 		selectedBackgroundView = UIView()
-		selectedBackgroundView!.backgroundColor = UIColor.systemGreen
+		selectedBackgroundView?.backgroundColor = UIColor.systemGreen
 	}
 	
 	static func getEstimatedHeight() -> CGFloat {
