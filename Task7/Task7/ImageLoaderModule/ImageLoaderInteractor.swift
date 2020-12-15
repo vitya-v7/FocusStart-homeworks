@@ -12,10 +12,6 @@ protocol IImageLoaderInteractorInput: class {
 	func verifyUrl (urlString: String?) -> Bool
 }
 
-protocol IImageLoaderInteractorOutput: class {
-	func dataModelForTableView(dataModel: DataModel)
-}
-
 final class ImageLoaderInteractor {
 	var temporaryURL: URL?
 	weak var presenter: IImageLoaderInteractorOutput?
@@ -40,7 +36,7 @@ extension ImageLoaderInteractor: IImageLoaderInteractorInput {
 		print("This is NOT valid URL")
 		return false
 	}
-
+	
 	func loadDataModel(withURL url: URL) {
 		for data in self.dataArray {
 			if data.imageURL == url {
@@ -52,5 +48,4 @@ extension ImageLoaderInteractor: IImageLoaderInteractorInput {
 		dataTaskService.launchTask(url: url)
 		
 	}
-
 }

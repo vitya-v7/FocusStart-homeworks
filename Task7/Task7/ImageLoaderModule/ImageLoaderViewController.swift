@@ -10,42 +10,35 @@ import UIKit
 
 class ImageLoaderTableViewController: UIViewController {
 
-    // MARK: - Views
-
 	var imageView : ImageLoaderTableView?
-
-    // MARK: - Properties
-
 	var presenter: IImageLoaderTableViewOutput?
-
-    // MARK: - Init
 	var searchController = UISearchController.init(searchResultsController: nil)
-
-    init() {
+	
+	init() {
 		super.init(nibName: nil, bundle: nil)
 		imageView = ImageLoaderTableView()
-
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) error")
-    }
-
-    // MARK: - Lifecycle
-
+		
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) error")
+	}
+	
+	// MARK: - Lifecycle
+	
 	override func loadView() {
 		self.view = imageView
 	}
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		searchController.searchBar.delegate = self
 		navigationItem.hidesSearchBarWhenScrolling = false
 		navigationController?.navigationBar.backgroundColor = .white
 		navigationItem.searchController = searchController
-
+		
 		presenter?.viewDidLoadDone(ui: imageView!)
 		
-    }
+	}
 	override func viewWillAppear(_ animated: Bool) {
 		self.extendedLayoutIncludesOpaqueBars = false
 	}

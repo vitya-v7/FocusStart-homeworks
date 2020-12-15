@@ -12,45 +12,51 @@ protocol IImageLoaderTableViewOutput: class {
 	func viewDidLoadDone(ui: IImageLoaderTableView)
 }
 
+protocol IImageLoaderInteractorOutput: class {
+	func dataModelForTableView(dataModel: DataModel)
+	func convertModelToViewModel(model: DataModel) -> DataViewModel
+}
+
+
 final class ImageLoaderPresenter {
 	var interactor: IImageLoaderInteractorInput
-    weak var ui: IImageLoaderTableView?
+	weak var ui: IImageLoaderTableView?
 	var dataViewModels: [DataViewModel]
-    init(interactor: IImageLoaderInteractorInput) {
-        self.interactor = interactor
+	init(interactor: IImageLoaderInteractorInput) {
+		self.interactor = interactor
 		dataViewModels = [DataViewModel]()
-    }
+	}
 }
 
 // MARK: - IImageLoaderPresenter
 
 extension ImageLoaderPresenter: IImageLoaderTableViewOutput {
-    func viewDidLoadDone(ui: IImageLoaderTableView) {
-        self.ui = ui
-        self.ui?.findImage = { [weak self] stringURL in
-            guard let url = URL(string: stringURL) else {
-                print("error in ViewDidLoadDone: string URL isn't valid")
-                return
-            }
-            self?.interactor.loadDataModel(withURL: url)
-        }
-    }
+	func viewDidLoadDone(ui: IImageLoaderTableView) {
+		self.ui = ui
+		self.ui?.findImage = { [weak self] stringURL in
+			guard let url = URL(string: stringURL) else {
+				print("error in ViewDidLoadDone: string URL isn't valid")
+				return
+			}
+			self?.interactor.loadDataModel(withURL: url)
+		}
+	}
 }
 
 // MARK: - IImageLoaderInteractorOutput
 
 extension ImageLoaderPresenter: IImageLoaderInteractorOutput {
-
+	
 	func convertModelToViewModel(model: DataModel) -> DataViewModel {
 		let viewModel = DataViewModel(image: model.image)
 		return viewModel
 	}
-    func dataModelForTableView(dataModel: DataModel) {
+	func dataModelForTableView(dataModel: DataModel) {
 		let davaViewModel = convertModelToViewModel(model: dataModel)
 		dataViewModels.append(davaViewModel)
 		DispatchQueue.main.async {
 			self.ui?.setupDataViewModel(dataViewModel: davaViewModel)
 		}
-
-    }
+		
+	}
 }

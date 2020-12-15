@@ -13,10 +13,12 @@ final class DataTaskService: NSObject, URLSessionDataDelegate {
 	var dataTask: URLSessionDataTask?
 	var configuration: URLSessionConfiguration?
 	var completionHandler: ((_ image: UIImage) -> ())?
+	
 	func launchTask(url: URL) {
 		configSession()
 		createRequest(url: url)
 	}
+
 	func configSession() {
 		configuration = URLSessionConfiguration.background(withIdentifier:"com.viktor.Task7")
 
@@ -39,11 +41,10 @@ final class DataTaskService: NSObject, URLSessionDataDelegate {
 	}
 
 	private func localFilePath(for url: URL) -> URL {
-	 let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-	 return documentsPath.appendingPathComponent(url.lastPathComponent)
- }
+		let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+		return documentsPath.appendingPathComponent(url.lastPathComponent)
+	}
 }
-
 
 extension DataTaskService: URLSessionDownloadDelegate {
 	
@@ -56,11 +57,9 @@ extension DataTaskService: URLSessionDownloadDelegate {
 		}
 
 		destinationURL = localFilePath(for: sourceURL)
-		print("File destination: : ",destinationURL)
 
 		let fileManager = FileManager.default
 		try? fileManager.removeItem(at: destinationURL!)
-
 		do {
 			try fileManager.copyItem(at: location, to: destinationURL!)
 		} catch {

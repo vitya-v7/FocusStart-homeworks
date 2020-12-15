@@ -8,10 +8,10 @@
 import UIKit
 
 final class Download {
-    var task: URLSessionDownloadTask?
-    var dataModel: DataModel
-
-    init(dataModel: DataModel) {
-      self.dataModel = dataModel
-    }
+	var task: URLSessionDownloadTask?
+	var dataModel: DataModel
+	
+	init(dataModel: DataModel) {
+		self.dataModel = dataModel
+	}
 }

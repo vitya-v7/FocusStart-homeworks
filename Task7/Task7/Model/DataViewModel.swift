@@ -10,7 +10,7 @@ import UIKit
 
 final class DataViewModel {
 	let image: UIImage
-
+	
 	init(image: UIImage) {
 		self.image = image
 	}

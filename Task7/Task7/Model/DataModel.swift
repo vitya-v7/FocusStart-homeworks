@@ -10,7 +10,7 @@ final class DataModel {
 	let index: Int
 	let image: UIImage
 	let imageURL: URL
-
+	
 	init(index: Int, image: UIImage, imageURL: URL) {
 		self.index = index
 		self.image = image

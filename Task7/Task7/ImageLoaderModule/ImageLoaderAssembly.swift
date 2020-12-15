@@ -8,15 +8,14 @@
 import UIKit
 
 enum ImageLoaderAssembly {
-    static func createImageLoaderTableViewController() -> UIViewController {
-        let interactor = ImageLoaderInteractor()
-        let presenter = ImageLoaderPresenter(interactor: interactor)
-        let imageViewController = ImageLoaderTableViewController()
+	static func createImageLoaderTableViewController() -> UIViewController {
+		let interactor = ImageLoaderInteractor()
+		let presenter = ImageLoaderPresenter(interactor: interactor)
+		let imageViewController = ImageLoaderTableViewController()
 		imageViewController.presenter = presenter
 		presenter.ui = imageViewController.imageView
 		presenter.interactor = interactor
-        interactor.presenter = presenter
-
-        return imageViewController
-    }
+		interactor.presenter = presenter
+		return imageViewController
+	}
 }
