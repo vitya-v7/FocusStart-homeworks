@@ -10,7 +10,7 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-	var backgroundSessionCompletionHandler: (() -> Void)?
+	static var backgroundSessionCompletionHandler: (() -> Void)?
 
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for imageization after application launch.
@@ -30,7 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		handleEventsForBackgroundURLSession
 			handleEventsForBackgroundURLSessionidentifier: String,
 		completionHandler: @escaping () -> Void) {
-		backgroundSessionCompletionHandler = completionHandler
+		AppDelegate.backgroundSessionCompletionHandler = completionHandler
+		let dataTaskService = DataTaskService()
+		let session = dataTaskService.configSession()
 	}
 }
 

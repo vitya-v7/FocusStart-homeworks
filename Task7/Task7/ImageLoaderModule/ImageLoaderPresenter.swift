@@ -48,6 +48,9 @@ extension ImageLoaderPresenter: IImageLoaderInteractorOutput {
     func dataModelForTableView(dataModel: DataModel) {
 		let davaViewModel = convertModelToViewModel(model: dataModel)
 		dataViewModels.append(davaViewModel)
-        self.ui?.setupDataViewModel(dataViewModel: davaViewModel)
+		DispatchQueue.main.async {
+			self.ui?.setupDataViewModel(dataViewModel: davaViewModel)
+		}
+
     }
 }

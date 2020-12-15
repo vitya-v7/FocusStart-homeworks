@@ -21,10 +21,8 @@
 		CE00EC3325722A3500F6290C /* ImageLoaderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00EC3225722A3500F6290C /* ImageLoaderInteractor.swift */; };
 		CE00EC3725722B4900F6290C /* ImageLoaderAssembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00EC3625722B4900F6290C /* ImageLoaderAssembly.swift */; };
 		CE00EC3F25725A0500F6290C /* DataTaskService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE00EC3E25725A0500F6290C /* DataTaskService.swift */; };
-		CE893FF4257351E10021C772 /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE893FF3257351E10021C772 /* DownloadService.swift */; };
 		CE893FF82573522F0021C772 /* Download.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE893FF72573522F0021C772 /* Download.swift */; };
 		CE893FFB257353CB0021C772 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE893FFA257353CB0021C772 /* DataModel.swift */; };
-		CE893FFF257362020021C772 /* ImageLoaderDownloadingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE893FFE257362020021C772 /* ImageLoaderDownloadingDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,10 +42,8 @@
 		CE00EC3225722A3500F6290C /* ImageLoaderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderInteractor.swift; sourceTree = "<group>"; };
 		CE00EC3625722B4900F6290C /* ImageLoaderAssembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderAssembly.swift; sourceTree = "<group>"; };
 		CE00EC3E25725A0500F6290C /* DataTaskService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTaskService.swift; sourceTree = "<group>"; };
-		CE893FF3257351E10021C772 /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		CE893FF72573522F0021C772 /* Download.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Download.swift; sourceTree = "<group>"; };
 		CE893FFA257353CB0021C772 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
-		CE893FFE257362020021C772 /* ImageLoaderDownloadingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoaderDownloadingDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,9 +88,7 @@
 		84D6D7FE2587F17000FFCAE7 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CE893FFE257362020021C772 /* ImageLoaderDownloadingDelegate.swift */,
 				CE00EC3E25725A0500F6290C /* DataTaskService.swift */,
-				CE893FF3257351E10021C772 /* DownloadService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -230,7 +224,6 @@
 			files = (
 				CE00EC3725722B4900F6290C /* ImageLoaderAssembly.swift in Sources */,
 				84D6D7F42587E5D600FFCAE7 /* Constants.swift in Sources */,
-				CE893FF4257351E10021C772 /* DownloadService.swift in Sources */,
 				CE00EC152572267A00F6290C /* ImageLoaderTableView.swift in Sources */,
 				84D6D8012587F71800FFCAE7 /* DataViewModel.swift in Sources */,
 				CE893FFB257353CB0021C772 /* DataModel.swift in Sources */,
@@ -240,7 +233,6 @@
 				CE893FF82573522F0021C772 /* Download.swift in Sources */,
 				CE00EC042572266000F6290C /* ImageLoaderViewController.swift in Sources */,
 				CE00EC002572266000F6290C /* AppDelegate.swift in Sources */,
-				CE893FFF257362020021C772 /* ImageLoaderDownloadingDelegate.swift in Sources */,
 				CE00EC3325722A3500F6290C /* ImageLoaderInteractor.swift in Sources */,
 				CE00EC022572266000F6290C /* SceneDelegate.swift in Sources */,
 				CE00EC2F257229B200F6290C /* ImageLoaderPresenter.swift in Sources */,

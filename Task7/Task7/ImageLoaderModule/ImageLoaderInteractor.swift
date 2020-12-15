@@ -17,13 +17,16 @@ protocol IImageLoaderInteractorOutput: class {
 }
 
 final class ImageLoaderInteractor {
+	var temporaryURL: URL?
 	weak var presenter: IImageLoaderInteractorOutput?
 	private var dataArray: [DataModel] = []
-	private var imageDownloadingDelegate: ImageDownloadingDelegate?
-	var downloadService = DownloadService.init()
-	private let dataTaskService = DataTaskService()
+	var dataTaskService = DataTaskService.init()
 	init() {
-		self.imageDownloadingDelegate = ImageDownloadingDelegate()
+		dataTaskService.completionHandler = { (image:UIImage) -> () in
+			let dataModel = DataModel(index: self.dataArray.count,image: image, imageURL: self.temporaryURL!)
+			self.dataArray.append(dataModel)
+			self.presenter?.dataModelForTableView(dataModel: dataModel)
+		}
 	}
 }
 
@@ -45,14 +48,9 @@ extension ImageLoaderInteractor: IImageLoaderInteractorInput {
 				return
 			}
 		}
+		temporaryURL = url
+		dataTaskService.launchTask(url: url)
 		
-		dataTaskService.dataTask(from: url) { [weak self] (image) in
-			let dataModel = DataModel(index: self?.dataArray.count ?? 0,image: image, imageURL: url)
-			self?.dataArray.append(dataModel)
-			self?.presenter?.dataModelForTableView(dataModel: dataModel)
-		} errorCompletion: { [weak self] (error) in
-			print(error.localizedDescription)
-		}
 	}
 
 }

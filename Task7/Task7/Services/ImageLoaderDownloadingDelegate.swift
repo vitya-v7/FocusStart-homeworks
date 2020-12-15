@@ -25,31 +25,4 @@ final class ImageDownloadingDelegate: NSObject {
 		downloadService.startDownload(dataModel)
     }
 
-    private func localFilePath(for url: URL) -> URL {
-        let documentsPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return documentsPath.appendingPathComponent(url.lastPathComponent)
-    }
-}
-
-extension ImageDownloadingDelegate: URLSessionDownloadDelegate {
-    func urlSession(_ session: URLSession,
-                    downloadTask: URLSessionDownloadTask,
-                    didFinishDownloadingTo location: URL) {
-
-        guard let sourceURL = downloadTask.originalRequest?.url else {
-            return
-        }
-
-        let destinationURL = localFilePath(for: sourceURL)
-        print("File destination: : ",destinationURL)
-
-        let fileManager = FileManager.default
-        try? fileManager.removeItem(at: destinationURL)
-
-        do {
-            try fileManager.copyItem(at: location, to: destinationURL)
-        } catch {
-            assertionFailure("I can't save the image")
-        }
-    }
 }
