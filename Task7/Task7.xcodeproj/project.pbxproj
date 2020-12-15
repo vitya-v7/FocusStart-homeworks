@@ -57,12 +57,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		84D6D7DF2587DBB100FFCAE7 /* TableView */ = {
+		8486E9A62588CD1700E5D9FB /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				CE00EC1B2572275B00F6290C /* ImageLoaderTableViewCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		8486E9A72588CD2A00E5D9FB /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				CE00EC142572267A00F6290C /* ImageLoaderTableView.swift */,
 				CE00EC232572279A00F6290C /* ImageLoaderTableViewDataSource.swift */,
 			);
-			path = TableView;
+			path = TableViews;
 			sourceTree = "<group>";
 		};
 		84D6D7F22587E5C700FFCAE7 /* Constants */ = {
@@ -114,7 +123,6 @@
 			children = (
 				84D6D7FC2587EFBF00FFCAE7 /* ImageLoaderModule */,
 				84D6D7F22587E5C700FFCAE7 /* Constants */,
-				84D6D7DF2587DBB100FFCAE7 /* TableView */,
 				CE00EC1E2572277C00F6290C /* Model */,
 				84D6D7FE2587F17000FFCAE7 /* Services */,
 				CE00EC3A25722C6800F6290C /* App */,
@@ -128,8 +136,8 @@
 		CE00EC172572267C00F6290C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CE00EC142572267A00F6290C /* ImageLoaderTableView.swift */,
-				CE00EC1B2572275B00F6290C /* ImageLoaderTableViewCell.swift */,
+				8486E9A72588CD2A00E5D9FB /* TableViews */,
+				8486E9A62588CD1700E5D9FB /* Cell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
