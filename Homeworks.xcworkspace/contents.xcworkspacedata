@@ -25,4 +25,7 @@
    <FileRef
       location = "group:Task7/Task7.xcodeproj">
    </FileRef>
+   <FileRef
+      location = "group:../../../Desktop/Task8/Task8.xcodeproj">
+   </FileRef>
 </Workspace>
