@@ -19,6 +19,10 @@
 		8486EA67258AE2EF00E5D9FB /* Company+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486EA63258AE2EE00E5D9FB /* Company+CoreDataProperties.swift */; };
 		8486EA6E258AE51600E5D9FB /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486EA6C258AE51600E5D9FB /* Person+CoreDataClass.swift */; };
 		8486EA6F258AE51600E5D9FB /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486EA6D258AE51600E5D9FB /* Person+CoreDataProperties.swift */; };
+		8486EA73258AE62100E5D9FB /* CompanyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486EA72258AE62100E5D9FB /* CompanyTableViewCell.swift */; };
+		8486EA76258AE6F000E5D9FB /* CompanyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486EA75258AE6F000E5D9FB /* CompanyViewController.swift */; };
+		8486EA79258AE80300E5D9FB /* CompanyTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486EA78258AE80300E5D9FB /* CompanyTableView.swift */; };
+		8486EA7F258AE98B00E5D9FB /* CoreDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8486EA7E258AE98B00E5D9FB /* CoreDataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +40,10 @@
 		8486EA63258AE2EE00E5D9FB /* Company+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Company+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		8486EA6C258AE51600E5D9FB /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataClass.swift"; path = "/Users/admin/Documents/projects/FocusStart-homeworks/Task8/Task8/CoreData/Person+CoreDataClass.swift"; sourceTree = "<absolute>"; };
 		8486EA6D258AE51600E5D9FB /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Person+CoreDataProperties.swift"; path = "/Users/admin/Documents/projects/FocusStart-homeworks/Task8/Task8/CoreData/Person+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
+		8486EA72258AE62100E5D9FB /* CompanyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableViewCell.swift; sourceTree = "<group>"; };
+		8486EA75258AE6F000E5D9FB /* CompanyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyViewController.swift; sourceTree = "<group>"; };
+		8486EA78258AE80300E5D9FB /* CompanyTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompanyTableView.swift; sourceTree = "<group>"; };
+		8486EA7E258AE98B00E5D9FB /* CoreDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +76,7 @@
 		8486E9E8258A559100E5D9FB /* Task8 */ = {
 			isa = PBXGroup;
 			children = (
+				8486EA71258AE5B600E5D9FB /* Company */,
 				8486EA5F258AE2EE00E5D9FB /* CoreData */,
 				8486E9E9258A559100E5D9FB /* AppDelegate.swift */,
 				8486EA31258AB60A00E5D9FB /* ViewController.swift */,
@@ -89,8 +98,35 @@
 				8486EA6D258AE51600E5D9FB /* Person+CoreDataProperties.swift */,
 				8486EA60258AE2EE00E5D9FB /* Company+CoreDataClass.swift */,
 				8486EA63258AE2EE00E5D9FB /* Company+CoreDataProperties.swift */,
+				8486EA7E258AE98B00E5D9FB /* CoreDataService.swift */,
 			);
 			path = CoreData;
+			sourceTree = "<group>";
+		};
+		8486EA71258AE5B600E5D9FB /* Company */ = {
+			isa = PBXGroup;
+			children = (
+				8486EA7D258AE81A00E5D9FB /* Views */,
+				8486EA7C258AE80D00E5D9FB /* ViewController */,
+			);
+			path = Company;
+			sourceTree = "<group>";
+		};
+		8486EA7C258AE80D00E5D9FB /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				8486EA75258AE6F000E5D9FB /* CompanyViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		8486EA7D258AE81A00E5D9FB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				8486EA72258AE62100E5D9FB /* CompanyTableViewCell.swift */,
+				8486EA78258AE80300E5D9FB /* CompanyTableView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,11 +202,15 @@
 				8486EA6E258AE51600E5D9FB /* Person+CoreDataClass.swift in Sources */,
 				8486EA32258AB60A00E5D9FB /* ViewController.swift in Sources */,
 				8486EA6F258AE51600E5D9FB /* Person+CoreDataProperties.swift in Sources */,
+				8486EA73258AE62100E5D9FB /* CompanyTableViewCell.swift in Sources */,
 				8486EA64258AE2EF00E5D9FB /* Company+CoreDataClass.swift in Sources */,
 				8486EA50258ABCE200E5D9FB /* AddListViewController.swift in Sources */,
 				8486EA67258AE2EF00E5D9FB /* Company+CoreDataProperties.swift in Sources */,
+				8486EA7F258AE98B00E5D9FB /* CoreDataService.swift in Sources */,
+				8486EA79258AE80300E5D9FB /* CompanyTableView.swift in Sources */,
 				8486EA0A258AA1D800E5D9FB /* Task8.xcdatamodeld in Sources */,
 				8486E9EA258A559100E5D9FB /* AppDelegate.swift in Sources */,
+				8486EA76258AE6F000E5D9FB /* CompanyViewController.swift in Sources */,
 				8486E9EC258A559100E5D9FB /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
