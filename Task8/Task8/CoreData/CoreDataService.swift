@@ -69,4 +69,34 @@ struct CoreDataService {
 		}
 	}
 
+	func fetchCompanies() -> [Company] {
+		var companies = [Company]()
+
+		let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
+
+		do {
+			companies = try managedContext.fetch(fetchRequest)
+		} catch let error {
+			print(error.localizedDescription)
+		}
+
+		return companies
+	}
+
+
+	func fetchPersonsFromCompany(company: Company) -> [Person] {
+		var persons = [Person]()
+
+		let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
+		fetchRequest.predicate = NSPredicate(format: "toCompany == %@", company)
+
+		do {
+			persons = try managedContext.fetch(fetchRequest)
+		} catch let error {
+			print(error.localizedDescription)
+		}
+
+		return persons
+	}
+
 }
