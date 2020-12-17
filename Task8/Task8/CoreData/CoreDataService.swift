@@ -43,7 +43,7 @@ struct CoreDataService {
 
 		let person = NSManagedObject(entity: entityDescription, insertInto: managedContext) as! Person
 
-		savePerson(person: person, age: age, name: name, position: position, experience: experience, education: education, company: company)
+		savePersonToCompany(company: company, person: person, age: age, name: name, position: position, experience: experience, education: education)
 		
 	}
 
@@ -78,13 +78,13 @@ struct CoreDataService {
 	}
 
 
-	func savePerson(person: Person,
+	func savePersonToCompany(company: Company,
+					person: Person,
 					age: Int,
 					name: String,
 					position: String,
 					experience: Int?,
-					education: String?,
-					company: Company) {
+					education: String?) {
 
 		person.name = name
 		person.age = NSNumber.init(value: age)
