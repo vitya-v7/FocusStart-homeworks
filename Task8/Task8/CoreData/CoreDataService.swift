@@ -41,32 +41,10 @@ struct CoreDataService {
 		guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: managedContext)
 		else { return }
 
-		let personEntity = NSManagedObject(entity: entityDescription, insertInto: managedContext) as! Person
+		let person = NSManagedObject(entity: entityDescription, insertInto: managedContext) as! Person
 
-		personEntity.name = name
-		personEntity.age = NSNumber.init(value: age)
-		personEntity.position = position
-		personEntity.toCompany = company
-
-		if experience != nil {
-		personEntity.experience = NSNumber.init(value: experience!)
-		}
-		else {
-			personEntity.experience = nil
-		}
-
-		if education != nil {
-		personEntity.education = education!
-		}
-		else {
-			personEntity.education = nil
-		}
-
-		do {
-			try managedContext.save()
-		} catch let error {
-			print(error.localizedDescription)
-		}
+		savePerson(person: person, age: age, name: name, position: position, experience: experience, education: education, company: company)
+		
 	}
 
 	func fetchCompanies() -> [Company] {
@@ -99,4 +77,38 @@ struct CoreDataService {
 		return persons
 	}
 
+
+	func savePerson(person: Person,
+					age: Int,
+					name: String,
+					position: String,
+					experience: Int?,
+					education: String?,
+					company: Company) {
+
+		person.name = name
+		person.age = NSNumber.init(value: age)
+		person.position = position
+		person.toCompany = company
+
+		if experience != nil {
+			person.experience = NSNumber.init(value: experience!)
+		}
+		else {
+			person.experience = nil
+		}
+
+		if education != nil {
+			person.education = education!
+		}
+		else {
+			person.education = nil
+		}
+
+		do {
+			try managedContext.save()
+		} catch let error {
+			print(error.localizedDescription)
+		}
+	}
 }
