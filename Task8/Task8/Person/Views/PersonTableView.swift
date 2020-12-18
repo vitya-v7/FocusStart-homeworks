@@ -15,7 +15,6 @@ class PersonTableView: UIView {
 
 	init() {
 		super.init(frame: .zero)
-		//tableView.rowHeight = 200
 		setupTableView()
 	}
 	required init?(coder: NSCoder) {
@@ -31,10 +30,7 @@ class PersonTableView: UIView {
 		tableView.delegate = tableViewDelegate
 		tableView.dataSource = tableViewDataSource
 		tableView.register(PersonCell.self, forCellReuseIdentifier: PersonCell.cellIdentifier)
-		tableView.rowHeight = UITableView.automaticDimension
-		//tableView.estimatedRowHeight = FirstMasterTableViewCell.getEstimatedHeight()
-
-		//tableView.backgroundColor = .white
+		tableView.rowHeight = Constants.rowHeight
 	}
 
 	func setupTableViewLayout() {
@@ -47,5 +43,4 @@ class PersonTableView: UIView {
 			self.tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
 		])
 	}
-
 }

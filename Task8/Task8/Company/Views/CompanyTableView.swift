@@ -8,35 +8,31 @@
 import UIKit
 
 class CompanyTableView: UIView {
-
+	
 	let tableView = UITableView()
 	var tableViewDataSource = CompanyTableViewDataSource()
 	var tableViewDelegate = CompanyTableViewDelegate()
-
+	
 	init() {
 		super.init(frame: .zero)
-		//tableView.rowHeight = 200
 		setupTableView()
 	}
 	required init?(coder: NSCoder) {
 		fatalError("init(coder:) has not been implemented")
 	}
-
+	
 	func setupTableView() {
 		setupTableViewAppearances()
 		setupTableViewLayout()
 	}
-
+	
 	func setupTableViewAppearances() {
 		tableView.delegate = tableViewDelegate
 		tableView.dataSource = tableViewDataSource
 		tableView.register(CompanyCell.self, forCellReuseIdentifier: CompanyCell.cellIdentifier)
-		tableView.rowHeight = UITableView.automaticDimension
-		//tableView.estimatedRowHeight = FirstMasterTableViewCell.getEstimatedHeight()
-
-		//tableView.backgroundColor = .white
+		tableView.rowHeight = Constants.rowHeight
 	}
-
+	
 	func setupTableViewLayout() {
 		self.addSubview(tableView)
 		self.tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -47,5 +43,5 @@ class CompanyTableView: UIView {
 			self.tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
 		])
 	}
-
+	
 }

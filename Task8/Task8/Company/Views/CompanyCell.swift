@@ -24,7 +24,7 @@ class CompanyCell: UITableViewCell {
 	}
 }
 
-// MARK: - Добавление констрейнтов для картинки
+// MARK: - Adding constraints to image
 
 private extension CompanyCell {
 
@@ -37,7 +37,6 @@ private extension CompanyCell {
 		self.labelName.numberOfLines = 1
 		self.labelName.textAlignment = .center
 		self.labelName.font = UIFont.boldSystemFont(ofSize: Constants.labelFontSize)
-		//self.labelName.text = "Different font"
 	}
 
 	func setupLabelNameLayout() {

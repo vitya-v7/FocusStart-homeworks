@@ -24,7 +24,7 @@ class PersonCell: UITableViewCell {
 	}
 }
 
-// MARK: - Добавление констрейнтов для картинки
+// MARK: - Adding constraints to image
 
 private extension PersonCell {
 

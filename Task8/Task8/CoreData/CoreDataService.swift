@@ -53,8 +53,10 @@ class CoreDataService {
 
 		let person = NSManagedObject(entity: entityDescription, insertInto: managedContext) as! Person
 
-		savePersonToCompany(company: company, person: person, age: age, name: name, position: position, experience: experience, education: education)
-		
+		person.company = company
+		//вспомогательная функция
+		savePerson(person: person, age: age, name: name, position: position, experience: experience, education: education)
+
 	}
 
 	func fetchCompanies() -> [Company] {
@@ -71,7 +73,6 @@ class CoreDataService {
 		return companies
 	}
 
-
 	func fetchPersonsFromCompany(company: Company) -> [Person] {
 		var persons = [Person]()
 
@@ -87,33 +88,29 @@ class CoreDataService {
 		return persons
 	}
 
-	func savePersonToCompany(company: Company,
-							 person: Person,
-							 age: Int,
-							 name: String,
-							 position: String,
-							 experience: Int?,
-							 education: String?) {
+	func savePerson(person: Person,
+					age: Int,
+					name: String,
+					position: String,
+					experience: Int?,
+					education: String?) {
 
 		person.name = name
 		person.age = NSNumber(value: age)
 		person.position = position
-		person.company = company
 
 		if experience != nil {
 			person.experience = NSNumber(value: experience!)
 		}
 		else {
-			person.experience = 0
+			person.experience = nil
 		}
-
 		if education != nil {
 			person.education = education!
 		}
 		else {
 			person.education = nil
 		}
-
 		do {
 			try managedContext.save()
 		} catch let error {

@@ -10,31 +10,37 @@ import UIKit
 
 protocol PersonTableViewDataSourceProtocol {
 	func appendItem(_ cellModel: Person)
+	func setItems(_ cellModels: [Person])
 	func getItem(for indexPath: IndexPath) -> Person?
 }
 
 class PersonTableViewDataSource: NSObject,  UITableViewDataSource {
-
-	var companies: [Person] = [Person]()
+	
+	var people: [Person] = [Person]()
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return companies.count
+		return people.count
 	}
-
+	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: PersonCell.cellIdentifier, for: indexPath) as? PersonCell
-
+		
 		guard let cellIn = cell else { return UITableViewCell() }
-		cellIn.configureCell(model: companies[indexPath.row])
+		cellIn.configureCell(model: people[indexPath.row])
 		return cellIn
 	}
 }
 
 extension PersonTableViewDataSource: PersonTableViewDataSourceProtocol {
+	
 	func appendItem(_ cellModel: Person) {
-		companies.append(cellModel)
+		people.append(cellModel)
 	}
-
+	
+	func setItems(_ cellModels: [Person]) {
+		people = cellModels
+	}
+	
 	func getItem(for indexPath: IndexPath) -> Person? {
-		return companies[indexPath.row]
+		return people[indexPath.row]
 	}
 }
