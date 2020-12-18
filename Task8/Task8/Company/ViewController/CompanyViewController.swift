@@ -9,5 +9,81 @@ import UIKit
 
 class CompanyViewController: UIViewController {
 	
+	var companies = [Company]()
+	
+	var selectedItemHandler: ((IndexPath) -> Void)?
+	var myTableView: CompanyTableView?
+	init() {
+		super.init(nibName: nil, bundle: nil)
+		myTableView = CompanyTableView()
+	}
+
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) error")
+	}
+
+	// MARK: - Lifecycle
+
+	override func loadView() {
+		self.view = myTableView
+	}
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		selectedItemHandler = { [weak self] indexPath in
+			guard let self = self else { return assertionFailure() }
+			self.navigationController?.pushViewController(PersonViewController(), animated: true)
+		}
+		myTableView?.tableViewDelegate.setupSelectedItemHandler(selectedItemHandler: selectedItemHandler!)
+		setupNavigationBar()
+	}
+
+
+	func setupNavigationBar() {
+		navigationController?.navigationBar.barTintColor = UIColor.green
+		self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white ]
+
+		self.title = "Company"
+
+		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add",
+																 style: .plain,
+																 target: self,
+																 action: #selector(addNewCompany))
+		self.navigationController?.navigationBar.tintColor = .white
+	}
+
+	@objc func addNewCompany() {
+		self.showAlert(title: "New company", message: "Enter company name!")
+	}
+}
+
+private extension CompanyViewController {
+	private func showAlert(title: String, message: String) {
+		let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+		let save = UIAlertAction(title: "Save", style: .default) { _ in
+			let newCompany: Company?
+
+			guard let newValue = alert.textFields?.first?.text else { return }
+			guard !newValue.isEmpty else { return }
+
+			newCompany = CoreDataService.shared.addCompany(newValue)
+
+			guard let nonOptNewCompany = newCompany else { return }
+			self.companies.append(nonOptNewCompany)
+			self.myTableView?.tableViewDataSource.appendItem(nonOptNewCompany)
+			self.myTableView!.tableView.insertRows(at: [IndexPath(row: self.companies.count - 1, section: 0)], with: .automatic)
+		}
+
+		let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in
+			if let indexPath = self.myTableView!.tableView.indexPathForSelectedRow {
+				self.myTableView!.tableView.deselectRow(at: indexPath, animated: true)
+			}
+		}
+
+		alert.addTextField()
+		alert.addAction(save)
+		alert.addAction(cancel)
+
+		present(alert, animated: true)
+	}
 }
 

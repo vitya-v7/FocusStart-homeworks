@@ -1,5 +1,5 @@
 //
-//  CompanyTableView.swift
+//  PersonTableView.swift
 //  Task8
 //
 //  Created by Admin on 17.12.2020.
@@ -7,11 +7,11 @@
 
 import UIKit
 
-class CompanyTableView: UIView {
+class PersonTableView: UIView {
 
 	let tableView = UITableView()
-	var tableViewDataSource = CompanyTableViewDataSource()
-	var tableViewDelegate = CompanyTableViewDelegate()
+	var tableViewDataSource = PersonTableViewDataSource()
+	var tableViewDelegate = PersonTableViewDelegate()
 
 	init() {
 		super.init(frame: .zero)
@@ -30,7 +30,7 @@ class CompanyTableView: UIView {
 	func setupTableViewAppearances() {
 		tableView.delegate = tableViewDelegate
 		tableView.dataSource = tableViewDataSource
-		tableView.register(CompanyCell.self, forCellReuseIdentifier: CompanyCell.cellIdentifier)
+		tableView.register(PersonCell.self, forCellReuseIdentifier: PersonCell.cellIdentifier)
 		tableView.rowHeight = UITableView.automaticDimension
 		//tableView.estimatedRowHeight = FirstMasterTableViewCell.getEstimatedHeight()
 

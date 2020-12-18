@@ -9,18 +9,28 @@ import UIKit
 import CoreData
 
 
-struct CoreDataService {
+class CoreDataService {
 
 	static let shared = CoreDataService()
+	private var managedContext: NSManagedObjectContext
+	private var persistentContainer: NSPersistentContainer
 
-	private let managedContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	private init() {
+		persistentContainer = NSPersistentContainer(name: "Task8Model")
+		persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
+			if let error = error as NSError? {
+				fatalError("Unresolved error \(error), \(error.userInfo)")
+			}
+		})
+		managedContext = persistentContainer.viewContext
+	}
 
 	func addCompany(_ name: String) -> Company? {
 		guard let entityDescription = NSEntityDescription.entity(forEntityName: "Company", in: managedContext)
 		else { return nil }
 		let company = NSManagedObject(entity: entityDescription, insertInto: managedContext) as! Company
 
-		company.name = name
+		company.companyName = name
 
 		do {
 			try managedContext.save()
@@ -66,7 +76,7 @@ struct CoreDataService {
 		var persons = [Person]()
 
 		let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
-		fetchRequest.predicate = NSPredicate(format: "toCompany == %@", company)
+		fetchRequest.predicate = NSPredicate(format: "company == %@", company)
 
 		do {
 			persons = try managedContext.fetch(fetchRequest)
@@ -77,25 +87,24 @@ struct CoreDataService {
 		return persons
 	}
 
-
 	func savePersonToCompany(company: Company,
-					person: Person,
-					age: Int,
-					name: String,
-					position: String,
-					experience: Int?,
-					education: String?) {
+							 person: Person,
+							 age: Int,
+							 name: String,
+							 position: String,
+							 experience: Int?,
+							 education: String?) {
 
 		person.name = name
-		person.age = NSNumber.init(value: age)
+		person.age = NSNumber(value: age)
 		person.position = position
-		person.toCompany = company
+		person.company = company
 
 		if experience != nil {
-			person.experience = NSNumber.init(value: experience!)
+			person.experience = NSNumber(value: experience!)
 		}
 		else {
-			person.experience = nil
+			person.experience = 0
 		}
 
 		if education != nil {

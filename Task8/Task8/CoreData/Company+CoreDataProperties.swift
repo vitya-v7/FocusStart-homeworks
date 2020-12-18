@@ -2,7 +2,7 @@
 //  Company+CoreDataProperties.swift
 //  
 //
-//  Created by Admin on 17.12.2020.
+//  Created by Admin on 18.12.2020.
 //
 //
 
@@ -16,24 +16,24 @@ extension Company {
         return NSFetchRequest<Company>(entityName: "Company")
     }
 
-    @NSManaged public var name: String?
-    @NSManaged public var toPerson: NSSet?
+    @NSManaged public var companyName: String?
+    @NSManaged public var person: NSSet?
 
 }
 
-// MARK: Generated accessors for toPerson
+// MARK: Generated accessors for person
 extension Company {
 
-    @objc(addToPersonObject:)
-    @NSManaged public func addToToPerson(_ value: Person)
+    @objc(addPersonObject:)
+    @NSManaged public func addToPerson(_ value: Person)
 
-    @objc(removeToPersonObject:)
-    @NSManaged public func removeFromToPerson(_ value: Person)
+    @objc(removePersonObject:)
+    @NSManaged public func removeFromPerson(_ value: Person)
 
-    @objc(addToPerson:)
-    @NSManaged public func addToToPerson(_ values: NSSet)
+    @objc(addPerson:)
+    @NSManaged public func addToPerson(_ values: NSSet)
 
-    @objc(removeToPerson:)
-    @NSManaged public func removeFromToPerson(_ values: NSSet)
+    @objc(removePerson:)
+    @NSManaged public func removeFromPerson(_ values: NSSet)
 
 }
