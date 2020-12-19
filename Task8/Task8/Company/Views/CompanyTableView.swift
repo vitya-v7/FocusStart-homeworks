@@ -1,0 +1,47 @@
+//
+//  CompanyTableView.swift
+//  Task8
+//
+//  Created by Admin on 17.12.2020.
+//
+
+import UIKit
+
+final class CompanyTableView: UIView {
+	
+	let tableView = UITableView()
+	var tableViewDataSource = CompanyTableViewDataSource()
+	var tableViewDelegate = CompanyTableViewDelegate()
+	
+	init() {
+		super.init(frame: .zero)
+		setupTableView()
+	}
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	func setupTableView() {
+		setupTableViewAppearances()
+		setupTableViewLayout()
+	}
+	
+	func setupTableViewAppearances() {
+		tableView.delegate = tableViewDelegate
+		tableView.dataSource = tableViewDataSource
+		tableView.register(CompanyCell.self, forCellReuseIdentifier: CompanyCell.cellIdentifier)
+		tableView.rowHeight = Constants.rowHeight
+	}
+	
+	func setupTableViewLayout() {
+		self.addSubview(tableView)
+		self.tableView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			self.tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+			self.tableView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+			self.tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+			self.tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor)
+		])
+	}
+	
+}
