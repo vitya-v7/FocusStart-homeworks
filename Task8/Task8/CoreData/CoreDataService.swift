@@ -12,33 +12,58 @@ import CoreData
 class CoreDataService {
 
 	static let shared = CoreDataService()
-	private var managedContext: NSManagedObjectContext
 	private var persistentContainer: NSPersistentContainer
 
 	private init() {
-		persistentContainer = NSPersistentContainer(name: "Task8Model")
+		persistentContainer = NSPersistentContainer(name: "DataModelForTask8")
 		persistentContainer.loadPersistentStores(completionHandler: { (storeDescription, error) in
 			if let error = error as NSError? {
 				fatalError("Unresolved error \(error), \(error.userInfo)")
 			}
 		})
-		managedContext = persistentContainer.viewContext
 	}
 
 	func addCompany(_ name: String) -> Company? {
-		guard let entityDescription = NSEntityDescription.entity(forEntityName: "Company", in: managedContext)
+		guard let entityDescription = NSEntityDescription.entity(forEntityName: "Company", in: persistentContainer.viewContext)
 		else { return nil }
-		let company = NSManagedObject(entity: entityDescription, insertInto: managedContext) as! Company
+		let company = NSManagedObject(entity: entityDescription, insertInto: persistentContainer.viewContext) as! Company
 
 		company.companyName = name
 
 		do {
-			try managedContext.save()
+			try persistentContainer.viewContext.save()
 			return company
 		} catch let error {
 			print(error.localizedDescription)
 			return nil
 		}
+	}
+
+	func deleteCompany(_ company: Company) {
+		persistentContainer.viewContext.delete(company)
+		do {
+			try persistentContainer.viewContext.save()
+
+		} catch let error {
+			print(error.localizedDescription)
+
+		}
+	}
+
+	func fetchCompanies() -> [Company] {
+		var companies = [Company]()
+		let entityDescription = NSEntityDescription.entity(forEntityName: "Company", in: persistentContainer.viewContext)
+
+		let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
+		fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "companyName", ascending: true)]
+		fetchRequest.entity = entityDescription
+		do {
+			companies = try persistentContainer.viewContext.fetch(fetchRequest)
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		companies = companies.filter { $0.companyName != "" }
+		return companies
 	}
 
 	func addPerson(age: Int,
@@ -48,39 +73,36 @@ class CoreDataService {
 				   education: String?,
 				   company: Company) {
 
-		guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: managedContext)
-		else { return }
+		guard let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: persistentContainer.viewContext)
+		else { fatalError() }
 
-		let person = NSManagedObject(entity: entityDescription, insertInto: managedContext) as! Person
+		let person = NSManagedObject(entity: entityDescription, insertInto: persistentContainer.viewContext) as! Person
 
-		person.company = company
+		company.addToPerson(person)
+		//person.company = company
 		//вспомогательная функция
 		savePerson(person: person, age: age, name: name, position: position, experience: experience, education: education)
-
 	}
 
-	func fetchCompanies() -> [Company] {
-		var companies = [Company]()
-
-		let fetchRequest: NSFetchRequest<Company> = Company.fetchRequest()
-
+	func deletePerson(_ person: Person) {
+		persistentContainer.viewContext.delete(person)
 		do {
-			companies = try managedContext.fetch(fetchRequest)
+			try persistentContainer.viewContext.save()
 		} catch let error {
 			print(error.localizedDescription)
 		}
-
-		return companies
 	}
 
 	func fetchPersonsFromCompany(company: Company) -> [Person] {
 		var persons = [Person]()
+		let entityDescription = NSEntityDescription.entity(forEntityName: "Person", in: persistentContainer.viewContext)
 
 		let fetchRequest: NSFetchRequest<Person> = Person.fetchRequest()
+		fetchRequest.entity = entityDescription
 		fetchRequest.predicate = NSPredicate(format: "company == %@", company)
-
+		fetchRequest.sortDescriptors = [NSSortDescriptor.init(key: "name", ascending: true)]
 		do {
-			persons = try managedContext.fetch(fetchRequest)
+			persons = try persistentContainer.viewContext.fetch(fetchRequest)
 		} catch let error {
 			print(error.localizedDescription)
 		}
@@ -111,8 +133,9 @@ class CoreDataService {
 		else {
 			person.education = nil
 		}
+		person.companyName = ""
 		do {
-			try managedContext.save()
+			try persistentContainer.viewContext.save()
 		} catch let error {
 			print(error.localizedDescription)
 		}

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompanyCell: UITableViewCell {
+final class CompanyCell: UITableViewCell {
 	static let cellIdentifier = "CompanyCell"
 	var labelName = UILabel()
 	func configureCell(model: Company) {

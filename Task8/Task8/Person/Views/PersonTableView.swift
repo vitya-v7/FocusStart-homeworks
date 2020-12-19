@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonTableView: UIView {
+final class PersonTableView: UIView {
 
 	let tableView = UITableView()
 	var tableViewDataSource = PersonTableViewDataSource()

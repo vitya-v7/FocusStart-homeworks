@@ -15,11 +15,12 @@ final class PersonDetailsViewController: UIViewController {
 	var person: Person?
 	var company: Company?
 	let personDetails = PersonDetailsView()
-	
+
 	// MARK: - Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		self.title = "Person"
 		self.view.backgroundColor = UIColor.systemBackground
 		self.setupNavigationBar()
 		self.setupPerson()
@@ -62,7 +63,7 @@ private extension PersonDetailsViewController {
 		}
 		else {
 			guard let company = company else { return }
-			guard let age = self.personDetails.ageTextField.text, let nonOptAge = Int(age) else {
+			guard let age = self.personDetails.ageTextField.text, let ageIn = Int(age) else {
 				self.showAlert(title: "Error", message: "Enter valid age")
 				return
 			}
@@ -87,22 +88,24 @@ private extension PersonDetailsViewController {
 			}
 			
 			if person == nil {
-				CoreDataService.shared.addPerson(age: nonOptAge,
+				CoreDataService.shared.addPerson(age: ageIn,
 												 name: self.personDetails.nameTextField.text ?? "",
 												 position: self.personDetails.positionTextField.text ?? "",
 												 experience: experienceIn,
 												 education: educationIn,
 												 company: company)
+
 			}
 			else {
-				guard let person = person else { return }
-				CoreDataService.shared.savePerson(person: person,
-												  age: nonOptAge,
+				guard let personIn = person else { return }
+				CoreDataService.shared.savePerson(person: personIn,
+												  age: ageIn,
 												  name: self.personDetails.nameTextField.text ?? "",
 												  position: self.personDetails.positionTextField.text ?? "",
 												  experience: experienceIn,
 												  education: educationIn)
 			}
+
 			self.navigationController?.popViewController(animated: true)
 		}
 	}

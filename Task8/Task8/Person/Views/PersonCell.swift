@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonCell: UITableViewCell {
+final class PersonCell: UITableViewCell {
 	static let cellIdentifier = "PersonCell"
 	var labelName = UILabel()
 	func configureCell(model: Person) {
@@ -37,7 +37,6 @@ private extension PersonCell {
 		self.labelName.numberOfLines = 1
 		self.labelName.textAlignment = .center
 		self.labelName.font = UIFont.boldSystemFont(ofSize: Constants.labelFontSize)
-		//self.labelName.text = "Different font"
 	}
 
 	func setupLabelNameLayout() {

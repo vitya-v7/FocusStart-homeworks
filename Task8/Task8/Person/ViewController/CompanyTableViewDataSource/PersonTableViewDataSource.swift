@@ -12,10 +12,15 @@ protocol PersonTableViewDataSourceProtocol {
 	func appendItem(_ cellModel: Person)
 	func setItems(_ cellModels: [Person])
 	func getItem(for indexPath: IndexPath) -> Person?
+	func setItem(index: Int, person: Person)
 }
 
-class PersonTableViewDataSource: NSObject,  UITableViewDataSource {
-	
+protocol RemovePersonFromModels {
+	func removePerson(at indexPath: IndexPath)
+}
+
+final class PersonTableViewDataSource: NSObject,  UITableViewDataSource {
+	var delegate: RemovePersonFromModels?
 	var people: [Person] = [Person]()
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return people.count
@@ -28,6 +33,14 @@ class PersonTableViewDataSource: NSObject,  UITableViewDataSource {
 		cellIn.configureCell(model: people[indexPath.row])
 		return cellIn
 	}
+
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			CoreDataService.shared.deletePerson(people[indexPath.row])
+			people.remove(at: indexPath.row)
+			delegate?.removePerson(at: indexPath)
+		}
+	}
 }
 
 extension PersonTableViewDataSource: PersonTableViewDataSourceProtocol {
@@ -38,6 +51,10 @@ extension PersonTableViewDataSource: PersonTableViewDataSourceProtocol {
 	
 	func setItems(_ cellModels: [Person]) {
 		people = cellModels
+	}
+
+	func setItem(index: Int, person: Person) {
+		people[index] = person
 	}
 	
 	func getItem(for indexPath: IndexPath) -> Person? {

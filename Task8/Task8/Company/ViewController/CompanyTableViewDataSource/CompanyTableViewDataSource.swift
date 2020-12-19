@@ -14,8 +14,12 @@ protocol CompanyTableViewDataSourceProtocol {
 	func getItem(for indexPath: IndexPath) -> Company?
 }
 
-class CompanyTableViewDataSource: NSObject,  UITableViewDataSource {
-	
+protocol RemoveCompanyFromModels {
+	func removeCompany(at indexPath: IndexPath)
+}
+
+final class CompanyTableViewDataSource: NSObject,  UITableViewDataSource {
+	var delegate: RemoveCompanyFromModels?
 	var companies: [Company] = [Company]()
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		return companies.count
@@ -27,6 +31,14 @@ class CompanyTableViewDataSource: NSObject,  UITableViewDataSource {
 		guard let cellIn = cell else { return UITableViewCell() }
 		cellIn.configureCell(model: companies[indexPath.row])
 		return cellIn
+	}
+
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			CoreDataService.shared.deleteCompany(companies[indexPath.row])
+			companies.remove(at: indexPath.row)
+			delegate?.removeCompany(at: indexPath)
+		}
 	}
 }
 

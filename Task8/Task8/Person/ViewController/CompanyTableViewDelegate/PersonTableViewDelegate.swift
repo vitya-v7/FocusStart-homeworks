@@ -7,7 +7,8 @@
 
 import Foundation
 import UIKit
-class PersonTableViewDelegate: NSObject {
+
+final class PersonTableViewDelegate: NSObject {
 	var selectedItemHandler: ((IndexPath) -> Void)?
 }
 
@@ -21,5 +22,7 @@ extension PersonTableViewDelegate: UITableViewDelegate {
 		selectedItemHandler!(indexPath)
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
+
+	
 }
 

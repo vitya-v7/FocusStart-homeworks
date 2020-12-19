@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PersonViewController: UIViewController {
+final class PersonViewController: UIViewController {
 	
 	var company: Company?
 	var people = [Person]()
@@ -28,11 +28,10 @@ class PersonViewController: UIViewController {
 	override func loadView() {
 		self.view = myTableView
 	}
-	
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		people = CoreDataService.shared.fetchPersonsFromCompany(company: company!)
-		
+		myTableView?.tableViewDataSource.delegate = self
 		selectedItemHandler = { [weak self] indexPath in
 			guard let self = self else { return assertionFailure() }
 			let personDetailVC = PersonDetailsViewController()
@@ -53,7 +52,7 @@ class PersonViewController: UIViewController {
 		super.viewWillAppear(animated)
 		navigationController?.navigationBar.barTintColor = UIColor.blue
 		self.people = CoreDataService.shared.fetchPersonsFromCompany(company: company!)
-		self.myTableView?.tableViewDataSource.setItems(self.people)
+	    self.myTableView?.tableViewDataSource.setItems(self.people)
 		self.myTableView?.tableView.reloadData()
 	}
 	
@@ -61,7 +60,7 @@ class PersonViewController: UIViewController {
 		navigationController?.navigationBar.barTintColor = UIColor.blue
 		self.navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white ]
 		
-		self.title = company?.companyName ?? "unknown company"
+		self.title = "Company: \(String(describing: company!.companyName))" 
 		
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Add",
 																 style: .plain,
@@ -76,4 +75,10 @@ class PersonViewController: UIViewController {
 	}
 }
 
+extension PersonViewController: RemovePersonFromModels {
+	func removePerson(at indexPath: IndexPath) {
+		people.remove(at: indexPath.row)
+		myTableView?.tableView.reloadData()
+	}
+}
 

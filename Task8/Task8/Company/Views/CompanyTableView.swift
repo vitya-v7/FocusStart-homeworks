@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompanyTableView: UIView {
+final class CompanyTableView: UIView {
 	
 	let tableView = UITableView()
 	var tableViewDataSource = CompanyTableViewDataSource()

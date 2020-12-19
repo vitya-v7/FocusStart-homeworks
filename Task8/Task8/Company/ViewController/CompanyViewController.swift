@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CompanyViewController: UIViewController {
+final class CompanyViewController: UIViewController {
 	
 	var companies = [Company]()
 	
@@ -29,6 +29,7 @@ class CompanyViewController: UIViewController {
 	}
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		myTableView?.tableViewDataSource.delegate = self
 		self.companies = CoreDataService.shared.fetchCompanies()
 		self.myTableView?.tableViewDataSource.setItems(self.companies)
 		selectedItemHandler = { [weak self] indexPath in
@@ -74,11 +75,15 @@ private extension CompanyViewController {
 			
 			newCompany = CoreDataService.shared.addCompany(newValue)
 			
-			guard let nonOptNewCompany = newCompany else { return }
-			self.companies.append(nonOptNewCompany)
-			self.myTableView?.tableViewDataSource.appendItem(nonOptNewCompany)
+			guard let newCompanyIn = newCompany else { return }
+
+			self.companies.append(newCompanyIn)
+			self.companies.sort{
+				$0.companyName < $1.companyName
+			}
+			self.myTableView?.tableViewDataSource.setItems(self.companies)
 			self.myTableView?.tableView.reloadData()
-			//self.myTableView!.tableView.insertRows(at: [IndexPath(row: self.companies.count - 1, section: 0)], with: .automatic)
+			
 		}
 		
 		let cancel = UIAlertAction(title: "Cancel", style: .destructive) { _ in
@@ -95,3 +100,9 @@ private extension CompanyViewController {
 	}
 }
 
+extension CompanyViewController: RemoveCompanyFromModels {
+	func removeCompany(at indexPath: IndexPath) {
+		companies.remove(at: indexPath.row)
+		myTableView?.tableView.reloadData()
+	}
+}

@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class CompanyTableViewDelegate: NSObject {
+final class CompanyTableViewDelegate: NSObject {
 	var selectedItemHandler: ((IndexPath) -> Void)?
 }
 
@@ -22,5 +22,6 @@ extension CompanyTableViewDelegate: UITableViewDelegate {
 		selectedItemHandler!(indexPath)
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
+	
 }
 
